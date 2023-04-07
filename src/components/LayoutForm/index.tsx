@@ -11,7 +11,7 @@ interface LayoutFormProps {
   children: React.ReactNode;
   customNews?: React.ReactNode;
   className?: string;
-  news: NewFeedProps[];
+  news?: NewFeedProps[];
 }
 export default function LayoutForm({
   handleSubmit,
@@ -29,9 +29,9 @@ export default function LayoutForm({
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center justify-center gap-2 flex-1 p-8"
+        className="flex flex-col items-center justify-center flex-1 gap-2 p-8"
       >
-        <div className="flex items-center justify-center flex-col gap-2">
+        <div className="flex flex-col items-center justify-center gap-2">
           <Image
             alt="logo"
             width={114}
@@ -46,8 +46,8 @@ export default function LayoutForm({
         </div>
         {children}
       </form>
-      <div className="p-4 flex-1">
-        <div className="overflow-hidden sm:flex hidden">
+      <div className="flex-1 p-4">
+        <div className="hidden overflow-hidden sm:flex">
           <Image alt="bgc" width={80} height={80} src="/image/shade-4.png" />
           <Image alt="bgc" width={80} height={80} src="/image/shade-3.png" />
           <Image alt="bgc" width={80} height={80} src="/image/shade-2.png" />
