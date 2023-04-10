@@ -1,5 +1,4 @@
 import NewFeed from "@/components/NewFeed";
-import { NewFeedProps } from "@/pages/forgot-pass/interface";
 import { Footer } from "flowbite-react";
 import Image from "next/image";
 
@@ -7,11 +6,10 @@ interface LayoutFormProps {
   handleSubmit: any;
   onSubmit: object;
   newsFeed: boolean;
-  content: string;
+  content?: string;
   children: React.ReactNode;
   customNews?: React.ReactNode;
   className?: string;
-  news?: NewFeedProps[];
 }
 export default function LayoutForm({
   handleSubmit,
@@ -21,7 +19,6 @@ export default function LayoutForm({
   children,
   customNews,
   className,
-  news,
 }: LayoutFormProps) {
   return (
     <div
@@ -29,9 +26,9 @@ export default function LayoutForm({
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center justify-center flex-1 gap-2 p-8"
+        className="flex flex-col items-center justify-center flex-1 w-full gap-2 p-8"
       >
-        <div className="flex flex-col items-center justify-center gap-2">
+        <div className="flex flex-col items-center justify-center w-full gap-2">
           <Image
             alt="logo"
             width={114}
@@ -42,7 +39,7 @@ export default function LayoutForm({
           {typeof content === "string" && (
             <span className="text-sm">{content}</span>
           )}
-          <Footer.Divider />
+          <Footer.Divider className="w-full" />
         </div>
         {children}
       </form>
@@ -54,7 +51,7 @@ export default function LayoutForm({
           <Image alt="bgc" width={80} height={80} src="/image/shade-1.png" />
         </div>
         <Image alt="avt" width={114} height={114} src="/image/400X200.png" />
-        {newsFeed ? <NewFeed news={news} className="mt-4" /> : customNews}
+        {newsFeed ? <NewFeed className="mt-4" /> : customNews}
       </div>
     </div>
   );

@@ -10,13 +10,11 @@ import {
   BsTiktok,
 } from "react-icons/bs";
 import { useRouter } from "next/router";
+import SpanText from "@/components/SpanText";
 
 export default function ActivateNotification() {
   const [status, setStatus] = useState(true);
   const router = useRouter();
-  const handleRouter = (route: string) => {
-    return router.replace(route);
-  };
   return (
     <div className="relative w-full h-full">
       <div className="flex flex-col items-center justify-center max-w-2xl gap-8 p-8 pt-24 m-auto md:pt-8">
@@ -30,24 +28,13 @@ export default function ActivateNotification() {
               ? "Your account has been successfully activated! Welcome to BitScope, an interesting social listening and market analysis service. Clickthe button below to experience our product immediately."
               : "Account activation failed, please contact Admin"}
           </span>
-          <Button onClick={() => handleRouter("/login")}>Login Now</Button>
+          <Button onClick={() => router.push("/login")}>Login Now</Button>
           <div className="flex items-center">
             <DocumentTextIcon className="w-5 h-5 text-blue-600 dark:text-blue-500" />
             <div className="pl-4 text-sm font-normal">
               By signing up I gree to the{" "}
-              <span
-                onClick={() => handleRouter("#")}
-                className="text-green-400 cursor-pointer"
-              >
-                tems & conditions
-              </span>{" "}
-              and{" "}
-              <span
-                onClick={() => handleRouter("#")}
-                className="text-green-400 cursor-pointer"
-              >
-                privacy policy
-              </span>
+              <SpanText content="tems & conditions" redirectLink="#" /> and{" "}
+              <SpanText content="privacy policy" redirectLink="#" />
             </div>
           </div>
         </div>
@@ -62,13 +49,7 @@ export default function ActivateNotification() {
         </div>
       </div>
       <span className="absolute top-0 right-0 p-4 m-4 rounded-md shadow-lg">
-        Already a user?{" "}
-        <span
-          className="text-green-400 cursor-pointer"
-          onClick={() => handleRouter("/login")}
-        >
-          Login
-        </span>
+        Already a user? <SpanText content="Login" redirectLink="/login" />
       </span>
     </div>
   );
