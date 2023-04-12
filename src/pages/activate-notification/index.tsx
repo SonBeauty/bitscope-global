@@ -16,8 +16,8 @@ export default function ActivateNotification() {
   const [status, setStatus] = useState(true);
   const router = useRouter();
   return (
-    <div className="relative w-full h-full">
-      <div className="flex flex-col items-center justify-center max-w-2xl gap-8 p-8 pt-24 m-auto md:pt-8">
+    <div className="relative w-full h-full bg-[url('/image/signup-bg.jpg')] z-0">
+      <div className="flex flex-col items-center justify-center max-w-2xl gap-8 p-8 pt-24 m-auto md:pt-8 z-10">
         <Image src="/image/400X300.png" width={206} height={113} alt="logo" />
         <h1 className="text-xl font-extrabold text-primary-dark-600">
           Beat of the Future

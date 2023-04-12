@@ -169,6 +169,7 @@ module.exports = {
       fuchsia: colors.fuchsia,
       pink: colors.pink,
       rose: colors.rose,
+      background: "#F7F9FB",
       "primary-dark": {
         DEFAULT: "#040c3b",
         50: "#e6e7eb",
