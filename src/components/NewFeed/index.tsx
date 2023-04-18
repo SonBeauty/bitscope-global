@@ -1,7 +1,7 @@
 import { Button, Timeline } from "flowbite-react";
 import React from "react";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
-import { NewFeedProps } from "@/pages/forgot-pass/interface";
+import { NewFeedProps } from "@/components/PageComponents/ForgotPass/interface";
 const FakeNew = [
   {
     title: "Dope Bears",

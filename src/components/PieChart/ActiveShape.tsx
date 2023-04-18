@@ -6,7 +6,7 @@ export const data = {
   labels: [],
   datasets: [
     {
-      label: "Percent" ,
+      label: "Percent",
       data: [8.1, 38.6, 22.5, 30.8],
       backgroundColor: [
         "rgba(255, 99, 132, 0.2)",
@@ -24,10 +24,15 @@ export const data = {
     },
   ],
 };
-export default function ActiveShape() {
+interface ActiveShapeProps {
+  className?: string;
+}
+export default function ActiveShape({ className }: ActiveShapeProps) {
   return (
-    <div className="max-w-[415px] flex items-center justify-center ">
-      <Doughnut data={data} className="p-8"/>
+    <div
+      className={`max-w-[415px] flex items-center justify-center ${className} `}
+    >
+      <Doughnut data={data} className="p-8" />
     </div>
   );
 }

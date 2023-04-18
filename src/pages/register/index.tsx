@@ -4,8 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "flowbite-react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import { schema } from "./schema";
-import Select from "../../components/SelectRegister";
+import { schema } from "../../components/PageComponents/Register/schema";
+import Select from "../../components/PageComponents/Register/SelectRegister";
 import { useEffect, useState } from "react";
 export default function Register() {
   const {

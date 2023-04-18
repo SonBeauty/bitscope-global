@@ -2,7 +2,7 @@ import LayoutForm from "@/components/LayoutForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { schema } from "./schema";
+import { schema } from "../../components/PageComponents/Login/schema";
 import InputGroup from "@/components/InputGroup";
 import { Button, Checkbox, Label } from "flowbite-react";
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";

@@ -1,3 +1,3 @@
 export interface NewFeedProps {
-  className: string;
+  className: string
 }

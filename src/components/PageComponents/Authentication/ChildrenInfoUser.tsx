@@ -1,13 +1,13 @@
-import React from "react";
+import React from "react"
 interface ChildrenInfoUserProps {
-  icon: any;
-  info: string;
-  numberInfo: string;
+  icon: any
+  info: string
+  numberInfo: string
 }
 export default function ChildrenInfoUser({
   icon,
   info,
-  numberInfo,
+  numberInfo
 }: ChildrenInfoUserProps) {
   return (
     <div className="flex justify-start items-center gap-4 w-[200px]">
@@ -17,5 +17,5 @@ export default function ChildrenInfoUser({
         <span className="text-xl font-semibold">{numberInfo}</span>
       </div>
     </div>
-  );
+  )
 }

@@ -1,17 +1,14 @@
 import BarChart from "@/components/BarChart/BarChart";
-import CheckInfoUser from "@/components/CheckInfoUser";
-import CheckQuality from "@/components/CheckQuality";
-import ChildrenInfoUser from "@/components/ChildrenInfoUser";
+import CheckInfoUser from "@/components/PageComponents/Authentication/CheckInfoUser";
+import CheckQuality from "@/components/PageComponents/Authentication/CheckQuality";
+import ChildrenInfoUser from "@/components/PageComponents/Authentication/ChildrenInfoUser";
 import OneSeries from "@/components/LineChart/OneSeries";
 import Simple from "@/components/LineChart/Simple";
 import ActiveShape from "@/components/PieChart/ActiveShape";
 import Image from "next/image";
-import {
-    BsCalendar3,
-    BsTelegram,
-    BsTwitter
-} from "react-icons/bs";
+import { BsCalendar3, BsTelegram, BsTwitter } from "react-icons/bs";
 import { FcDoNotInhale } from "react-icons/fc";
+
 const ArrInfoUser = [
   {
     icon: (

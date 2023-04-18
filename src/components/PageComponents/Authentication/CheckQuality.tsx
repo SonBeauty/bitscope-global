@@ -1,11 +1,11 @@
-import clsx from "clsx";
+import clsx from "clsx"
 interface CheckQualityProps {
-  color: string;
-  className?: string;
-  src: React.ReactNode;
-  border: string;
-  title: string;
-  content: string;
+  color: string
+  className?: string
+  src: React.ReactNode
+  border: string
+  title: string
+  content: string
 }
 export default function CheckQuality({
   color,
@@ -13,7 +13,7 @@ export default function CheckQuality({
   src,
   border,
   title,
-  content,
+  content
 }: CheckQualityProps) {
   return (
     <div
@@ -30,5 +30,5 @@ export default function CheckQuality({
         <span className="font-normal text-sm">{content}</span>
       </div>
     </div>
-  );
+  )
 }
