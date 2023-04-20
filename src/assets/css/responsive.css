@@ -1330,6 +1330,19 @@
         margin: 15px 0;
     }
 
+    .testimonial_section .testimonial_block::after {
+        background-image: url(/image/testimonial_bg.png);
+        background-size: cover;
+        background-position: center;
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 50%;
+        transform: translateX(-51%);
+        z-index: -1;
+        border-radius: 10px;
+        height: 100%
+    }
 }
 
 @media screen and (max-width:640px) {

@@ -36,7 +36,7 @@ export default function Header() {
               !mobile ? "navbar-collapse" : "navbar-collapse collapse"
             }`}
           >
-            <ul className="navbar-nav ml-auto">
+            <ul className="navbar-nav ml-auto flex gap-2">
               <li className="nav-item">
                 <Link href="#" className="nav-link">
                   Services

@@ -91,7 +91,7 @@ export default function Testimonial() {
             </div>
           </OwlCarousel>
           <div className="flex flex-col items-center justify-center py-2 mt-4">
-            <div className="bg-purple-700 w-[17%] p-3 rounded-3xl cursor-pointer text-white font-bold text-lg">
+            <div className="bg-purple-700 p-3 rounded-3xl cursor-pointer text-white font-bold text-lg">
               Join our Discord
             </div>
           </div>
