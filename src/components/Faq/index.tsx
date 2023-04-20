@@ -3,27 +3,27 @@ import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 const ArrFaq = [
   {
     id: 0,
-    question: "How can i pay ?",
+    question: "What is BitScope?",
     answer:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has. been the industrys standard dummy text ever since the when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five cen turies but also the leap into electronic typesetting, remaining essentially unchanged",
+      "BitScope is a social listening service that helps businesses understand their customers and gain a competitive edge. We listen to any customer feedback or direct mention of your brand from discussions about keywords, topics, customer insights, or competitor strategies.",
   },
   {
     id: 1,
-    question: " How to setup account ?",
+    question: "Companies have been doing this for a long time?",
     answer:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has. been the industrys standard dummy text ever since the when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five cen turies but also the leap into electronic typesetting, remaining essentially unchanged",
+      "Businesses often face challenges when accessing data from their servers. By leveraging the endless potential of AI, BitScope offers a much wider scope of data.",
   },
   {
     id: 2,
-    question: "What is process to get refund ?",
+    question: "Is BitScope for investors?",
     answer:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has. been the industrys standard dummy text ever since the when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five cen turies but also the leap into electronic typesetting, remaining essentially unchanged",
+      "Over 200 crypto investors surveyed agree that investing in trends is more profitable, but they cannot identify the source of the trend. BitScope's big data analysis allows you to stay on top of trends.",
   },
   {
     id: 3,
-    question: "What is process to get refund ?",
+    question: "How do we know the result isn't your own?",
     answer:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has. been the industrys standard dummy text ever since the when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five cen turies but also the leap into electronic typesetting, remaining essentially unchanged",
+      "BitScope does not monitor the market by itself. Instead, we allow investors to actively choose a list of information sources that we listen to and constantly update for you.",
   },
 ];
 export default function Faq() {

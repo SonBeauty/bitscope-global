@@ -1,5 +1,47 @@
 import Image from "next/image";
 import React from "react";
+const Arr = [
+  {
+    title: "Authentication",
+    describe: "Detects BOT-net members in the selected community.",
+    src: "/image/secure_data.png",
+  },
+  {
+    title: "Handy",
+    describe: "Take care of all customers at one screen",
+    src: "/image/secure_data.png",
+  },
+  {
+    title: "Tracking",
+    describe: "Discussion trends among dozens of investment community groups.",
+    src: "/image/secure_data.png",
+  },
+  {
+    title: "Monitor",
+    describe: "Know what your community is saying?",
+    src: "/image/secure_data.png",
+  },
+  {
+    title: "Trend",
+    describe: "New Analytical Tool besides Onchain Data and Indicators",
+    src: "/image/secure_data.png",
+  },
+  {
+    title: "Probe",
+    describe: "Find mentions of your brand across social platforms.",
+    src: "/image/secure_data.png",
+  },
+  {
+    title: "Alert",
+    describe: "Community FUD early warning.",
+    src: "/image/secure_data.png",
+  },
+  {
+    title: "Spying",
+    describe: "Competitor strategy analysis",
+    src: "/image/secure_data.png",
+  },
+];
 export default function Features() {
   return (
     <section className="row_am features_section" id="features">
@@ -11,113 +53,43 @@ export default function Features() {
           data-aos-delay="100"
         >
           <h2>
-            <span>Features</span> that makes app different!
+            What is the <span>problem solved?</span>
           </h2>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typese tting{" "}
-            <br /> indus orem Ipsum has beenthe standard dummy.
+            BitScope is a &quot;social listening&quot; project that integrates
+            AI&apos;s excellent language <br /> processing capabilities. This
+            brings a breath of fresh air to seemingly old <br /> problems.
           </p>
         </div>
-        <div className="feature_detail">
-          <div className="left_data feature_box">
-            <div
-              className="data_block"
-              data-aos="fade-right"
-              data-aos-duration="1500"
-            >
-              <div className="icon flex justify-end">
-                <Image
-                  width={120}
-                  height={120}
-                  alt="icon4"
-                  src="/image/secure_data.png"
-                  className="icon"
-                />
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          {Arr.map((item, index) => {
+            return (
+              <div
+                className="w-64 h-72 border-2 p-4 border-purple-300"
+                key={index}
+              >
+                <div
+                  className="data_block"
+                  data-aos="fade-right"
+                  data-aos-duration="1500"
+                >
+                  <div className="icon flex justify-center">
+                    <Image
+                      width={120}
+                      height={120}
+                      alt="icon8"
+                      src={item.src}
+                      className="icon"
+                    />
+                  </div>
+                  <div className="text text-center">
+                    <h4 className="font-semibold">{item.title}</h4>
+                    <p>{item.describe}</p>
+                  </div>
+                </div>
               </div>
-              <div className="text">
-                <h4>Secure data</h4>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and type
-                  setting indus ideas.
-                </p>
-              </div>
-            </div>
-            <div
-              className="data_block"
-              data-aos="fade-right"
-              data-aos-duration="1500"
-            >
-              <div className="icon flex justify-end">
-                <Image
-                  width={120}
-                  height={120}
-                  alt="icon4"
-                  src="/image/functional.png"
-                  className="icon"
-                />
-              </div>
-              <div className="text">
-                <h4>Fully functional</h4>
-                <p>
-                  Simply dummy text of the printing and typesetting indus lorem
-                  Ipsum is dummy.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="right_data feature_box">
-            <div
-              className="data_block"
-              data-aos="fade-left"
-              data-aos-duration="1500"
-            >
-              <Image
-                width={120}
-                height={120}
-                alt="icon4"
-                src="/image/live-chat.png"
-                className="icon"
-              />
-
-              <div className="text">
-                <h4>Live chat</h4>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and type
-                  setting indus ideas.
-                </p>
-              </div>
-            </div>
-            <div
-              className="data_block"
-              data-aos="fade-left"
-              data-aos-duration="1500"
-            >
-              <Image
-                width={120}
-                height={120}
-                alt="icon4"
-                className="icon"
-                src="/image/support.png"
-              />
-              <div className="text">
-                <h4>24-7 Support</h4>
-                <p>
-                  Simply dummy text of the printing and typesetting indus lorem
-                  Ipsum is dummy.
-                </p>
-              </div>
-            </div>
-          </div>
-          <Image
-            width={333}
-            height={678}
-            alt="icon4"
-            src="/image/features_frame.png"
-            className="feature_img"
-            data-aos="fade-up"
-            data-aos-duration="1500"
-            data-aos-delay="100"
-          />
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import AboutApp from "@/components/AboutApp";
-import BeautifullInterface from "@/components/BeautifullInterface";
+import Announce from "@/components/Announce";
 import Design from "@/components/Design";
 import DownloadApp from "@/components/DownloadApp";
 import Faq from "@/components/Faq";
@@ -7,16 +7,12 @@ import Features from "@/components/Features";
 import Footer from "@/components/PageComponents/Landing/Footer";
 import Header from "@/components/PageComponents/Landing/Header";
 import Section from "@/components/PageComponents/Landing/Section";
-import Pricing from "@/components/Pricing";
-import StoryLanding from "@/components/StoryLanding";
-import Testimonial from "@/components/Testimonial";
 import Trusted from "@/components/Trusted";
-import Work from "@/components/Work";
 import Head from "next/head";
-import React from "react";
+import Script from "next/script";
 export default function LandingPage() {
   return (
-    <>
+    <div>
       <Head>
         <link
           rel="stylesheet"
@@ -39,6 +35,7 @@ export default function LandingPage() {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+
         <script
           src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
           integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
@@ -67,24 +64,20 @@ export default function LandingPage() {
           async
           referrerPolicy="no-referrer"
         ></script>
-        <script src="/assets/js/main.js" async></script>
       </Head>
+      <Script src="/assets/js/main.js" />
       <div className="page-wrapper overflow-hidden">
+        <Announce />
         <Header />
         <Section />
         <Trusted />
         <Features />
         <AboutApp />
         <Design />
-        <Work />
-        <Testimonial />
-        <Pricing />
-        <Faq />
-        <BeautifullInterface />
         <DownloadApp />
-        <StoryLanding />
+        <Faq />
         <Footer />
       </div>
-    </>
+    </div>
   );
 }

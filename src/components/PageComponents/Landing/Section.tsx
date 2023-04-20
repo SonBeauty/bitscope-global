@@ -110,51 +110,17 @@ export default function Section() {
           >
             <div className="banner_text">
               <h1>
-                Best way to <span>manage your customers.</span>
+                Using <span>artificial intelligence</span> for{" "}
+                <span>social listening</span>
               </h1>
               <p>
-                Lorem Ipsum is simply dummy text of the printing and setting
-                indus orem Ipsum has been the industrys.
+                BitScope provides everything you need to understand your
+                customers, and offers investors a new method of market analysis.
               </p>
             </div>
-            <ul className="app_btn">
-              <li>
-                <Link href="#">
-                  <Image
-                    width={120}
-                    height={35}
-                    alt="app"
-                    className="blue_img"
-                    src="/image/appstore_blue.png"
-                  />
-                  <Image
-                    width={120}
-                    height={35}
-                    alt="app"
-                    className="white_img"
-                    src="/image/appstore_white.png"
-                  />
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <Image
-                    width={120}
-                    height={35}
-                    alt="app"
-                    className="blue_img"
-                    src="/image/googleplay_blue.png"
-                  />
-                  <Image
-                    width={120}
-                    height={35}
-                    alt="app"
-                    className="white_img"
-                    src="/image/googleplay_white.png"
-                  />
-                </Link>
-              </li>
-            </ul>
+            <Link href="#" className="w-1/4 btn px-8 py-2 puprple_btn">
+              Login
+            </Link>
             <div className="used_app">
               <ul>
                 <li>

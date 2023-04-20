@@ -39,7 +39,7 @@ $(document).ready(function () {
 
 // All Slider Js
 
-$("#frmae_slider").owlCarousel({
+$("#frmae_slider")?.owlCarousel({
   loop: true,
   margin: 10,
   autoplay: true,
@@ -59,7 +59,7 @@ $("#frmae_slider").owlCarousel({
   },
 });
 
-$("#company_slider").owlCarousel({
+$("#company_slider")?.owlCarousel({
   loop: true,
   margin: 10,
   nav: false,
@@ -79,7 +79,7 @@ $("#company_slider").owlCarousel({
   },
 });
 
-$("#testimonial_slider").owlCarousel({
+$("#testimonial_slider")?.owlCarousel({
   loop: true,
   margin: 10,
   nav: false,
@@ -99,7 +99,7 @@ $("#testimonial_slider").owlCarousel({
   },
 });
 
-$("#screen_slider").owlCarousel({
+$("#screen_slider")?.owlCarousel({
   loop: true,
   margin: 10,
   nav: false,

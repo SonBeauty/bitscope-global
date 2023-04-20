@@ -1,47 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import {
   FaFacebook,
-  FaInstagram,
-  FaPinterest,
-  FaTwitter,
+  FaTwitter
 } from "react-icons/fa";
+import SectionFooter from "./SectionFooter";
 export default function Footer() {
   return (
     <>
-      <section className="newsletter_section">
-        <div className="container">
-          <div className="newsletter_box">
-            <div
-              className="section_title"
-              data-aos="fade-in"
-              data-aos-duration="1500"
-              data-aos-delay="100"
-            >
-              <h2>Subscribe newsletter</h2>
-              <p>Be the first to recieve all latest post in your inbox</p>
-            </div>
-            <form
-              action=""
-              data-aos="fade-in"
-              data-aos-duration="1500"
-              data-aos-delay="100"
-            >
-              <div className="form-group">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Enter your email"
-                />
-              </div>
-              <div className="form-group">
-                <button className="btn">SUBMIT</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
+      <SectionFooter />
       <footer>
         <div className="top_footer" id="contact">
           <div className="anim_line dark_bg">
@@ -150,16 +117,6 @@ export default function Footer() {
                         <FaTwitter className="w-full h-full p-2" />
                       </Link>
                     </li>
-                    <li>
-                      <Link href="#">
-                        <FaInstagram className="w-full h-full p-2" />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#">
-                        <FaPinterest className="w-full h-full p-2" />
-                      </Link>
-                    </li>
                   </ul>
                 </div>
               </div>
@@ -168,19 +125,13 @@ export default function Footer() {
                   <h3>Useful Links</h3>
                   <ul>
                     <li>
-                      <Link href="/">Home</Link>
+                      <Link href="/">Services</Link>
                     </li>
                     <li>
-                      <Link href="/about">About us</Link>
+                      <Link href="/about">Blog</Link>
                     </li>
                     <li>
-                      <Link href="#">Services</Link>
-                    </li>
-                    <li>
-                      <Link href="/blog">Blog</Link>
-                    </li>
-                    <li>
-                      <Link href="/contact">Contact us</Link>
+                      <Link href="#">Tokenomic</Link>
                     </li>
                   </ul>
                 </div>
@@ -207,33 +158,6 @@ export default function Footer() {
                   </ul>
                 </div>
               </div>
-              <div className="col-lg-2 col-md-6 col-12">
-                <div className="try_out">
-                  <h3>Let’s Try Out</h3>
-                  <ul className="app_btn">
-                    <li>
-                      <Link href="#">
-                        <Image
-                          width={140}
-                          height={40}
-                          alt="app"
-                          src="/image/appstore_blue.png"
-                        />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#">
-                        <Image
-                          width={140}
-                          height={45}
-                          alt="ggg"
-                          src="/image/googleplay_blue.png"
-                        />
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -247,7 +171,7 @@ export default function Footer() {
                 <p className="developer_text">
                   Design & developed by{" "}
                   <Link href="" target="blank">
-                    BitScope
+                    Kilonidhi Themes
                   </Link>
                 </p>
               </div>

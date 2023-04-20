@@ -35,7 +35,7 @@ export default function Trusted() {
             data-aos-delay="100"
           >
             <h2>
-              Trusted by <span>150+</span> companies
+              Trusted by <span>6000+</span> companies
             </h2>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typese tting{" "}

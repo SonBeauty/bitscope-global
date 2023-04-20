@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Testimonial from "../Testimonial";
 export default function DownloadApp() {
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", function () {
@@ -108,55 +109,9 @@ export default function DownloadApp() {
               </span>
             </div>
             <div className="row">
-              <div className="col-md-6">
+              <div className="col">
                 <div className="free_text">
-                  <div className="section_title">
-                    <h2>Let’s download free from apple and play store</h2>
-                    <p>
-                      Instant free download from apple and play store orem Ipsum
-                      is simply dummy text of the printing. and typese tting
-                      indus orem Ipsum has beenthe standard
-                    </p>
-                  </div>
-                  <ul className="app_btn">
-                    <li>
-                      <Link href="#">
-                        <Image
-                          width={121}
-                          height={35}
-                          alt="store"
-                          src="/image/appstore_blue.png"
-                        />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#">
-                        <Image
-                          width={121}
-                          height={35}
-                          alt="store"
-                          src="/image/googleplay_blue.png"
-                        />
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="free_img">
-                  <Image
-                    width={317}
-                    height={646}
-                    alt="store"
-                    src="/image/download-screen01.png"
-                  />
-                  <Image
-                    width={255}
-                    height={519}
-                    alt="store"
-                    src="/image/download-screen02.png"
-                    className="mobile_mockup"
-                  />
+                  <Testimonial />
                 </div>
               </div>
             </div>

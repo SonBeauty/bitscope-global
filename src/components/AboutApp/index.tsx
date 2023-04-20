@@ -1,13 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
 export default function AboutApp() {
   return (
     <section className="row_am about_app_section">
       <div className="container">
         <div className="row">
-          <div className="col-lg-6">
+          <div className="col-lg-6 relative">
             <div
               className="about_img"
               data-aos="fade-in"
@@ -31,6 +30,8 @@ export default function AboutApp() {
                   className="moving_animation"
                 />
               </div>
+              <div className="w-[2px] h-[130%] bg-blue-300 absolute rotate-45 right-[60%]"></div>
+              <div className="w-[2px] h-[130%] bg-blue-300 absolute -rotate-45 right-[60%]"></div>
             </div>
           </div>
           <div className="col-lg-6">
@@ -42,13 +43,15 @@ export default function AboutApp() {
                 data-aos-delay="100"
               >
                 <h2>
-                  Some awesome words <span>about app.</span>
+                  <span>BIT AUTHENTICATION</span>
                 </h2>
+                <p className="font-bold text-xl mb-2">
+                  Authenticate the percentage of real users.
+                </p>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry lorem Ipsum has been the industrys
-                  standard dummy text ever since the when an unknown printer
-                  took a galley of type and. Lorem ipsum dolor sit amet.
+                  Analyze user conversations and behavior to categorize them
+                  accurately. BitScope provides an authentic view of
+                  communication channels by filtering out bot accounts.
                 </p>
               </div>
 
@@ -68,13 +71,8 @@ export default function AboutApp() {
                     />
                   </div>
                   <div className="text">
-                    <p>
-                      <span className="counter-value" data-count="17">
-                        0
-                      </span>
-                      <span>M+</span>
-                    </p>
-                    <p>Download</p>
+                    <p></p>
+                    <p className="text-lg">Project evaluation</p>
                   </div>
                 </li>
                 <li>
@@ -87,13 +85,8 @@ export default function AboutApp() {
                     />
                   </div>
                   <div className="text">
-                    <p>
-                      <span className="counter-value" data-count="08">
-                        0{" "}
-                      </span>
-                      <span>M+</span>
-                    </p>
-                    <p>Followers</p>
+                    <p></p>
+                    <p className="text-lg">Quality community</p>
                   </div>
                 </li>
                 <li>
@@ -106,13 +99,8 @@ export default function AboutApp() {
                     />
                   </div>
                   <div className="text">
-                    <p>
-                      <span className="counter-value" data-count="2300">
-                        1500
-                      </span>
-                      <span>+</span>
-                    </p>
-                    <p>Reviews</p>
+                    <p></p>
+                    <p className="text-lg">Effective advertising</p>
                   </div>
                 </li>
                 <li>
@@ -125,13 +113,8 @@ export default function AboutApp() {
                     />
                   </div>
                   <div className="text">
-                    <p>
-                      <span className="counter-value" data-count="150">
-                        0
-                      </span>
-                      <span>+</span>
-                    </p>
-                    <p>Countries</p>
+                    <p></p>
+                    <p className="text-lg">And more</p>
                   </div>
                 </li>
               </ul>

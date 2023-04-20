@@ -1,4 +1,3 @@
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -26,86 +25,41 @@ export default function Header() {
             aria-label="Toggle navigation"
           >
             <div
-              className={`toggle-wrap ${mobile && "active"}`}
+              className={`toggle-wrap ${!mobile && "active"}`}
               onClick={() => setmobile(!mobile)}
             >
               <span className="toggle-bar"></span>
             </div>
           </button>
-          <div className="navbar-collapse">
+          <div
+            className={`${
+              !mobile ? "navbar-collapse" : "navbar-collapse collapse"
+            }`}
+          >
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item has_dropdown">
+              <li className="nav-item">
                 <Link href="#" className="nav-link">
-                  Home
+                  Services
                 </Link>
-                <span className="drp_btn">
-                  <ChevronDownIcon className="h-6 w-6 text-gray-500" />
-                </span>
-                <div className="sub_menu">
-                  <ul>
-                    <li>
-                      <Link href="#">Home Defoult</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Home Dark Hero</Link>
-                    </li>
-                  </ul>
-                </div>
               </li>
               <li className="nav-item">
                 <Link href="#" className="nav-link">
-                  Features
+                  Social
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="#_it_work" className="nav-link">
-                  How it works
-                </Link>
-              </li>
-              <li className="nav-item has_dropdown">
-                <Link href="#" className="nav-link">
-                  Pages
-                </Link>
-                <span className="drp_btn">
-                  <ChevronDownIcon className="h-6 w-6 text-gray-500" />
-                </span>
-                <div className="sub_menu">
-                  <ul>
-                    <li>
-                      <Link href="#">About Us</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Reviews</Link>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item">
-                <Link href="#" className="nav-link">
-                  Pricing
-                </Link>
-              </li>
-              <li className="nav-item has_dropdown">
                 <Link href="#" className="nav-link">
                   Blog
                 </Link>
-                <span className="drp_btn">
-                  <ChevronDownIcon className="h-6 w-6 text-gray-500" />
-                </span>
-                <div className="sub_menu">
-                  <ul>
-                    <li>
-                      <Link href="#">Blog List</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Blog Single</Link>
-                    </li>
-                  </ul>
-                </div>
               </li>
               <li className="nav-item">
                 <Link href="#" className="nav-link">
-                  Contact
+                  Tokenomic
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="#" className="nav-link btn px-8 py-2 puprple_btn">
+                  Login
                 </Link>
               </li>
               <li className="nav-item">
@@ -113,6 +67,12 @@ export default function Header() {
                   GET STARTED
                 </Link>
               </li>
+              <div className="border-2 border-purple-400 relative rounded-3xl mx-4 flex items-center justify-center gap-2">
+                <select className="border-none rounded-3xl bg-purple-50">
+                  <option>English</option>
+                  <option>Español</option>
+                </select>
+              </div>
             </ul>
           </div>
         </nav>

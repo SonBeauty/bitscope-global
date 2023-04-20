@@ -1,5 +1,3 @@
-import Link from "next/link";
-import React from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
@@ -35,12 +33,9 @@ export default function Testimonial() {
           data-aos-delay="300"
         >
           <h2>
-            What our <span>customer say</span>
+            The ability to analyze natural language <br /> from around the web
+            and social media <br /> is a valuable opportunity.
           </h2>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typese tting{" "}
-            <br /> indus orem Ipsum has beenthe standard dummy.
-          </p>
         </div>
         <div
           className="testimonial_block"
@@ -54,33 +49,12 @@ export default function Testimonial() {
           >
             <div className="item">
               <div className="testimonial_slide_box">
-                <div className="rating">
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                </div>
-                <p className="review">
-                  “ Lorem Ipsum is simply dummy text of the printing and typese
-                  tting us orem Ipsum has been lorem beenthe standar dummy. ”
-                </p>
                 <div className="testimonial_img">
                   <Image
                     width={130}
                     height={130}
                     alt="anim_line"
-                    src="/image/testimonial_user1.png"
+                    src="/image/testimonial_user1_1.png"
                   />
                 </div>
                 <h3>Shayna John</h3>
@@ -89,33 +63,12 @@ export default function Testimonial() {
             </div>
             <div className="item">
               <div className="testimonial_slide_box">
-                <div className="rating">
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                </div>
-                <p className="review">
-                  “ Lorem Ipsum is simply dummy text of the printing and typese
-                  tting us orem Ipsum has been lorem beenthe standar dummy. ”
-                </p>
                 <div className="testimonial_img">
                   <Image
                     width={130}
                     height={130}
                     alt="anim_line"
-                    src="/image/testimonial_user2.png"
+                    src="/image/testimonial_user1_1.png"
                   />
                 </div>
                 <h3>Willium Den</h3>
@@ -124,33 +77,12 @@ export default function Testimonial() {
             </div>
             <div className="item">
               <div className="testimonial_slide_box">
-                <div className="rating">
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                  <span>
-                    <i className="icofont-star"></i>
-                  </span>
-                </div>
-                <p className="review">
-                  “ Lorem Ipsum is simply dummy text of the printing and typese
-                  tting us orem Ipsum has been lorem beenthe standar dummy. ”
-                </p>
                 <div className="testimonial_img">
                   <Image
                     width={130}
                     height={130}
                     alt="anim_line"
-                    src="/image/testimonial_user3.png"
+                    src="/image/testimonial_user1_1.png"
                   />
                 </div>
                 <h3>Cyrus Stephen</h3>
@@ -158,35 +90,16 @@ export default function Testimonial() {
               </div>
             </div>
           </OwlCarousel>
-          <div className="total_review">
-            <div className="rating">
-              <span>
-                <i className="icofont-star"></i>
-              </span>
-              <span>
-                <i className="icofont-star"></i>
-              </span>
-              <span>
-                <i className="icofont-star"></i>
-              </span>
-              <span>
-                <i className="icofont-star"></i>
-              </span>
-              <span>
-                <i className="icofont-star"></i>
-              </span>
-              <p>5.0 / 5.0</p>
+          <div className="flex flex-col items-center justify-center py-2 mt-4">
+            <div className="bg-purple-700 w-[17%] p-3 rounded-3xl cursor-pointer text-white font-bold text-lg">
+              Join our Discord
             </div>
-            <h3>2578</h3>
-            <Link href="/review">
-              TOTAL USER REVIEWS <i className="icofont-arrow-right"></i>
-            </Link>
           </div>
           <Image
             width={930}
-            height={383}
+            height={385}
             alt="anim_line"
-            src="/image/avtar_testimonial.png"
+            src="/image/avtar_testimonial_1.png"
             className="avtar_faces"
           />
         </div>
