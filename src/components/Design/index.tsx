@@ -14,35 +14,39 @@ export default function Design() {
                 data-aos-delay="100"
               >
                 <h2>
-                  Beautiful design with <span>modern UI</span>
+                  BIT <span>TRACKING</span>
                 </h2>
+                <p className="font-bold">
+                  A comprehensive social media listening program.
+                </p>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry lorem Ipsum has been the industrys
-                  standard dummy text ever since the when an unknown printer
-                  took a galley of type and.
+                  Listening is the best way to understand anyone&apos;s
+                  feelings.
+                  <br /> The cutting edge of Artificial Intelligence now enables
+                  the listening to millions of lines of messages, providing
+                  insight into customers or the flow of trends.
                 </p>
               </div>
               <ul className="design_block">
                 <li data-aos="fade-up" data-aos-duration="1500">
-                  <h4>Carefully designed</h4>
+                  <h4>Watchlist</h4>
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing and type
-                    esetting industry lorem Ipsum has.
+                    A list of quality signal groups but cannot track all
+                    content.
                   </p>
                 </li>
                 <li data-aos="fade-up" data-aos-duration="1500">
-                  <h4>Seamless Sync</h4>
+                  <h4>Catch the trend</h4>
                   <p>
-                    Simply dummy text of the printing and typesetting inustry
-                    lorem Ipsum has Lorem dollar summit.
+                    Large language model analysis allows identifying important
+                    &quot;keywords&quot; that could be &quot;Trend&quot;
                   </p>
                 </li>
                 <li data-aos="fade-up" data-aos-duration="1500">
-                  <h4>Access Drive</h4>
+                  <h4>Customer insights</h4>
                   <p>
-                    Printing and typesetting industry lorem Ipsum has been the
-                    industrys standard dummy text of type setting.
+                    The limitless potential of artificial intelligence (AI)
+                    makes every customer conversation heard.
                   </p>
                 </li>
               </ul>
@@ -50,40 +54,17 @@ export default function Design() {
           </div>
           <div className="col-lg-6">
             <div
-              className="ui_images"
+              className=""
               data-aos="fade-in"
               data-aos-duration="1500"
             >
-              <div className="left_img">
+              <div className="left_img ml-16">
                 <Image
-                  width={332}
-                  height={475}
+                  width={450}
+                  height={575}
                   alt="app"
-                  src="/image/modern01.png"
+                  src="/image/Artboard-17.pngedit.png"
                   className="moving_position_animatin"
-                />
-              </div>
-              <div className="right_img ml-6">
-                <Image
-                  width={120}
-                  height={120}
-                  alt="app"
-                  src="/image/secure_data.png"
-                  className="moving_position_animatin mb-4"
-                />
-                <Image
-                  width={330}
-                  height={236}
-                  alt="app"
-                  src="/image/modern02.png"
-                  className="moving_position_animatin"
-                />
-                <Image
-                  width={330}
-                  height={97}
-                  alt="app"
-                  src="/image/modern03.png"
-                  className="moving_position_animatin -ml-1"
                 />
               </div>
             </div>

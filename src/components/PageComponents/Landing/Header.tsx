@@ -9,10 +9,11 @@ export default function Header() {
         <nav className="navbar navbar-expand-lg">
           <Link href="#" className="navbar-brand">
             <Image
-              width={140}
-              height={30}
+              width={250}
+              height={80}
               alt="Logo"
-              src="/image/400X200.png"
+              src="/image/600X300.png"
+              className="w-80"
             />
           </Link>
           <button
@@ -58,7 +59,7 @@ export default function Header() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="#" className="nav-link btn px-8 py-2 puprple_btn">
+                <Link href="#" className="nav-link btn px-8 py-2 bg-white rounded-3xl border-2 border-purple-400">
                   Login
                 </Link>
               </li>

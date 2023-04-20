@@ -14,24 +14,13 @@ export default function AboutApp() {
             >
               <div className="frame_img">
                 <Image
-                  width={302}
-                  height={616}
+                  width={602}
+                  height={816}
                   alt="app"
-                  src="/image/about-frame.png"
+                  src="/image/Artboard-16.pngedit.png"
                   className="moving_position_animatin"
                 />
               </div>
-              <div className="screen_img">
-                <Image
-                  width={266}
-                  height={361}
-                  alt="app"
-                  src="/image/about-screen.png"
-                  className="moving_animation"
-                />
-              </div>
-              <div className="w-[2px] h-[130%] bg-blue-300 absolute rotate-45 right-[60%]"></div>
-              <div className="w-[2px] h-[130%] bg-blue-300 absolute -rotate-45 right-[60%]"></div>
             </div>
           </div>
           <div className="col-lg-6">
@@ -48,7 +37,7 @@ export default function AboutApp() {
                 <p className="font-bold text-xl mb-2">
                   Authenticate the percentage of real users.
                 </p>
-                <p>
+                <p className="py-3">
                   Analyze user conversations and behavior to categorize them
                   accurately. BitScope provides an authentic view of
                   communication channels by filtering out bot accounts.
@@ -67,7 +56,7 @@ export default function AboutApp() {
                       width={60}
                       height={60}
                       alt="app"
-                      src="/image/download.png"
+                      src="/image/Artboard_13.png"
                     />
                   </div>
                   <div className="text">
@@ -81,7 +70,7 @@ export default function AboutApp() {
                       width={60}
                       height={60}
                       alt="app"
-                      src="/image/followers.png"
+                      src="/image/Artboard_13_1.png"
                     />
                   </div>
                   <div className="text">
@@ -95,7 +84,7 @@ export default function AboutApp() {
                       width={60}
                       height={60}
                       alt="app"
-                      src="/image/reviews.png"
+                      src="/image/Artboard_13_2.png"
                     />
                   </div>
                   <div className="text">
@@ -109,7 +98,7 @@ export default function AboutApp() {
                       width={60}
                       height={60}
                       alt="app"
-                      src="/image/countries.png"
+                      src="/image/Artboard_13__3.png"
                     />
                   </div>
                   <div className="text">

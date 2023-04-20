@@ -57,8 +57,8 @@ export default function Testimonial() {
                     src="/image/testimonial_user1_1.png"
                   />
                 </div>
-                <h3>Shayna John</h3>
-                <span className="designation">Careative inc</span>
+                <h3 className="text-white">Shayna John</h3>
+                <span className="designation text-white">Careative inc</span>
               </div>
             </div>
             <div className="item">
@@ -71,8 +71,8 @@ export default function Testimonial() {
                     src="/image/testimonial_user1_1.png"
                   />
                 </div>
-                <h3>Willium Den</h3>
-                <span className="designation">Careative inc</span>
+                <h3 className="text-white">Willium Den</h3>
+                <span className="designation text-white">Careative inc</span>
               </div>
             </div>
             <div className="item">
@@ -85,13 +85,13 @@ export default function Testimonial() {
                     src="/image/testimonial_user1_1.png"
                   />
                 </div>
-                <h3>Cyrus Stephen</h3>
-                <span className="designation">Careative inc</span>
+                <h3 className="text-white">Cyrus Stephen</h3>
+                <span className="designation text-white">Careative inc</span>
               </div>
             </div>
           </OwlCarousel>
           <div className="flex flex-col items-center justify-center py-2 mt-4">
-            <div className="bg-purple-700 p-3 rounded-3xl cursor-pointer text-white font-bold text-lg">
+            <div className="bg-purple-700 px-4 py-3 rounded-3xl cursor-pointer text-white font-bold text-lg">
               Join our Discord
             </div>
           </div>

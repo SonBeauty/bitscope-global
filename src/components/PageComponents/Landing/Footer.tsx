@@ -1,9 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FaFacebook,
-  FaTwitter
-} from "react-icons/fa";
+import { FaFacebook, FaTwitter } from "react-icons/fa";
 import SectionFooter from "./SectionFooter";
 export default function Footer() {
   return (
@@ -92,8 +89,8 @@ export default function Footer() {
                   <div className="logo">
                     {" "}
                     <Image
-                      width={150}
-                      height={30}
+                      width={250}
+                      height={50}
                       alt="logo"
                       src="/image/1200X628-SVG-NONBACKGROUND.png"
                     />
@@ -180,7 +177,7 @@ export default function Footer() {
         </div>
         <div className="go_top">
           <span>
-            <Image width={40} height={40} alt="app" src="/image/go_top.png" />
+            <Image width={50} height={50} alt="app" src="/image/go_top.png" />
           </span>
         </div>
       </footer>

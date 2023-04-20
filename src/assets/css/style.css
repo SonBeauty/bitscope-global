@@ -386,7 +386,8 @@ header.fixed .navbar {
 }
 
 .navbar-brand img {
-    width: 150px;
+    width: 250px;
+    height: 70px;
 }
 
 /* navigation bar dropdown */
@@ -1314,7 +1315,7 @@ iframe#youtubevideo {
 }
 
 .testimonial_section .testimonial_block {
-    /* background-image: url(/image/testimonial_bg.png); */
+    /* background-image: url(/image/Artboard_18.png); */
     /* background-size: cover;
     background-position: bottom; */
     z-index: 999;
@@ -1322,19 +1323,19 @@ iframe#youtubevideo {
     margin-top: 0px;
 }
 
-.testimonial_section .testimonial_block::after {
-    background-image: url(/image/testimonial_bg.png);
-    background-size: cover;
+/* .testimonial_section .testimonial_block::after {
+    background-image: url(/image/Artboard_18.png);
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
     content: "";
     position: absolute;
-    top: 0;
+    top: -100%;
     width: 50%;
     transform: translateX(50%);
     z-index: -1;
-    border-radius: 10px;
-    height: 100%
-}
+    height: 300%
+} */
 
 
 
@@ -1662,7 +1663,9 @@ iframe#youtubevideo {
 }
 
 .free_app_section .container .free_app_inner {
-    background-color: var(--bg-purple);
+    background-image: url(/image/bread_crumb_bg_one.png);
+    background-size: cover;
+    background-position: center;
     border-radius: 30px;
     padding: 20px 100px;
     padding-bottom: 50px;
@@ -1928,10 +1931,11 @@ footer .top_footer.has_bg {
 /* footer logo */
 footer .top_footer .logo {
     margin-bottom: 40px;
+    margin-left: -30px;
 }
 
 footer .top_footer .logo img {
-    width: 150px;
+    width: 250px;
 }
 
 footer .top_footer .abt_side li {
