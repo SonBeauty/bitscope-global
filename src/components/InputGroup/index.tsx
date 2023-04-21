@@ -22,7 +22,7 @@ export default function InputGroup({
 }: InputGroupProps) {
   return (
     <div className={className}>
-      <div className="block mb-2">
+      <div className="mb-2 block text-left mt-1">
         <Label htmlFor={id} value={label} />
       </div>
       <TextInput

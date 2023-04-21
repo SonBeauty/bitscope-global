@@ -9,7 +9,7 @@ interface SpanTextProps {
 export default function SpanText({
   redirectLink,
   content,
-  color = "text-green-400",
+  color = "text-slate-500",
   className,
 }: SpanTextProps) {
   const router = useRouter();
