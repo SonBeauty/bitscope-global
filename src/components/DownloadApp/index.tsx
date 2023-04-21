@@ -100,7 +100,7 @@ export default function DownloadApp() {
           </div>
         </div>
       </section>
-      <div className="purple_backdrop"></div>
+      {/* <div className="purple_backdrop"></div> */}
     </>
   );
 }

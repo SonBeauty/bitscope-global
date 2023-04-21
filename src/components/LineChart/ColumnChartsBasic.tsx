@@ -15,7 +15,7 @@ export default function ColumnChartsBasic() {
       data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
     },
   ];
-  const options: ApexCharts.ApexOptions = {
+  const options: any = {
     chart: {
       type: "bar",
       height: 350,
@@ -56,7 +56,7 @@ export default function ColumnChartsBasic() {
       opacity: 1,
     },
     tooltip: {
-      y: {
+      y: { 
         formatter: function (val: string) {
           return "$ " + val + " thousands";
         },

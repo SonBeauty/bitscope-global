@@ -5,20 +5,20 @@ export default function AboutApp() {
   return (
     <section className="row_am about_app_section">
       <div className="container">
-        <div className="row items-center">
-          <div className="col-lg-6 relative">
+        <div className="row items-center justify-center">
+          <div className="col-lg-5 relative">
             <div
-              className="about_img"
+              className=""
               data-aos="fade-in"
               data-aos-duration="1500"
             >
               <div className="frame_img">
                 <Image
-                  width={602}
+                  width={900}
                   height={816}
                   alt="app"
                   src="/image/Artboard-16.pngedit.png"
-                  className="moving_position_animatin"
+                  className="moving_position_animatin w-full h-full"
                 />
               </div>
             </div>
@@ -117,6 +117,7 @@ export default function AboutApp() {
               </Link>
             </div>
           </div>
+          <div className="col-lg-1"></div>
         </div>
       </div>
     </section>

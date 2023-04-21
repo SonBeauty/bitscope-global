@@ -1,24 +1,22 @@
-import React, { useState, useEffect, useRef } from "react";
-import SidebarLinkGroup from "./SidebarLinkGroup";
-import { useRouter } from "next/router";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { useRouter } from "next/router";
+import SidebarLinkGroup from "./SideBarLinkGroup";
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
   const location = useRouter();
   const { pathname } = location;
-
-  const trigger = useRef(null);
-  const sidebar = useRef(null);
+  const trigger = useRef<any>(null);
+  const sidebar = useRef<any>(null);
   let storedSidebarExpanded = null;
   if (typeof window !== "undefined") {
     storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
   }
-  const [sidebarExpanded, setSidebarExpanded] = useState(
+  const [sidebarExpanded, setSidebarExpanded] = useState<any>(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
   useEffect(() => {
-    const clickHandler = ({ target }) => {
+    const clickHandler = ({ target }: any) => {
       if (!sidebar.current || !trigger.current) return;
       if (
         !sidebarOpen ||
@@ -32,9 +30,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
     return () => document.removeEventListener("click", clickHandler);
   });
 
-  // close if the esc key is pressed
   useEffect(() => {
-    const keyHandler = ({ keyCode }) => {
+    const keyHandler = ({ keyCode }: any) => {
       if (!sidebarOpen || keyCode !== 27) return;
       setSidebarOpen(false);
     };
@@ -44,10 +41,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
 
   useEffect(() => {
     localStorage.setItem("sidebar-expanded", sidebarExpanded);
-    if (sidebarExpanded) {
-      document.querySelector("body").classList.add("sidebar-expanded");
-    } else {
-      document.querySelector("body").classList.remove("sidebar-expanded");
+    const element = window.document.querySelector("body");
+    if (sidebarExpanded && element !== null) {
+      element.classList.add("sidebar-expanded");
+    } else if (element !== null) {
+      element.classList.remove("sidebar-expanded");
     }
   }, [sidebarExpanded]);
 
@@ -58,10 +56,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <Link href="/">
-          <Image src="/image/400X300.png" alt="Logo" width={170} height={170} className="-ml-6" />
+          <Image
+            src="/image/400X300.png"
+            alt="Logo"
+            width={170}
+            height={170}
+            className="-ml-6"
+          />
         </Link>
 
         <button
@@ -206,9 +209,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
                   Calendar
                 </Link>
               </li>
-              {/* <!-- Menu Item Calendar --> */}
-
-              {/* <!-- Menu Item Profile --> */}
               <li>
                 <Link
                   href="/profile"
@@ -236,15 +236,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
                   Profile
                 </Link>
               </li>
-              {/* <!-- Menu Item Profile --> */}
-
-              {/* <!-- Menu Item Forms --> */}
               <SidebarLinkGroup
                 activeCondition={
                   pathname === "/forms" || pathname.includes("forms")
                 }
               >
-                {(handleClick, open) => {
+                {(handleClick: any, open: any) => {
                   return (
                     <React.Fragment>
                       <Link
@@ -309,7 +306,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
                           />
                         </svg>
                       </Link>
-                      {/* <!-- Dropdown Menu Start --> */}
                       <div
                         className={`translate transform overflow-hidden ${
                           !open && "hidden"
@@ -326,14 +322,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
                           </li>
                         </ul>
                       </div>
-                      {/* <!-- Dropdown Menu End --> */}
                     </React.Fragment>
                   );
                 }}
               </SidebarLinkGroup>
-              {/* <!-- Menu Item Forms --> */}
-
-              {/* <!-- Menu Item Tables --> */}
               <li>
                 <Link
                   href="/tables"
@@ -369,9 +361,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
                   Tables
                 </Link>
               </li>
-              {/* <!-- Menu Item Tables --> */}
-
-              {/* <!-- Menu Item Settings --> */}
               <li>
                 <Link
                   href="/settings"
@@ -412,18 +401,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
                   Settings
                 </Link>
               </li>
-              {/* <!-- Menu Item Settings --> */}
             </ul>
           </div>
-
-          {/* <!-- Others Group --> */}
           <div>
             <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
               OTHERS
             </h3>
 
             <ul className="mb-6 flex flex-col gap-1.5">
-              {/* <!-- Menu Item Chart --> */}
               <li>
                 <Link
                   href="/chart"
@@ -463,13 +448,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
                   Chart
                 </Link>
               </li>
-              {/* <!-- Menu Item Chart --> */}
-
-              {/* <!-- Menu Item Ui Elements --> */}
               <SidebarLinkGroup
                 activeCondition={pathname === "/ui" || pathname.includes("ui")}
               >
-                {(handleClick, open) => {
+                {(handleClick: any, open: any) => {
                   return (
                     <React.Fragment>
                       <Link
@@ -537,7 +519,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
                           />
                         </svg>
                       </Link>
-                      {/* <!-- Dropdown Menu Start --> */}
                       <div
                         className={`translate transform overflow-hidden ${
                           !open && "hidden"
@@ -552,20 +533,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
                           </li>
                         </ul>
                       </div>
-                      {/* <!-- Dropdown Menu End --> */}
                     </React.Fragment>
                   );
                 }}
               </SidebarLinkGroup>
-              {/* <!-- Menu Item Ui Elements --> */}
-
-              {/* <!-- Menu Item Auth Pages --> */}
               <SidebarLinkGroup
                 activeCondition={
                   pathname === "/auth" || pathname.includes("auth")
                 }
               >
-                {(handleClick, open) => {
+                {(handleClick: any, open: any) => {
                   return (
                     <React.Fragment>
                       <Link
@@ -639,9 +616,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
                           <li>
                             <Link
                               href="/auth/signin"
-                              className={({ isActive }) =>
-                                "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white " +
-                                (isActive && "!text-white")
+                              className={
+                                "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white "
                               }
                             >
                               Sign In
@@ -650,9 +626,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
                           <li>
                             <Link
                               href="/auth/signup"
-                              className={({ isActive }) =>
-                                "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white " +
-                                (isActive && "!text-white")
+                              className={
+                                "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white "
                               }
                             >
                               Sign Up
@@ -660,19 +635,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
                           </li>
                         </ul>
                       </div>
-                      {/* <!-- Dropdown Menu End --> */}
                     </React.Fragment>
                   );
                 }}
               </SidebarLinkGroup>
-              {/* <!-- Menu Item Auth Pages --> */}
             </ul>
           </div>
         </nav>
-        {/* <!-- Sidebar Menu --> */}
       </div>
     </aside>
   );
 };
-
 export default Sidebar;
