@@ -1,138 +1,84 @@
 import InputGroup from "@/components/InputGroup";
 import LayoutForm from "@/components/LayoutForm";
+import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button } from "flowbite-react";
-import Image from "next/image";
+import { Checkbox, Label } from "flowbite-react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { schema } from "../../components/PageComponents/Register/schema";
-import Select from "../../components/PageComponents/Register/SelectRegister";
-import { useEffect, useState } from "react";
+
 export default function Register() {
   const {
     register,
     formState: { errors },
     handleSubmit,
-    setValue,
   } = useForm({
     resolver: yupResolver(schema),
     mode: "all",
   });
-  const [value, setValues] = useState<string>("");
   const onSubmit = (data: any) => {
     console.log(data);
   };
-  useEffect(() => {
-    if (value) {
-      setValue("target", value);
-    }
-  }, [setValue, value]);
 
   return (
     <LayoutForm
+      page="Sign up"
+      content="Create an account to start using ZenUI"
+      button="Create An Account"
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
-      newsFeed={false}
-      customNews={
-        <div className="relative flex h-full">
-          <Image
-            width="100"
-            height="100"
-            src="/image/background.png"
-            alt="bgc"
-            className="absolute z-0 w-full h-full bg-slate-100"
-          />
-          <div className="relative z-10 flex flex-col items-center justify-center gap-16">
-            <Image
-              width={100}
-              height={100}
-              src="/image/quote-start.svg"
-              alt="quote"
-              className="absolute top-0 left-0 z-0"
-            />
-            <span className="z-10 w-10/12 p-6 mt-16 bg-white rounded-md">
-              BitScope is a powerful social media listening gauge wrapped in a
-              user-friendly interface. To access useful visual information,
-              simply go to the relevant service page and click a button.
-            </span>
-            <span className="z-10 w-10/12 p-6 mb-4 bg-white rounded-md">
-              Service recognized by global marketing experts.
-            </span>
-            <Image
-              width={100}
-              height={100}
-              src="/image/quote-end.svg"
-              alt="quote"
-              className="absolute z-0 right-3 bottom-20"
-            />
-          </div>
+      childrenTwo={
+        <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 dark:text-slate-400 mt-5 uppercase text-sm">
+          Don’t have an account?{" "}
+          <Link
+            href="/login"
+            className="text-slate-900 dark:text-white font-medium hover:underline"
+          >
+            Sign up
+          </Link>
         </div>
       }
     >
-      <div className="flex flex-col items-center w-full gap-2">
-        <h2 className="text-xl font-black">Register</h2>
-        <div className="flex flex-col w-full gap-2">
-          <InputGroup
-            id="email"
-            type="email"
-            placeholder="Your Email"
-            register={register}
-            className="w-full"
-            errors={errors.email}
-          />
-          <div className="flex gap-4">
-            <InputGroup
-              id="first_name"
-              type="text"
-              placeholder="Your First Name"
-              register={register}
-              className="w-full"
-              errors={errors.first_name}
-            />
-            <InputGroup
-              id="last_name"
-              type="text"
-              placeholder="Your Last Name"
-              register={register}
-              className="w-full"
-              errors={errors.last_name}
-            />
+      <>
+        <InputGroup
+          id="name"
+          type="text"
+          placeholder="Your Name"
+          register={register}
+          label="Name"
+          className="w-full"
+          errors={errors.name}
+        />
+
+        <InputGroup
+          id="email"
+          type="email"
+          placeholder="Your Email"
+          register={register}
+          label="Email"
+          className="w-full"
+          errors={errors.email}
+          icon={EnvelopeIcon}
+        />
+        <InputGroup
+          id="password"
+          type="password"
+          label="Password"
+          placeholder="Your password"
+          register={register}
+          className="w-full"
+          errors={errors.password}
+          icon={LockClosedIcon}
+        />
+        <div className="flex flex-row items-center justify-between gap-4 mt-2 ml-1 md:flex-row">
+          <div className="flex items-center justify-center float-left gap-2 py-2">
+            <Checkbox id="remember" onClick={() => {}} />
+            <Label htmlFor="remember" className="font-normal text-slate-500">
+              You Accept Our Terms And Conditions And Privacy Policy
+            </Label>
           </div>
-          <InputGroup
-            id="password"
-            type="password"
-            placeholder="Your Password"
-            register={register}
-            className="w-full"
-            errors={errors.password}
-          />
-          <InputGroup
-            id="rePassword"
-            type="password"
-            placeholder="Re Enter You Pasword"
-            register={register}
-            className="w-full"
-            errors={errors.rePassword}
-          />
-          <span className="pt-2 px-2 text-xs font-black">
-            What are the problems you&apos;re looking to solve with BitScope?
-          </span>
-          <Select value={value} setValues={setValues} errors={errors.target} />
         </div>
-        <Button type="submit" className="w-[90%]">
-          Create My Account
-        </Button>
-        <span>OR</span>
-        <Button outline={true} className="w-full text-sm">
-          <Image
-            alt="meta"
-            src="/image/metamask-icon.png"
-            width={30}
-            height={30}
-            className="mr-4"
-          />
-          Login with Metamask
-        </Button>
-      </div>
+      </>
     </LayoutForm>
   );
 }
