@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaDiscord, FaFacebook, FaTiktok, FaTwitter } from "react-icons/fa";
 import SectionFooter from "./SectionFooter";
 export default function Footer() {
   return (
-    <>
+    <div className="">
       <SectionFooter />
       <footer>
         <div className="top_footer" id="contact">
@@ -92,7 +92,7 @@ export default function Footer() {
                       width={250}
                       height={50}
                       alt="logo"
-                      src="/image/1200X628-SVG-NONBACKGROUND.png"
+                      src="/image/1200X628-SVG.png"
                     />
                   </div>
                   <ul>
@@ -112,6 +112,16 @@ export default function Footer() {
                     <li>
                       <Link href="#">
                         <FaTwitter className="w-full h-full p-2" />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#">
+                        <FaDiscord className="w-full h-full p-2" />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#">
+                        <FaTiktok className="w-full h-full p-2" />
                       </Link>
                     </li>
                   </ul>
@@ -155,6 +165,34 @@ export default function Footer() {
                   </ul>
                 </div>
               </div>
+              <div className="col-lg-2 col-md-6 col-12">
+                <div className="try_out">
+                  <h3>Let’s Try Out</h3>
+                  <ul className="app_btn">
+                    <li>
+                      <Link href="#">
+                        <Image
+                          width={140}
+                          height={40}
+                          src="/image/appstore_blue.png"
+                          alt="image"
+                          className=""
+                        />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#">
+                        <Image
+                          width={140}
+                          height={35}
+                          src="/image/googleplay_blue.png"
+                          alt="image"
+                        />
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -181,6 +219,6 @@ export default function Footer() {
           </span>
         </div>
       </footer>
-    </>
+    </div>
   );
 }

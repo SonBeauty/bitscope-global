@@ -1,15 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useWindowSize } from "../../../hooks/useWindowSize";
 export default function Header() {
-  const [mobile, setmobile] = useState(false);
+  const [mobile, setmobile] = useState<boolean>(false);
+  const size = useWindowSize();
+  console.log(size);
+  useEffect(() => {
+    if (size.width && size.width < 991) {
+      setmobile(true);
+    } else {
+      setmobile(false);
+    }
+  }, [size.width]);
   return (
     <header>
       <div className="container">
         <nav className="navbar navbar-expand-lg">
           <Link href="#" className="navbar-brand">
             <Image
-              width={250}
+              width={200}
               height={80}
               alt="Logo"
               src="/image/600X300.png"
@@ -59,7 +69,10 @@ export default function Header() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="#" className="nav-link btn px-8 py-2 bg-white rounded-3xl border-2 border-purple-400">
+                <Link
+                  href="#"
+                  className="nav-link btn px-8 py-2 bg-white rounded-3xl border-2 border-purple-400"
+                >
                   Login
                 </Link>
               </li>

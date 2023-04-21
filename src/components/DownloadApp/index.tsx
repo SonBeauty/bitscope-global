@@ -3,24 +3,6 @@ import Link from "next/link";
 import React from "react";
 import Testimonial from "../Testimonial";
 export default function DownloadApp() {
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", function () {
-      const element = document.getElementsByClassName("free_text");
-      const position = element[0].getBoundingClientRect();
-
-      if (position.top < window.innerHeight && position.bottom >= 0) {
-        const elm = document.getElementsByClassName(
-          "purple_backdrop"
-        ) as HTMLCollectionOf<HTMLElement>;
-        elm[0].style.opacity = "1";
-      } else {
-        const elm = document.getElementsByClassName(
-          "purple_backdrop"
-        ) as HTMLCollectionOf<HTMLElement>;
-        elm[0].style.opacity = "0";
-      }
-    });
-  }
   return (
     <>
       <section

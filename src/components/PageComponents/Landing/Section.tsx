@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 export default function Section() {
   return (
-    <section className="banner_section home-banner">
+    <section className="banner_section home-banner mt-32 sm:mt-5">
       <div className="container">
         <div className="anim_line">
           <span>

@@ -30,7 +30,7 @@ export default function Faq() {
   const [activeFaq, setActiveFaq] = useState<number>(1);
   return (
     <>
-      <section className="row_am faq_section">
+      <section className="row_am faq_section popupOpen">
         <div className="container">
           <div
             className="section_title"

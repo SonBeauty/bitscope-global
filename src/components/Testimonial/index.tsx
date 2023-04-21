@@ -100,7 +100,7 @@ export default function Testimonial() {
             height={385}
             alt="anim_line"
             src="/image/avtar_testimonial_1.png"
-            className="avtar_faces"
+            className="avtar_faces w-[90vw]"
           />
         </div>
       </div>

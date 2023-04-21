@@ -4,8 +4,8 @@ export default function Design() {
   return (
     <section className="row_am modern_ui_section">
       <div className="container">
-        <div className="row">
-          <div className="col-lg-6">
+        <div className="row items-center justify-center">
+          <div className="col-lg-6 mt-12">
             <div className="ui_text">
               <div
                 className="section_title"
@@ -53,11 +53,7 @@ export default function Design() {
             </div>
           </div>
           <div className="col-lg-6">
-            <div
-              className=""
-              data-aos="fade-in"
-              data-aos-duration="1500"
-            >
+            <div className="" data-aos="fade-in" data-aos-duration="1500">
               <div className="left_img ml-16">
                 <Image
                   width={450}

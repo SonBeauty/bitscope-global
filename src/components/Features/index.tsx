@@ -55,13 +55,13 @@ export default function Features() {
           <h2>
             What is the <span>problem solved?</span>
           </h2>
-          <p className="py-3">
+          <p className="py-6">
             BitScope is a &quot;social listening&quot; project that integrates
             AI&apos;s excellent language <br /> processing capabilities. This
             brings a breath of fresh air to seemingly old <br /> problems.
           </p>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-6 bg-white max-w-5xl mx-auto rounded-3xl px-8">
+        <div className="flex flex-wrap items-center justify-center gap-6 bg-white max-w-5xl mx-auto rounded-3xl px-8 py-3">
           {Arr.map((item, index) => {
             return (
               <div className="max-w-[208px] md:w-52 max-h-[240px] md:h-60 p-1 md:p-4" key={index}>

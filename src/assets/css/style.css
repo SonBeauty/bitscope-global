@@ -118,7 +118,7 @@ button:focus,
 }
 
 .row_am {
-    padding: 50px 0;
+    padding: 20px 0;
 }
 
 /* purple button */
@@ -316,7 +316,7 @@ header.fix_style {
     top: 0;
     backdrop-filter: blur(5px);
     background-color: #ffffffb4;
-    padding: 15px 0;
+    padding: 5px 0;
     transition: none;
     opacity: 0;
     pointer-events: none;
@@ -336,7 +336,7 @@ header.fixed .navbar {
 .navbar {
     padding-left: 0;
     padding-right: 0;
-    padding-top: 35px;
+    padding-top: 5px;
 }
 
 .navbar-expand-lg .navbar-nav {
@@ -386,7 +386,7 @@ header.fixed .navbar {
 }
 
 .navbar-brand img {
-    width: 250px;
+    width: 200px;
     height: 70px;
 }
 
@@ -556,7 +556,7 @@ header.fixed .navbar {
 /* ---------Hero-Slider-Css-Start------------------ */
 /* hero slider wraper */
 .banner_section {
-    margin-top: 170px;
+    margin-top: 70px;
     position: relative;
 }
 
@@ -572,7 +572,7 @@ header.fixed .navbar {
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-    height: 200px;
+    height: 100px;
     background-position: center;
     margin-top: -50px;
 }
@@ -1654,7 +1654,7 @@ iframe#youtubevideo {
 
 /* download app wraper */
 .free_app_section {
-    padding-top: 70px;
+    padding-top: 30px;
     position: relative;
 }
 
@@ -1663,7 +1663,7 @@ iframe#youtubevideo {
 }
 
 .free_app_section .container .free_app_inner {
-    background-image: url(/image/bread_crumb_bg_one.png);
+    background-image: url(/image/Artboard_19.png);
     background-size: cover;
     background-position: center;
     border-radius: 30px;
@@ -1930,8 +1930,9 @@ footer .top_footer.has_bg {
 
 /* footer logo */
 footer .top_footer .logo {
-    margin-bottom: 40px;
+
     margin-left: -30px;
+    margin-top: -35px;
 }
 
 footer .top_footer .logo img {

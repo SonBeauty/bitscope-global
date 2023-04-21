@@ -5,7 +5,7 @@ export default function AboutApp() {
   return (
     <section className="row_am about_app_section">
       <div className="container">
-        <div className="row">
+        <div className="row items-center">
           <div className="col-lg-6 relative">
             <div
               className="about_img"
