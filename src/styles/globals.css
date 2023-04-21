@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '../assets/css/magnific-popup.min.css';
+@import '../assets/css/style.css';
+@import '../assets/css/responsive.css';
+
 @font-face {
   font-family: 'Montserrat';
   src: url('/fonts/') format('truetype'),
