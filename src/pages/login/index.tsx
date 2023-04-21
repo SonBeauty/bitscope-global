@@ -1,13 +1,13 @@
+import InputGroup from "@/components/InputGroup";
 import LayoutForm from "@/components/LayoutForm";
+import SpanText from "@/components/SpanText";
+import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useState } from "react";
+import { Checkbox, Label } from "flowbite-react";
+import Link from "next/link";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { schema } from "../../components/PageComponents/Login/schema";
-import InputGroup from "@/components/InputGroup";
-import { Button, Checkbox, Label } from "flowbite-react";
-import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
-import SpanText from "@/components/SpanText";
-import Image from "next/image";
 export default function Login() {
   const [remember, setRemember] = useState<Boolean>(false);
   const {
@@ -22,56 +22,55 @@ export default function Login() {
     console.log(data);
   };
   return (
-    <LayoutForm newsFeed={true} handleSubmit={handleSubmit} onSubmit={onSubmit}>
-      <div className="flex flex-col items-center w-full gap-4">
-        <h2 className="text-xl font-black">Login</h2>
-        <div className="flex flex-col w-full gap-2">
-          <InputGroup
-            id="email"
-            type="email"
-            placeholder="Your Email"
-            register={register}
-            className="w-full"
-            errors={errors.email}
-            icon={EnvelopeIcon}
-          />
-          <InputGroup
-            id="password"
-            type="password"
-            placeholder="Your password"
-            register={register}
-            className="w-full"
-            errors={errors.password}
-            icon={LockClosedIcon}
-          />
-          <div className="flex flex-col items-center justify-between gap-4 mt-2 ml-1 md:flex-row">
-            <div className="flex items-center justify-center float-left gap-2">
-              <Checkbox id="remember" onClick={() => setRemember(!remember)} />
-              <Label htmlFor="remember">Remember me on this device</Label>
-            </div>
-            <SpanText content="Forgot password?" redirectLink="/forgot-pass" />
-          </div>
+    <LayoutForm
+      page="Sign in"
+      content="Sign in to your account to start using BitScope"
+      button="Sign In"
+      handleSubmit={handleSubmit}
+      onSubmit={onSubmit}
+      childrenTwo={
+        <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 dark:text-slate-400 mt-5 uppercase text-sm">
+          Don’t have an account?{" "}
+          <Link
+            href="/register"
+            className="text-slate-900 dark:text-white font-medium hover:underline"
+          >
+            Sign up
+          </Link>
         </div>
-        <Button type="submit" className="w-[90%] m-4">
-          Login
-        </Button>
-        <span>OR</span>
-        <Button outline={true} className="w-full text-sm">
-          <Image
-            alt="meta"
-            src="/image/metamask-icon.png"
-            width={30}
-            height={30}
-            className="mr-4"
-          />
-          Login with Metamask
-        </Button>
-
-        <p>
-          You don&apos;t have an account yet?{" "}
-          <SpanText content="Create one now!" redirectLink="/register" />
-        </p>
-      </div>
+      }
+    >
+      <>
+        <InputGroup
+          id="email"
+          type="email"
+          placeholder="Your Email"
+          register={register}
+          label="Email"
+          className="w-full"
+          errors={errors.email}
+          icon={EnvelopeIcon}
+        />
+        <InputGroup
+          id="password"
+          type="password"
+          label="Password"
+          placeholder="Your password"
+          register={register}
+          className="w-full"
+          errors={errors.password}
+          icon={LockClosedIcon}
+        />
+        <div className="flex flex-row items-center justify-between gap-4 mt-2 ml-1 md:flex-row">
+          <div className="flex items-center justify-center float-left gap-2 py-1">
+            <Checkbox id="remember" onClick={() => setRemember(!remember)} />
+            <Label htmlFor="remember" className="font-normal text-slate-500">
+              Keep Me Signed In
+            </Label>
+          </div>
+          <SpanText content="Forgot password?" redirectLink="/forgot-pass" />
+        </div>
+      </>
     </LayoutForm>
   );
 }
