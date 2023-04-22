@@ -101,7 +101,7 @@ export default function Section() {
                   className="blue_img -ml-4 text-purple-500 hover:text-white"
                 >
                   <span className="text-xs"> No Wallet/No Credit</span> <br />
-                  <span className="text-lg">Try Free now</span>
+                  <span className="text-xl font-bold">Try Free now</span>
                 </Link>
               </li>
             </ul>
