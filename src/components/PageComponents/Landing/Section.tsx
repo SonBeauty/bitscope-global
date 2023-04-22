@@ -98,10 +98,10 @@ export default function Section() {
               <li>
                 <Link
                   href="#"
-                  className=" blue_img -ml-4 text-purple-500 hover:text-white"
+                  className="blue_img -ml-4 text-purple-500 hover:text-white"
                 >
-                  No Wallet/No Credit <br />
-                  Try Free now
+                  <span className="text-xs"> No Wallet/No Credit</span> <br />
+                  <span className="text-lg">Try Free now</span>
                 </Link>
               </li>
             </ul>

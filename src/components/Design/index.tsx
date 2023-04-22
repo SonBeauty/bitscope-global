@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 export default function Design() {
   return (
-    <section className="row_am modern_ui_section">
+    <section className="modern_ui_section">
       <div className="container">
         <div className="row items-center justify-center">
           <div className="col-lg-6 mt-12">
@@ -54,7 +54,7 @@ export default function Design() {
           </div>
           <div className="col-lg-6">
             <div className="" data-aos="fade-in" data-aos-duration="1500">
-              <div className="left_img ml-16">
+              <div className="left_img">
                 <Image
                   width={450}
                   height={575}

@@ -4,42 +4,42 @@ const Arr = [
   {
     title: "Authentication",
     describe: "Detects BOT-net members in community.",
-    src: "/image/Artboard_2_2.png",
+    src: "/image/01.png",
   },
   {
     title: "Handy",
     describe: "Take care of all customers at one screen",
-    src: "/image/Artboard_2_6.png",
+    src: "/image/02.png",
   },
   {
     title: "Tracking",
     describe: "Important things cannot be missed.",
-    src: "/image/Artboard_2_1.png",
+    src: "/image/03.png",
   },
   {
     title: "Monitor",
     describe: "See all custommers in one screen?",
-    src: "/image/Artboard_2_4.png",
+    src: "/image/04.png",
   },
   {
     title: "Trend Report",
     describe: "Projects mentioned by many people",
-    src: "/image/Artboard_2_7.png",
+    src: "/image/05.png",
   },
   {
     title: "Probe",
     describe: "Listen to your brand on the internet.",
-    src: "/image/Artboard_2_5.png",
+    src: "/image/06.png",
   },
   {
     title: "Alert",
     describe: "Community FUD early warning.",
-    src: "/image/Artboard_2_2.png",
+    src: "/image/07.png",
   },
   {
     title: "Spying",
     describe: "Competitor strategy analysis",
-    src: "/image/Artboard_2.png",
+    src: "/image/08.png",
   },
 ];
 export default function Features() {

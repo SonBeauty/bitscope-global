@@ -386,7 +386,7 @@ header.fixed .navbar {
 }
 
 .navbar-brand img {
-    width: 200px;
+    width: 100%;
     height: 70px;
 }
 
@@ -607,7 +607,7 @@ header.fixed .navbar {
 /* hero slider list */
 .banner_section .app_btn li a {
     display: block;
-    padding: 12px 30px;
+    padding: 2px 16px;
     background-color: var(--bg-white);
     border: 2px solid var(--purple);
     position: relative;
@@ -917,7 +917,7 @@ header.fixed .navbar {
 }
 
 .modern_ui_section .ui_text {
-    padding-right: 75px;
+    padding-right: 0px;
 }
 
 /* modern ui list */
@@ -1654,7 +1654,7 @@ iframe#youtubevideo {
 
 /* download app wraper */
 .free_app_section {
-    padding-top: 30px;
+    padding-top: 0px;
     position: relative;
 }
 
@@ -3379,7 +3379,7 @@ header.fix_style.white_header {
 /* review-freeapp */
 
 .review_freeapp {
-    margin: 10px 0;
+    margin: 0;
 }
 
 .review_freeapp .free_app_inner {

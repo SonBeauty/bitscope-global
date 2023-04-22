@@ -23,7 +23,7 @@ export default function Header() {
               height={80}
               alt="Logo"
               src="/image/600X300.png"
-              className="w-80"
+              className=""
             />
           </Link>
           <button
