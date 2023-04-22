@@ -4,7 +4,7 @@ export default function Announce() {
   return (
     <div className="bg-black w-full h-16 flex gap-8 justify-center items-center">
       <h3 className="text-lg font-semibold text-white">
-        Join our community and share about BitScope
+        Join now for OG-Badge and share BitScope Treasure
       </h3>
       <Button className="bg-purple-600">Join Discord</Button>
     </div>

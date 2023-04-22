@@ -14,7 +14,7 @@ export default function Design() {
                 data-aos-delay="100"
               >
                 <h2>
-                  BIT <span>TRACKING</span>
+                  <span>BIT TRACKING</span>
                 </h2>
                 <p className="font-bold">
                   A comprehensive social media listening program.

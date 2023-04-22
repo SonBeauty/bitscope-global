@@ -860,7 +860,7 @@ header.fixed .navbar {
 }
 
 .about_app_section .about_text .section_title h2 {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 /* about us section  statastics nomber */
@@ -1315,8 +1315,8 @@ iframe#youtubevideo {
 }
 
 .testimonial_section .testimonial_block {
-    /* background-image: url(/image/Artboard_18.png); */
-    /* background-size: cover;
+    /* background-image: url(/image/15.png);
+    background-size: cover;
     background-position: bottom; */
     z-index: 999;
     position: relative;
@@ -1324,17 +1324,17 @@ iframe#youtubevideo {
 }
 
 /* .testimonial_section .testimonial_block::after {
-    background-image: url(/image/Artboard_18.png);
+    background-image: url(/image/15.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     content: "";
     position: absolute;
-    top: -100%;
-    width: 50%;
-    transform: translateX(50%);
+    top: -50%;
+    width: 45%;
+    transform: translateX(60%);
     z-index: -1;
-    height: 300%
+    height: 200%
 } */
 
 
@@ -3750,13 +3750,13 @@ header.fix_style.white_header {
     margin-bottom: 10px;
 }
 
-.statistic_section .app_statstic li .icon {
-    text-align: center;
-}
-
 .statistic_section .app_statstic li {
     width: 100%;
     align-items: center;
+}
+
+.statistic_section .app_statstic li .icon {
+    text-align: center;
 }
 
 .statistic_section .app_statstic li p {

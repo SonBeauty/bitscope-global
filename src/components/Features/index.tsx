@@ -3,7 +3,7 @@ import React from "react";
 const Arr = [
   {
     title: "Authentication",
-    describe: "Detects BOT-net members in the selected community.",
+    describe: "Detects BOT-net members in community.",
     src: "/image/Artboard_2_2.png",
   },
   {
@@ -13,22 +13,22 @@ const Arr = [
   },
   {
     title: "Tracking",
-    describe: "Discussion trends among dozens of investment community groups.",
+    describe: "Important things cannot be missed.",
     src: "/image/Artboard_2_1.png",
   },
   {
     title: "Monitor",
-    describe: "Know what your community is saying?",
+    describe: "See all custommers in one screen?",
     src: "/image/Artboard_2_4.png",
   },
   {
     title: "Trend Report",
-    describe: "New Analytical Tool besides Onchain Data and Indicators",
+    describe: "Projects mentioned by many people",
     src: "/image/Artboard_2_7.png",
   },
   {
     title: "Probe",
-    describe: "Find mentions of your brand across social platforms.",
+    describe: "Listen to your brand on the internet.",
     src: "/image/Artboard_2_5.png",
   },
   {
@@ -55,7 +55,7 @@ export default function Features() {
           <h2>
             What is the <span>problem solved?</span>
           </h2>
-          <p className="py-6">
+          <p className="py-2">
             BitScope is a &quot;social listening&quot; project that integrates
             AI&apos;s excellent language <br /> processing capabilities. This
             brings a breath of fresh air to seemingly old <br /> problems.
@@ -64,7 +64,10 @@ export default function Features() {
         <div className="flex flex-wrap items-center justify-center gap-6 bg-white max-w-5xl mx-auto rounded-3xl px-8 py-3">
           {Arr.map((item, index) => {
             return (
-              <div className="max-w-[208px] md:w-52 max-h-[240px] md:h-60 p-1 md:p-4" key={index}>
+              <div
+                className="max-w-[208px] md:w-52 max-h-[240px] md:h-60 p-1 md:p-4"
+                key={index}
+              >
                 <div
                   className="data_block"
                   data-aos="fade-right"

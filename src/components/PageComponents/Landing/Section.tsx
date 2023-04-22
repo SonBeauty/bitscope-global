@@ -94,9 +94,17 @@ export default function Section() {
                 customers, and offers investors a new method of market analysis.
               </p>
             </div>
-            <Link href="#" className="w-2/4 btn px-8 py-2 puprple_btn">
-              Try Now
-            </Link>
+            <ul className="app_btn">
+              <li>
+                <Link
+                  href="#"
+                  className=" blue_img -ml-4 text-purple-500 hover:text-white"
+                >
+                  No Wallet/No Credit <br />
+                  Try Free now
+                </Link>
+              </li>
+            </ul>
           </div>
           <div
             className="col-lg-6 col-md-12"
