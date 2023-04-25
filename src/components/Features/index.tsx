@@ -3,43 +3,43 @@ import React from "react";
 const Arr = [
   {
     title: "Authentication",
-    describe: "Detects BOT-net members in the selected community.",
-    src: "/image/secure_data.png",
+    describe: "Detects BOT-net members in community.",
+    src: "/image/01.png",
   },
   {
     title: "Handy",
     describe: "Take care of all customers at one screen",
-    src: "/image/secure_data.png",
+    src: "/image/02.png",
   },
   {
     title: "Tracking",
-    describe: "Discussion trends among dozens of investment community groups.",
-    src: "/image/secure_data.png",
+    describe: "Important things cannot be missed.",
+    src: "/image/03.png",
   },
   {
     title: "Monitor",
-    describe: "Know what your community is saying?",
-    src: "/image/secure_data.png",
+    describe: "See all custommers in one screen?",
+    src: "/image/04.png",
   },
   {
-    title: "Trend",
-    describe: "New Analytical Tool besides Onchain Data and Indicators",
-    src: "/image/secure_data.png",
+    title: "Trend Report",
+    describe: "Projects mentioned by many people",
+    src: "/image/05.png",
   },
   {
     title: "Probe",
-    describe: "Find mentions of your brand across social platforms.",
-    src: "/image/secure_data.png",
+    describe: "Listen to your brand on the internet.",
+    src: "/image/06.png",
   },
   {
     title: "Alert",
     describe: "Community FUD early warning.",
-    src: "/image/secure_data.png",
+    src: "/image/07.png",
   },
   {
     title: "Spying",
     describe: "Competitor strategy analysis",
-    src: "/image/secure_data.png",
+    src: "/image/08.png",
   },
 ];
 export default function Features() {
@@ -49,23 +49,23 @@ export default function Features() {
         <div
           className="section_title"
           data-aos="fade-up"
-          data-aos-duration="1500"
-          data-aos-delay="100"
+          data-aos-duration="1000"
+          data-aos-delay="50"
         >
           <h2>
             What is the <span>problem solved?</span>
           </h2>
-          <p>
+          <p className="py-2">
             BitScope is a &quot;social listening&quot; project that integrates
             AI&apos;s excellent language <br /> processing capabilities. This
             brings a breath of fresh air to seemingly old <br /> problems.
           </p>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-6 bg-white max-w-5xl mx-auto rounded-3xl px-8 py-3">
           {Arr.map((item, index) => {
             return (
               <div
-                className="w-64 h-72 border-2 p-4 border-purple-300"
+                className="max-w-[208px] md:w-52 max-h-[240px] md:h-60 p-1 md:p-4"
                 key={index}
               >
                 <div

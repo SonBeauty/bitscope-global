@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { schema } from "../../components/PageComponents/ForgotPass/schema";
+import { schema } from "../components/PageComponents/ForgotPass/schema";
 export default function ForgotPass() {
   const [submit, setSubmit] = useState<Boolean>(false);
   const {

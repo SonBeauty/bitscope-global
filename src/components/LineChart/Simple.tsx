@@ -107,9 +107,12 @@ const data = [
     user: 4300,
   },
 ];
-export default function Simple({ className }) {
+interface SimpleProps {
+  className?: string;
+}
+export default function Simple({ className }: SimpleProps) {
   return (
-    <ResponsiveContainer width="100%" height={300} className={className}>
+    <ResponsiveContainer width="100%" height={300} className={`${className}`}>
       <LineChart
         width={500}
         height={300}

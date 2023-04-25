@@ -7,7 +7,7 @@ import { Checkbox, Label } from "flowbite-react";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { schema } from "../../components/PageComponents/Login/schema";
+import { schema } from "../components/PageComponents/Login/schema";
 export default function Login() {
   const [remember, setRemember] = useState<Boolean>(false);
   const {

@@ -38,8 +38,8 @@ export default function Trusted() {
               Trusted by <span>6000+</span> companies
             </h2>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typese tting{" "}
-              <br /> indus orem Ipsum has beenthe standard dummy.
+              Customer insight listening and analysis is considered <br />
+              business-critical and is used by industry leaders.
             </p>
           </div>
           <div className="company_logos">
@@ -64,7 +64,7 @@ export default function Trusted() {
                     width={160}
                     height={80}
                     alt="trust"
-                    src="/image/envato.png"
+                    src="/image/slack.png"
                   />
                 </div>
               </div>
@@ -74,7 +74,7 @@ export default function Trusted() {
                     width={160}
                     height={80}
                     alt="trust"
-                    src="/image/envato.png"
+                    src="/image/paypal.png"
                   />
                 </div>
               </div>
@@ -84,47 +84,7 @@ export default function Trusted() {
                     width={160}
                     height={80}
                     alt="trust"
-                    src="/image/envato.png"
-                  />
-                </div>
-              </div>
-              <div className="item">
-                <div className="logo">
-                  <Image
-                    width={160}
-                    height={80}
-                    alt="trust"
-                    src="/image/envato.png"
-                  />
-                </div>
-              </div>
-              <div className="item">
-                <div className="logo">
-                  <Image
-                    width={160}
-                    height={80}
-                    alt="trust"
-                    src="/image/envato.png"
-                  />
-                </div>
-              </div>
-              <div className="item">
-                <div className="logo">
-                  <Image
-                    width={160}
-                    height={80}
-                    alt="trust"
-                    src="/image/envato.png"
-                  />
-                </div>
-              </div>
-              <div className="item">
-                <div className="logo">
-                  <Image
-                    width={160}
-                    height={80}
-                    alt="trust"
-                    src="/image/envato.png"
+                    src="/image/spoty.png"
                   />
                 </div>
               </div>

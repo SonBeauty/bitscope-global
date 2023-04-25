@@ -30,7 +30,7 @@ export default function Faq() {
   const [activeFaq, setActiveFaq] = useState<number>(1);
   return (
     <>
-      <section className="row_am faq_section">
+      <section className="mb-4 faq_section popupOpen">
         <div className="container">
           <div
             className="section_title"
@@ -68,10 +68,10 @@ export default function Faq() {
                         >
                           <span>{item.question}</span>
                           <div>
-                            {index === activeFaq ? (
-                              <ChevronDownIcon className="h-6 w-6 text-gray-500" />
-                            ) : (
+                            {index + 1 === activeFaq ? (
                               <ChevronUpIcon className="h-6 w-6 text-gray-500" />
+                            ) : (
+                              <ChevronDownIcon className="h-6 w-6 text-gray-500" />
                             )}{" "}
                           </div>
                         </div>

@@ -66,16 +66,20 @@ export default function LandingPage() {
         ></script>
       </Head>
       <Script src="/assets/js/main.js" />
-      <div className="page-wrapper overflow-hidden">
+      <div className="page-wrapper overflow-hidden ">
         <Announce />
         <Header />
         <Section />
-        <Trusted />
-        <Features />
-        <AboutApp />
-        <Design />
+        <div className="md:px-32">
+          <Trusted />
+          <Features />
+          <AboutApp />
+          <Design />
+        </div>
         <DownloadApp />
-        <Faq />
+        <div className="md:px-32">
+          <Faq />
+        </div>
         <Footer />
       </div>
     </div>

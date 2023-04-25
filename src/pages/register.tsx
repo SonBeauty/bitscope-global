@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Checkbox, Label } from "flowbite-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { schema } from "../../components/PageComponents/Register/schema";
+import { schema } from "../components/PageComponents/Register/schema";
 
 export default function Register() {
   const {

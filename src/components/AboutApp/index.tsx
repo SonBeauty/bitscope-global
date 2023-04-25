@@ -5,33 +5,18 @@ export default function AboutApp() {
   return (
     <section className="row_am about_app_section">
       <div className="container">
-        <div className="row">
-          <div className="col-lg-6 relative">
-            <div
-              className="about_img"
-              data-aos="fade-in"
-              data-aos-duration="1500"
-            >
+        <div className="row items-center justify-center">
+          <div className="col-lg-5 relative">
+            <div className="" data-aos="fade-in" data-aos-duration="1500">
               <div className="frame_img">
                 <Image
-                  width={302}
-                  height={616}
+                  width={900}
+                  height={816}
                   alt="app"
-                  src="/image/about-frame.png"
-                  className="moving_position_animatin"
+                  src="/image/bitau.png"
+                  className="moving_position_animatin w-full h-full"
                 />
               </div>
-              <div className="screen_img">
-                <Image
-                  width={266}
-                  height={361}
-                  alt="app"
-                  src="/image/about-screen.png"
-                  className="moving_animation"
-                />
-              </div>
-              <div className="w-[2px] h-[130%] bg-blue-300 absolute rotate-45 right-[60%]"></div>
-              <div className="w-[2px] h-[130%] bg-blue-300 absolute -rotate-45 right-[60%]"></div>
             </div>
           </div>
           <div className="col-lg-6">
@@ -42,13 +27,13 @@ export default function AboutApp() {
                 data-aos-duration="1500"
                 data-aos-delay="100"
               >
-                <h2>
+                <h2 className="">
                   <span>BIT AUTHENTICATION</span>
                 </h2>
-                <p className="font-bold text-xl mb-2">
+                <p className="font-bold text-xl pb-2">
                   Authenticate the percentage of real users.
                 </p>
-                <p>
+                <p className="">
                   Analyze user conversations and behavior to categorize them
                   accurately. BitScope provides an authentic view of
                   communication channels by filtering out bot accounts.
@@ -64,10 +49,11 @@ export default function AboutApp() {
                 <li>
                   <div className="icon">
                     <Image
-                      width={60}
-                      height={60}
+                      width={52}
+                      height={52}
                       alt="app"
-                      src="/image/download.png"
+                      src="/image/Artboard_13.png"
+                      className="h-full w-full"
                     />
                   </div>
                   <div className="text">
@@ -78,10 +64,11 @@ export default function AboutApp() {
                 <li>
                   <div className="icon">
                     <Image
-                      width={60}
-                      height={60}
+                      width={52}
+                      height={52}
                       alt="app"
-                      src="/image/followers.png"
+                      src="/image/Artboard_13_1.png"
+                      className="h-full w-full"
                     />
                   </div>
                   <div className="text">
@@ -92,10 +79,11 @@ export default function AboutApp() {
                 <li>
                   <div className="icon">
                     <Image
-                      width={60}
-                      height={60}
+                      width={52}
+                      height={52}
                       alt="app"
-                      src="/image/reviews.png"
+                      src="/image/Artboard_13_2.png"
+                      className="h-full w-full"
                     />
                   </div>
                   <div className="text">
@@ -106,15 +94,16 @@ export default function AboutApp() {
                 <li>
                   <div className="icon">
                     <Image
-                      width={60}
-                      height={60}
+                      width={52}
+                      height={52}
                       alt="app"
-                      src="/image/countries.png"
+                      src="/image/Artboard_13__3.png"
+                      className="h-[90%] w-[90%]"
                     />
                   </div>
                   <div className="text">
                     <p></p>
-                    <p className="text-lg">And more</p>
+                    <p className="text-lg">And More</p>
                   </div>
                 </li>
               </ul>

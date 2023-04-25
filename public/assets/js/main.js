@@ -242,10 +242,11 @@ $(document).ready(function () {
 
 // Download Section Hover Jquery
 window.addEventListener("scroll", function () {
-  var element = document.querySelector(".free_text");
+  var element = document.querySelector(".testimonial_section");
   var position = element?.getBoundingClientRect();
 
-  if (position?.top < window.innerHeight && position.bottom >= 0) {
+  if (position?.top < 600 && position.bottom >= 15) {
+    console.log("--- DATA ---", position?.top, position.bottom);
     $(".purple_backdrop").css("opacity", "1");
   } else {
     //console.log('Element is not visible');
@@ -268,8 +269,7 @@ $(window).on("resize", function () {
     });
   } else {
     window.addEventListener("scroll", function () {
-      var element = document.querySelector(".free_text");
-
+      var element = document.querySelector(".popupOpen");
       var position = element?.getBoundingClientRect();
 
       if (position?.top < window.innerHeight && position.bottom >= 0) {
@@ -304,30 +304,16 @@ $(document).ready(function () {
 
 // Fix Header Js
 $(window).scroll(function () {
-  if ($(window).scrollTop() >= 250) {
+  if ($(window).scrollTop() >= 30) {
     $("header").addClass("fix_style");
   } else {
     $("header").removeClass("fix_style");
   }
-  if ($(window).scrollTop() >= 260) {
+  if ($(window).scrollTop() >= 30) {
     $("header").addClass("fixed");
   } else {
     $("header").removeClass("fixed");
   }
-});
-
-//YOUTUBE VIDEO
-$(".play-button").click(function (e) {
-  var iframeEl = $("<iframe>", { src: $(this).data("url") });
-  $("#youtubevideo").attr("src", $(this).data("url"));
-});
-
-$("#close-video").click(function (e) {
-  $("#youtubevideo").attr("src", "");
-});
-
-$(document).on("hidden.bs.modal", "#myModal", function () {
-  $("#youtubevideo").attr("src", "");
 });
 
 // Close btn on click
