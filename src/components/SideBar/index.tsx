@@ -29,7 +29,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
     document.addEventListener("click", clickHandler);
     return () => document.removeEventListener("click", clickHandler);
   });
-
   useEffect(() => {
     const keyHandler = ({ keyCode }: any) => {
       if (!sidebarOpen || keyCode !== 27) return;
@@ -38,14 +37,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   });
-
   useEffect(() => {
     localStorage.setItem("sidebar-expanded", sidebarExpanded);
-    const element = window.document.querySelector("body");
-    if (sidebarExpanded && element !== null) {
-      element.classList.add("sidebar-expanded");
-    } else if (element !== null) {
-      element.classList.remove("sidebar-expanded");
+    if (typeof window !== "undefined") {
+      const element = window.document.querySelector("body");
+      if (sidebarExpanded && element !== null) {
+        element.classList.add("sidebar-expanded");
+      } else if (element !== null) {
+        element.classList.remove("sidebar-expanded");
+      }
     }
   }, [sidebarExpanded]);
 
@@ -66,7 +66,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: any) => {
             className="-ml-6"
           />
         </Link>
-
         <button
           ref={trigger}
           onClick={() => setSidebarOpen(!sidebarOpen)}

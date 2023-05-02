@@ -1,6 +1,5 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import DatePicker from "../PageComponents/Dashboard/DatePicker";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
@@ -39,7 +38,6 @@ export default function PieChartsSimpleDonut() {
         width={470}
       />
       <div className="mt-4 flex items-center justify-between border-t border-gray-200 pt-2 dark:border-gray-700 sm:pt-5 w-full">
-        <DatePicker />
         <div className="shrink-0">
           <a
             href="#"

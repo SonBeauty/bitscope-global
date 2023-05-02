@@ -48,7 +48,7 @@ export default function Faq() {
           </div>
           <div className="faq_panel">
             <div className="accordion" id="accordionExample">
-              {ArrFaq.map((item, index) => {
+              {ArrFaq.map((item: any, index: number) => {
                 return (
                   <div
                     className="card"
@@ -57,7 +57,7 @@ export default function Faq() {
                     data-aos-duration="1500"
                   >
                     <div className="card-header" id="headingOne">
-                      <div className="mb-0">
+                      <div className="mb-0 w-full">
                         <div
                           className={`btn btn-link ${
                             activeFaq === index + 1 && "active"

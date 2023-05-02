@@ -4,47 +4,47 @@ import {
   ChevronUpIcon,
   GiftIcon,
   GlobeAltIcon,
-  HeartIcon
-} from "@heroicons/react/24/outline"
-import { useState } from "react"
+  HeartIcon,
+} from "@heroicons/react/24/outline";
+import { useState } from "react";
 const SlectRegister = [
   {
     name: "Brand monitoring",
     des: "Find out what your audience thinks of your brand and join in",
-    image: <GiftIcon />
+    image: <GiftIcon />,
   },
   {
     name: "Influencers search",
     des: "Find relevant influencers who use your brand name, competirors name or any other keywords in their content",
-    image: <HeartIcon />
+    image: <HeartIcon />,
   },
   {
     name: "Competitive analysis",
     des: "Track your competitors activity",
-    image: <ArrowTrendingUpIcon />
+    image: <ArrowTrendingUpIcon />,
   },
   {
     name: "Project Analysis",
     des: "Obtain an overview of the community members involved in a project",
-    image: <GlobeAltIcon />
+    image: <GlobeAltIcon />,
   },
   {
     name: "Investment Trends",
     des: "Get reports on investment trends of the majority, verified investors",
-    image: <GlobeAltIcon />
-  }
-]
+    image: <GlobeAltIcon />,
+  },
+];
 interface SlectProps {
-  value: string
-  setValues: (value: string) => void
-  errors?: any
+  value: string;
+  setValues: (value: string) => void;
+  errors?: any;
 }
 export default function Select({ value, setValues, errors }: SlectProps) {
-  const [show, setShow] = useState<boolean>(false)
+  const [show, setShow] = useState<boolean>(false);
   const handleClick = (item: string) => {
-    setValues(item)
-    setShow(!show)
-  }
+    setValues(item);
+    setShow(!show);
+  };
   return (
     <div className="flex flex-col items-center w-full">
       <div className="flex flex-col items-center w-full">
@@ -69,7 +69,7 @@ export default function Select({ value, setValues, errors }: SlectProps) {
             {show && (
               <div className="absolute z-40 w-full overflow-y-auto bg-white rounded shadow top-[100%] lef-0 max-h-[300px]">
                 <div className="flex flex-col w-full">
-                  {SlectRegister.map((item, index) => {
+                  {SlectRegister.map((item: any, index: number) => {
                     return (
                       <div
                         key={index}
@@ -92,7 +92,7 @@ export default function Select({ value, setValues, errors }: SlectProps) {
                           </div>
                         </div>
                       </div>
-                    )
+                    );
                   })}
                 </div>
               </div>
@@ -102,5 +102,5 @@ export default function Select({ value, setValues, errors }: SlectProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

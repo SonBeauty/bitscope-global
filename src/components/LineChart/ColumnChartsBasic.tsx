@@ -1,6 +1,5 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import DatePicker from "../PageComponents/Dashboard/DatePicker";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
@@ -63,7 +62,6 @@ export default function ColumnChartsBasic() {
       },
     },
   };
-
   return (
     <div className="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
       <span className="text-xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
@@ -76,7 +74,6 @@ export default function ColumnChartsBasic() {
         height={350}
       />
       <div className="mt-4 flex items-center justify-between border-t border-gray-200 pt-2 dark:border-gray-700 sm:pt-5">
-        <DatePicker />
         <div className="shrink-0">
           <a
             href="#"

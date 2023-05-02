@@ -1,18 +1,18 @@
 interface ArrRender {
-  name: string
-  number: string
-  color: string
+  name: string;
+  number: string;
+  color: string;
 }
 interface CheckInfoUserProps {
-  icon: any
-  social: string
-  src: string
-  name: string
-  username: string
-  iconJoin: any
-  textJoin: string
-  arrRender: ArrRender[]
-  sizeItem: string
+  icon: any;
+  social: string;
+  src: string;
+  name: string;
+  username: string;
+  iconJoin: any;
+  textJoin: string;
+  arrRender: ArrRender[];
+  sizeItem: string;
 }
 export default function CheckInfoUser({
   icon,
@@ -23,7 +23,7 @@ export default function CheckInfoUser({
   iconJoin,
   textJoin,
   arrRender,
-  sizeItem
+  sizeItem,
 }: CheckInfoUserProps) {
   return (
     <div className="bg-background border-2 flex py-6 flex-col items-center justify-center w-full rounded-lg">
@@ -46,7 +46,9 @@ export default function CheckInfoUser({
             </picture>
             <div>
               <h4 className="font-bold text-2xl">{name}</h4>
-              <span className="font-normal text-sky-400 text-base">{username}</span>
+              <span className="font-normal text-sky-400 text-base">
+                {username}
+              </span>
               <div className="flex items-center gap-2">
                 {iconJoin}
                 <span className="font-nomal text-base">{textJoin}</span>
@@ -54,7 +56,7 @@ export default function CheckInfoUser({
             </div>
           </div>
           <div className="flex gap-8 flex-wrap justify-center items-center">
-            {arrRender.map((item, index) => {
+            {arrRender.map((item: any, index: number) => {
               return (
                 <div
                   key={index}
@@ -63,11 +65,11 @@ export default function CheckInfoUser({
                   <span className="text-sm font-semibold">{item.name}</span>
                   <span className="text-2xl font-semibold">{item.number}</span>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

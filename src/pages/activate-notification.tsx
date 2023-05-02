@@ -33,8 +33,17 @@ export default function ActivateNotification() {
             <DocumentTextIcon className="w-5 h-5 text-blue-600 dark:text-blue-500" />
             <div className="pl-4 text-sm font-normal">
               By signing up I gree to the{" "}
-              <SpanText content="tems & conditions" redirectLink="#" /> and{" "}
-              <SpanText content="privacy policy" redirectLink="#" />
+              <SpanText
+                content="tems & conditions"
+                redirectLink="#"
+                color="text-green-400"
+              />{" "}
+              and{" "}
+              <SpanText
+                content="privacy policy"
+                redirectLink="#"
+                color="text-green-400"
+              />
             </div>
           </div>
         </div>
@@ -49,7 +58,12 @@ export default function ActivateNotification() {
         </div>
       </div>
       <span className="absolute top-0 right-0 p-4 m-4 rounded-md shadow-lg">
-        Already a user? <SpanText content="Login" redirectLink="/login" />
+        Already a user?{" "}
+        <SpanText
+          content="Login"
+          redirectLink="/login"
+          color="text-green-400"
+        />
       </span>
     </div>
   );

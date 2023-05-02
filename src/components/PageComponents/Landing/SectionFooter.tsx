@@ -10,7 +10,7 @@ export default function SectionFooter() {
             </h2>
             <Link
               href="#"
-              className="nav-link btn px-8 py-2 puprple_btn border-2 border-white"
+              className="nav-link btn px-8 py-2 puprple_btn border-2 border-white rounded-3xl"
             >
               Try Now
             </Link>

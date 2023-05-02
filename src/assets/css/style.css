@@ -1,13 +1,3 @@
-/*
-  Theme Name: APPER - App Landing Page React Template
-  Theme URL: https://mediacity.co.in/apper/
-  Author: Media Cty
-  Author URI: https://themeforest.net/user/media-city
-  Creation Date: 12 December 2022
-  Description: A default stylesheet for APPER - App Landing Page React Template.
-  Version: 1.0
-*/
-
 /*-----------------------------------------------------------------------------------
 
 [Table of contents]
@@ -47,8 +37,6 @@
     --slider-dots-color: #D4D2DD;
     --light-bg: #DFDAF3;
 }
-
-
 
 /* ------Common-Css------------- */
 
@@ -387,7 +375,7 @@ header.fixed .navbar {
 
 .navbar-brand img {
     width: 100%;
-    height: 70px;
+    height: 80px;
 }
 
 /* navigation bar dropdown */
@@ -616,7 +604,7 @@ header.fixed .navbar {
 }
 
 .banner_section .app_btn li:last-child {
-    margin-left: 25px;
+    margin-left: 16px;
 }
 
 .banner_section .app_btn li a img {

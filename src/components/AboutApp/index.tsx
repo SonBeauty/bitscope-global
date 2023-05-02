@@ -20,7 +20,7 @@ export default function AboutApp() {
             </div>
           </div>
           <div className="col-lg-6">
-            <div className="about_text">
+            <div className="about_text !text-start">
               <div
                 className="section_title"
                 data-aos="fade-up"
@@ -33,7 +33,7 @@ export default function AboutApp() {
                 <p className="font-bold text-xl pb-2">
                   Authenticate the percentage of real users.
                 </p>
-                <p className="">
+                <p className="sm:pb-0 pb-1">
                   Analyze user conversations and behavior to categorize them
                   accurately. BitScope provides an authentic view of
                   communication channels by filtering out bot accounts.
@@ -109,7 +109,7 @@ export default function AboutApp() {
               </ul>
               <Link
                 href="/contact"
-                className="btn puprple_btn"
+                className="btn puprple_btn rounded-3xl"
                 data-aos="fade-in"
                 data-aos-duration="1500"
               >

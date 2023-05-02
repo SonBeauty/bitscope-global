@@ -78,7 +78,7 @@ export default function Section() {
             />
           </span>
         </div>
-        <div className="row">
+        <div className="row md:px-28">
           <div
             className="col-lg-6 col-md-12"
             data-aos="fade-right"

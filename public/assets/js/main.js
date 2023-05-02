@@ -152,10 +152,8 @@ window.addEventListener("scroll", function () {
     });
   }
 
-  if (position?.top < window.innerHeight && position.bottom >= 0) {
-    //console.log('Element is partially visible in screen');
+  if (position?.top < window.innerHeight && position.bottom >= 0) { 
   } else {
-    //console.log('Element is not visible');
     $(".counter-value").each(function () {
       var $this = $(this),
         countTo = 0;
@@ -246,10 +244,8 @@ window.addEventListener("scroll", function () {
   var position = element?.getBoundingClientRect();
 
   if (position?.top < 600 && position.bottom >= 15) {
-    console.log("--- DATA ---", position?.top, position.bottom);
     $(".purple_backdrop").css("opacity", "1");
   } else {
-    //console.log('Element is not visible');
     $(".purple_backdrop").css("opacity", "0");
   }
 });
@@ -263,7 +259,6 @@ $(window).on("resize", function () {
       if (position?.top < window.innerHeight && position.bottom >= 0) {
         $(".purple_backdrop").css("opacity", "1");
       } else {
-        //console.log('Element is not visible');
         $(".purple_backdrop").css("opacity", "0");
       }
     });
@@ -275,7 +270,7 @@ $(window).on("resize", function () {
       if (position?.top < window.innerHeight && position.bottom >= 0) {
         $(".purple_backdrop").css("opacity", "1");
       } else {
-        //console.log('Element is not visible');
+       
         $(".purple_backdrop").css("opacity", "0");
       }
     });

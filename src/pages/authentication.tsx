@@ -8,7 +8,6 @@ import ActiveShape from "@/components/PieChart/ActiveShape";
 import Image from "next/image";
 import { BsCalendar3, BsTelegram, BsTwitter } from "react-icons/bs";
 import { FcDoNotInhale } from "react-icons/fc";
-
 const ArrInfoUser = [
   {
     icon: (
@@ -252,7 +251,7 @@ export default function Authentication() {
         <div className="bg-background rounded-2xl border-2">
           <ActiveShape />
           <div className="flex flex-wrap max-w-[415px] items-center justify-center ">
-            {QualityRating.map((item, index) => {
+            {QualityRating.map((item: any, index: number) => {
               return (
                 <div
                   key={index}
@@ -271,7 +270,7 @@ export default function Authentication() {
           </div>
         </div>
         <div className="bg-background p-8 flex flex-wrap gap-8 items-center border-2 justify-center rounded-2xl">
-          {ArrInfoUser.map((item, index) => {
+          {ArrInfoUser.map((item: any, index: number) => {
             return (
               <ChildrenInfoUser
                 key={index}
@@ -316,7 +315,7 @@ export default function Authentication() {
         <div className="bg-background rounded-2xl border-2">
           <ActiveShape />
           <div className="flex flex-wrap max-w-[420px] items-center justify-center">
-            {QualityRating.map((item, index) => {
+            {QualityRating.map((item: any, index: number) => {
               return (
                 <div
                   key={index}
@@ -334,7 +333,6 @@ export default function Authentication() {
             })}
           </div>
         </div>
-
         <div className="flex flex-col justify-between gap-8 w-full">
           <div className="flex flex-col lg:flex-row  gap-8 w-full">
             <BarChart className="basis-2/3 border-2" />
@@ -353,7 +351,7 @@ export default function Authentication() {
             </div>
           </div>
           <div className="flex flex-wrap gap-4 justify-between">
-            {ArrProfileTele.map((item, index) => {
+            {ArrProfileTele.map((item: any, index: number) => {
               return (
                 <div
                   key={index}

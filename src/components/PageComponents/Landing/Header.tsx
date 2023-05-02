@@ -5,7 +5,6 @@ import { useWindowSize } from "../../../hooks/useWindowSize";
 export default function Header() {
   const [mobile, setmobile] = useState<boolean>(false);
   const size = useWindowSize();
-  console.log(size);
   useEffect(() => {
     if (size.width && size.width < 991) {
       setmobile(true);
@@ -19,10 +18,10 @@ export default function Header() {
         <nav className="navbar navbar-expand-lg">
           <Link href="#" className="navbar-brand">
             <Image
-              width={200}
-              height={80}
+              width={120}
+              height={125}
               alt="Logo"
-              src="/image/600X300.png"
+              src="/image/Artboard_1_9.png"
               className=""
             />
           </Link>
@@ -70,7 +69,7 @@ export default function Header() {
               </li>
               <li className="nav-item">
                 <Link
-                  href="#"
+                  href="/login"
                   className="nav-link btn px-8 py-2 bg-white rounded-3xl border-2 border-purple-400"
                 >
                   Login

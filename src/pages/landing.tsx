@@ -70,14 +70,14 @@ export default function LandingPage() {
         <Announce />
         <Header />
         <Section />
-        <div className="md:px-32">
+        <div className="md:px-36">
           <Trusted />
           <Features />
           <AboutApp />
           <Design />
         </div>
         <DownloadApp />
-        <div className="md:px-32">
+        <div className="md:px-36">
           <Faq />
         </div>
         <Footer />

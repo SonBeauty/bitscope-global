@@ -18,6 +18,14 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/components/partials/sidebar/MobileMenu.tsx",
+    "src/components/partials/header/Tools/Profile.tsx",
+    "src/components/partials/widget/chart/revenue-bar-chart.tsx",
+    "src/components/partials/widget/chart/group-chart-1.jsx"
+  ],
   "exclude": ["node_modules"]
 }

@@ -1,6 +1,3 @@
-import DropdownMessage from "@/components/PageComponents/Dashboard/DropdownMessage";
-import DropdownNotification from "@/components/PageComponents/Dashboard/DropdownNotification";
-import DropdownUser from "@/components/PageComponents/Dashboard/DropdownUser";
 import { MoonIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 export default function Header({ sidebarOpen, setSidebarOpen }: any) {
@@ -97,10 +94,7 @@ export default function Header({ sidebarOpen, setSidebarOpen }: any) {
         <div className="flex items-center gap-3 sm:gap-7">
           <ul className="flex items-center gap-2 sm:gap-4">
             <MoonIcon width={23} height={23} />
-            <DropdownNotification />
-            <DropdownMessage />
           </ul>
-          <DropdownUser />
         </div>
       </div>
     </header>

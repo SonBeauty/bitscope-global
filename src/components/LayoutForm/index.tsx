@@ -2,7 +2,6 @@ import { Button } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 import Social from "../PageComponents/Login/Social";
-
 interface LayoutFormProps {
   handleSubmit: any;
   onSubmit: object;
@@ -28,14 +27,14 @@ export default function LayoutForm({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="h-full min-h-screen w-full flex bg-white overflow-x-hidden"
+      className="h-full min-h-screen w-full flex bg-white overflow-x-hidden relative"
     >
-      <div className="md:flex-1 md:basis-1/2 md:bg-slate-100 md:block hidden relative">
+      <div className="md:flex-1 md:basis-1/2 bg-white md:block hidden relative">
         <Image
-          height={980}
-          width={1024}
+          height={234}
+          width={428}
           alt="Background"
-          src="/image/ils1.svg"
+          src="/image/MainImg.png"
           className="w-full h-full"
         />
         <div className="max-w-[520px] absolute top-[-1%] left-[10%]">
@@ -48,12 +47,6 @@ export default function LayoutForm({
               className="mb-12"
             />
           </Link>
-          <h4 className="text-[40px] leading-[48px] text-slate-600 dark:text-slate-400">
-            Unlock your{" "}
-            <span className="text-slate-800 dark:text-slate-400 font-bold">
-              World
-            </span>
-          </h4>
         </div>
       </div>
       <div className="md:flex-1 md:basis-1/2 md:bg-white w-full">
@@ -95,6 +88,13 @@ export default function LayoutForm({
           </div>
         </div>
       </div>
+      <Image
+        height={40}
+        width={300}
+        alt="Logo"
+        src="/image/Footer.png"
+        className="absolute bottom-0 right-0"
+      />
     </form>
   );
 }

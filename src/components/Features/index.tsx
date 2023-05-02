@@ -62,10 +62,10 @@ export default function Features() {
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-6 bg-white max-w-5xl mx-auto rounded-3xl px-8 py-3">
-          {Arr.map((item, index) => {
+          {Arr.map((item: any, index: number) => {
             return (
               <div
-                className="max-w-[208px] md:w-52 max-h-[240px] md:h-60 p-1 md:p-4"
+                className="max-w-[208px] md:w-52 max-h-[240px] md:h-60 md:p-4"
                 key={index}
               >
                 <div
@@ -83,7 +83,7 @@ export default function Features() {
                     />
                   </div>
                   <div className="text text-center">
-                    <h4 className="font-semibold">{item.title}</h4>
+                    <h4 className="font-semibold text-base">{item.title}</h4>
                     <p>{item.describe}</p>
                   </div>
                 </div>
