@@ -9,8 +9,10 @@ import MostSales from "@/components/partials/widget/most-sales";
 import RadarChart from "@/components/partials/widget/chart/radar-chart";
 import HomeBredCurbs from "@/components/PageComponents/Dashboard/HomeBredCurbs";
 import LayoutDashBoard from "@/components/layout/Layout";
+
 const Dashboard = () => {
   const [filterMap, setFilterMap] = useState("usa");
+
   return (
     <LayoutDashBoard>
       <div className="">
@@ -52,7 +54,7 @@ const Dashboard = () => {
                   filterMap === "global"
                     ? "bg-slate-900 text-white dark:bg-slate-700 dark:text-slate-300"
                     : "dark:text-slate-300"
-                }  
+                }
                 `}
                     onClick={() => setFilterMap("global")}
                   >

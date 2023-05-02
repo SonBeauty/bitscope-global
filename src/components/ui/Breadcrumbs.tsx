@@ -10,6 +10,7 @@ const Breadcrumbs = () => {
 
   const [isHide, setIsHide] = useState<boolean>();
   const [groupTitle, setGroupTitle] = useState("");
+
   useEffect(() => {
     const currentMenuItem = menuItems.find(
       (item) => item.link === locationName
@@ -24,6 +25,7 @@ const Breadcrumbs = () => {
       setGroupTitle(currentChild?.title);
     }
   }, [location, locationName]);
+
   return (
     <>
       {!isHide ? (

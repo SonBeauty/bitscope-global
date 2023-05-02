@@ -34,7 +34,6 @@ export default function StoryLanding() {
                   src="/image/story01.png"
                   className="w-full"
                 />
-                <span>45 min ago</span>
               </div>
               <div className="story_text">
                 <h3>Cool features added!</h3>
@@ -42,7 +41,7 @@ export default function StoryLanding() {
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry lorem Ipsum has.
                 </p>
-                <Link href="/blog-single">READ MORE</Link>
+                <Link href="/blog/single">READ MORE</Link>
               </div>
             </div>
           </div>
@@ -60,7 +59,6 @@ export default function StoryLanding() {
                   src="/image/story02.png"
                   className="w-full"
                 />
-                <span>45 min ago</span>
               </div>
               <div className="story_text">
                 <h3>Top rated app! Yupp.</h3>
@@ -68,7 +66,7 @@ export default function StoryLanding() {
                   Simply dummy text of the printing and typesetting industry
                   lorem Ipsum has Lorem Ipsum is.
                 </p>
-                <Link href="/blog-single">READ MORE</Link>
+                <Link href="/blog/single">READ MORE</Link>
               </div>
             </div>
           </div>
@@ -86,7 +84,6 @@ export default function StoryLanding() {
                   src="/image/story03.png"
                   className="w-full"
                 />
-                <span>45 min ago</span>
               </div>
               <div className="story_text">
                 <h3>Creative ideas on app.</h3>
@@ -94,7 +91,7 @@ export default function StoryLanding() {
                   Printing and typesetting industry lorem Ipsum has Lorem simply
                   dummy text of the.
                 </p>
-                <Link href="/blog-single">READ MORE</Link>
+                <Link href="/blog/single">READ MORE</Link>
               </div>
             </div>
           </div>

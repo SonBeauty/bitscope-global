@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import TitleDescribeLayout from "../PageComponents/Landing/TitleDescribeLayout";
 const ArrFaq = [
   {
     id: 0,
@@ -23,29 +24,30 @@ const ArrFaq = [
     id: 3,
     question: "How do we know the result isn't your own?",
     answer:
-      "BitScope does not monitor the market by itself. Instead, we allow investors to actively choose a list of information sources that we listen to and constantly update for you.",
+      "BitScope does not independently monitor the market. Instead, it allows investors to choose a selection of information sources that it listens to and continuously updates for them.",
   },
 ];
 export default function Faq() {
   const [activeFaq, setActiveFaq] = useState<number>(1);
   return (
     <>
-      <section className="mb-4 faq_section popupOpen">
+      <section className="mb-4 faq_section popupOpen mt-16" id="faq">
         <div className="container">
-          <div
-            className="section_title"
-            data-aos="fade-up"
-            data-aos-duration="1500"
-            data-aos-delay="300"
-          >
-            <h2>
-              <span>FAQ</span> - Frequently Asked Questions
-            </h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typese tting{" "}
-              <br /> indus orem Ipsum has beenthe standard dummy.
-            </p>
-          </div>
+          <TitleDescribeLayout
+            title={
+              <>
+                <span>FAQ</span> - Frequently Asked Questions
+              </>
+            }
+            describe={
+              <>
+                Combined with the endless potential of &quot;Artificial
+                Intelligence&quot; (AI),<br/> Bitscope offers completely new
+                perspectives on the data discovery process.<br/> Explore to find
+                prompt answers to your inquiries
+              </>
+            }
+          />
           <div className="faq_panel">
             <div className="accordion" id="accordionExample">
               {ArrFaq.map((item: any, index: number) => {
@@ -59,14 +61,14 @@ export default function Faq() {
                     <div className="card-header" id="headingOne">
                       <div className="mb-0 w-full">
                         <div
-                          className={`btn btn-link ${
+                          className={`btn ${
                             activeFaq === index + 1 && "active"
                           } flex justify-between`}
                           onClick={() => setActiveFaq(index + 1)}
                           data-toggle="collapse"
                           data-target="#collapseOne"
                         >
-                          <span>{item.question}</span>
+                          <span className="">{item.question}</span>
                           <div>
                             {index + 1 === activeFaq ? (
                               <ChevronUpIcon className="h-6 w-6 text-gray-500" />

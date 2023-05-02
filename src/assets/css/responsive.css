@@ -84,7 +84,7 @@
     /* about app section */
     .about_app_section .about_text .app_statstic li {
         width: 210px;
-        padding-left: 20px;
+        padding-left: 10px;
     }
 
     .about_app_section .about_text .app_statstic li p:first-child {
@@ -234,7 +234,7 @@
 
     .white_header .navbar-expand-lg .navbar-nav .nav-link.dark_btn {
         background-color: var(--bg-purple);
-        color: var(--text-white);
+        color: var(--text-white) !important;
     }
 
     .banner_section {
@@ -632,7 +632,7 @@
     }
 
     .row_am {
-        padding: 0px;
+        padding: 10px 0;
     }
 
     .section_title p br {
@@ -654,12 +654,6 @@
         line-height: 1.5;
         font-size: 14px;
     }
-
-    /* banner section */
-    .banner_section {
-        margin-top: 60px;
-    }
-
     .banner_section .banner_text h1 {
         font-size: 30px;
     }
@@ -667,14 +661,6 @@
     .banner_section .app_btn,
     .banner_section .used_app {
         justify-content: center;
-    }
-
-    .banner_section .app_btn li:last-child {
-        margin-left: 0;
-    }
-
-    .banner_section .app_btn li {
-        margin: 0 15px;
     }
 
     .banner_section .app_btn li a {
@@ -705,7 +691,7 @@
     }
 
     .trusted_section .company_logos img {
-        max-width: 70%;
+        max-width: 100%;
     }
 
     /* features section */
@@ -752,10 +738,12 @@
     .about_app_section .about_text .app_statstic {
         margin-top: 0;
         justify-content: space-between;
+        gap: 0px;
+        padding-left: 0px;
     }
 
     .about_app_section .about_text .app_statstic li {
-        width: 48%;
+        width: 49%;
         margin-right: 0;
     }
 

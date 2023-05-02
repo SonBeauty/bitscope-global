@@ -2,26 +2,101 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useWindowSize } from "../../../hooks/useWindowSize";
+import HeaderItem from "./HeaderItem";
+
+const headerItem = [
+  {
+    href: "#",
+    name: "Services",
+    child: [
+      {
+        name: "Problem Solved",
+        link: "#features",
+      },
+      {
+        name: "Bit Authentication",
+        link: "#authentication",
+      },
+      {
+        name: "Bit Tracking",
+        link: "#tracking",
+      },
+    ],
+  },
+  {
+    href: "#",
+    name: "Social",
+    child: [
+      {
+        name: "Facebook",
+        link: "https://www.facebook.com/BitScopeAI",
+        blank: true,
+      },
+      {
+        name: "Discord",
+        link: "https://discord.gg/Bv8YNdVD2Y",
+        blank: true,
+      },
+      {
+        name: "Twitter",
+        link: "https://twitter.com/BitscopeAI",
+        blank: true,
+      },
+    ],
+  },
+  {
+    href: "/blog",
+    name: "Blog",
+  },
+  {
+    href: "/commingsoon",
+    name: "Tokenomics",
+  },
+  {
+    href: "/login",
+    name: "Login",
+  },
+  {
+    href: "/register",
+    name: " GET STARTED",
+    className: "nav-link dark_btn text-center !mt-0 !px-6",
+  },
+];
 export default function Header() {
+  const [language, setLanguage] = useState<string>("ENG");
+  const [fixedStyle, setFixedStyle] = useState(false);
   const [mobile, setmobile] = useState<boolean>(false);
   const size = useWindowSize();
+
   useEffect(() => {
-    if (size.width && size.width < 991) {
-      setmobile(true);
-    } else {
-      setmobile(false);
-    }
+    setmobile(size.width !== undefined && size.width < 991);
   }, [size.width]);
+  useEffect(() => {
+    function handleScroll() {
+      if (window.pageYOffset >= 30) {
+        setFixedStyle(true);
+      } else {
+        setFixedStyle(false);
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <header>
-      <div className="container">
-        <nav className="navbar navbar-expand-lg">
-          <Link href="#" className="navbar-brand">
+    <header
+      className={`white_header landing fixed header-wave ${
+        fixedStyle ? "fix_style fixed" : ""
+      }`}
+    >
+      <div className="container max-w-[1170px] mx-auto pl-0">
+        <nav className="navbar navbar-expand-lg relative">
+          <Link href="/" className="navbar-brand">
             <Image
-              width={120}
-              height={125}
+              width={350}
+              height={120}
               alt="Logo"
-              src="/image/Artboard_1_9.png"
+              src="/image/logo_bitscope.svg"
               className=""
             />
           </Link>
@@ -46,46 +121,19 @@ export default function Header() {
               !mobile ? "navbar-collapse" : "navbar-collapse collapse"
             }`}
           >
-            <ul className="navbar-nav ml-auto flex gap-2">
-              <li className="nav-item">
-                <Link href="#" className="nav-link">
-                  Services
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="#" className="nav-link">
-                  Social
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="#" className="nav-link">
-                  Blog
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="#" className="nav-link">
-                  Tokenomic
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  href="/login"
-                  className="nav-link btn px-8 py-2 bg-white rounded-3xl border-2 border-purple-400"
-                >
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="#" className="nav-link dark_btn">
-                  GET STARTED
-                </Link>
-              </li>
-              <div className="border-2 border-purple-400 relative rounded-3xl mx-4 flex items-center justify-center gap-2">
-                <select className="border-none rounded-3xl bg-purple-50">
-                  <option>English</option>
-                  <option>Español</option>
-                </select>
-              </div>
+            <ul className="navbar-nav ml-auto flex gap-1">
+              {headerItem.map((item, index) => {
+                return (
+                  <HeaderItem
+                    key={index}
+                    name={item.name}
+                    href={item.href}
+                    className={item.className}
+                    arrChild={item.child}
+                    hasDropdown={!!item.child}
+                  />
+                );
+              })}
             </ul>
           </div>
         </nav>

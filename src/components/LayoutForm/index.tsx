@@ -29,12 +29,12 @@ export default function LayoutForm({
       onSubmit={handleSubmit(onSubmit)}
       className="h-full min-h-screen w-full flex bg-white overflow-x-hidden relative"
     >
-      <div className="md:flex-1 md:basis-1/2 bg-white md:block hidden relative">
+      <div className="md:flex-1 md:basis-1/2 md:block hidden relative">
         <Image
           height={234}
           width={428}
           alt="Background"
-          src="/image/MainImg.png"
+          src="/image/Main.svg"
           className="w-full h-full"
         />
         <div className="max-w-[520px] absolute top-[-1%] left-[10%]">

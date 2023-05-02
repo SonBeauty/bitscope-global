@@ -8,7 +8,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { schema } from "../components/PageComponents/Login/schema";
+import { useRouter } from "next/router";
+
 export default function Login() {
+  const route = useRouter();
   const [remember, setRemember] = useState<Boolean>(false);
   const {
     register,
@@ -17,10 +20,17 @@ export default function Login() {
   } = useForm({
     resolver: yupResolver(schema),
     mode: "all",
+    defaultValues: {
+      password: '123123',
+      email: 'demo.bitscope@gmail.com'
+    }
   });
+
   const onSubmit = (data: any) => {
     console.log(data);
+    route.push('/dashboard')
   };
+
   return (
     <LayoutForm
       page="Sign in"
@@ -45,7 +55,7 @@ export default function Login() {
           id="email"
           type="email"
           placeholder="Your Email"
-          register={register}
+          register={register as any}
           label="Email"
           className="w-full"
           errors={errors.email}
@@ -56,7 +66,7 @@ export default function Login() {
           type="password"
           label="Password"
           placeholder="Your password"
-          register={register}
+          register={register as any}
           className="w-full"
           errors={errors.password}
           icon={LockClosedIcon}

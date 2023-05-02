@@ -1,6 +1,7 @@
 import { Dialog, Transition, Combobox } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import Icon from "@/components/ui/Icon";
+
 const SearchModal = () => {
   let [isOpen, setIsOpen] = useState(false);
   function closeModal() {
@@ -43,6 +44,7 @@ const SearchModal = () => {
   const filteredsearchList = searchList.filter((item) =>
     item.name.toLowerCase().includes(query.toLowerCase())
   );
+
   return (
     <div>
       <div>
@@ -54,7 +56,6 @@ const SearchModal = () => {
           <span className="xl:inline-block hidden">Search... </span>
         </button>
       </div>
-
       <Transition show={isOpen} as={Fragment}>
         <Dialog
           as="div"

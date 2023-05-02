@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import SimpleBar from "simplebar-react";
 import SidebarLogo from "./Logo";
 import Navmenu from "./Navmenu";
+
 const Sidebar = () => {
   const scrollableNodeRef = useRef<any>();
   const [scroll, setScroll] = useState(false);
@@ -22,10 +23,12 @@ const Sidebar = () => {
     };
     scrollableNodeRef.current.addEventListener("scroll", handleScroll);
   }, [scrollableNodeRef]);
+
   const [collapsed, setMenuCollapsed] = useSidebar();
   const [menuHover, setMenuHover] = useState(false);
   const [isSemiDark] = useSemiDark();
   const [skin] = useSkin();
+
   return (
     <div className={isSemiDark ? "dark" : ""}>
       <div

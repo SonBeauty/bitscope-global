@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Collapse } from "react-collapse";
 import useMobileMenu from "@/hooks/useMobileMenu";
 import { useRouter } from "next/router";
+import clsx from "clsx";
+
 const Navmenu = ({ menus }: any) => {
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const toggleSubmenu = (i: any) => {
@@ -16,6 +18,7 @@ const Navmenu = ({ menus }: any) => {
   const [mobileMenu, setMobileMenu] = useMobileMenu();
   const location = useRouter();
   const locationName = location.pathname;
+
   useEffect(() => {
     let submenuIndex = null;
     menus.map((item: any, i: number) => {
@@ -34,16 +37,18 @@ const Navmenu = ({ menus }: any) => {
     document.title = `BitScope  | ${locationName}`;
     setActiveSubmenu(submenuIndex);
   }, [locationName, menus, mobileMenu, setMobileMenu]);
+
   return (
     <>
       <ul>
         {menus.map((item: any, i: number) => (
           <li
             key={i}
-            className={` single-sidebar-menu
-              ${item.child ? "item-has-children" : ""}
-              ${activeSubmenu === i ? "open" : ""}
-             }`}
+            className={clsx("single-sidebar-menu", {
+              open: activeSubmenu === i,
+              "item-has-children": !!item.child,
+              "menu-item-active": locationName === item.link,
+            })}
           >
             {!item.child && !item.isHeadr && (
               <Link className="menu-link" href={item.link}>

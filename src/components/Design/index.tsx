@@ -1,50 +1,40 @@
 import Image from "next/image";
 import React from "react";
+import TitleSubLayout from "../PageComponents/Landing/TitleSubLayout";
 export default function Design() {
   return (
-    <section className="modern_ui_section">
+    <section className="modern_ui_section mt-6" id="tracking">
       <div className="container">
         <div className="row items-center justify-center">
-          <div className="col-lg-6 mt-12">
+          <div className="col-lg-5 mt-12">
             <div className="ui_text">
-              <div
-                className="section_title"
-                data-aos="fade-up"
-                data-aos-duration="1500"
-                data-aos-delay="100"
-              >
-                <h2>
-                  <span>BIT TRACKING</span>
-                </h2>
-                <p className="font-bold">
-                  A comprehensive social media listening program.
-                </p>
-                <p>
-                  Listening is the best way to understand anyone&apos;s
-                  feelings.
-                  <br /> The cutting edge of Artificial Intelligence now enables
-                  the listening to millions of lines of messages, providing
-                  insight into customers or the flow of trends.
-                </p>
-              </div>
+              <TitleSubLayout
+                title="BIT TRACKING"
+                des="A comprehensive social media listening program."
+                sub="Listening is the best way to understand anyone's
+                feelings. The cutting edge of Artificial Intelligence now enables
+                the listening to millions of lines of messages, providing
+                insight into customers or the flow of trends."
+              />
+
               <ul className="design_block">
                 <li data-aos="fade-up" data-aos-duration="1500">
                   <h4>Watchlist</h4>
-                  <p>
-                    A list of quality signal groups but cannot track all
-                    content.
+                  <p className="text-">
+                    A list of high-quality signal groups is available, but it is
+                    not comprehensive enough to track all content.
                   </p>
                 </li>
                 <li data-aos="fade-up" data-aos-duration="1500">
                   <h4>Catch the trend</h4>
-                  <p>
+                  <p className="text-">
                     Large language model analysis allows identifying important
-                    &quot;keywords&quot; that could be &quot;Trend&quot;
+                    &quot;keywords&quot; that could be &quot;Trend&quot;.
                   </p>
                 </li>
                 <li data-aos="fade-up" data-aos-duration="1500">
                   <h4>Customer insights</h4>
-                  <p>
+                  <p className="text-">
                     The limitless potential of artificial intelligence (AI)
                     makes every customer conversation heard.
                   </p>
@@ -52,14 +42,14 @@ export default function Design() {
               </ul>
             </div>
           </div>
-          <div className="col-lg-6">
+          <div className="col-lg-7">
             <div className="" data-aos="fade-in" data-aos-duration="1500">
               <div className="left_img">
                 <Image
-                  width={450}
-                  height={575}
+                  width={650}
+                  height={775}
                   alt="app"
-                  src="/image/Artboard-17.pngedit.png"
+                  src="/image/Bit_Tracking.svg"
                   className="moving_position_animatin"
                 />
               </div>

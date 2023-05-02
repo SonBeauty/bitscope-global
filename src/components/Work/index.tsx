@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { BsApple } from "react-icons/bs";
 import { ImAndroid } from "react-icons/im";
 import { AiFillWindows } from "react-icons/ai";
+import AnimLine from "../PageComponents/Landing/AnimLine";
 export default function Work() {
   const [ytShow, setytShow] = useState(false);
   return (
@@ -36,13 +37,13 @@ export default function Work() {
                     <h4 className="mb-2">Download app</h4>
                     <div className="app_icon">
                       <Link href="#">
-                        <ImAndroid className="w-full h-full p-2"/>
+                        <ImAndroid className="w-full h-full p-2" />
                       </Link>
                       <Link href="#">
-                        <BsApple className="w-full h-full p-2"/>
+                        <BsApple className="w-full h-full p-2" />
                       </Link>
                       <Link href="#">
-                        <AiFillWindows className="w-full h-full p-2"/>
+                        <AiFillWindows className="w-full h-full p-2" />
                       </Link>
                     </div>
                     <p>Download App either for Windows, Mac or Android</p>
@@ -126,78 +127,7 @@ export default function Work() {
           </div>
           <div className="yt_video" data-aos="fade-in" data-aos-duration="1500">
             <div className="anim_line dark_bg">
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="line"
-                  src="/image/anim_line.png"
-                />
-              </span>
+              <AnimLine number={8} />
             </div>
             <div className="thumbnil">
               <span className="banner_shape1">

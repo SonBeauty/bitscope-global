@@ -1,17 +1,21 @@
-import { Button } from "flowbite-react";
-import React from "react";
-interface AnnounceProps {
-  className?: string;
-}
-export default function Announce({ className }: AnnounceProps) {
+import Link from "next/link";
+
+export default function Announce() {
   return (
-    <div
-      className={`${className} bg-black-500 w-full md:h-12 px-2 h-22 flex gap-8 justify-center items-center`}
-    >
+    <div className=" header-top gap-2 py-2 md:gap-6">
       <h3 className="text-lg font-semibold text-white">
         Join Now for Free OG-Badge NFT and share BitScope Treasure
       </h3>
-      <Button className="bg-purple-600">Join Discord</Button>
+      <Link
+        type="button"
+        className="btn puprple_btn aos-init aos-animate bg-[#6A49F2]"
+        href="https://discord.com/invite/ZvRrQ8Y3uM"
+        target="_blank"
+      >
+        <span className="flex items-center rounded-md text-sm">
+          Join Discord
+        </span>
+      </Link>
     </div>
   );
 }

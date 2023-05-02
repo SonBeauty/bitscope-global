@@ -1,6 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import TitleDescribeLayout from "../PageComponents/Landing/TitleDescribeLayout";
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
   ssr: false,
 });
@@ -28,20 +29,20 @@ export default function Trusted() {
     <>
       <section className="row_am trusted_section">
         <div className="container">
-          <div
-            className="section_title"
-            data-aos="fade-up"
-            data-aos-duration="1500"
-            data-aos-delay="100"
-          >
-            <h2>
-              Trusted by <span>6000+</span> companies
-            </h2>
-            <p>
-              Customer insight listening and analysis is considered <br />
-              business-critical and is used by industry leaders.
-            </p>
-          </div>
+          <TitleDescribeLayout
+            aos="fade-up"
+            title={
+              <>
+                Trusted by <span>6000+</span> companies
+              </>
+            }
+            describe={
+              <>
+                Customer insight listening and analysis is considered <br />
+                business-critical and is used by industry leaders.
+              </>
+            }
+          />
           <div className="company_logos">
             <OwlCarousel
               id="company_slider"

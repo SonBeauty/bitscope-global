@@ -1,26 +1,24 @@
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import Image from "next/image";
-const months = [
-  { name: "En", image: "/image/usa.png" },
-  { name: "Gn", image: "/image/gn.png" },
+const languages = [
+  { name: "EN", image: "/image/en.png" },
+  { name: "VN", image: "/image/vi.png" },
 ];
 const Language = () => {
-  const [selected, setSelected] = useState(months[0]);
+  const [selected, setSelected] = useState(languages[0]);
   return (
     <div>
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative z-[22]">
           <Listbox.Button className="relative w-full flex items-center cursor-pointer space-x-[6px] rtl:space-x-reverse">
-            <span className="inline-block md:h-6 md:w-6 w-4 h-4 rounded-full">
-              <Image
-                src={selected.image}
-                alt=""
-                width={100}
-                height={100}
-                className="h-full w-full object-cover rounded-full"
-              />
-            </span>
+            <Image
+              src={selected.image}
+              alt=""
+              width={20}
+              height={20}
+              className="object-cover"
+            />
             <span className="text-sm md:block hidden font-medium text-slate-600 dark:text-slate-300">
               {selected.name}
             </span>
@@ -32,7 +30,7 @@ const Language = () => {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute min-w-[100px] right-0 rtl:left-0 md:top-[50px] top-[38px] w-auto max-h-60 overflow-auto border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-800 mt-1 ">
-              {months.map((item, i) => (
+              {languages.map((item, i) => (
                 <Listbox.Option key={i} value={item} as={Fragment}>
                   {({ active }) => (
                     <li
@@ -47,15 +45,13 @@ const Language = () => {
                     >
                       <div className="flex items-center space-x-2 rtl:space-x-reverse">
                         <span className="flex-none">
-                          <span className="lg:w-6 lg:h-6 w-4 h-4 rounded-full inline-block">
                             <Image
                               src={item.image}
                               alt=""
-                              width={100}
-                              height={100}
-                              className="h-full w-full object-cover rounded-full"
+                              width={20}
+                              height={20}
+                              className="object-cover"
                             />
-                          </span>
                         </span>
                         <span className="flex-1 lg:text-base text-sm capitalize">
                           {item.name}

@@ -7,22 +7,43 @@ export const menuItems = [
     title: "Dashboard",
     icon: "heroicons-outline:home",
     isOpen: true,
-    isHide: true,
+    isHide: false,
     child: [
       {
-        childtitle: "Analytics Dashboard",
-        childlink: "dashboard",
+        childtitle: "Dashboard",
+        childlink: "/dashboard",
+      },
+      {
+        childtitle: "Authentication",
+        childlink: "/dashboard/authentication",
+      },
+      {
+        childtitle: "Monitor Pointing",
+        childlink: "/dashboard/monitor",
+      },
+      {
+        childtitle: "Probe Handy",
+        childlink: "/dashboard/probe",
+      },
+      {
+        childtitle: "Spying Alerts",
+        childlink: "/dashboard/alerts",
+      },
+      {
+        childtitle: "Tracking",
+        childlink: "/dashboard/tracking",
       },
     ],
   },
   {
     title: "changelog",
     icon: "heroicons:arrow-trending-up",
-    link: "changelog",
+    link: "/dashboard/changelog",
     isHide: false,
     badge: "1.0.0",
   },
 ];
+
 export const colors = {
   primary: "#4669FA",
   secondary: "#A0AEC0",
@@ -50,6 +71,7 @@ export const hexToRGB = (hex: any, alpha: any) => {
     return "rgb(" + r + ", " + g + ", " + b + ")";
   }
 };
+
 export const topMenu = [
   {
     title: "Dashboard",

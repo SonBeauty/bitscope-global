@@ -1,89 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaDiscord, FaFacebook, FaTiktok, FaTwitter } from "react-icons/fa";
-import SectionFooter from "./SectionFooter";
+import { FaDiscord, FaFacebook, FaTwitter } from "react-icons/fa";
+import AnimLine from "./AnimLine";
+import ScrollToTop from "./ScrollToTop";
 export default function Footer() {
   return (
     <div className="">
-      <SectionFooter />
       <footer>
         <div className="top_footer" id="contact">
           <div className="anim_line dark_bg">
-            <span>
-              <Image
-                width={1}
-                height={100}
-                alt="anim_line"
-                src="/image/anim_line.png"
-              />
-            </span>
-            <span>
-              <Image
-                width={1}
-                height={100}
-                alt="anim_line"
-                src="/image/anim_line.png"
-              />
-            </span>
-            <span>
-              <Image
-                width={1}
-                height={100}
-                alt="anim_line"
-                src="/image/anim_line.png"
-              />
-            </span>
-            <span>
-              <Image
-                width={1}
-                height={100}
-                alt="anim_line"
-                src="/image/anim_line.png"
-              />
-            </span>
-            <span>
-              <Image
-                width={1}
-                height={100}
-                alt="anim_line"
-                src="/image/anim_line.png"
-              />
-            </span>
-            <span>
-              <Image
-                width={1}
-                height={100}
-                alt="anim_line"
-                src="/image/anim_line.png"
-              />
-            </span>
-            <span>
-              <Image
-                width={1}
-                height={100}
-                alt="anim_line"
-                src="/image/anim_line.png"
-              />
-            </span>
-            <span>
-              <Image
-                width={1}
-                height={100}
-                alt="anim_line"
-                src="/image/anim_line.png"
-              />
-            </span>
-            <span>
-              <Image
-                width={1}
-                height={100}
-                alt="anim_line"
-                src="/image/anim_line.png"
-              />
-            </span>
+            <AnimLine number={9} />
           </div>
           <div className="container">
-            <div className="row">
+            <div className="row max-w-[1170px] mx-auto">
               <div className="col-lg-4 col-md-6 col-12">
                 <div className="abt_side">
                   <div className="logo">
@@ -93,37 +22,46 @@ export default function Footer() {
                       height={50}
                       alt="logo"
                       src="/image/1200X628-SVG.png"
+                      className="sm:!mr-60"
                     />
                   </div>
                   <ul>
                     <li>
-                      <Link href="#">support@example.com</Link>
-                    </li>
-                    <li>
-                      <Link href="#">+1-900-123 4567</Link>
+                      <a href="mailto:hoangvu.bitscope@gmail.com">
+                        support@bitscope.com
+                      </a>
                     </li>
                   </ul>
                   <ul className="social_media">
                     <li>
-                      <Link href="#">
+                      <Link
+                        href="https://www.facebook.com/BitScopeAI/"
+                        target="_blank"
+                      >
                         <FaFacebook className="w-full h-full p-2" />
                       </Link>
                     </li>
                     <li>
-                      <Link href="#">
+                      <Link
+                        href="https://twitter.com/BitscopeAI"
+                        target="_blank"
+                      >
                         <FaTwitter className="w-full h-full p-2" />
                       </Link>
                     </li>
                     <li>
-                      <Link href="#">
+                      <Link
+                        href="https://discord.com/invite/ZvRrQ8Y3uM"
+                        target="_blank"
+                      >
                         <FaDiscord className="w-full h-full p-2" />
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link href="#">
                         <FaTiktok className="w-full h-full p-2" />
                       </Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
@@ -132,13 +70,13 @@ export default function Footer() {
                   <h3>Useful Links</h3>
                   <ul>
                     <li>
-                      <Link href="/">Services</Link>
+                      <Link href="/">Home</Link>
                     </li>
                     <li>
-                      <Link href="/about">Blog</Link>
+                      <Link href="/blog">Blog</Link>
                     </li>
                     <li>
-                      <Link href="#">Tokenomic</Link>
+                      <Link href="/commingsoon">Tokenomics</Link>
                     </li>
                   </ul>
                 </div>
@@ -148,40 +86,38 @@ export default function Footer() {
                   <h3>Help & Suport</h3>
                   <ul>
                     <li>
-                      <Link href="/faq">FAQs</Link>
+                      <Link href="#faq">FAQs</Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link href="#">Support</Link>
+                    </li> */}
+
+                    <li>
+                      <Link href="/commingsoon">Terms & conditions</Link>
                     </li>
                     <li>
-                      <Link href="/work">How it works</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Terms & conditions</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Privacy policy</Link>
+                      <Link href="/commingsoon">Privacy policy</Link>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="col-lg-2 col-md-6 col-12">
-                <div className="try_out">
+                <div className="try_out ">
                   <h3>Let’s Try Out</h3>
-                  <ul className="app_btn">
+                  <ul className="app_btn ">
                     <li>
-                      <Link href="#">
+                      <Link href="/commingsoon">
                         <Image
                           width={140}
                           height={40}
                           src="/image/appstore_blue.png"
                           alt="image"
-                          className=""
+                          className="w-[90%]"
                         />
                       </Link>
                     </li>
                     <li>
-                      <Link href="#">
+                      <Link href="/commingsoon">
                         <Image
                           width={140}
                           height={35}
@@ -198,26 +134,22 @@ export default function Footer() {
         </div>
         <div className="bottom_footer">
           <div className="container">
-            <div className="row">
+            <div className="row max-w-[1170px] mx-auto">
               <div className="col-md-6">
                 <p>© Copyrights 2023. All rights reserved.</p>
               </div>
               <div className="col-md-6">
                 <p className="developer_text">
                   Design & developed by{" "}
-                  <Link href="" target="blank">
-                    Kilonidhi Themes
+                  <Link href="/" target="blank">
+                    BitScope Themes
                   </Link>
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div className="go_top">
-          <span>
-            <Image width={50} height={50} alt="app" src="/image/go_top.png" />
-          </span>
-        </div>
+        <ScrollToTop />
       </footer>
     </div>
   );

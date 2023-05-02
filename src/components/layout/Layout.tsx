@@ -62,7 +62,6 @@ const LayoutDashBoard = ({ children }: LayoutDashBoardProps) => {
             }
           >
             <Suspense>
-              <Breadcrumbs />
               {children}
             </Suspense>
           </div>

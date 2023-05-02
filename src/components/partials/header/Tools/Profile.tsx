@@ -36,13 +36,13 @@ const Profile = () => {
       icon: "heroicons-outline:user",
 
       action: () => {
-        return navigate.push("/update-profile");
+        return navigate.push("/dashboard/profile");
       },
     },
     {
       label: "Logout",
       icon: "heroicons-outline:login",
-      action: () => {},
+      action: () => navigate.push('/login'),
     },
   ];
   return (

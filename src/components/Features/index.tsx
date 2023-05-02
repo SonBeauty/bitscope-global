@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import TitleDescribeLayout from "../PageComponents/Landing/TitleDescribeLayout";
 const Arr = [
   {
     title: "Authentication",
@@ -8,7 +9,7 @@ const Arr = [
   },
   {
     title: "Handy",
-    describe: "Take care of all customers at one screen",
+    describe: "Take care of all customers at one screen.",
     src: "/image/02.png",
   },
   {
@@ -18,12 +19,12 @@ const Arr = [
   },
   {
     title: "Monitor",
-    describe: "See all custommers in one screen?",
+    describe: "See all custommers in one screen ?.",
     src: "/image/04.png",
   },
   {
-    title: "Trend Report",
-    describe: "Projects mentioned by many people",
+    title: "Trending Report",
+    describe: "Daily's trending topics are mentioned widely.",
     src: "/image/05.png",
   },
   {
@@ -38,7 +39,7 @@ const Arr = [
   },
   {
     title: "Spying",
-    describe: "Competitor strategy analysis",
+    describe: "Competitor strategy analysis.",
     src: "/image/08.png",
   },
 ];
@@ -46,26 +47,30 @@ export default function Features() {
   return (
     <section className="row_am features_section" id="features">
       <div className="container">
-        <div
-          className="section_title"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-          data-aos-delay="50"
-        >
-          <h2>
-            What is the <span>problem solved?</span>
-          </h2>
-          <p className="py-2">
-            BitScope is a &quot;social listening&quot; project that integrates
-            AI&apos;s excellent language <br /> processing capabilities. This
-            brings a breath of fresh air to seemingly old <br /> problems.
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center justify-center gap-6 bg-white max-w-5xl mx-auto rounded-3xl px-8 py-3">
-          {Arr.map((item: any, index: number) => {
+        <TitleDescribeLayout
+          aos="fade-up"
+          title={
+            <>
+              What is the <span>problem solved?</span>
+            </>
+          }
+          describe={
+            <>
+              BitScope is a &quot;social listening&quot; project that integrates
+              AI&apos;s excellent language
+              <br /> processing capabilities. BitScope is specifically designed
+              to cater to the requirements of an unique
+              <br />
+              blockchain users.
+            </>
+          }
+        />
+
+        <div className="flex flex-wrap items-center justify-center gap-6 bg-white max-w-[1170px] mx-auto rounded-3xl px-1 sm:px-8 py-3 mt-16">
+          {Arr.map((item, index) => {
             return (
               <div
-                className="max-w-[208px] md:w-52 max-h-[240px] md:h-60 md:p-4"
+                className="w-[155px] md:w-56 max-h-[200px] md:h-56 p-1 md:p-4"
                 key={index}
               >
                 <div

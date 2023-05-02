@@ -1,12 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import AnimLine from "../PageComponents/Landing/AnimLine";
 import Testimonial from "../Testimonial";
 export default function DownloadApp() {
   return (
     <>
       <section
-        className="row_am free_app_section review_freeapp"
+        className="row_am free_app_section review_freeapp mt-16"
         id="getstarted"
       >
         <div className="container">
@@ -17,78 +15,7 @@ export default function DownloadApp() {
             data-aos-delay="100"
           >
             <div className="anim_line dark_bg">
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="anim_line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="anim_line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="anim_line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="anim_line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="anim_line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="anim_line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="anim_line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="anim_line"
-                  src="/image/anim_line.png"
-                />
-              </span>
-              <span>
-                <Image
-                  width={1}
-                  height={100}
-                  alt="anim_line"
-                  src="/image/anim_line.png"
-                />
-              </span>
+              <AnimLine number={9} />
             </div>
             <div className="row">
               <div className="col">
@@ -100,7 +27,6 @@ export default function DownloadApp() {
           </div>
         </div>
       </section>
-      {/* <div className="purple_backdrop"></div> */}
     </>
   );
 }

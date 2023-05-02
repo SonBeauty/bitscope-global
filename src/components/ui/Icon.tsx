@@ -8,6 +8,7 @@ interface IconsProps {
   hFlip?: boolean;
   vFlip?: boolean;
 }
+
 const Icons = ({
   icon,
   className,

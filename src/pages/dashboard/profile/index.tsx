@@ -1,5 +1,5 @@
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import InputGroup from "@/components/InputGroup";
-import HomeBredCurbs from "@/components/PageComponents/Dashboard/HomeBredCurbs";
 import { schema } from "@/components/PageComponents/UpdateProfile/schema";
 import LayoutDashBoard from "@/components/layout/Layout";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
@@ -20,9 +20,9 @@ export default function UpdateProfile() {
   };
   return (
     <LayoutDashBoard>
-      <div className="mx-auto max-w-5xl">
-        <HomeBredCurbs title="Profile" />
-        <div className="grid gap-8 ">
+      <div className="mx-auto max-w-[1170px]">
+        <Breadcrumb pageName="Update Profile" />
+        <div className="grid gap-8">
           <div className="col-div-5 xl:col-div-3">
             <div className=" rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
