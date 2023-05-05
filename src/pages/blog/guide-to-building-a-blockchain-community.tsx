@@ -1,5 +1,4 @@
 import Author from "@/components/PageComponents/Blog/Author";
-import LatestStory from "@/components/PageComponents/Blog/LatestStory";
 import MainBlog from "@/components/PageComponents/Blog/MainBlog";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 
@@ -9,10 +8,6 @@ export default function Single() {
       <section className="blog_detail_section">
         <div className="container">
           <div className="blog_inner_pannel">
-            {/* <div className="review">
-              <span>Review</span>
-              
-            </div> */}
             <div className="section_title">
               <h2>Guide to building a Blockchain community</h2>
             </div>
@@ -253,7 +248,6 @@ export default function Single() {
           </div>
         </div>
       </section>
-      <LatestStory />
     </MainBlog>
   );
 }

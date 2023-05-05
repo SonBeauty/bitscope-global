@@ -1,14 +1,14 @@
 import BarChart from "@/components/BarChart/BarChart";
+import OneSeries from "@/components/LineChart/OneSeries";
+import Simple from "@/components/LineChart/Simple";
 import CheckInfoUser from "@/components/PageComponents/Authentication/CheckInfoUser";
 import CheckQuality from "@/components/PageComponents/Authentication/CheckQuality";
 import ChildrenInfoUser from "@/components/PageComponents/Authentication/ChildrenInfoUser";
-import OneSeries from "@/components/LineChart/OneSeries";
-import Simple from "@/components/LineChart/Simple";
 import ActiveShape from "@/components/PieChart/ActiveShape";
+import LayoutDashBoard from "@/components/layout/Layout";
 import Image from "next/image";
 import { BsCalendar3, BsTelegram, BsTwitter } from "react-icons/bs";
 import { FcDoNotInhale } from "react-icons/fc";
-import LayoutDashBoard from "@/components/layout/Layout";
 
 const ArrInfoUser = [
   {
@@ -199,7 +199,7 @@ const ArrProfileTele = [
 export default function Authentication() {
   return (
     <LayoutDashBoard>
-      <div className="p-1 sm:pt-8 flex flex-col gap-8 w-full m-auto ">
+      <div className="p-4 sm:pt-8 flex flex-col gap-8 w-full m-auto ">
         <div className="bg-[url('/image/bg-cover-1.svg')] bg-no-repeat bg-cover rounded-2xl">
           <div className="max-w-[585px] float-right p-8">
             <div className="flex flex-col items-start justify-center gap-4 p-8">

@@ -53,11 +53,11 @@ const headerItem = [
     name: "Tokenomics",
   },
   {
-    href: "/login",
+    href: "/commingsoon",
     name: "Login",
   },
   {
-    href: "/register",
+    href: "/commingsoon",
     name: " GET STARTED",
     className: "nav-link dark_btn text-center !mt-0 !px-6",
   },

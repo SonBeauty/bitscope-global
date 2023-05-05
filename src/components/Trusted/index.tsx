@@ -8,7 +8,7 @@ const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
 export default function Trusted() {
   const company_slider = {
     loop: true,
-    margin: 10,
+    margin: 30,
     nav: false,
     autoplay: true,
     smartSpeed: 1500,
@@ -21,7 +21,7 @@ export default function Trusted() {
         items: 3,
       },
       1000: {
-        items: 5,
+        items: 4,
       },
     },
   };
@@ -55,7 +55,8 @@ export default function Trusted() {
                     width={160}
                     height={80}
                     alt="trust"
-                    src="/image/envato.png"
+                    src="/image/coinbase.svg"
+                    className="mt-2"
                   />
                 </div>
               </div>
@@ -65,7 +66,8 @@ export default function Trusted() {
                     width={160}
                     height={80}
                     alt="trust"
-                    src="/image/slack.png"
+                    src="/image/binance.svg"
+                    className="!mt-[10px]"
                   />
                 </div>
               </div>
@@ -75,17 +77,19 @@ export default function Trusted() {
                     width={160}
                     height={80}
                     alt="trust"
-                    src="/image/paypal.png"
+                    src="/image/coinmarketcap.svg"
+                    className="!mt-[14px]"
                   />
                 </div>
               </div>
               <div className="item">
                 <div className="logo">
                   <Image
-                    width={160}
+                    width={130}
                     height={80}
                     alt="trust"
-                    src="/image/spoty.png"
+                    src="/image/glx.png"
+                    className=""
                   />
                 </div>
               </div>

@@ -14,10 +14,13 @@
     "@hookform/resolvers": "^3.0.1",
     "@iconify/react": "^4.1.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "@tanstack/react-query": "^4.29.5",
     "@types/node": "18.15.11",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
+    "aos": "^3.0.0-beta.6",
     "apexcharts": "^3.37.3",
+    "axios": "^1.4.0",
     "chart.js": "^4.2.1",
     "cleave.js": "^1.6.0",
     "clsx": "^1.2.1",
@@ -50,6 +53,7 @@
     "yup": "^1.0.2"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.4",
     "@types/react-collapse": "^5.0.1",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",

@@ -9,10 +9,6 @@ export default function Single() {
       <section className="blog_detail_section">
         <div className="container">
           <div className="blog_inner_pannel">
-            {/* <div className="review">
-              <span>Review</span>
-              
-            </div> */}
             <div className="section_title">
               <h2>Invest crypto by Social listening!!</h2>
             </div>
@@ -92,7 +88,6 @@ export default function Single() {
           </div>
         </div>
       </section>
-      <LatestStory />
     </MainBlog>
   );
 }

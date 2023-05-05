@@ -8,7 +8,7 @@ export default function Announce() {
       </h3>
       <Link
         type="button"
-        className="btn puprple_btn aos-init aos-animate bg-[#6A49F2]"
+        className="btn puprple_btn aos-init aos-animate bg-[#6A49F2]  rounded-3xl"
         href="https://discord.com/invite/ZvRrQ8Y3uM"
         target="_blank"
       >

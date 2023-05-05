@@ -59,7 +59,7 @@
   height: 200px;
   right: 35vw;
   top: -120px;
-  perspective: 400px;
+  perspective: 1200px;
 }
 .pendulum {
   position: absolute;
@@ -121,7 +121,7 @@
 .text {
   position: absolute;
   width: auto;
-  right: 14vw;
+  right: 16vw;
   bottom: calc(50vh);
   transform: translateY(50%);
   font-size: 2.6rem;

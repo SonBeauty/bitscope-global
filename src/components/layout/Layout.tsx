@@ -1,7 +1,6 @@
 import Footer from "@/components/partials/footer";
 import Header from "@/components/partials/header";
 import Sidebar from "@/components/partials/sidebar";
-import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import useContentWidth from "@/hooks/useContentWidth";
 import useMenuHidden from "@/hooks/useMenuHidden";
 import useMenulayout from "@/hooks/useMenulayout";

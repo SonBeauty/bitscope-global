@@ -14,7 +14,6 @@ export default function LandingWithHeaderAndFooter({
   announce = false,
   className,
 }: LandingProps) {
-
   return (
     <div>
       <Head>

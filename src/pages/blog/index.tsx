@@ -3,7 +3,7 @@ import { BlogList } from "@/components/PageComponents/Blog/BlogList";
 import MainBlog from "@/components/PageComponents/Blog/MainBlog";
 export default function Blog() {
   return (
-    <MainBlog>
+    <MainBlog lastest={false}>
       <BlogHeader />
       <BlogList />
     </MainBlog>

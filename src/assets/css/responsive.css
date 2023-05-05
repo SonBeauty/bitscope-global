@@ -298,7 +298,6 @@
         min-width: 100%;
         max-width: 100%;
         margin-left: 10px;
-        display: none;
         box-shadow: none;
         margin-top: 0;
     }
@@ -654,6 +653,7 @@
         line-height: 1.5;
         font-size: 14px;
     }
+
     .banner_section .banner_text h1 {
         font-size: 30px;
     }

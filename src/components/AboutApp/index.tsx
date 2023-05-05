@@ -63,7 +63,7 @@ export default function AboutApp() {
                 })}
               </ul>
               <Link
-                href="/register"
+                href="/commingsoon"
                 className="btn puprple_btn mt-3 rounded-3xl"
                 data-aos="fade-in"
                 data-aos-duration="1500"
