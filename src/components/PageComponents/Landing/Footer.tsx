@@ -25,13 +25,6 @@ export default function Footer() {
                       className="sm:!mr-60"
                     />
                   </div>
-                  <ul>
-                    <li>
-                      <a href="mailto:hoangvu.bitscope@gmail.com">
-                        support@bitscope.com
-                      </a>
-                    </li>
-                  </ul>
                   <ul className="social_media">
                     <li>
                       <Link

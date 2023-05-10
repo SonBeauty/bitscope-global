@@ -91,7 +91,7 @@ export default function UpdateProfile() {
                       Cancel
                     </Button>
                     <Button type="submit" className="w-[full]">
-                      Save
+                      <span className="text-white">Save</span>
                     </Button>
                   </div>
                 </div>

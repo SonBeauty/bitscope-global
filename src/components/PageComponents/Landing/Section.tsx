@@ -11,7 +11,7 @@ export default function Section() {
             data-aos-duration="1500"
           >
             <div className="banner_text">
-              <h1>
+              <h1 className="leading-normal">
                 {" "}
                 Using{" "}
                 <span className="text-white font-semibold underline decoration-[#FFFFFF]">
@@ -28,10 +28,10 @@ export default function Section() {
               <li>
                 <Link
                   href="/commingsoon"
-                  className="blue_img -ml-6 text-purple-500 hover:text-white border-white"
+                  className="blue_img -ml-6 border-white"
                 >
-                  <span className="text-xs"> No Wallet/No Credit</span> <br />
-                  <span className="text-xl font-bold">Try Free now</span>
+                  <span className="text-xs text-purple-500"> No Wallet/No Credit</span> <br />
+                  <span className="text-xl font-bold text-purple-500 ">Try Free now</span>
                 </Link>
               </li>
             </ul>

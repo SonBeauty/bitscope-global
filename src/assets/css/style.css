@@ -242,6 +242,17 @@ button:focus,
     box-shadow: none;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+    color: #000000
+}
+
 @media screen and (min-width:1200px) {
     .container {
         max-width: 1170px;
@@ -466,6 +477,10 @@ header.landing {
     justify-content: center;
     padding: 4px 20px;
     align-items: center;
+}
+
+.header-top a:hover span {
+    color: #6A49F2 !important
 }
 
 header.fix_style {
@@ -748,7 +763,7 @@ header.fixed .navbar {
 .banner_section .banner_text h1 {
     font-size: 55px;
     color: var(--dark-purple);
-    letter-spacing: -1.5px;
+    letter-spacing: .5px;
     font-weight: 700;
 }
 
@@ -794,7 +809,11 @@ header.fixed .navbar {
 
 .banner_section .app_btn li a:hover .blue_img {
     opacity: 0;
-    border: 2px solid #FFFFFF
+    border: 2px solid #FFFFFF;
+}
+
+.banner_section .app_btn li:hover span {
+    color: #FFFFFF
 }
 
 .banner_section .app_btn li a:hover .white_img {
@@ -1060,7 +1079,9 @@ header.fixed .navbar {
 .modern_ui_section .ui_text {
     padding-right: 65px;
 }
-
+.modern_ui_section .ui_text p {
+    margin-top: 4px;
+}
 /* modern ui list */
 .modern_ui_section .design_block li {
     padding-left: 40px;
@@ -4010,7 +4031,7 @@ footer .bottom_footer-dark {
 }
 
 .home-wave .banner_shape1 {
-    top: 200px;
+    top: 100px;
     left: 10%;
     animation: mymove 10s infinite;
 }

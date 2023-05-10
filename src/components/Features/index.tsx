@@ -5,47 +5,47 @@ const Arr = [
   {
     title: "Authentication",
     describe: "Detects BOT-net members in community.",
-    src: "/image/01.png",
+    src: "/image/authen_icon.svg",
   },
   {
     title: "Handy",
     describe: "Take care of all customers at one screen.",
-    src: "/image/02.png",
+    src: "/image/Handy_icon.svg",
   },
   {
     title: "Tracking",
     describe: "Important things cannot be missed.",
-    src: "/image/03.png",
+    src: "/image/Tracking_icon.svg",
   },
   {
     title: "Monitor",
     describe: "See all custommers in one screen ?.",
-    src: "/image/04.png",
+    src: "/image/monitor_icon.svg",
   },
   {
     title: "Trending Report",
     describe: "Daily's trending topics are mentioned widely.",
-    src: "/image/05.png",
+    src: "/image/trending_icon.svg",
   },
   {
     title: "Probe",
     describe: "Listen to your brand on the internet.",
-    src: "/image/06.png",
+    src: "/image/Probe_icon.svg",
   },
   {
     title: "Alert",
     describe: "Community FUD early warning.",
-    src: "/image/07.png",
+    src: "/image/alert_icon.svg",
   },
   {
     title: "Spying",
     describe: "Competitor strategy analysis.",
-    src: "/image/08.png",
+    src: "/image/spying_icon.svg",
   },
 ];
 export default function Features() {
   return (
-    <section className="row_am features_section" id="features">
+    <section className="row_am features_section">
       <div className="container">
         <TitleDescribeLayout
           aos="fade-up"
@@ -65,7 +65,6 @@ export default function Features() {
             </>
           }
         />
-
         <div className="flex flex-wrap items-center justify-center gap-6 bg-white max-w-[1170px] mx-auto rounded-3xl px-1 sm:px-8 py-3 mt-16">
           {Arr.map((item, index) => {
             return (
@@ -89,13 +88,14 @@ export default function Features() {
                   </div>
                   <div className="text text-center">
                     <h4 className="font-semibold text-base">{item.title}</h4>
-                    <p>{item.describe}</p>
+                    <p className="">{item.describe}</p>
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
+        <div id="authentication"></div>
       </div>
     </section>
   );

@@ -43,6 +43,7 @@ export default function Trusted() {
               </>
             }
           />
+          <div id="features"></div>
           <div className="company_logos">
             <OwlCarousel
               id="company_slider"

@@ -3,7 +3,7 @@ import React from "react";
 import TitleSubLayout from "../PageComponents/Landing/TitleSubLayout";
 export default function Design() {
   return (
-    <section className="modern_ui_section mt-6" id="tracking">
+    <section className="modern_ui_section mt-6">
       <div className="container">
         <div className="row items-center justify-center">
           <div className="col-lg-5 mt-12">

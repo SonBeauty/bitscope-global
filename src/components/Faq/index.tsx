@@ -42,9 +42,10 @@ export default function Faq() {
             describe={
               <>
                 Combined with the endless potential of &quot;Artificial
-                Intelligence&quot; (AI),<br/> Bitscope offers completely new
-                perspectives on the data discovery process.<br/> Explore to find
-                prompt answers to your inquiries
+                Intelligence&quot; (AI),
+                <br /> Bitscope offers completely new perspectives on the data
+                discovery process.
+                <br /> Explore to find prompt answers to your inquiries
               </>
             }
           />
@@ -68,7 +69,15 @@ export default function Faq() {
                           data-toggle="collapse"
                           data-target="#collapseOne"
                         >
-                          <span className="">{item.question}</span>
+                          <span
+                            className={`${
+                              activeFaq === index + 1
+                                ? "text-purple-500"
+                                : "text-[#32236f]"
+                            } `}
+                          >
+                            {item.question}
+                          </span>
                           <div>
                             {index + 1 === activeFaq ? (
                               <ChevronUpIcon className="h-6 w-6 text-gray-500" />

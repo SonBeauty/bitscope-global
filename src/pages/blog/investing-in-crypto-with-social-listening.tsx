@@ -1,7 +1,6 @@
 import Author from "@/components/PageComponents/Blog/Author";
-import LatestStory from "@/components/PageComponents/Blog/LatestStory";
 import MainBlog from "@/components/PageComponents/Blog/MainBlog";
-import React from "react";
+import TitleAndContent from "@/components/PageComponents/Blog/TitleAndContent";
 
 export default function Single() {
   return (
@@ -13,7 +12,9 @@ export default function Single() {
               <h2>Invest crypto by Social listening!!</h2>
             </div>
             <div className="main_img">
-              <img src="https://i.imgur.com/EyEvgDt.png" alt="image" />
+              <picture>
+                <img src="https://i.imgur.com/EyEvgDt.png" alt="image" />
+              </picture>
             </div>
             <div className="info">
               <p>
@@ -43,47 +44,52 @@ export default function Single() {
                 consequences.
               </p>
             </div>
-            <div className="info">
-              <h3>The Impact of Social Listening</h3>
-              <p>
-                BitScope is an AI social listening service, using web3 solutions
-                based on blockchain, providing a powerful way to monitor
-                conversations related to cryptocurrency assets in real-time.
-                Social listening can help investors understand why prices rise
-                or fall at certain times, identify new trends and patterns in
-                the market, and predict customer reactions to specific news or
-                events. With AI social listening tools according to their
-                preferences, cryptocurrency investors can make better decisions
-                about when to buy or sell assets to maximize their profits.
-                <br /> <br />
-                The emergence of ChatGPT has opened the door for product
-                developers to access the great potential of natural language
-                processing in AI. We now have the opportunity to interact with a
-                multitude of top-notch virtual assistants and appreciate the
-                unique artworks created by AI. Be ready to capture the
-                interesting information provided by their &quot;great
-                listening&quot; ability.
-              </p>
-            </div>
-            <div className="info">
-              <h3>The Core Value of BitScope for Investors</h3>
-              <p>
-                Social data can be used to analyze market trends and identify
-                potential opportunities. However, like technical indicators or
-                Onchain data, social data can be complex and tedious, making it
-                difficult for users to understand deeply.
-                <br /> <br />
-                BitScope is a unique project that analyzes social data and
-                provides investor-friendly reports. In the long-term vision of
-                the project, our goal is to build a comprehensive measurement
-                and evaluation system for investment positions in the market.
-                <br /> <br />
-                While a 100% accurate investment tool does not exist, the
-                results of BitScope&apos;s reports can help investors make
-                better-informed decisions and maximize opportunities for
-                successful investments.
-              </p>
-            </div>
+            <TitleAndContent
+              title="The Impact of Social Listening"
+              content={
+                <>
+                  BitScope is an AI social listening service, using web3
+                  solutions based on blockchain, providing a powerful way to
+                  monitor conversations related to cryptocurrency assets in
+                  real-time. Social listening can help investors understand why
+                  prices rise or fall at certain times, identify new trends and
+                  patterns in the market, and predict customer reactions to
+                  specific news or events. With AI social listening tools
+                  according to their preferences, cryptocurrency investors can
+                  make better decisions about when to buy or sell assets to
+                  maximize their profits.
+                  <br /> <br />
+                  The emergence of ChatGPT has opened the door for product
+                  developers to access the great potential of natural language
+                  processing in AI. We now have the opportunity to interact with
+                  a multitude of top-notch virtual assistants and appreciate the
+                  unique artworks created by AI. Be ready to capture the
+                  interesting information provided by their &quot;great
+                  listening&quot; ability.
+                </>
+              }
+            />
+            <TitleAndContent
+              title="The Core Value of BitScope for Investors"
+              content={
+                <>
+                  Social data can be used to analyze market trends and identify
+                  potential opportunities. However, like technical indicators or
+                  Onchain data, social data can be complex and tedious, making
+                  it difficult for users to understand deeply.
+                  <br /> <br />
+                  BitScope is a unique project that analyzes social data and
+                  provides investor-friendly reports. In the long-term vision of
+                  the project, our goal is to build a comprehensive measurement
+                  and evaluation system for investment positions in the market.
+                  <br /> <br />
+                  While a 100% accurate investment tool does not exist, the
+                  results of BitScope&apos;s reports can help investors make
+                  better-informed decisions and maximize opportunities for
+                  successful investments.
+                </>
+              }
+            />
             <Author />
           </div>
         </div>

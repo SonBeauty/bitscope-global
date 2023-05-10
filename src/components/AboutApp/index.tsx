@@ -22,7 +22,7 @@ const arrAuthen = [
 ];
 export default function AboutApp() {
   return (
-    <section className="row_am about_app_section mt-12" id="authentication">
+    <section className="row_am about_app_section mt-12">
       <div className="container">
         <div className="row items-center justify-center">
           <div className="col-lg-6 relative">
@@ -73,6 +73,7 @@ export default function AboutApp() {
             </div>
           </div>
         </div>
+        <div id="tracking"></div>
       </div>
     </section>
   );

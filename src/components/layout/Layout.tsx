@@ -10,6 +10,7 @@ import useWidth from "@/hooks/useWidth";
 import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 import MobileMenu from "../partials/sidebar/MobileMenu";
+import PageContainer from "@/container/PageContainer";
 interface LayoutDashBoardProps {
   children: React.ReactNode;
 }
@@ -30,7 +31,7 @@ const LayoutDashBoard = ({ children }: LayoutDashBoardProps) => {
   const [menuHidden] = useMenuHidden();
   const [mobileMenu, setMobileMenu] = useMobileMenu();
   return (
-    <>
+    <PageContainer>
       <ToastContainer />
       <Header className={width > breakpoints.xl ? switchHeaderClass() : ""} />
       {menuType === "vertical" && width > breakpoints.xl && !menuHidden && (
@@ -60,16 +61,14 @@ const LayoutDashBoard = ({ children }: LayoutDashBoardProps) => {
               contentWidth === "boxed" ? "container mx-auto" : "container-fluid"
             }
           >
-            <Suspense>
-              {children}
-            </Suspense>
+            <Suspense>{children}</Suspense>
           </div>
         </div>
       </div>
       {width > breakpoints.md && (
         <Footer className={width > breakpoints.xl ? switchHeaderClass() : ""} />
       )}
-    </>
+    </PageContainer>
   );
 };
 export default LayoutDashBoard;

@@ -46,7 +46,7 @@ export default function LatestStory() {
                   </div>
                   <div className="story_text sm:h-96 h-80">
                     <h3
-                      className="cursor-pointer"
+                      className="cursor-pointer leading-normal"
                       onClick={() => router.push(`/blog/${item.link}`)}
                     >
                       {item.title}...
