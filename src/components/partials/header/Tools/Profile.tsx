@@ -1,9 +1,12 @@
 import Dropdown from "@/components/ui/Dropdown";
 import Icon from "@/components/ui/Icon";
+import { RootState } from "@/store";
 import { Menu } from "@headlessui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-const profileLabel = () => {
+import { useSelector } from "react-redux";
+const ProfileLabel = () => {
+  const user = useSelector((state: RootState) => state.users.user);
   return (
     <div className="flex items-center">
       <div className="flex-1 mr-[10px] rtl:ml-[10px]">
@@ -19,7 +22,7 @@ const profileLabel = () => {
       </div>
       <div className="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">
         <span className="overflow-hidden text-ellipsis whitespace-nowrap w-[85px] block">
-          Albert Flores
+          {user?.name}
         </span>
         <span className="text-base inline-block ml-[10px] rtl:mr-[10px]">
           <Icon icon="heroicons-outline:chevron-down"></Icon>
@@ -42,11 +45,14 @@ const Profile = () => {
     {
       label: "Logout",
       icon: "heroicons-outline:login",
-      action: () => navigate.push('/login'),
+      action: () => {
+        localStorage.removeItem("token");
+        navigate.push("/login");
+      },
     },
   ];
   return (
-    <Dropdown label={profileLabel()} classMenuItems="w-[180px] top-[58px]">
+    <Dropdown label={ProfileLabel()} classMenuItems="w-[180px] top-[58px]">
       {ProfileMenu.map((item, index) => (
         <Menu.Item key={index}>
           {({ active }) => (

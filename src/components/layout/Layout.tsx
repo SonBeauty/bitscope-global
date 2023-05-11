@@ -8,9 +8,9 @@ import useMobileMenu from "@/hooks/useMobileMenu";
 import useSidebar from "@/hooks/useSidebar";
 import useWidth from "@/hooks/useWidth";
 import { Suspense } from "react";
-import { ToastContainer } from "react-toastify";
 import MobileMenu from "../partials/sidebar/MobileMenu";
 import PageContainer from "@/container/PageContainer";
+import { ToastContainer } from "react-toastify";
 interface LayoutDashBoardProps {
   children: React.ReactNode;
 }

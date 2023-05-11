@@ -50,7 +50,6 @@ const RadarChart = () => {
     },
     colors: ["#4669FA"],
   };
-
   return (
     <div>
       <Chart series={series} options={options} type="radialBar" height="320" />

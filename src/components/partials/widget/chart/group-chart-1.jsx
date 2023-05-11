@@ -9,7 +9,7 @@ const shapeLine1 = {
       data: [800, 600, 1000, 800, 600, 1000, 800, 900],
     },
   ],
-  options:  {
+  options: {
     chart: {
       toolbar: {
         autoSelected: "pan",
@@ -204,7 +204,6 @@ const shapeLine3 = {
     },
   },
 };
-
 const statistics = [
   {
     name: shapeLine1,

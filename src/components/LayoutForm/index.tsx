@@ -51,7 +51,7 @@ export default function LayoutForm({
             </Link>
           </div>
         </div>
-        <div className="md:flex-1 min-w-[630px] md:basis-2/5 md:bg-white w-full">
+        <div className="md:flex-1 md:min-w-[630px] md:basis-2/5 md:bg-white w-full">
           <Link href="/" className="flex items-center justify-center md:hidden">
             <Image
               height={10}
@@ -61,7 +61,7 @@ export default function LayoutForm({
               className=""
             />
           </Link>
-          <div className="md:py-28 pb-14 md:px-[118px] px-8">
+          <div className="md:py-28 pb-14 md:px-[118px] px-1">
             <div className="text-center 2xl:mb-10 mb-4 ">
               <h4 className="font-medium text-2xl leading-10">{page}</h4>
               <div className="text-slate-500 text-base mt-1">{content}</div>

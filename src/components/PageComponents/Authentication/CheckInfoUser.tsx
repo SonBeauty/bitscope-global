@@ -1,8 +1,5 @@
-interface ArrRender {
-  name: string;
-  number: string;
-  color: string;
-}
+import { ArrRender } from "@/interface/page/Authentication";
+import ListArr from "./ListArr";
 interface CheckInfoUserProps {
   icon: any;
   social: string;
@@ -12,7 +9,7 @@ interface CheckInfoUserProps {
   iconJoin: any;
   textJoin: string;
   arrRender: ArrRender[];
-  sizeItem: string;
+  col: number;
 }
 export default function CheckInfoUser({
   icon,
@@ -23,7 +20,7 @@ export default function CheckInfoUser({
   iconJoin,
   textJoin,
   arrRender,
-  sizeItem,
+  col,
 }: CheckInfoUserProps) {
   return (
     <div className="bg-background border-2 flex py-6 flex-col items-center justify-center w-full rounded-lg">
@@ -33,40 +30,33 @@ export default function CheckInfoUser({
       </div>
       <div className="w-full">
         <div className="border-b-2 w-full"></div>
-        <div className="px-1 pt-6 flex items-center gap-8 sm:px-8 justify-between lg:flex-row flex-col">
-          <div className="flex gap-4 items-center flex-wrap justify-center">
-            <picture>
-              <img
-                className="rounded-full"
-                src={src}
-                width={107}
-                height={107}
-                alt="avatar"
-              />
-            </picture>
-            <div>
-              <h4 className="font-bold text-2xl">{name}</h4>
-              <span className="font-normal text-sky-400 text-base">
-                {username}
-              </span>
-              <div className="flex items-center gap-2">
-                {iconJoin}
-                <span className="font-nomal text-base">{textJoin}</span>
+        <div className="grid grid-cols-12 gap-5 mt-5 p-4">
+          <div className="2xl:col-span-3 lg:col-span-4 col-span-12">
+            <div className="bg-no-repeat bg-cover bg-center p-5 rounded-[6px] relative bg-inherit flex gap-2 justify-start items-center">
+              <picture>
+                <img
+                  className="rounded-full"
+                  src={src}
+                  width={80}
+                  height={80}
+                  alt="avatar"
+                />
+              </picture>
+              <div>
+                <h4 className="text-xl font-medium text-black-500 mb-2">
+                  <span className="block text-2xl">{name}</span>
+                  <span className="block font-normal text-blue-500 text-base">
+                    {username}
+                  </span>
+                </h4>
+                <p className="text-base font-normal flex gap-2 items-center">
+                  {iconJoin} {textJoin}
+                </p>
               </div>
             </div>
           </div>
-          <div className="flex gap-8 flex-wrap justify-center items-center">
-            {arrRender.map((item: any, index: number) => {
-              return (
-                <div
-                  key={index}
-                  className={`${sizeItem} flex flex-col gap-4 ${item.color} py-4 px-8 rounded-2xl`}
-                >
-                  <span className="text-sm font-semibold">{item.name}</span>
-                  <span className="text-2xl font-semibold">{item.number}</span>
-                </div>
-              );
-            })}
+          <div className="2xl:col-span-9 lg:col-span-8 col-span-12">
+            <ListArr arrRender={arrRender} col={col} />
           </div>
         </div>
       </div>

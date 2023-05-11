@@ -8,6 +8,9 @@ const nextConfig = {
   images: {
     domains: ["i.imgur.com"],
   },
+  env: {
+    SERVER: process.env.SERVER,
+  },
 };
 
 module.exports = nextConfig;

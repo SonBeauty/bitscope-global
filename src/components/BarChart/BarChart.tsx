@@ -50,8 +50,8 @@ interface BarChartProps {
 }
 export default function BarChart({ className }: BarChartProps) {
   return (
-    <div className={`${ className } bg-background p-6 rounded-2xl`}>
-      <Bar options={options} data={data} className="h-full w-full" />
+    <div className={`${ className } bg-background rounded-2xl w-full`}>
+      <Bar options={options} data={data} className="h-full w-full p-6" />
     </div>
   );
 }

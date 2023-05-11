@@ -1,8 +1,7 @@
-import React from "react";
 import styles from "@/styles/Commingsoon.module.scss";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
 import clsx from "clsx";
+import Link from "next/link";
 import PageContainer from "@/container/PageContainer";
 export default function Commingsoon() {
   return (

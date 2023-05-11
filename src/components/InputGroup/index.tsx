@@ -9,6 +9,8 @@ interface InputGroupProps {
   register: UseFormRegister<FieldValues>;
   className: string;
   errors: FieldError | any;
+  value?: string;
+  defaultValue?: string;
 }
 export default function InputGroup({
   id,
@@ -19,6 +21,8 @@ export default function InputGroup({
   register,
   className,
   errors,
+  value,
+  defaultValue,
 }: InputGroupProps) {
   return (
     <div className={className}>
@@ -30,6 +34,8 @@ export default function InputGroup({
         type={type}
         icon={icon}
         placeholder={placeholder}
+        defaultValue={defaultValue}
+        value={value}
         {...register(id)}
         color={errors ? "failure" : "white"}
       />

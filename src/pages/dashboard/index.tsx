@@ -1,18 +1,16 @@
-import React, { useState } from "react";
-import Card from "@/components/ui/Card";
-import ImageBlock1 from "@/components/partials/widget/block/image-block-2";
-import GroupChart1 from "@/components/partials/widget/chart/group-chart-1";
-import RevenueBarChart from "@/components/partials/widget/chart/revenue-bar-chart";
-import RadialsChart from "@/components/partials/widget/chart/radials";
-
-import MostSales from "@/components/partials/widget/most-sales";
-import RadarChart from "@/components/partials/widget/chart/radar-chart";
 import HomeBredCurbs from "@/components/PageComponents/Dashboard/HomeBredCurbs";
 import LayoutDashBoard from "@/components/layout/Layout";
+import ImageBlock1 from "@/components/partials/widget/block/image-block-2";
+import GroupChart1 from "@/components/partials/widget/chart/group-chart-1";
+import RadarChart from "@/components/partials/widget/chart/radar-chart";
+import RadialsChart from "@/components/partials/widget/chart/radials";
+import RevenueBarChart from "@/components/partials/widget/chart/revenue-bar-chart";
+import MostSales from "@/components/partials/widget/most-sales";
+import Card from "@/components/ui/Card";
+import { useState } from "react";
 
 const Dashboard = () => {
   const [filterMap, setFilterMap] = useState("usa");
-
   return (
     <LayoutDashBoard>
       <div className="">
@@ -79,7 +77,7 @@ const Dashboard = () => {
             </Card>
           </div>
           <div className="lg:col-span-4 col-span-12">
-            <Card >
+            <Card>
               <RadarChart />
               <div className="bg-slate-50 dark:bg-slate-900 rounded p-4 mt-8 flex justify-between flex-wrap">
                 <div className="space-y-1">

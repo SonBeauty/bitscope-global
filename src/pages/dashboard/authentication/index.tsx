@@ -1,11 +1,14 @@
 import AuthenInput from "@/components/PageComponents/Authentication/AuthenInput";
 import { schema } from "@/components/PageComponents/Authentication/schema";
+import { RootState } from "@/store";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 export default function Authentication() {
+  const user = useSelector((state: RootState) => state.users.user);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const {
@@ -27,18 +30,18 @@ export default function Authentication() {
   };
   return (
     <div className="w-screen h-screen bg-white flex items-center justify-center">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 p-8 justify-center items-center bg-black-200 rounded-3xl">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 p-8 justify-center items-center bg-black-200 sm:rounded-3xl rounded-none">
         <Image
           width={336}
           height={473}
           src="/image/authen.svg"
           alt="Authen"
-          className="basis-1/3 mt-[100px] sm:mt-0"
+          className="basis-1/3 mt-[380px] sm:mt-0"
         />
         <div className="w-full">
           <div className="">
             <h3 className="text-black-500 text-center">
-              Hello Albert - Welcome to Authenticaiton
+              Hello {user?.name} - Welcome to Authenticaiton
             </h3>
             <p className="py-4 text-black-500 text-center">
               We offer a comprehensive view of members who follow or join the
@@ -47,7 +50,10 @@ export default function Authentication() {
               results.
             </p>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)} className="sm:pr-10 py-6 flex flex-col gap-3 items-end">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="sm:pr-10 py-6 flex flex-col gap-3 items-end"
+          >
             <AuthenInput
               social="Twitter Link"
               placeholder="https://twitter.com/xxxx"

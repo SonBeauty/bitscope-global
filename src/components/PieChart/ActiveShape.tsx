@@ -1,38 +1,87 @@
+import useDarkmode from "@/hooks/useDarkMode";
 import React from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
-ChartJS.register(ArcElement, Tooltip, Legend);
-export const data = {
-  labels: [],
-  datasets: [
-    {
-      label: "Percent",
-      data: [8.1, 38.6, 22.5, 30.8],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 interface ActiveShapeProps {
   className?: string;
 }
 export default function ActiveShape({ className }: ActiveShapeProps) {
+  const [isDark] = useDarkmode();
+  const series = [38.6, 30.8, 22.5, 8.1];
+  const options: ApexCharts.ApexOptions = {
+    labels: [
+      "Hight Quality",
+      "Normal Quality",
+      "Low Quality",
+      "BOT or Bad quality",
+    ],
+    dataLabels: {
+      enabled: true,
+    },
+    colors: ["rgb(59,130,246)", "#50C793", "#F1595C", "#FBBF24"],
+    legend: {
+      position: "bottom",
+      fontSize: "16px",
+      fontFamily: "Inter",
+      fontWeight: 400,
+      labels: {
+        colors: isDark ? "#CBD5E1" : "#475569",
+      },
+    },
+
+    plotOptions: {
+      pie: {
+        donut: {
+          size: "65%",
+          labels: {
+            show: true,
+            name: {
+              show: true,
+              fontSize: "26px",
+              fontWeight: "bold",
+              fontFamily: "Inter",
+              color: isDark ? "#CBD5E1" : "#475569",
+            },
+            value: {
+              show: true,
+              fontFamily: "Inter",
+              color: isDark ? "#CBD5E1" : "#475569",
+
+              formatter(val: any) {
+                return `${parseInt(val)}%`;
+              },
+            },
+            total: {
+              show: true,
+              fontSize: "1.5rem",
+              color: isDark ? "#CBD5E1" : "#475569",
+              label: "Total",
+              formatter() {
+                return "100%";
+              },
+            },
+          },
+        },
+      },
+    },
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          legend: {
+            position: "bottom",
+          },
+        },
+      },
+    ],
+  };
   return (
-    <div
-      className={`max-w-[415px] flex items-center justify-center ${className} `}
-    >
-      <Doughnut data={data} className="p-8" />
+    <div className={`flex items-center justify-center ${className} `}>
+      <div>
+        <Chart options={options} series={series} type="donut" height="650" />
+      </div>
     </div>
   );
 }

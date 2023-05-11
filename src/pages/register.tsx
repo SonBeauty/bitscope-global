@@ -4,22 +4,46 @@ import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Checkbox, Label } from "flowbite-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { schema } from "../components/PageComponents/Register/schema";
-
+import { useMutation } from "@tanstack/react-query";
+import { registerUser } from "./api/auth/register";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 export default function Register() {
+  const [accept, setAccept] = useState<boolean>(false);
+  const router = useRouter();
   const {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm({
     resolver: yupResolver(schema),
     mode: "all",
   });
+  const { mutate } = useMutation(registerUser, {
+    onSuccess: () => {
+      toast.success("Register Success!");
+      setTimeout(() => {
+        router.push("/login");
+      }, 1000);
+    },
+    onError: () => {
+      toast.error("Register Failed!");
+    },
+  });
   const onSubmit = (data: any) => {
-    console.log(data);
+    mutate({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    });
   };
-
+  useEffect(() => {
+    setValue("check", accept);
+  }, [accept, setValue]);
   return (
     <LayoutForm
       page="Sign up"
@@ -72,12 +96,20 @@ export default function Register() {
         />
         <div className="flex flex-row items-center justify-between gap-4 mt-2 ml-1 md:flex-row">
           <div className="flex items-center justify-center float-left gap-2 py-2">
-            <Checkbox id="remember" onClick={() => {}} />
+            <Checkbox
+              id="remember"
+              onClick={() => {
+                setAccept(!accept);
+              }}
+            />
             <Label htmlFor="remember" className="font-normal text-slate-500">
               You Accept Our Terms And Conditions And Privacy Policy
             </Label>
           </div>
         </div>
+        <span className="block p-1 pl-1 text-sm text-red-500">
+          {errors["check"]?.message}
+        </span>
       </>
     </LayoutForm>
   );

@@ -3,16 +3,35 @@ import LayoutForm from "@/components/LayoutForm";
 import SpanText from "@/components/SpanText";
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@tanstack/react-query";
 import { Checkbox, Label } from "flowbite-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { schema } from "../components/PageComponents/Login/schema";
-import { useRouter } from "next/router";
+import { loginUser } from "./api/auth/login";
 
 export default function Login() {
   const route = useRouter();
   const [remember, setRemember] = useState<Boolean>(false);
+  const { mutate } = useMutation(loginUser, {
+    onSuccess: (data) => {
+      toast.success("Login Success!");
+      if (remember) {
+        localStorage.setItem("token", data.token);
+      } else {
+        sessionStorage.setItem("token", data.token);
+      }
+      setTimeout(() => {
+        route.push("/dashboard");
+      }, 1000);
+    },
+    onError: () => {
+      toast.error("Login Failed!");
+    },
+  });
   const {
     register,
     formState: { errors },
@@ -20,17 +39,13 @@ export default function Login() {
   } = useForm({
     resolver: yupResolver(schema),
     mode: "all",
-    defaultValues: {
-      password: '123123',
-      email: 'demo.bitscope@gmail.com'
-    }
   });
-
   const onSubmit = (data: any) => {
-    console.log(data);
-    route.push('/dashboard')
+    mutate({
+      email: data.email,
+      password: data.password,
+    });
   };
-
   return (
     <LayoutForm
       page="Sign in"
@@ -75,7 +90,9 @@ export default function Login() {
           <div className="flex items-center justify-center float-left gap-2 py-1">
             <Checkbox id="remember" onClick={() => setRemember(!remember)} />
             <Label htmlFor="remember" className="font-normal text-slate-500">
-              Keep Me Signed In
+              <span className="text-xs sm:text-sm text-slate-500 font-nomal">
+                Keep Me Signed In
+              </span>
             </Label>
           </div>
           <SpanText content="Forgot password?" redirectLink="/forgot-pass" />

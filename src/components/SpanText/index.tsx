@@ -19,7 +19,7 @@ export default function SpanText({
   return (
     <span
       onClick={() => handleClick()}
-      className={`${className} ${color} cursor-pointer`}
+      className={`${className} ${color} cursor-pointer `}
     >
       {content}
     </span>
