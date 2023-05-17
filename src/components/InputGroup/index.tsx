@@ -7,10 +7,11 @@ interface InputGroupProps {
   placeholder: string;
   icon?: any;
   register: UseFormRegister<FieldValues>;
-  className: string;
+  className?: string;
   errors: FieldError | any;
   value?: string;
   defaultValue?: string;
+  disabled?: boolean;
 }
 export default function InputGroup({
   id,
@@ -23,20 +24,25 @@ export default function InputGroup({
   errors,
   value,
   defaultValue,
+  disabled,
 }: InputGroupProps) {
   return (
     <div className={className}>
-      <div className="mb-2 block text-left mt-1">
-        <Label htmlFor={id} value={label} />
+      <div className="mb-2 block text-left mt-1 ">
+        <Label htmlFor={id} >
+          <span className="text-black-500"> {label}</span>
+        </Label>
       </div>
       <TextInput
         id={id}
         type={type}
         icon={icon}
+        disabled={disabled}
         placeholder={placeholder}
         defaultValue={defaultValue}
         value={value}
         {...register(id)}
+        className="text-black-500"
         color={errors ? "failure" : "white"}
       />
       {errors && (

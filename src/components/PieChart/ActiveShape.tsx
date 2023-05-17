@@ -1,15 +1,12 @@
-import useDarkmode from "@/hooks/useDarkMode";
-import React from "react";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 interface ActiveShapeProps {
   className?: string;
+  series: number[];
 }
-export default function ActiveShape({ className }: ActiveShapeProps) {
-  const [isDark] = useDarkmode();
-  const series = [38.6, 30.8, 22.5, 8.1];
+export default function ActiveShape({ className, series }: ActiveShapeProps) {
   const options: ApexCharts.ApexOptions = {
     labels: [
       "Hight Quality",
@@ -24,10 +21,10 @@ export default function ActiveShape({ className }: ActiveShapeProps) {
     legend: {
       position: "bottom",
       fontSize: "16px",
-      fontFamily: "Inter",
+      fontFamily: "Poppins",
       fontWeight: 400,
       labels: {
-        colors: isDark ? "#CBD5E1" : "#475569",
+        colors: "#475569",
       },
     },
 
@@ -41,13 +38,13 @@ export default function ActiveShape({ className }: ActiveShapeProps) {
               show: true,
               fontSize: "26px",
               fontWeight: "bold",
-              fontFamily: "Inter",
-              color: isDark ? "#CBD5E1" : "#475569",
+              fontFamily: "Poppins",
+              color: "#475569",
             },
             value: {
               show: true,
-              fontFamily: "Inter",
-              color: isDark ? "#CBD5E1" : "#475569",
+              fontFamily: "Poppins",
+              color: "#475569",
 
               formatter(val: any) {
                 return `${parseInt(val)}%`;
@@ -56,7 +53,7 @@ export default function ActiveShape({ className }: ActiveShapeProps) {
             total: {
               show: true,
               fontSize: "1.5rem",
-              color: isDark ? "#CBD5E1" : "#475569",
+              color: "#475569",
               label: "Total",
               formatter() {
                 return "100%";

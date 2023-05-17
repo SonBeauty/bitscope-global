@@ -1,9 +1,55 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import { StarIcon } from "@heroicons/react/24/outline";
+import { BsFillStarFill } from "react-icons/bs";
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
   ssr: false,
 });
+const arrTes = [
+  {
+    image: (
+      <Image
+        width={230}
+        height={230}
+        alt="anim_line"
+        src="/image/testimonial_user1_1.png"
+      />
+    ),
+    comment:
+      "Bitscope's Social Listening is a great tool that investors should try. It quickly and accurately reveals the market's current trend and identifies the emotions of the community",
+    name: "Shayna John",
+    position: "Careative inc",
+  },
+  {
+    image: (
+      <Image
+        width={230}
+        height={230}
+        alt="anim_line"
+        src="/image/testimonial_user2.png"
+      />
+    ),
+    comment:
+      "With BitScope's AI technology, we can better listen to the community and understand their problems and interests",
+    name: "Willium Den",
+    position: "Careative inc",
+  },
+  {
+    image: (
+      <Image
+        width={230}
+        height={230}
+        alt="anim_line"
+        src="/image/testimonial_user3.png"
+      />
+    ),
+    comment:
+      "Thanks to BitScope, it has solved problems that humans can't, and it's worth learning about!",
+    name: "Cyrus Stephen",
+    position: "Careative inc",
+  },
+];
 export default function Testimonial() {
   const testimonial_slider = {
     loop: true,
@@ -48,45 +94,33 @@ export default function Testimonial() {
             {...testimonial_slider}
             className="owl-carousel owl-theme owl-loaded owl-drag"
           >
-            <div className="item">
-              <div className="testimonial_slide_box">
-                <div className="testimonial_img">
-                  <Image
-                    width={230}
-                    height={230}
-                    alt="anim_line"
-                    src="/image/testimonial_user1_1.png"
-                  />
+            {arrTes.map((item, index) => {
+              return (
+                <div className="item" key={index}>
+                  <div className="testimonial_slide_box">
+                    <div className="testimonial_slide_box">
+                      <div className="rating flex gap-1">
+                        {Array(5)
+                          .fill("")
+                          .map((_, index: number) => {
+                            return (
+                              <span key={index}>
+                                <BsFillStarFill className="h-6 w-6 text-yellow-200" />
+                              </span>
+                            );
+                          })}
+                      </div>
+                      <p className="review text-white">“{item.comment}”</p>
+                      <div className="testimonial_img">
+                        <div className="testimonial_img">{item.image}</div>
+                      </div>
+                      <h3 className="text-white">{item.name}</h3>
+                      {/* <span className="designation text-white">{item.position}</span> */}
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-white">Shayna John</h3>
-              </div>
-            </div>
-            <div className="item">
-              <div className="testimonial_slide_box">
-                <div className="testimonial_img">
-                  <Image
-                    width={230}
-                    height={230}
-                    alt="anim_line"
-                    src="/image/testimonial_user2.png"
-                  />
-                </div>
-                <h3 className="text-white">Willium Den</h3>
-              </div>
-            </div>
-            <div className="item">
-              <div className="testimonial_slide_box">
-                <div className="testimonial_img">
-                  <Image
-                    width={230}
-                    height={230}
-                    alt="anim_line"
-                    src="/image/testimonial_user3.png"
-                  />
-                </div>
-                <h3 className="text-white">Cyrus Stephen</h3>
-              </div>
-            </div>
+              );
+            })}
           </OwlCarousel>
           <div className="flex flex-col items-center justify-center py-2 mt-4">
             <Link

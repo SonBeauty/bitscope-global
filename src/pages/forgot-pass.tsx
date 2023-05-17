@@ -22,17 +22,17 @@ export default function ForgotPass() {
   return (
     <LayoutForm
       page="Forgot Your Password?"
-      content="Reset Password with ZenUI."
+      content="Reset Password with BitScope."
       button="Send Recovery Email"
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
       social={false}
       childrenTwo={
-        <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 dark:text-slate-400 mt-5 uppercase text-sm">
+        <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 mt-5 uppercase text-sm">
           FORGET IT,
           <Link
             href="/login"
-            className="text-slate-900 dark:text-white font-medium hover:underline"
+            className="text-slate-900 font-medium hover:underline"
           >
             Sign up
           </Link>{" "}
@@ -41,8 +41,8 @@ export default function ForgotPass() {
       }
     >
       <>
-        <div className="font-normal text-base text-slate-500 dark:text-slate-400 text-center px-2 bg-slate-100 dark:bg-slate-600 rounded py-3 mb-4 mt-10">
-          Enter your Email and instructions will be sent to you!
+        <div className="font-normal text-base text-slate-500 text-center px-2 bg-slate-100 rounded py-3 mb-4 mt-10">
+          Don&apos;t worry, we will help you recover your password quickly
         </div>
         <InputGroup
           id="email"

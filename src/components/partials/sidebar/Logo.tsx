@@ -7,7 +7,7 @@ const SidebarLogo = ({ menuHover }: any) => {
   const [skin] = useSkin();
   return (
     <div
-      className={` logo-segment flex justify-between items-center bg-white dark:bg-slate-800 z-[9] py-6  px-4
+      className={` logo-segment flex justify-between items-center bg-white dark:bg-slate-800 z-[9] px-4
       ${menuHover ? "logo-hovered" : ""}
       ${
         skin === "bordered"
@@ -24,7 +24,7 @@ const SidebarLogo = ({ menuHover }: any) => {
               height={80}
               alt="logo"
               src="/image/1200X628-SVG-NONBACKGROUND.png"
-              className="mx-auto relative -mt-12"
+              className="mx-auto relative -mt-4"
             />
           </p>
         </p>

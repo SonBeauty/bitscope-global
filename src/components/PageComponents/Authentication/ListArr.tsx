@@ -19,7 +19,7 @@ export default function ListArr({ arrRender, className, col }: ListArrProps) {
             <div className="flex items-center flex-col h-full rtl:space-x-reverse gap-2">
               {item.icon && <div className="block basis-1/3">{item.icon}</div>}
               <div className="flex-1 flex flex-col justify-center items-center">
-                <div className="text-slate-800 text-center dark:text-slate-300 text-lg mb-1 font-medium basis-1/3">
+                <div className="text-slate-800 text-center dark:text-white text-lg mb-1 font-medium basis-1/3">
                   {item.title}
                 </div>
                 <div className="text-slate-900 dark:text-white text-2xl font-medium basis-1/3">

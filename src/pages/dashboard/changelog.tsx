@@ -100,7 +100,7 @@ const ChangelogPage = () => {
                   <Disclosure>
                     {({ open }) => (
                       <>
-                        <Disclosure.Button className="bg-slate-50 dark:bg-slate-700 dark:bg-opacity-60 rounded-t-md flex justify-between cursor-pointer transition duration-150 font-medium w-full text-start text-base text-slate-600 dark:text-slate-300 px-8 py-4">
+                        <Disclosure.Button className="bg-slate-50  rounded-t-md flex justify-between cursor-pointer transition duration-150 font-medium w-full text-start text-base text-slate-600  px-8 py-4">
                           <span>
                             {item.version}
                             <span className="font-semibold text-xs text-slate-400">
@@ -116,34 +116,32 @@ const ChangelogPage = () => {
                           </span>
                         </Disclosure.Button>
                         <Disclosure.Panel>
-                          <div className="text-sm text-slate-600 font-normal bg-white dark:bg-slate-900 dark:text-slate-300 rounded-b-md dark:border dark:border-slate-700 dark:border-t-0 border border-slate-100 border-t-0">
+                          <div className="text-sm text-slate-600 font-normal bg-white   rounded-b-md border border-slate-100 border-t-0">
                             <div className="px-8 py-4">
-                              {item.changes.map(
-                                (data: any, j: number) => (
-                                  <div key={j}>
-                                    <div className="flex space-x-3 items-center mt-2 text-slate-600 dark:text-slate-300 text-sm">
-                                      <span className="h-2 w-2 bg-primary-500 rounded-full"></span>
-                                      <span>{data.name}</span>
+                              {item.changes.map((data: any, j: number) => (
+                                <div key={j}>
+                                  <div className="flex space-x-3 items-center mt-2 text-slate-600  text-sm">
+                                    <span className="h-2 w-2 bg-primary-500 rounded-full"></span>
+                                    <span>{data.name}</span>
 
-                                      <span
-                                        className={clsx(
-                                          "px-2 rounded-full text-xs capitalize",
-                                          {
-                                            "bg-indigo-100 text-indigo-500":
-                                              data.tag === "added",
-                                            "bg-yellow-100 text-yellow-500":
-                                              data.tag === "update",
-                                            "bg-red-100 text-red-500":
-                                              data.tag === "fixed",
-                                          }
-                                        )}
-                                      >
-                                        {data.tag}
-                                      </span>
-                                    </div>
+                                    <span
+                                      className={clsx(
+                                        "px-2 rounded-full text-xs capitalize",
+                                        {
+                                          "bg-indigo-100 text-indigo-500":
+                                            data.tag === "added",
+                                          "bg-yellow-100 text-yellow-500":
+                                            data.tag === "update",
+                                          "bg-red-100 text-red-500":
+                                            data.tag === "fixed",
+                                        }
+                                      )}
+                                    >
+                                      {data.tag}
+                                    </span>
                                   </div>
-                                )
-                              )}
+                                </div>
+                              ))}
                             </div>
                           </div>
                         </Disclosure.Panel>
@@ -158,10 +156,10 @@ const ChangelogPage = () => {
         <div className="lg:col-span-4 col-span-12">
           <Card title="CHANGELOG">
             <h5 className="text-xs font-medium">VERSION HISTORY</h5>
-            <ul className="space-y-3 mt-6 divide-y dark:divide-slate-700 divide-slate-100">
+            <ul className="space-y-3 mt-6 divide-y divide-slate-100">
               {items.map((item, i) => (
                 <li
-                  className="flex justify-between items-center text-xs text-slate-600 dark:text-slate-300 pt-3"
+                  className="flex justify-between items-center text-xs text-slate-600  pt-3"
                   key={i}
                 >
                   <span>{item.version} </span>

@@ -1,12 +1,9 @@
-import React from "react";
+import useWidth from "@/hooks/useWidth";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
-import useDarkMode from "@/hooks/useDarkMode";
-import useWidth from "@/hooks/useWidth";
 const RadialsChart = () => {
-  const [isDark] = useDarkMode();
   const { width, breakpoints } = useWidth();
   const series = [44, 55, 67, 83];
   const options: ApexCharts.ApexOptions = {
@@ -20,16 +17,16 @@ const RadialsChart = () => {
         dataLabels: {
           name: {
             fontSize: "22px",
-            color: isDark ? "#CBD5E1" : "#475569",
+            color:"#475569",
           },
           value: {
             fontSize: "16px",
-            color: isDark ? "#CBD5E1" : "#475569",
+            color:"#475569",
           },
           total: {
             show: true,
             label: "Total",
-            color: isDark ? "#CBD5E1" : "#475569",
+            color:"#475569",
           },
         },
         track: {

@@ -1,11 +1,8 @@
-import React from "react";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
-import useDarkMode from "@/hooks/useDarkMode";
 const RevenueBarChart = ({ height = 400 }) => {
-  const [isDark] = useDarkMode();
   const series = [
     {
       name: "Net Profit",
@@ -37,7 +34,7 @@ const RevenueBarChart = ({ height = 400 }) => {
       position: "top",
       horizontalAlign: "right",
       fontSize: "12px",
-      fontFamily: "Inter",
+      fontFamily: "Poppins",
       offsetY: -30,
       markers: {
         width: 8,
@@ -47,7 +44,7 @@ const RevenueBarChart = ({ height = 400 }) => {
         radius: 12,
       },
       labels: {
-        colors: isDark ? "#CBD5E1" : "#475569",
+        colors: "#475569",
       },
       itemMargin: {
         horizontal: 18,
@@ -64,8 +61,8 @@ const RevenueBarChart = ({ height = 400 }) => {
       style: {
         fontSize: "20px",
         fontWeight: "500",
-        fontFamily: "Inter",
-        color: isDark ? "#fff" : "#0f172a",
+        fontFamily: "Poppins",
+        color: "#0f172a",
       },
     },
     dataLabels: {
@@ -80,8 +77,8 @@ const RevenueBarChart = ({ height = 400 }) => {
       opposite: false,
       labels: {
         style: {
-          colors: isDark ? "#CBD5E1" : "#475569",
-          fontFamily: "Inter",
+          colors: "#475569",
+          fontFamily: "Poppins",
         },
       },
     },
@@ -99,8 +96,8 @@ const RevenueBarChart = ({ height = 400 }) => {
       ],
       labels: {
         style: {
-          colors: isDark ? "#CBD5E1" : "#475569",
-          fontFamily: "Inter",
+          colors: "#475569",
+          fontFamily: "Poppins",
         },
       },
       axisBorder: {

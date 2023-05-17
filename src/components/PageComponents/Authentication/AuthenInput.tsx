@@ -29,7 +29,7 @@ export default function AuthenInput({
         </div>
         <input
           id={id}
-          className="leading-10 basis-8/12 px-4 py-4 text-xl w-full focus:outline-none flex-1 rounded-tr-3xl rounded-br-3xl"
+          className="leading-10 basis-8/12 px-4 py-4 text-xl w-full focus:outline-none flex-1 rounded-tr-3xl rounded-br-3xl text-black-500"
           placeholder={placeholder}
           {...register(id)}
         ></input>

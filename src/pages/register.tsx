@@ -2,15 +2,16 @@ import InputGroup from "@/components/InputGroup";
 import LayoutForm from "@/components/LayoutForm";
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@tanstack/react-query";
 import { Checkbox, Label } from "flowbite-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { schema } from "../components/PageComponents/Register/schema";
-import { useMutation } from "@tanstack/react-query";
-import { registerUser } from "./api/auth/register";
 import { toast } from "react-toastify";
+import { schema } from "../components/PageComponents/Register/schema";
+import { registerUser } from "./api/auth/register";
 import { useRouter } from "next/router";
+
 export default function Register() {
   const [accept, setAccept] = useState<boolean>(false);
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function Register() {
     resolver: yupResolver(schema),
     mode: "all",
   });
-  const { mutate } = useMutation(registerUser, {
+  const { mutate, isLoading } = useMutation(registerUser, {
     onSuccess: () => {
       toast.success("Register Success!");
       setTimeout(() => {
@@ -40,25 +41,34 @@ export default function Register() {
       email: data.email,
       password: data.password,
     });
+    mutate({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    });
   };
+  useEffect(() => {
+    setValue("check", accept);
+  }, [accept, setValue]);
   useEffect(() => {
     setValue("check", accept);
   }, [accept, setValue]);
   return (
     <LayoutForm
       page="Sign up"
-      content="Create an account to start using ZenUI"
+      content="Create an account to start using BitScope"
       button="Create An Account"
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
+      isLoading={isLoading}
       childrenTwo={
-        <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 dark:text-slate-400 mt-5 uppercase text-sm">
-          Don’t have an account?{" "}
+        <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 mt-5 uppercase text-sm">
+          Have an account?{" "}
           <Link
             href="/login"
-            className="text-slate-900 dark:text-white font-medium hover:underline"
+            className="text-slate-900  font-medium hover:underline"
           >
-            Sign up
+            Sign in
           </Link>
         </div>
       }
@@ -102,14 +112,18 @@ export default function Register() {
                 setAccept(!accept);
               }}
             />
-            <Label htmlFor="remember" className="font-normal text-slate-500">
-              You Accept Our Terms And Conditions And Privacy Policy
+            <Label htmlFor="remember" className="font-normal">
+              <span className="text-slate-500">
+                You Accept Our Terms And Conditions And Privacy Policy
+              </span>
             </Label>
           </div>
         </div>
-        <span className="block p-1 pl-1 text-sm text-red-500">
-          {errors["check"]?.message}
-        </span>
+        {errors["check"] && (
+          <span className="block p-1 pl-1 text-sm text-red-500">
+            {errors["check"]?.message?.toString()}
+          </span>
+        )}
       </>
     </LayoutForm>
   );

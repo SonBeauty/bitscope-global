@@ -1,0 +1,169 @@
+import BlogContainer from "@/components/PageComponents/Blog/BlogContainer";
+import CheckList from "@/components/PageComponents/Blog/CheckList";
+import TitleAndContent from "@/components/PageComponents/Blog/TitleAndContent";
+import React from "react";
+const arrCheckList1 = [
+  {
+    content: "Users spend 95 minutes a day on TikTok",
+  },
+  {
+    content: "Users spend 23.6 hours per month on TikTok",
+  },
+  {
+    content:
+      "78.6% of internet users use TikTok to find funny or entertaining content",
+  },
+];
+const arrCheckList2 = [
+  {
+    content: "September 2022: TikTok Now (BeReal Clone)",
+  },
+  {
+    content: "October 2022: Photo Mode (Carousels Replica)",
+  },
+  {
+    content: "July 2022: TikTok Stories (Clone of IG Stories)",
+  },
+  {
+    content: "March 2022: Search Ads (Google Search Ads Clone; beta testing)",
+  },
+  {
+    content: "October 2022: TikTok Music (Spotify's Competitor)",
+  },
+  {
+    content: "February 2022: 10 Minute Video (YouTube Competitor)",
+  },
+];
+const arrCheckList3 = [
+  {
+    content:
+      "Instagram has 1.5 billion daily active users (and over 2 billion monthly)",
+  },
+  {
+    content: "Stories added 220 million users from July to October 2022.",
+  },
+  {
+    content:
+      "62% of Instagram users say they use it for brand and product research (Facebook is 2nd with 55%)",
+  },
+  {
+    content:
+      "This is the favorite app of 16-24 year olds, and TikTok is still below when it comes to Instagram",
+  },
+  {
+    content: "LinkedIn won't be just a job",
+  },
+];
+export default function Single() {
+  return (
+    <BlogContainer
+      title="The social media trends in 2023"
+      image="https://i.imgur.com/pYp9hcB.jpg"
+    >
+      <TitleAndContent
+        des={
+          <>
+            Besides AI, what do you know that will become an essential trend
+            similar to eating and drinking in business? That is social media. If
+            you are running a business, or simply a regular customer, the
+            information below can help you make more money in the future.
+            <br /> <br />
+            Social Media Trends - term used to refer to the trend of
+            computer-based technologies that facilitate the sharing of ideas,
+            thoughts and information through the construction of social media
+            channels. Some popular social media channels include Facebook,
+            Tiktok, Youtube, Instagram, Twitter, etc
+            <br /> <br />
+            Here are the social media trends that will dominate 2023 and 2024:
+          </>
+        }
+        title="Tiktok will take over the world"
+        content={
+          <>
+            Despite objections from Western countries, TikTok&apos;s growth is
+            still too strong and has the ability to overtake Google and Meta.
+            <br />
+            <br />
+            Insight users using TikTok:
+            <CheckList arrRender={arrCheckList1} />
+            The ambition to become the world&apos;s number 1 social network is
+            demonstrated by constantly updating new features:
+            <CheckList arrRender={arrCheckList2} />
+            According to Google Trends, interest in TikTok Ads has increased by
+            1,125% since 2020. The cooperation is also continuously promoted
+            when Tiktok owns potential partners: Linktree, Spotify and most
+            likely Podcast in the future. near future. Do not exclude
+            speculation that TikTok is ambitious to become a super application,
+            meeting all needs of entertainment, relaxation, shopping, commerce,
+            messaging, payment, ...
+          </>
+        }
+      />
+      <TitleAndContent
+        title="Instagram (Reels)"
+        content={
+          <>
+            The short video format (reels) is being promoted by Insta and is
+            receiving a very positive response from users. And Instagram is
+            still continuing to maintain its position when:
+            <CheckList arrRender={arrCheckList3} />
+            The number of LinkedIn Creators and Influencers on LinkedIn is
+            likely to grow thanks to the migration of business brands away from
+            Twitter. This social media platform is also geared towards
+            <span className="font-bold"> conversions and purchases.</span>
+            <br />
+            <br />
+            Connectivity and engagement with potential customers will be the
+            goal of many brands in the new year on LinkedIn. B2B buyers not only
+            expect personalized attention, but they also expect brands to do
+            better. LinkedIn Ads continues to add new features, speeds up, and
+            comes with cost issues.
+          </>
+        }
+      />
+      <TitleAndContent
+        title="UGC concept redefined"
+        content={
+          <>
+            UGC - User Generated Content is content generated by ordinary people
+            on social networks, rather than content created by brands. However,
+            according to Gen Z, UGC is defined slightly differently when it is
+            understood that brands will pay &quot;UGC creators&quot; to produce
+            content. Freelance content creators don&apos;t have to be
+            influencers, but must be good at social media and selling their
+            services to brands.
+          </>
+        }
+      />
+      <TitleAndContent
+        title="Social SEO will replace hashtag"
+        content={
+          <>
+            Hashtags may seem like the easiest way to find things, but Google
+            research and reports from Hoosuite show that the use of
+            keyword-optimized captions instead of hashtags has increased. 30%
+            more reach and double engagement.
+            <br />
+            <br />
+            Hootsuite&apos;s 2023 Trends report shows that more internet users
+            aged 16-24 use social media to research brands they want to buy
+            rather than search. So instead of adding hashtags to your copy after
+            the post is over, use keyword research to inspire you to create
+            content that people are searching for.
+          </>
+        }
+      />
+      <TitleAndContent
+        title="Social commerce will continue to grow, despite confusing signals from the networks"
+        content={
+          <>
+            eMarketer data forecasts that social commerce remains a huge and
+            growing industry. Despite the trust issues, audiences are starting
+            to get used to social media as a shopping channel, using it more
+            than ever.
+          </>
+        }
+      />
+    </BlogContainer>
+  );
+}

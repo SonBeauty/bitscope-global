@@ -34,7 +34,7 @@ export const BlogList = () => {
                   </div>
                   <div className="story_text">
                     <h3
-                      className="cursor-pointer"
+                      className="cursor-pointer leading-normal"
                       onClick={() => router.push(`/blog/${item.link}`)}
                     >
                       {item.title}

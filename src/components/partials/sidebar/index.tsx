@@ -10,12 +10,10 @@ import Navmenu from "./Navmenu";
 const Sidebar = () => {
   const scrollableNodeRef = useRef<any>();
   const [scroll, setScroll] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
-      if (
-        scrollableNodeRef.current.scrollTop !== "never" &&
-        scrollableNodeRef.current.scrollTop > 0
-      ) {
+      if (scrollableNodeRef.current.scrollTop > 0) {
         setScroll(true);
       } else {
         setScroll(false);
@@ -28,11 +26,10 @@ const Sidebar = () => {
   const [menuHover, setMenuHover] = useState(false);
   const [isSemiDark] = useSemiDark();
   const [skin] = useSkin();
-
   return (
     <div className={isSemiDark ? "dark" : ""}>
       <div
-        className={` sidebar-wrapper bg-white dark:bg-slate-800 h-full    ${
+        className={`sidebar-wrapper bg-white dark:bg-slate-800  ${
           collapsed ? "w-[72px] close_sidebar" : "w-[248px]"
         }
       ${menuHover ? "sidebar-hovered" : ""}
@@ -51,12 +48,13 @@ const Sidebar = () => {
       >
         <SidebarLogo menuHover={menuHover} />
         <div
-          className={`h-[60px]  absolute top-[80px] nav-shadow z-[1] w-full transition-all duration-200 pointer-events-none ${
+          className={`h-[60px] absolute top-[80px] nav-shadow z-[1] w-full transition-all duration-200 pointer-events-none ${
             scroll ? " opacity-100" : " opacity-0"
           }`}
         ></div>
+
         <SimpleBar
-          className="sidebar-menu px-4 h-[calc(100%-80px)] overflow-hidden"
+          className="sidebar-menu px-4 h-[calc(100%-80px)]"
           scrollableNodeProps={{ ref: scrollableNodeRef }}
         >
           <Navmenu menus={menuItems} />
@@ -65,4 +63,5 @@ const Sidebar = () => {
     </div>
   );
 };
+
 export default Sidebar;

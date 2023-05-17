@@ -1,10 +1,9 @@
 import Icon from "@/components/ui/Icon";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Collapse } from "react-collapse";
-import useMobileMenu from "@/hooks/useMobileMenu";
-import { useRouter } from "next/router";
 import clsx from "clsx";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { Collapse } from "react-collapse";
 
 const Navmenu = ({ menus }: any) => {
   const [activeSubmenu, setActiveSubmenu] = useState(null);
@@ -15,32 +14,11 @@ const Navmenu = ({ menus }: any) => {
       setActiveSubmenu(i);
     }
   };
-  const [mobileMenu, setMobileMenu] = useMobileMenu();
   const location = useRouter();
   const locationName = location.pathname;
-
-  useEffect(() => {
-    let submenuIndex = null;
-    menus.map((item: any, i: number) => {
-      if (!item.child) return;
-      if (item.link === locationName) {
-        submenuIndex = null;
-      } else {
-        const ciIndex = item.child.findIndex(
-          (ci: any) => ci.childlink === locationName
-        );
-        if (ciIndex !== -1) {
-          submenuIndex = i;
-        }
-      }
-    });
-    document.title = `BitScope  | ${locationName}`;
-    setActiveSubmenu(submenuIndex);
-  }, [locationName, menus, mobileMenu, setMobileMenu]);
-
   return (
     <>
-      <ul>
+      <ul className="overflow-hidden">
         {menus.map((item: any, i: number) => (
           <li
             key={i}
@@ -55,7 +33,7 @@ const Navmenu = ({ menus }: any) => {
                 <span className="menu-icon flex-grow-0">
                   <Icon icon={item.icon} />
                 </span>
-                <div className="text-box flex-grow">{item.title}</div>
+                <div className="text-box flex-grow ml-7">{item.title}</div>
                 {item.badge && <span className="menu-badge">{item.badge}</span>}
               </Link>
             )}
@@ -75,7 +53,7 @@ const Navmenu = ({ menus }: any) => {
                   <span className="menu-icon">
                     <Icon icon={item.icon} />
                   </span>
-                  <div className="text-box">{item.title}</div>
+                  <div className="text-box ml-7">{item.title}</div>
                 </div>
                 <div className="flex-0">
                   <div
@@ -94,13 +72,20 @@ const Navmenu = ({ menus }: any) => {
                   <li key={j} className="block pl-4 pr-1 mb-4 first:mt-4">
                     <Link href={subItem.childlink}>
                       <span
-                        className={`${"text-slate-600 dark:text-slate-300"} text-sm flex space-x-3 items-center transition-all duration-150`}
+                        className={`text-slate-600 dark:text-slate-300 text-sm flex space-x-3 items-center transition-all duration-150 ${
+                          locationName === subItem.childlink &&
+                          " text-black dark:text-white font-medium"
+                        }`}
                       >
                         <span
-                          className=" h-2 w-2 rounded-full border border-slate-600 dark:border-white inline-block flex-none`}
-                          "
+                          className={`h-2 w-2 rounded-full border border-slate-600 dark:border-white inline-block flex-none ${
+                            locationName === subItem.childlink &&
+                            "bg-slate-900 dark:bg-slate-300 ring-4 ring-opacity-[15%] ring-black-500 dark:ring-slate-300 dark:ring-opacity-20"
+                          }`}
                         ></span>
-                        <span className="flex-1">{subItem.childtitle}</span>
+                        <span className="flex-1 text-start">
+                          {subItem.childtitle}
+                        </span>
                       </span>
                     </Link>
                   </li>

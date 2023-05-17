@@ -1,11 +1,8 @@
-import React from "react";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
-import useDarkMode from "@/hooks/useDarkMode";
 const RadarChart = () => {
-  const [isDark] = useDarkMode();
   const series = [67];
   const options: ApexCharts.ApexOptions = {
     chart: {
@@ -20,16 +17,16 @@ const RadarChart = () => {
         dataLabels: {
           name: {
             fontSize: "22px",
-            color: isDark ? "#E2E8F0" : "#475569",
+            color: "#475569",
           },
           value: {
             fontSize: "16px",
-            color: isDark ? "#E2E8F0" : "#475569",
+            color: "#475569",
           },
           total: {
             show: true,
             label: "Total",
-            color: isDark ? "#E2E8F0" : "#475569",
+            color: "#475569",
           },
         },
       },

@@ -12,11 +12,10 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { schema } from "../components/PageComponents/Login/schema";
 import { loginUser } from "./api/auth/login";
-
 export default function Login() {
   const route = useRouter();
   const [remember, setRemember] = useState<Boolean>(false);
-  const { mutate } = useMutation(loginUser, {
+  const { mutate, isLoading } = useMutation(loginUser, {
     onSuccess: (data) => {
       toast.success("Login Success!");
       if (remember) {
@@ -53,12 +52,13 @@ export default function Login() {
       button="Sign In"
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
+      isLoading={isLoading}
       childrenTwo={
-        <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 dark:text-slate-400 mt-5 uppercase text-sm">
+        <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 mt-5 uppercase text-sm">
           Don’t have an account?{" "}
           <Link
             href="/register"
-            className="text-slate-900 dark:text-white font-medium hover:underline"
+            className="text-slate-900 font-medium hover:underline"
           >
             Sign up
           </Link>

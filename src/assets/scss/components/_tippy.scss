@@ -27,10 +27,10 @@
     @apply bg-slate-900 text-white dark:bg-slate-900;
   }
   .tippy-box[data-theme~="custom-light"] {
-    @apply bg-white text-slate-900 dark:bg-slate-700  dark:border-slate-700 dark:border;
+    @apply bg-white text-slate-900 dark:bg-slate-700 shadow-dropdown dark:border-slate-700 dark:border;
   }
   .tippy-box[data-theme~="custom-light2"] {
-    @apply bg-white text-slate-900 dark:bg-slate-700  dark:border-slate-700 dark:border rounded;
+    @apply bg-white text-slate-900 dark:bg-slate-700 shadow-dropdown dark:border-slate-700 dark:border rounded;
     .tippy-content {
       @apply p-0;
     }

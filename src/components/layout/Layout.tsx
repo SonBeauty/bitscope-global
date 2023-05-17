@@ -11,6 +11,7 @@ import { Suspense } from "react";
 import MobileMenu from "../partials/sidebar/MobileMenu";
 import PageContainer from "@/container/PageContainer";
 import { ToastContainer } from "react-toastify";
+import MobileFooter from "./components/MobileFooter";
 interface LayoutDashBoardProps {
   children: React.ReactNode;
 }
@@ -54,7 +55,6 @@ const LayoutDashBoard = ({ children }: LayoutDashBoardProps) => {
           width > breakpoints.xl ? switchHeaderClass() : ""
         }`}
       >
-        {/* md:min-h-screen will h-full*/}
         <div className="page-content page-min-height  ">
           <div
             className={
@@ -65,6 +65,7 @@ const LayoutDashBoard = ({ children }: LayoutDashBoardProps) => {
           </div>
         </div>
       </div>
+      {width < breakpoints.md && <MobileFooter />}
       {width > breakpoints.md && (
         <Footer className={width > breakpoints.xl ? switchHeaderClass() : ""} />
       )}

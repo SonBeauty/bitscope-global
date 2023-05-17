@@ -1,10 +1,11 @@
 import Dropdown from "@/components/ui/Dropdown";
 import Icon from "@/components/ui/Icon";
 import { RootState } from "@/store";
+import { logout } from "@/store/users";
 import { Menu } from "@headlessui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const ProfileLabel = () => {
   const user = useSelector((state: RootState) => state.users.user);
   return (
@@ -33,6 +34,7 @@ const ProfileLabel = () => {
 };
 const Profile = () => {
   const navigate = useRouter();
+  const dispatch = useDispatch();
   const ProfileMenu = [
     {
       label: "Profile",
@@ -47,6 +49,8 @@ const Profile = () => {
       icon: "heroicons-outline:login",
       action: () => {
         localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
+        dispatch(logout());
         navigate.push("/login");
       },
     },

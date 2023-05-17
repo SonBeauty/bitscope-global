@@ -4,10 +4,11 @@ export const menuItems = [
     title: "menu",
   },
   {
-    title: "Dashboard",
+    title: "User",
     icon: "heroicons-outline:home",
     isOpen: true,
     isHide: false,
+    link: "/dashboard",
     child: [
       {
         childtitle: "Dashboard",
@@ -159,5 +160,14 @@ export const data = [
     timeUpload: 45,
     imgStory: "https://i.imgur.com/LodGMck.png",
     link: "bit-authentication-bitscope-first-product-gradually-perfected",
+  },
+  {
+    id: 4,
+    title: "The social media trends in 2023",
+    highlight:
+      "Besides AI, what do you know that will become an essential trend similar to eating and drinking in business? That is social media. If you are running a business, or simply a regular customer, the information below can help you make more money in the future.",
+    timeUpload: 45,
+    imgStory: "https://i.imgur.com/pYp9hcB.jpg",
+    link: "the-social-media-trends-in-2023",
   },
 ];

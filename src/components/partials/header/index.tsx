@@ -1,15 +1,14 @@
 import Icon from "@/components/ui/Icon";
 import useMenulayout from "@/hooks/useMenulayout";
+import useMobileMenu from "@/hooks/useMobileMenu";
 import useNavbarType from "@/hooks/useNavbarType";
 import useSidebar from "@/hooks/useSidebar";
 import useSkin from "@/hooks/useSkin";
 import useWidth from "@/hooks/useWidth";
 import Language from "./Tools/Language";
 import Logo from "./Tools/Logo";
-import Profile from "./Tools/Profile";
-import SwitchDark from "./Tools/SwitchDark";
-import useMobileMenu from "@/hooks/useMobileMenu";
 import MonoChrome from "./Tools/MonoChrome";
+import Profile from "./Tools/Profile";
 import SearchModal from "./Tools/SearchModal";
 const Header = ({ className = "custom-class" }) => {
   const [collapsed, setMenuCollapsed] = useSidebar();
@@ -94,7 +93,7 @@ const Header = ({ className = "custom-class" }) => {
           )}
           <div className="nav-tools flex items-center lg:space-x-6 space-x-3 rtl:space-x-reverse">
             <Language />
-            <SwitchDark />
+            {/* <SwitchDark /> */}
             <MonoChrome />
             {width >= breakpoints.md && <Profile />}
             {width <= breakpoints.md && (

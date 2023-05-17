@@ -158,16 +158,16 @@
 // split dropdown
 .split-btngroup {
   .btn {
-    @apply rounded-r-none rtl:rounded-l-none hover:ring-0;
+    @apply ltr:rounded-r-none rtl:rounded-l-none hover:ring-0;
   }
   button {
-    @apply last:rounded-r-md rtl:last:rounded-l-md  last:border-l last:border-white last:border-opacity-[0.10];
+    @apply ltr:last:rounded-r-md rtl:last:rounded-l-md  last:border-l last:border-white last:border-opacity-[0.10];
     &:hover {
       box-shadow: none !important;
     }
   }
   [class*="btn-outline-"] {
-    @apply last:border-l-0 rtl:last:border-r-0  focus:bg-transparent focus:text-inherit;
+    @apply ltr:last:border-l-0 rtl:last:border-r-0  focus:bg-transparent focus:text-inherit;
   }
   .btn-outline-primary {
     @apply focus:text-primary-500 last:border-primary-500;

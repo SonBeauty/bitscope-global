@@ -45,14 +45,10 @@ const Dashboard = () => {
               title="Most Sales"
               className="h-full"
               headerslot={
-                <div className="border border-slate-200 dark:border-slate-700 dark:bg-slate-900 rounded p-1 flex items-center">
+                <div className="border border-slate-200 rounded p-1 flex items-center">
                   <span
                     className={` flex-1 text-sm font-normal px-3 py-1 transition-all duration-150 rounded cursor-pointer
-                ${
-                  filterMap === "global"
-                    ? "bg-slate-900 text-white dark:bg-slate-700 dark:text-slate-300"
-                    : "dark:text-slate-300"
-                }
+                ${filterMap === "global" ? "bg-slate-900 text-white  " : ""}
                 `}
                     onClick={() => setFilterMap("global")}
                   >
@@ -60,11 +56,7 @@ const Dashboard = () => {
                   </span>
                   <span
                     className={` flex-1 text-sm font-normal px-3 py-1 rounded transition-all duration-150 cursor-pointer
-                  ${
-                    filterMap === "usa"
-                      ? "bg-slate-900 text-white dark:bg-slate-700 dark:text-slate-300"
-                      : "dark:text-slate-300"
-                  }
+                  ${filterMap === "usa" ? "bg-slate-900 text-white  " : ""}
               `}
                     onClick={() => setFilterMap("usa")}
                   >
@@ -79,32 +71,32 @@ const Dashboard = () => {
           <div className="lg:col-span-4 col-span-12">
             <Card>
               <RadarChart />
-              <div className="bg-slate-50 dark:bg-slate-900 rounded p-4 mt-8 flex justify-between flex-wrap">
+              <div className="bg-slate-50  rounded p-4 mt-8 flex justify-between flex-wrap">
                 <div className="space-y-1">
-                  <h4 className="text-slate-600 dark:text-slate-200 text-xs font-normal">
+                  <h4 className="text-slate-600  text-xs font-normal">
                     Invested amount
                   </h4>
-                  <div className="text-sm font-medium text-slate-900 dark:text-white">
+                  <div className="text-sm font-medium text-slate-900 ">
                     $8264.35
                   </div>
-                  <div className="text-slate-500 dark:text-slate-300 text-xs font-normal">
+                  <div className="text-slate-500  text-xs font-normal">
                     +0.001.23 (0.2%)
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <h4 className="text-slate-600 dark:text-slate-200 text-xs font-normal">
+                  <h4 className="text-slate-600  text-xs font-normal">
                     Invested amount
                   </h4>
-                  <div className="text-sm font-medium text-slate-900 dark:text-white">
+                  <div className="text-sm font-medium text-slate-900 ">
                     $8264.35
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  <h4 className="text-slate-600 dark:text-slate-200 text-xs font-normal">
+                  <h4 className="text-slate-600  text-xs font-normal">
                     Invested amount
                   </h4>
-                  <div className="text-sm font-medium text-slate-900 dark:text-white">
+                  <div className="text-sm font-medium text-slate-900 ">
                     $8264.35
                   </div>
                 </div>
