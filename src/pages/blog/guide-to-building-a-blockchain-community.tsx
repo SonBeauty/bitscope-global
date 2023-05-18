@@ -20,10 +20,7 @@ const arrRender = [
 ];
 export default function Single() {
   return (
-    <BlogContainer
-      title="Guide to building a Blockchain community"
-      image="https://i.imgur.com/0LTbS7S.png"
-    >
+    <BlogContainer>
       <TitleAndContent
         content={
           <>

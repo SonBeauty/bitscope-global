@@ -1,12 +1,8 @@
 import BlogContainer from "@/components/PageComponents/Blog/BlogContainer";
 import TitleAndContent from "@/components/PageComponents/Blog/TitleAndContent";
-
 export default function Single() {
   return (
-    <BlogContainer
-      title="Social data’s key to the success of Blockchain projects."
-      image="https://i.imgur.com/esFP920.png"
-    >
+    <BlogContainer>
       <TitleAndContent
         content="Social Data offers an unprecedented level of insight into consumer
           behavior, allowing businesses to better understand their target

@@ -1,6 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { Data } from "@/interface/PostBlog";
-import type { NextApiRequest, NextApiResponse } from "next";
 const data = [
   {
     id: 0,
@@ -99,9 +96,6 @@ const data = [
     link: "the-success-of-customers-via-community",
   },
 ];
-export default function Blog(
-  req: NextApiRequest,
-  res: NextApiResponse<Data[]>
-) {
-  res.status(200).json(data);
-}
+export const getBlog = async ({ link }: any) => {
+  return await data.filter((sp) => link?.includes(sp?.link));
+};

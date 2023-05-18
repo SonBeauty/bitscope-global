@@ -56,10 +56,7 @@ const arrCheckList3 = [
 ];
 export default function Single() {
   return (
-    <BlogContainer
-      title="The social media trends in 2023"
-      image="https://i.imgur.com/pYp9hcB.jpg"
-    >
+    <BlogContainer>
       <TitleAndContent
         des={
           <>

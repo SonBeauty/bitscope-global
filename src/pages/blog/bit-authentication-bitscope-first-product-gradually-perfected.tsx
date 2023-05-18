@@ -15,10 +15,7 @@ const arrCheckList = [
 ];
 export default function Single() {
   return (
-    <BlogContainer
-      title="Bit-Authentication - BitScope's first product gradually perfected"
-      image="https://i.imgur.com/LodGMck.png"
-    >
+    <BlogContainer>
       <TitleAndContent
         title="What is Bit-Authentication?"
         content='Bit-Authen is a service used to verify the "trust"

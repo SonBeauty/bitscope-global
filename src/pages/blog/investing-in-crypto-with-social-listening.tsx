@@ -1,12 +1,8 @@
 import BlogContainer from "@/components/PageComponents/Blog/BlogContainer";
 import TitleAndContent from "@/components/PageComponents/Blog/TitleAndContent";
-
 export default function Single() {
   return (
-    <BlogContainer
-      title="Invest crypto by Social listening!!"
-      image="https://i.imgur.com/EyEvgDt.png"
-    >
+    <BlogContainer>
       <TitleAndContent
         des="Social listening is an invaluable tool for cryptocurrency investors.
           By understanding the psychology of the crowd and their reactions to
