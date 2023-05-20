@@ -7,10 +7,18 @@ export default function FooterAdmin() {
       <Footer container>
         <div className="flex w-full flex-col gap-y-6 lg:flex-row lg:justify-between lg:gap-y-0">
           <Footer.LinkGroup>
-            <Footer.Link href="#" className="mr-3 mb-3 lg:mb-0">
+            <Footer.Link
+              target="_blank"
+              className="mr-3 mb-3 lg:mb-0"
+              href="https://docs.bitscope.global/~/changes/vlSW3dx6ULALLda4KAU3/development-team-and-partners/legal/terms-of-service-and-risk-waring"
+            >
               Terms and conditions
             </Footer.Link>
-            <Footer.Link href="#" className="mr-3 mb-3 lg:mb-0">
+            <Footer.Link
+              target="_blank"
+              className="mr-3 mb-3 lg:mb-0"
+              href="https://docs.bitscope.global/~/changes/vlSW3dx6ULALLda4KAU3/development-team-and-partners/legal/private-policy#ix.-mechanism-for-receiving-and-settling-complaints-related-to-personal-information"
+            >
               Privacy Policy
             </Footer.Link>
             <Footer.Link href="#" className="mr-3">

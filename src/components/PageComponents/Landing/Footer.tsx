@@ -70,7 +70,7 @@ export default function Footer() {
                     </li>
                     <li>
                       <Link
-                        href="https://bitscope.gitbook.io/bitscope/"
+                        href="https://docs.bitscope.global/"
                         target="_blank"
                       >
                         Whitepaper
@@ -91,10 +91,20 @@ export default function Footer() {
                     </li> */}
 
                     <li>
-                      <Link href="/commingsoon">Terms & conditions</Link>
+                      <Link
+                        target="_blank"
+                        href="https://docs.bitscope.global/~/changes/vlSW3dx6ULALLda4KAU3/development-team-and-partners/legal/terms-of-service-and-risk-waring"
+                      >
+                        Terms & conditions
+                      </Link>
                     </li>
                     <li>
-                      <Link href="/commingsoon">Privacy policy</Link>
+                      <Link
+                        target="_blank"
+                        href="https://docs.bitscope.global/~/changes/vlSW3dx6ULALLda4KAU3/development-team-and-partners/legal/private-policy"
+                      >
+                        Privacy policy
+                      </Link>
                     </li>
                   </ul>
                 </div>

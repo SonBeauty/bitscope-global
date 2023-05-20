@@ -49,7 +49,7 @@ const headerItem = [
     name: "Blog",
   },
   {
-    href: "https://bitscope.gitbook.io/bitscope/",
+    href: "https://docs.bitscope.global/",
     name: "Whitepaper",
     blank: true,
   },
