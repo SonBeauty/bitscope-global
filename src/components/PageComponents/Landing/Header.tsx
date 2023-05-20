@@ -49,8 +49,9 @@ const headerItem = [
     name: "Blog",
   },
   {
-    href: "/commingsoon",
-    name: "Tokenomics",
+    href: "https://bitscope.gitbook.io/bitscope/",
+    name: "Whitepaper",
+    blank: true,
   },
   {
     href: "/commingsoon",

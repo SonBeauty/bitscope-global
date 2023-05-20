@@ -1,7 +1,6 @@
 import { Dialog, Transition, Combobox } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import Icon from "@/components/ui/Icon";
-
 const SearchModal = () => {
   let [isOpen, setIsOpen] = useState(false);
   function closeModal() {
@@ -53,7 +52,7 @@ const SearchModal = () => {
           onClick={openModal}
         >
           <Icon icon="heroicons-outline:search" />
-          <span className="xl:inline-block hidden">Search... </span>
+          <span className="xl:inline-block hidden dark:text-white">Search... </span>
         </button>
       </div>
       <Transition show={isOpen} as={Fragment}>

@@ -5,3 +5,6 @@ export interface ArrRender {
   bg?: string;
   icon?: React.ReactNode;
 }
+export interface AuthenTwwitter {
+  twitterId: string;
+}

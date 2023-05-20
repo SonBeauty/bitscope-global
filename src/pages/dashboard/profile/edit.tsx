@@ -127,8 +127,8 @@ const Profile = () => {
                       <span
                         className={
                           stepNumber === i
-                            ? "w-max block text-[#005AE2] text-xl font-semibold"
-                            : "w-max block text-base font-medium"
+                            ? "w-max block text-[#005AE2] text-xl font-semibold "
+                            : "w-max block text-base font-medium text-inherit"
                         }
                       >
                         {item.title}

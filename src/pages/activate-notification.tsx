@@ -44,7 +44,6 @@ export default function ActivateNotification({
       </PageContainer>
     );
   }
-
   return (
     <PageContainer>
       <div className="relative w-full h-screen py-8 bg-[url('/image/signup-bg.jpg')] z-0">
@@ -107,4 +106,3 @@ export default function ActivateNotification({
     </PageContainer>
   );
 }
-

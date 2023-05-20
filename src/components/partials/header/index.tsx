@@ -10,6 +10,7 @@ import Logo from "./Tools/Logo";
 import MonoChrome from "./Tools/MonoChrome";
 import Profile from "./Tools/Profile";
 import SearchModal from "./Tools/SearchModal";
+import SwitchDark from "./Tools/SwitchDark";
 const Header = ({ className = "custom-class" }) => {
   const [collapsed, setMenuCollapsed] = useSidebar();
   const { width, breakpoints } = useWidth();
@@ -92,8 +93,8 @@ const Header = ({ className = "custom-class" }) => {
             </div>
           )}
           <div className="nav-tools flex items-center lg:space-x-6 space-x-3 rtl:space-x-reverse">
-            <Language />
-            {/* <SwitchDark /> */}
+            {/* <Language /> */}
+            <SwitchDark />
             <MonoChrome />
             {width >= breakpoints.md && <Profile />}
             {width <= breakpoints.md && (

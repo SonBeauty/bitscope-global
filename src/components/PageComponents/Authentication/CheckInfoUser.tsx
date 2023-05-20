@@ -22,6 +22,10 @@ export default function CheckInfoUser({
   arrRender,
   col,
 }: CheckInfoUserProps) {
+  const handleError = (e: any) => {
+    e.target.src =
+      "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
+  };
   return (
     <div className="bg-background border-2 flex py-6 flex-col items-center justify-center w-full rounded-lg">
       <div className="w-full mb-4 flex items-center gap-2 justify-center text-sky-600">
@@ -40,13 +44,14 @@ export default function CheckInfoUser({
                   width={80}
                   height={80}
                   alt="avatar"
+                  onError={handleError}
                 />
               </picture>
               <div>
                 <h4 className="text-xl font-medium text-black-500 mb-2">
                   <span className="block text-2xl">{name}</span>
                   <span className="block font-normal text-blue-500 text-base">
-                    {username}
+                    @{username}
                   </span>
                 </h4>
                 <p className="text-base font-normal flex gap-2 items-center">

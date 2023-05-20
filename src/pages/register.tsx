@@ -41,11 +41,6 @@ export default function Register() {
       email: data.email,
       password: data.password,
     });
-    mutate({
-      name: data.name,
-      email: data.email,
-      password: data.password,
-    });
   };
   useEffect(() => {
     setValue("check", accept);

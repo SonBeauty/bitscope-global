@@ -1,23 +1,18 @@
 import TwitterAuthentication from "@/components/PageComponents/Authentication/TwitterAuthentication";
 import LayoutDashBoard from "@/components/layout/Layout";
 import { RootState } from "@/store";
-import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Authentication() {
   const user = useSelector((state: RootState) => state.users.user);
+  const data = useSelector((state: RootState) => state.twitter.twitter);
   const [twitter, setTwitter] = useState(false);
   const [dataFolower, setDataFolower] = useState<any>([]);
   const [dataTwitter, setDataTwitter] = useState<any>([]);
   const [detailTwitter, setDetailTwitter] = useState<any>([]);
   const [series, setSeries] = useState<any>([]);
-  const { data } = useQuery({
-    queryKey: ["authenticationTwitter"],
-    queryFn: () =>
-      fetch("/api/authentication/twitter").then((res) => res.json()),
-  });
   useEffect(() => {
     if (data) {
       setTwitter(true);
@@ -218,22 +213,40 @@ export default function Authentication() {
           <TwitterAuthentication
             arrInfoUser={detailTwitter}
             arrRender={dataTwitter}
-            content="This Twitter account has 36% of followers identified as real people, 27% of average accounts, and only 8% of BOT followers."
-            corlor="bg-green-200"
+            content={`This Twitter account has ${
+              parseFloat(data?.verified_p) + parseFloat(data?.act_p)
+            }% of followers identified as real people, ${parseFloat(
+              data?.inact_p
+            )}% of average accounts, and ${parseFloat(
+              data?.fake_p
+            )}% of BOT followers.`}
+            corlor={`${
+              parseFloat(data?.verified_p) + parseFloat(data?.act_p) > 50
+                ? "bg-green-200"
+                : "bg-red-200"
+            }`}
             data={dataFolower}
             image={data?.profile_image}
             name={data?.name}
             series={series}
             src={
               <Image
-                src="/image/checkOke.png"
+                src={`${
+                  parseFloat(data?.verified_p) + parseFloat(data?.act_p) > 50
+                    ? "/image/checkOke.png"
+                    : "/image/icons8-dislike.png"
+                }`}
                 alt="quality"
                 width={76}
                 height={76}
               />
             }
             textJoin={data?.join}
-            title="This is a quality Twitter account"
+            title={`${
+              parseFloat(data?.verified_p) + parseFloat(data?.act_p) > 50
+                ? "This is a quality Twitter account"
+                : "This is a bad Twitter account"
+            }`}
             username={data?.s_name}
           />
         )}

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Collapse } from "react-collapse";
-
 const Navmenu = ({ menus }: any) => {
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const toggleSubmenu = (i: any) => {
@@ -78,12 +77,12 @@ const Navmenu = ({ menus }: any) => {
                         }`}
                       >
                         <span
-                          className={`h-2 w-2 rounded-full border border-slate-600 dark:border-white inline-block flex-none ${
+                          className={`h-2 w-2 rounded-full border border-slate-600 dark:border-white dark:text-white inline-block flex-none ${
                             locationName === subItem.childlink &&
                             "bg-slate-900 dark:bg-slate-300 ring-4 ring-opacity-[15%] ring-black-500 dark:ring-slate-300 dark:ring-opacity-20"
                           }`}
                         ></span>
-                        <span className="flex-1 text-start">
+                        <span className="flex-1 text-start dark:text-white">
                           {subItem.childtitle}
                         </span>
                       </span>

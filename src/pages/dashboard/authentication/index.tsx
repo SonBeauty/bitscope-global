@@ -1,18 +1,20 @@
 import AuthenInput from "@/components/PageComponents/Authentication/AuthenInput";
 import { schema } from "@/components/PageComponents/Authentication/schema";
 import LayoutDashBoard from "@/components/layout/Layout";
+import { getUserTwitter } from "@/pages/api/authentication/twitter";
 import { RootState } from "@/store";
+import { setTwitter } from "@/store/twitter";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 export default function Authentication() {
   const user = useSelector((state: RootState) => state.users.user);
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const dispath = useDispatch();
   const {
     register,
     formState: { errors },
@@ -21,14 +23,31 @@ export default function Authentication() {
     resolver: yupResolver(schema),
     mode: "all",
   });
+  const { mutate, isLoading } = useMutation(getUserTwitter, {
+    onSuccess: (data) => {
+      if (data.data !== null) {
+        dispath(setTwitter(data.data));
+        toast.success("Authentication Success!");
+        setTimeout(() => {
+          router.push("/dashboard/authentication/info");
+        }, 500);
+      } else {
+        toast.error("Authentication Failed!");
+      }
+    },
+    onError: () => {
+      toast.error("Authentication Failed!");
+    },
+  });
   const onSubmit = (data: any) => {
     if (data.twitter.length === 0 && data.telegram.length === 0) {
       return toast.error("* Require Twitter or Telegram");
     }
-    setLoading(true);
-    setTimeout(() => {
-      router.push("/dashboard/authentication/info");
-    }, 2000);
+    if (data.twitter) {
+      mutate({
+        twitterId: data.twitter,
+      });
+    }
   };
   return (
     <LayoutDashBoard>
@@ -74,11 +93,11 @@ export default function Authentication() {
               />
               <div className="mr-2">
                 <button
-                  disabled={loading}
+                  disabled={isLoading}
                   type="submit"
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 inline-flex items-center"
                 >
-                  {loading && (
+                  {isLoading && (
                     <svg
                       aria-hidden="true"
                       role="status"
@@ -97,7 +116,7 @@ export default function Authentication() {
                       />
                     </svg>
                   )}
-                  {loading ? "Loading..." : "Authenticate"}
+                  {isLoading ? "Loading..." : "Authenticate"}
                 </button>
               </div>
             </form>

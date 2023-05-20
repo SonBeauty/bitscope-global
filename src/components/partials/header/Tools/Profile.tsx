@@ -22,7 +22,7 @@ const ProfileLabel = () => {
         </div>
       </div>
       <div className="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">
-        <span className="overflow-hidden text-ellipsis whitespace-nowrap w-[85px] block">
+        <span className="overflow-hidden text-inherit text-ellipsis whitespace-nowrap w-[85px] block">
           {user?.name}
         </span>
         <span className="text-base inline-block ml-[10px] rtl:mr-[10px]">
@@ -64,16 +64,16 @@ const Profile = () => {
               onClick={() => item.action()}
               className={`${
                 active
-                  ? "bg-slate-100 text-slate-900 dark:bg-slate-600 dark:text-slate-300 dark:bg-opacity-50"
-                  : "text-slate-600 dark:text-slate-300"
+                  ? "bg-slate-100 text-slate-900 dark:bg-slate-600 dark:text-white dark:bg-opacity-50"
+                  : "text-slate-600 dark:text-white"
               } block`}
             >
               <div className={`block cursor-pointer px-4 py-2`}>
                 <div className="flex items-center">
-                  <span className="block text-xl mr-3 rtl:ml-3">
+                  <span className="block text-xl mr-3 rtl:ml-3 dark:text-white">
                     <Icon icon={item.icon} />
                   </span>
-                  <span className="block text-sm">{item.label}</span>
+                  <span className="block text-sm dark:text-white">{item.label}</span>
                 </div>
               </div>
             </div>

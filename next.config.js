@@ -11,6 +11,7 @@ const nextConfig = {
   env: {
     SERVER: process.env.SERVER,
     WEBSITE: process.env.WEBSITE,
+    TWITTER: process.env.TWITTER,
   },
 };
 

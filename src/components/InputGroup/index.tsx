@@ -30,7 +30,7 @@ export default function InputGroup({
     <div className={className}>
       <div className="mb-2 block text-left mt-1 ">
         <Label htmlFor={id} >
-          <span className="text-black-500"> {label}</span>
+          <span className="text-black-500 dark:text-white"> {label}</span>
         </Label>
       </div>
       <TextInput

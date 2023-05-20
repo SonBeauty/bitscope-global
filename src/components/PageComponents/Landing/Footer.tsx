@@ -69,7 +69,12 @@ export default function Footer() {
                       <Link href="/blog">Blog</Link>
                     </li>
                     <li>
-                      <Link href="/commingsoon">Tokenomics</Link>
+                      <Link
+                        href="https://bitscope.gitbook.io/bitscope/"
+                        target="_blank"
+                      >
+                        Whitepaper
+                      </Link>
                     </li>
                   </ul>
                 </div>
