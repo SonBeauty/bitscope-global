@@ -1,5 +1,6 @@
 import AuthenInput from "@/components/PageComponents/Authentication/AuthenInput";
 import { schema } from "@/components/PageComponents/Authentication/schema";
+import HomeBredCurbs from "@/components/PageComponents/Dashboard/HomeBredCurbs";
 import LayoutDashBoard from "@/components/layout/Layout";
 import { getUserTwitter } from "@/pages/api/authentication/twitter";
 import { RootState } from "@/store";
@@ -9,6 +10,8 @@ import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { BsTwitter } from "react-icons/bs";
+import { FaTelegramPlane } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 export default function Authentication() {
@@ -29,7 +32,7 @@ export default function Authentication() {
         dispath(setTwitter(data.data));
         toast.success("Authentication Success!");
         setTimeout(() => {
-          router.push("/dashboard/authentication/info");
+          router.push("/authentication/info");
         }, 500);
       } else {
         toast.error("Authentication Failed!");
@@ -42,25 +45,33 @@ export default function Authentication() {
   const onSubmit = (data: any) => {
     if (data.twitter.length === 0 && data.telegram.length === 0) {
       return toast.error("* Require Twitter or Telegram");
-    }
-    if (data.twitter) {
+    } else if (
+      data.twitter &&
+      (data.twitter.startsWith("https://twitter.com/") ||
+        data.twitter.startsWith("@"))
+    ) {
       mutate({
-        twitterId: data.twitter,
+        twitterId: data.twitter.split("/").pop().split("@").pop(),
       });
+    } else {
+      return toast.error(
+        "* Error Authentication. Please check again. Ex:https://twitter.com/BitscopeAI  @BitscopeAI"
+      );
     }
   };
   return (
     <LayoutDashBoard>
+      <HomeBredCurbs title="Authentication" />
       <div className="w-full h-full bg-white flex items-center justify-center rounded-3xl">
-        <div className="flex flex-col md:flex-row gap-8 lg:p-28 p-2 justify-center items-center bg-black-200 sm:rounded-3xl rounded-none">
+        <div className="flex flex-col md:flex-row gap-8 justify-center items-center sm:rounded-3xl rounded-none">
           <Image
             width={336}
             height={473}
-            src="/image/authen.svg"
+            src="/image/authentication.svg"
             alt="Authen"
-            className="basis-1/3 sm:mt-0"
+            className="basis-1/2 w-full h-full sm:mt-0 bg-white lg:p-28 p-2 "
           />
-          <div className="w-full">
+          <div className="w-full basis-1/2 bg-[#F2F8FF] sm:px-12 sm:py-28 py-12 rounded-tr-3xl rounded-br-3xl">
             <div className="">
               <h3 className="text-black-500 text-center">
                 Hello {user?.name} - Welcome to Authenticaiton
@@ -78,15 +89,21 @@ export default function Authentication() {
             >
               <AuthenInput
                 social="Twitter Link"
-                placeholder="https://twitter.com/xxxx"
+                iconSocial={
+                  <BsTwitter className="text-center -ml-0.5 -mt-0.5 text-[#349FDE]" />
+                }
+                placeholder="https://twitter.com/BitscopeAI"
                 error={errors.twitter}
                 register={register}
                 id="twitter"
                 className="py-4"
               />
               <AuthenInput
+                iconSocial={
+                  <FaTelegramPlane className="text-center -ml-[3px] -mt-[2px] text-[#349FDE]" />
+                }
                 social="Telegram Link"
-                placeholder="https://t.me/xxxx"
+                placeholder="https://t.me/telegram"
                 error={errors.telegram}
                 register={register}
                 id="telegram"

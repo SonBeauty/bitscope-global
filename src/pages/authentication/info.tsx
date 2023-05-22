@@ -1,10 +1,27 @@
+import InstagramAuthentication from "@/components/PageComponents/Authentication/InstagramAuthentication";
 import TwitterAuthentication from "@/components/PageComponents/Authentication/TwitterAuthentication";
 import LayoutDashBoard from "@/components/layout/Layout";
 import { RootState } from "@/store";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+const ArrTelegram = [
+  {
+    title: "Number of samples",
+    count: "3,564",
+    bg: "bg-[#C6C7F8] 	",
+  },
+  {
+    title: "Conversation",
+    count: "564",
+    bg: "bg-[#B8E6FF] 	",
+  },
+  {
+    title: "Admin Messenges",
+    count: "1,834",
+    bg: "bg-[#BAEDBD] 	",
+  },
+];
 export default function Authentication() {
   const user = useSelector((state: RootState) => state.users.user);
   const data = useSelector((state: RootState) => state.twitter.twitter);
@@ -185,10 +202,19 @@ export default function Authentication() {
   return (
     <LayoutDashBoard>
       <div className="p-1 sm:pt-8 flex flex-col gap-8 w-full m-auto ">
-        <div className="bg-[url('/image/bg-cover-1.svg')] bg-no-repeat bg-cover rounded-2xl">
-          <div className="max-w-[585px] float-right p-8">
-            <div className="flex flex-col items-start justify-center gap-4 p-8">
-              <div className=" font-normal text-5xl flex gap-2">
+        <div className="rounded-2xl bg-[#0094E8] flex flex-col-reverse lg:flex-row relative justify-between items-end px-2 sm:px-8 overflow-hidden ">
+          <div className="lg:px-16 lg:pt-24 lg:basis-1/2 z-30">
+            <Image
+              src="/image/FrameAuthen.svg"
+              width={400}
+              height={100}
+              alt="authen"
+              className="lg:ml-20 pb-4 w-[200px] lg:w-[400px]"
+            />
+          </div>
+          <div className="flex p-4 basis-1/2 z-20">
+            <div className="flex flex-col items-start justify-center gap-4 md:p-8 float-right">
+              <div className=" font-normal text-5xl flex flex-col md:flex-row items-center gap-2">
                 <Image
                   src="/image/icons8-raised-hand-96.png"
                   width={53}
@@ -208,6 +234,7 @@ export default function Authentication() {
               </p>
             </div>
           </div>
+          <div className="w-[300px] h-[300px] p-8 rounded-full z-[10] bg-[#005ECE] absolute lg:w-[700px] lg:h-[700px] lg:top-[15%] lg:left-[1%] bottom-[-25%] right-[-5%]"></div>
         </div>
         {twitter && (
           <TwitterAuthentication
@@ -250,7 +277,29 @@ export default function Authentication() {
             username={data?.s_name}
           />
         )}
-        {/* <InstagramAuthentication /> */}
+        <InstagramAuthentication
+          arrRender={ArrTelegram}
+          content="Bitscope discovered that 22% of the members of this community are BOT-Net, the number of active user account for 18% (186 members), the rest are in the medium group. Group [xxxx] ranked 6/16 groups of similar size."
+          corlor="bg-yellow-100"
+          image={data?.profile_image}
+          name={data?.name}
+          series={series}
+          src={
+            <Image
+              src={`${
+                parseFloat(data?.verified_p) + parseFloat(data?.act_p) > 50
+                  ? "/image/checkOke.png"
+                  : "/image/icons8-dislike.png"
+              }`}
+              alt="quality"
+              width={76}
+              height={76}
+            />
+          }
+          textJoin={data?.join}
+          title="That Telegram Group don’t seem so good"
+          username={data?.s_name}
+        />
       </div>
     </LayoutDashBoard>
   );

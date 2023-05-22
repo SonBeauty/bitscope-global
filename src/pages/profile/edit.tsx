@@ -18,25 +18,23 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-
 const steps = [
   {
     id: 1,
     title: "Account Detail",
-    icon: <Cog6ToothIcon className="h-16 w-16 text-inherit" />,
+    icon: <Cog6ToothIcon className="h-8 w-8 text-inherit" />,
   },
   {
     id: 2,
     title: "Social Link",
-    icon: <GlobeAsiaAustraliaIcon className="h-16 w-16 text-inherit" />,
+    icon: <GlobeAsiaAustraliaIcon className="h-8 w-8 text-inherit" />,
   },
   {
     id: 3,
     title: "Verify",
-    icon: <CheckBadgeIcon className="h-16 w-16 text-inherit" />,
+    icon: <CheckBadgeIcon className="h-8 w-8 text-inherit" />,
   },
 ];
-
 const Profile = () => {
   const [stepNumber, setStepNumber] = useState(0);
   const user = useSelector((state: RootState) => state.users.user);
@@ -54,7 +52,7 @@ const Profile = () => {
     onSuccess: () => {
       setTimeout(() => {
         toast.success("Edit Success!");
-        route.push("/dashboard/profile");
+        route.push("/profile");
       }, 500);
     },
     onError: () => {
@@ -85,19 +83,14 @@ const Profile = () => {
         <Card title="Profile Setting">
           <div className="grid gap-5 grid-cols-12">
             <div className="lg:col-span-3 col-span-12">
-              <div className="flex z-[5] items-start relative flex-col lg:min-h-full md:min-h-[300px] min-h-[250px]">
+              <div className="flex justify-between z-[5] items-start relative flex-col lg:min-h-full md:min-h-[300px] min-h-[250px] gap-4">
                 {steps.map((item, i) => (
                   <div
-                    className="relative z-[1] flex-1 last:flex-none cursor-pointer"
+                    className="relative z-[1] last:flex-none cursor-pointer"
                     key={i}
                     onClick={() => setStepNumber(i)}
                   >
-                    <div
-                      className={`${
-                        stepNumber === i &&
-                        "border-2 border-black-500 rounded-full"
-                      } p-3 `}
-                    >
+                    <div className={`${stepNumber === i && ""} p-3 `}>
                       <div
                         className={`${
                           stepNumber === i
@@ -112,7 +105,7 @@ const Profile = () => {
                             <span className="text-white"> {item.icon}</span>
                           </div>
                         ) : (
-                          <div className="bg-white border-2 border-black-500 rounded-full">
+                          <div className="bg-white">
                             <span> {item.icon}</span>
                           </div>
                         )}
@@ -242,5 +235,4 @@ const Profile = () => {
     </>
   );
 };
-
 export default Profile;

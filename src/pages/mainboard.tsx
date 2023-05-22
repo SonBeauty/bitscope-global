@@ -1,17 +1,19 @@
 import HomeBredCurbs from "@/components/PageComponents/Dashboard/HomeBredCurbs";
-import PaginationMainBoard from "@/components/PageComponents/MainBoard/Pagination";
+import Rating from "@/components/PageComponents/MainBoard/Rating";
 import LayoutDashBoard from "@/components/layout/Layout";
 import Card from "@/components/ui/Card";
 import ProgressBar from "@/components/ui/ProgressBar";
-import Image from "next/image";
+import { RootState } from "@/store";
 import {
   ChartBarIcon,
   ChatBubbleLeftIcon,
   GlobeAltIcon,
   HeartIcon,
 } from "@heroicons/react/24/outline";
-import { AiOutlineRetweet } from "react-icons/ai";
+import Image from "next/image";
 import Link from "next/link";
+import { AiOutlineRetweet } from "react-icons/ai";
+import { useSelector } from "react-redux";
 const customers2 = [
   {
     title: "Binance",
@@ -101,6 +103,20 @@ const rows = [
     number: 3,
   },
 ];
+const Trending = [
+  {
+    id: 1,
+    tag: "#TruthGPT",
+  },
+  {
+    id: 2,
+    tag: "#GaryGensler",
+  },
+  {
+    id: 3,
+    tag: "#SEC",
+  },
+];
 const post = [
   {
     image:
@@ -137,154 +153,37 @@ const post = [
   },
 ];
 export default function MainBoard() {
+  const user = useSelector((state: RootState) => state.users.user);
   return (
     <LayoutDashBoard>
       <HomeBredCurbs title="Main Board" />
-      <div className="grid md:grid-cols-3 gap-4 sm:grid-cols-2 grid-cols-1">
-        <div className="p-6 relative z-[1] rounded-2xl text-white bg-primary-500 flex justify-between flex-col">
-          <div className="max-w-[268px]">
-            <div className="widget-title text-2xl">Unlimited Access</div>
-            <div className="text-base font-normal">
-              Upgrade your system to business plan
-            </div>
+      <div className="grid md:grid-cols-4 gap-2 sm:grid-cols-2 grid-cols-1">
+        <div className="p-6 relative z-[1] rounded-2xl text-white bg-primary-500 flex justify-between items-center flex-col">
+          <picture>
+            <img
+              src="https://dashboard.zen-s.com/assets/user-1.ad58ce72.jpg"
+              alt="avatar"
+              className="w-24 h-24 object-cover rounded-full"
+            />
+          </picture>
+          <div className="text-white flex flex-col items-center justify-center">
+            <h6 className="text-inherit">Good Evening</h6>
+            <h5 className="text-inherit">{user?.name}</h5>
           </div>
-          <div className="mt-6 text-start">
-            <button className="btn bg-white hover:bg-opacity-80 text-black-900 btn-md">
-              Upgrade
-            </button>
-          </div>
-          <Image
-            src="/image/line.svg"
-            alt=""
-            width={100}
-            height={100}
-            className="absolute left-0 bottom-0 w-full z-[-1]"
-          />
-          <Image
-            src="/image/rabit.svg"
-            alt=""
-            width={100}
-            height={100}
-            className="absolute right-5  -bottom-4 z-[-1]"
-          />
+          <h6 className="text-white">Welcome to BitScope</h6>
         </div>
-        <section className="bg-gray-50 dark:bg-gray-900 rounded-3xl">
-          <div className="mx-auto max-w-screen-2xl">
-            <div className="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
-              <div className="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
-                <div className="flex items-center flex-1 space-x-4">
-                  <div className="flex gap-2 items-end w-full">
-                    <span className="text-gray-500 basis-1/5">
-                      <Image
-                        width={30}
-                        height={30}
-                        src="/image/wchar.svg"
-                        alt="123"
-                      />
-                    </span>
-                    <span className="dark:text-white basis-4/5 font-semibold text-center">
-                      Biggest Gainers
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                  {rows
-                    .sort(function (a, b) {
-                      return a.number - b.number;
-                    })
-                    .map((item, index) => {
-                      return (
-                        <tbody key={item.id}>
-                          <tr className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <td className="pl-4 py-2">
-                              <span className="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
-                                {item.number}
-                              </span>
-                            </td>
-                            <th
-                              scope="row"
-                              className="flex items-center py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                            >
-                              <picture>
-                                <img
-                                  src={item.image}
-                                  alt="iMac Front Image"
-                                  className="w-8 h-8 rounded-full"
-                                />
-                              </picture>
-                            </th>
-                            <td className="py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                              {item.name}
-                            </td>
-                            <td className="py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                              {item.code}
-                            </td>
-                            <td className="py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                              {item.price}
-                            </td>
-                          </tr>
-                        </tbody>
-                      );
-                    })}
-                </table>
-              </div>
-              <PaginationMainBoard />
-            </div>
-          </div>
-        </section>
-        <section className="bg-gray-50 dark:bg-gray-900 rounded-3xl">
-          <div className="mx-auto max-w-screen-2xl">
-            <div className="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
-              <div className="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
-                <div className="flex items-center flex-1 space-x-4">
-                  <div className="flex gap-2 items-end w-full">
-                    <span className="text-gray-500 basis-1/5">
-                      <Image
-                        width={30}
-                        height={30}
-                        src="/image/trend.svg"
-                        alt="123"
-                      />
-                    </span>
-                    <span className="dark:text-white basis-3/5 font-semibold text-center">
-                      Trending Topic
-                    </span>
-                    <span className="dark:text-white text-blue-500 text-sm cursor-pointer basis-1/5 font-semibold text-center">
-                      Refesh
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                  {rows
-                    .sort(function (a, b) {
-                      return a.id - b.id;
-                    })
-                    .map((item) => {
-                      return (
-                        <tbody key={item.id}>
-                          <tr className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <td className="pl-4 py-2">
-                              <span className="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
-                                {item.id}
-                              </span>
-                            </td>
-                            <td className="py-3.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                              {item.tag}
-                            </td>
-                          </tr>
-                        </tbody>
-                      );
-                    })}
-                </table>
-              </div>
-              <PaginationMainBoard />
-            </div>
-          </div>
-        </section>
+        <Rating src="/image/wchar.svg" rows={rows} title="Biggest Gainers" />
+        <Rating
+          rows={rows}
+          src="/image/groupstar.svg"
+          title="Potential Tokens"
+        />
+        <Rating
+          src="/image/trend.svg"
+          rows={Trending}
+          title="Trending Topic"
+          reset={true}
+        />
       </div>
       <div className="grid md:grid-cols-2 gap-4 grid-cols-1 mt-12">
         <div className=" bg-white p-4 rounded-2xl">
@@ -398,7 +297,7 @@ export default function MainBoard() {
               return (
                 <div
                   key={index}
-                  className="bg-background flex p-8 flex-col gap-8 rounded-2xl"
+                  className="bg-background flex p-8 flex-col gap-4 rounded-2xl"
                 >
                   <div className="flex gap-2 items-center">
                     <picture>
@@ -444,7 +343,7 @@ export default function MainBoard() {
                     </div>
                     <Link
                       href={item.link}
-                      className="text-lg bg-yellow-200 py-2 px-4 text-black-500 cursor-pointer rounded-3xl basis-4/12 text-center"
+                      className="text-lg bg-yellow-200 py-2 px-3 text-black-500 cursor-pointer rounded-3xl basis-4/12 text-center"
                     >
                       View More &gt;&gt;&gt;
                     </Link>

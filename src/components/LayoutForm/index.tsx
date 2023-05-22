@@ -31,17 +31,17 @@ export default function LayoutForm({
     <PageContainer>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="h-full min-h-screen w-full flex bg-white overflow-x-hidden relative px-10"
+        className="h-full min-h-screen w-full flex bg-white overflow-hidden relative px-10"
       >
         <div className="md:basis-3/5 lg:block hidden relative">
           <Image
             height={234}
             width={428}
             alt="Background"
-            src="/image/Main.svg"
-            className="w-full h-full"
+            src="/image/Frame.svg"
+            className="w-[110%] h-[90%] mt-16"
           />
-          <div className="max-w-[520px] absolute top-[-1%] left-[10%]">
+          <div className="max-w-[520px] absolute top-[-1%] left-[25%]">
             <Link href="/">
               <Image
                 height={80}

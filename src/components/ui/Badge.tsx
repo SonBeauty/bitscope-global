@@ -1,13 +1,11 @@
 import React from "react";
 import Icon from "@/components/ui/Icon";
-
 interface BadgedProps {
   className?: string;
   icon?: any;
   label?: any;
   children?: any;
 }
-
 const Badge = ({
   className = "bg-danger-500 text-white",
   label,
@@ -17,7 +15,7 @@ const Badge = ({
   return (
     <span className={`badge ${className}`}>
       {!children && (
-        <span className="inline-flex items-center">
+        <span className="inline-flex items-center text-white">
           {icon && (
             <span className="inline-block ltr:mr-1 rtl:ml-1">
               <Icon icon={icon} />
@@ -30,5 +28,4 @@ const Badge = ({
     </span>
   );
 };
-
 export default Badge;

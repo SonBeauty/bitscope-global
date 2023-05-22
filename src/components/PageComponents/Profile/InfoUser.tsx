@@ -7,39 +7,30 @@ import {
   PhoneIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineTwitter } from "react-icons/ai";
-import { BsDiscord, BsTelegram } from "react-icons/bs";
-import Social from "../Login/Social";
 import { FaDiscord, FaTelegramPlane } from "react-icons/fa";
 import { GiWallet } from "react-icons/gi";
+import Social from "../Login/Social";
 const arrSocial = [
   {
-    image: (
-      <AiOutlineTwitter className="w-10 h-10 p-1 text-white bg-[#4095FB] rounded-full" />
-    ),
-    bg: "bg-[#1C9CEB]",
+    image: <AiOutlineTwitter className="w-10 h-10 p-1 text-[#4095FB]" />,
+    bg: "",
   },
   {
-    image: (
-      <FaDiscord className="w-11 h-11 p-1 text-white bg-purple-600 rounded-full" />
-    ),
-    bg: "bg-white",
+    image: <FaDiscord className="w-8 h-8 p-[6px] text-white " />,
+    bg: "bg-[#737BE6]",
   },
   {
-    image: (
-      <FaTelegramPlane className="w-10 h-10 p-1 text-slate-100 bg-slate-500 rounded-full" />
-    ),
-    bg: "bg-slate-500",
+    image: <FaTelegramPlane className="w-10 h-10 p-[6px] text-slate-500" />,
+    bg: "",
   },
   {
-    image: (
-      <GiWallet className="w-10 h-10 p-1 text-slate-100 bg-slate-500 rounded-full" />
-    ),
-    bg: "bg-slate-500",
+    image: <GiWallet className="w-10 h-10 p-[6px] text-slate-500" />,
+    bg: "",
   },
 ];
+
 interface InfoUserProps {
   email: string;
   phone?: string;
@@ -50,20 +41,21 @@ const userOverview = [
     icon: <UserIcon className="h-6 w-6 text-white" />,
     des: "Set up your profile, add your profile photo, and more",
     href: "profile/edit",
-    bg: "bg-green-400",
+    bg: "#005AE2",
   },
   {
     title: "Company Settings",
     icon: <ComputerDesktopIcon className="h-6 w-6 text-white" />,
     des: "Set up your company profile, add your company logo, and more",
     href: "#",
+    bg: "#005AE2",
   },
   {
     title: "Payment Settings",
     icon: <CreditCardIcon className="h-6 w-6 text-white" />,
     des: "Connect your bank account to your company profile, and more",
     href: "#",
-    bg: "bg-purple-400",
+    bg: "#005AE2",
   },
 ];
 export default function InfoUser({ email, phone }: InfoUserProps) {
@@ -110,7 +102,7 @@ export default function InfoUser({ email, phone }: InfoUserProps) {
               <Social
                 classItem=""
                 arrRender={arrSocial}
-                className="flex gap-3"
+                className="flex gap-3 items-center"
               />
             </li>
           </ul>
@@ -127,7 +119,7 @@ export default function InfoUser({ email, phone }: InfoUserProps) {
                       <div className="flex space-x-3 items-center">
                         <div
                           className={`${
-                            item.bg || "bg-slate-800"
+                            `bg-[${item.bg}]` || "bg-slate-800"
                           } "flex-none h-8 w-8 rounded-full dark:bg-slate-700 text-slate-300 flex flex-col items-center justify-center text-lg"`}
                         >
                           {item.icon}

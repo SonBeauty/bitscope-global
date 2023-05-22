@@ -8,24 +8,6 @@ import CheckQuality from "./CheckQuality";
 import { FcDoNotInhale } from "react-icons/fc";
 import { BsTelegram } from "react-icons/bs";
 import CheckInfoUser from "./CheckInfoUser";
-const ArrTelegram = [
-  {
-    title: "Number of samples",
-    count: "3,564",
-    bg: "bg-[#C6C7F8] 	",
-  },
-  {
-    title: "Conversation",
-    count: "564",
-    bg: "bg-[#B8E6FF] 	",
-  },
-  {
-    title: "Admin Messenges",
-    count: "1,834",
-    bg: "bg-[#BAEDBD] 	",
-  },
-];
-
 const ArrProfileTele = [
   {
     title: "Good Profile",
@@ -60,37 +42,64 @@ const ArrProfileTele = [
     ),
   },
 ];
-export default function InstagramAuthentication() {
+interface ArrTelegramProps {
+  title: string;
+  count: string;
+  bg: string;
+}
+interface ArrInfoUserProps {
+  icon: React.ReactNode;
+  info: string;
+  numberInfo: string;
+}
+interface TelegramProps {
+  image: string;
+  name: string;
+  username: string;
+  textJoin: string;
+  arrRender: ArrTelegramProps[];
+  corlor: string;
+  src: React.ReactNode;
+  title: string;
+  content: string;
+  series: number[];
+}
+export default function InstagramAuthentication({
+  arrRender,
+  content,
+  corlor,
+  image,
+  name,
+  series,
+  src,
+  textJoin,
+  title,
+  username
+}: TelegramProps) {
   return (
     <>
-      {/* <CheckInfoUser
+      <CheckInfoUser
         icon={<BsTelegram />}
-        social="Telegram"
-        src="https://pbs.twimg.com/profile_images/1645401771693719553/65iMDPo-_400x400.png"
-        name="Luan Wise"
-        username="@luanwise"
-        iconJoin={<FcDoNotInhale />}
-        textJoin="14.166 sample member"
-        arrRender={ArrTelegram}
+        social="Twitter"
+        src={image}
+        name={name}
+        username={username}
+        iconJoin={<FcDoNotInhale className="bg-blue-400" />}
+        textJoin={textJoin}
+        arrRender={arrRender}
         col={3}
       />
+
       <CheckQuality
-        color="bg-yellow-100"
+        color={corlor}
         border="border-lime-400"
-        src={
-          <Image
-            src="/image/icons8-dislike.png"
-            alt="quality"
-            width={76}
-            height={76}
-          />
-        }
-        title="That Telegram Group don’t seem so good"
-        content="Bitscope discovered that 22% of the members of this community are BOT-Net, the number of active user account for 18% (186 members), the rest are in the medium group. Group [xxxx] ranked 6/16 groups of similar size."
+        src={src}
+        title={title}
+        content={content}
       />
       <div className="flex gap-8 flex-col md:flex-row">
         <div className="bg-background rounded-2xl border-2 basis-1/4 py-8">
-          <ActiveShape className="w-full" />
+          <ActiveShape className="w-full" series={series} />
         </div>
         <div className="flex flex-col justify-between gap-8 w-full basis-3/4">
           <div className="flex flex-col lg:flex-row  gap-8 w-full">
@@ -103,7 +112,7 @@ export default function InstagramAuthentication() {
                 height={106}
               />
               <h5 className="font-semibold text-2xl basis-4/12">6/16 Nomal</h5>
-              <span className="font-normal text-sm text-[#666666]">
+              <span className="font-normal text-md text-[#666666]">
                 A ranking with 30 groups has a 10% difference in membership
                 compared to the reference group
               </span>
@@ -118,7 +127,7 @@ export default function InstagramAuthentication() {
       </div>
       <div className="bg-background p-8 border-2 rounded-2xl">
         <Simple />
-      </div> */}
+      </div>
     </>
   );
 }

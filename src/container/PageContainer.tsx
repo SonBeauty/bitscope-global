@@ -60,7 +60,7 @@ export default function PageContainer({ children }: PageContainerProps) {
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <main>{children}</main>
+      <main className="">{children}</main>
     </>
   );
 }
