@@ -25,6 +25,13 @@ export default function Footer() {
                       className="sm:!mr-60"
                     />
                   </div>
+                  <ul>
+                    <li>
+                      <Link href="mailto:Contact@bitscope.global">
+                        Contact@bitscope.global
+                      </Link>
+                    </li>
+                  </ul>
                   <ul className="social_media">
                     <li>
                       <Link
