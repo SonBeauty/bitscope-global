@@ -18,8 +18,8 @@ const headerItem = [
         link: "#authentication",
       },
       {
-        name: "Bit Tracking",
-        link: "#tracking",
+        name: "BITbase",
+        link: "#BITbase",
       },
     ],
   },

@@ -140,6 +140,7 @@ export default function Testimonial() {
               className=""
             />
           </div>
+        <div id="faq"></div>
         </div>
       </div>
     </section>

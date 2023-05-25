@@ -9,34 +9,31 @@ export default function Design() {
           <div className="col-lg-5 mt-12">
             <div className="ui_text">
               <TitleSubLayout
-                title="BIT TRACKING"
-                des="A comprehensive social media listening program."
-                sub="Listening is the best way to understand anyone's
-                feelings. The cutting edge of Artificial Intelligence now enables
-                the listening to millions of lines of messages, providing
-                insight into customers or the flow of trends."
+                title="BITbase"
+                des="Blockchain's Social Data Center."
+                sub="The heart of the BitScope, the beginning and the end of data operations. This contains data about: Social Account Authentication, Social Listening Reports or Behavior Patterns. Over time, social data will become increasingly valuable."
               />
-
               <ul className="design_block">
                 <li data-aos="fade-up" data-aos-duration="1500">
-                  <h4>Watchlist</h4>
+                  <h4>Data Stream</h4>
                   <p className="text-">
-                    A list of high-quality signal groups is available, but it is
-                    not comprehensive enough to track all content.
+                    Input data is processed with 7 steps, raw data is processed
+                    into data packets and stored at BITbase.
                   </p>
                 </li>
                 <li data-aos="fade-up" data-aos-duration="1500">
-                  <h4>Catch the trend</h4>
+                  <h4>Service classification</h4>
                   <p className="text-">
-                    Large language model analysis allows identifying important
-                    &quot;keywords&quot; that could be &quot;Trend&quot;.
+                    BitScope introduces an optimal service group for three
+                    groups of customers: Blockchain companies/projects,
+                    individual investors and Expert customers.
                   </p>
                 </li>
                 <li data-aos="fade-up" data-aos-duration="1500">
-                  <h4>Customer insights</h4>
+                  <h4>Data Restructuring</h4>
                   <p className="text-">
-                    The limitless potential of artificial intelligence (AI)
-                    makes every customer conversation heard.
+                    When the services are used, the data goes back to the
+                    BITbase and is re-analyzed to make it pure.
                   </p>
                 </li>
               </ul>

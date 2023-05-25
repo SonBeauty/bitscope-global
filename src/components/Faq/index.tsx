@@ -31,7 +31,7 @@ export default function Faq() {
   const [activeFaq, setActiveFaq] = useState<number>(1);
   return (
     <>
-      <section className="mb-4 faq_section popupOpen mt-16" id="faq">
+      <section className="mb-4 faq_section popupOpen mt-16">
         <div className="container">
           <TitleDescribeLayout
             title={

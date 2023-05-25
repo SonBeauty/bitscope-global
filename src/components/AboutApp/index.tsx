@@ -41,7 +41,7 @@ export default function AboutApp() {
           <div className="col-lg-5">
             <div className="about_text">
               <TitleSubLayout
-                title="BIT AUTHENTICATION"
+                title="Bit Authentication"
                 des="Authenticate the percentage of real users."
                 sub="Analyze user conversations and behavior to categorize them
               accurately. BitScope provides an authentic view of
@@ -73,7 +73,7 @@ export default function AboutApp() {
             </div>
           </div>
         </div>
-        <div id="tracking"></div>
+        <div id="BITbase"></div>
       </div>
     </section>
   );
