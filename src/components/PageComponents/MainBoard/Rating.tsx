@@ -1,5 +1,5 @@
 import Image from "next/image";
-import PaginationMainBoard from "./Pagination";
+import Slider from "react-slick";
 interface RatingProps {
   rows: any;
   src: string;
@@ -12,6 +12,26 @@ export default function Rating({
   reset = false,
   title,
 }: RatingProps) {
+  const settings = {
+    dots: true,
+    infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    appendDots: (dots: any) => (
+      <div
+        style={{
+          borderRadius: "10px",
+          bottom: 0,
+        }}
+      >
+        <ul style={{ margin: "0px" }}> {dots} </ul>
+      </div>
+    ),
+  };
   return (
     <section className="bg-gray-50 dark:bg-gray-900 rounded-3xl">
       <div className="mx-auto max-w-screen-2xl">
@@ -25,70 +45,73 @@ export default function Rating({
                 <span className="dark:text-white basis-3/5 font-semibold text-center">
                   {title}
                 </span>
-                {reset && (
-                  <span className="dark:text-white text-blue-500 text-sm cursor-pointer basis-1/5 font-semibold text-center">
-                    Refesh
-                  </span>
-                )}
               </div>
             </div>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              {rows.map((item: any, index: number) => {
+          <Slider {...settings} className="overflow-hidden w-full">
+            {Array(3)
+              .fill("")
+              .map((_, index) => {
                 return (
-                  <>
-                    {reset ? (
-                      <tbody key={item.id}>
-                        <tr className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                          <td className="pl-4 py-2">
-                            <span className="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
-                              {item.id}
-                            </span>
-                          </td>
-                          <td className="py-3.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {item.tag}
-                          </td>
-                        </tr>
-                      </tbody>
-                    ) : (
-                      <tbody key={item.id}>
-                        <tr className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                          <td className="pl-4 py-2">
-                            <span className="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
-                              {item.number}
-                            </span>
-                          </td>
-                          <th
-                            scope="row"
-                            className="flex items-center py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                          >
-                            <picture>
-                              <img
-                                src={item.image}
-                                alt="iMac Front Image"
-                                className="w-8 h-8 rounded-full"
-                              />
-                            </picture>
-                          </th>
-                          <td className="py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {item.name}
-                          </td>
-                          <td className="py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {item.code}
-                          </td>
-                          <td className="py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {item.price}
-                          </td>
-                        </tr>
-                      </tbody>
-                    )}
-                  </>
+                  <table
+                    key={index}
+                    className="w-full pb-6 text-sm text-left text-gray-500 dark:text-gray-400"
+                  >
+                    {rows.map((item: any, index: number) => {
+                      return (
+                        <>
+                          {reset ? (
+                            <div key={item.id}>
+                              <div className="border-t border-b flex px-4 py-[9px] items-center justify-center dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <div className="basis-2/12">
+                                  <span className="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
+                                    {item.id}
+                                  </span>
+                                </div>
+                                <div className="py-1 basis-7/12 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                  {item.tag}
+                                </div>
+                                <div className="py-1 basis-3/12 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                  {item.price}
+                                </div>
+                              </div>
+                            </div>
+                          ) : (
+                            <div key={item.id}>
+                              <div className="border-b border-t flex px-4 py-1 pb-[6px] items-center justify-center dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <div className="basis-2/12">
+                                  <span className="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
+                                    {item.number}
+                                  </span>
+                                </div>
+                                <div className="flex basis-2/12 items-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                  <picture>
+                                    <img
+                                      src={item.image}
+                                      alt="iMac Front Image"
+                                      className="w-8 h-8 rounded-full"
+                                    />
+                                  </picture>
+                                </div>
+                                <div className="py-2 basis-3/12 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                  {item.name}
+                                </div>
+                                <div className="py-2 basis-2/12 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                  {item.code}
+                                </div>
+                                <div className="py-2 basis-3/12 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                  {item.price}
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </>
+                      );
+                    })}
+                  </table>
                 );
               })}
-            </table>
-          </div>
-          <PaginationMainBoard />
+          </Slider>
         </div>
       </div>
     </section>

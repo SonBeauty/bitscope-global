@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/ui/Icon";
-import { menuItems } from "@/constant/data";
+
 import useMobileMenu from "@/hooks/useMobileMenu";
 import Image from "next/image";
 import Link from "next/link";
 import SimpleBar from "simplebar-react";
 import Navmenu from "./Navmenu";
+import { menuItems } from "@/constant/menuNav";
 const MobileMenu = ({ className = "custom-class" }) => {
   const scrollableNodeRef = useRef<any>();
   const [scroll, setScroll] = useState(false);
@@ -24,24 +25,20 @@ const MobileMenu = ({ className = "custom-class" }) => {
     <div
       className={`${className} fixed top-0 pt-5 bg-white dark:bg-slate-800 shadow-lg  h-full w-[248px]`}
     >
-      <div className="logo-segment flex justify-between items-center bg-white dark:bg-slate-800 z-[9] h-[85px]  px-4 ">
+      <div className="flex justify-center items-center bg-white dark:bg-slate-800 z-[9] px-4 ">
         <Link href="/dashboard">
-          <p className="flex items-center space-x-4">
-            <p className="logo-icon">
-              <Image
-                width={250}
-                height={80}
-                alt="logo"
-                src="/image/1200X628-SVG-NONBACKGROUND.png"
-                className="mx-auto relative -mt-[73px]"
-              />
-            </p>
-          </p>
+          <Image
+            width={250}
+            height={80}
+            alt="logo"
+            src="/image/1200X628-SVG-NONBACKGROUND.png"
+            className="mx-auto relative -mt-[30px]"
+          />
         </Link>
         <button
           type="button"
           onClick={() => setMobileMenu(!mobileMenu)}
-          className="cursor-pointer text-slate-900 dark:text-white text-2xl"
+          className="cursor-pointer -mt-[25px] text-slate-900 dark:text-white text-2xl"
         >
           <Icon icon="heroicons:x-mark" />
         </button>
@@ -52,7 +49,7 @@ const MobileMenu = ({ className = "custom-class" }) => {
         }`}
       ></div>
       <SimpleBar
-        className="sidebar-menu px-4 h-[calc(100%-80px)] "
+        className="sidebar-menu h-[calc(100%-80px)] !bg-[#005AE2]"
         scrollableNodeProps={{ ref: scrollableNodeRef }}
       >
         <Navmenu menus={menuItems} />

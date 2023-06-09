@@ -17,7 +17,7 @@ const LayoutProfile = ({
 }: LayoutProfileProps) => {
   return (
     <LayoutDashBoard>
-      <Card title={title}>
+      <Card title={title} bodyClass="p-0">
         <div>
           <div className="space-y-5 profile-page">
             <div className="profiel-wrap px-[35px] pb-10 md:pt-[84px] pt-10 rounded-lg bg-white dark:bg-slate-800 lg:flex lg:space-y-0 space-y-6 justify-between items-end relative z-[1]">
@@ -35,7 +35,7 @@ const LayoutProfile = ({
                       </picture>
                       <Link
                         href="#"
-                        className="absolute right-2 h-8 w-8 bg-slate-50 text-slate-600 rounded-full shadow-sm flex flex-col items-center justify-center md:top-[140px] top-[100px]"
+                        className="absolute right-2 h-8 w-8 bg-slate-50 text-slate-600 rounded-full shadow-md flex flex-col items-center justify-center md:top-[140px] top-[100px]"
                       >
                         <PencilIcon className="h-6 w-6 text-gray-500" />
                       </Link>

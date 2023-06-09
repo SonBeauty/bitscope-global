@@ -10,7 +10,9 @@ const ImageBlock2 = () => {
           <span className="block font-normal">Good evening,</span>
           <span className="block">{user?.name}</span>
         </h4>
-        <p className="text-sm text-white font-normal">Welcome to ZenUI</p>
+        <p className="text-sm text-white font-normal">
+          Welcome to {user?.name}
+        </p>
       </div>
     </div>
   );

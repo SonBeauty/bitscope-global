@@ -20,7 +20,7 @@ const MobileFooter = () => {
         </div>
       </Link>
       <Link
-        href="/dashboard/profile"
+        href="/user"
         className="relative bg-white bg-no-repeat backdrop-filter backdrop-blur-[40px] rounded-full footer-bg dark:bg-slate-700 h-[65px] w-[65px] z-[-1] -mt-[40px] flex justify-center items-center"
       >
         <div className="h-[50px] w-[50px] rounded-full relative left-[0px] top-[0px] custom-dropshadow">

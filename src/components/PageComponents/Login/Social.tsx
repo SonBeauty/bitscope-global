@@ -1,6 +1,7 @@
+import Image from "next/image";
 import { AiOutlineTwitter } from "react-icons/ai";
-import { FaDiscord, FaTelegramPlane } from "react-icons/fa";
-import { GiWallet } from "react-icons/gi";
+import { FaDiscord } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 const arrSocial = [
   {
     image: <AiOutlineTwitter className="w-10 h-10 p-[6px] text-[#4095FB]" />,
@@ -11,11 +12,19 @@ const arrSocial = [
     bg: "",
   },
   {
-    image: <FaTelegramPlane className="w-10 h-10 p-[6px] text-blue-500" />,
+    image: <FcGoogle className="w-10 h-10 p-[6px] text-blue-500" />,
     bg: "0",
   },
   {
-    image: <GiWallet className="w-10 h-10 p-[6px] text-orange-400" />,
+    image: (
+      <Image
+        src="/image/metamask-icon.png"
+        width={40}
+        height={40}
+        alt="image"
+        className="w-10 h-10 p-[6px]"
+      />
+    ),
     bg: "",
   },
 ];
@@ -33,7 +42,7 @@ const Social = ({ className, classItem, arrRender }: SocialProps) => {
             <li className="flex-1" key={index}>
               <a
                 href="#"
-                className={`inline-flex ${item.bg} ${classItem} text-2xl flex-col items-center justify-center rounded-full`}
+                className={`inline-flex ${item.bg} ${classItem} text-2xl flex-col border-2 border-slate-300 items-center justify-center rounded-full`}
               >
                 {item.image}
               </a>
@@ -50,7 +59,7 @@ const Social = ({ className, classItem, arrRender }: SocialProps) => {
           <li className="flex-1" key={index}>
             <a
               href="#"
-              className={`inline-flex h-10 w-10 ${item.bg} ${classItem} text-2xl flex-col items-center justify-center rounded-full`}
+              className={`inline-flex h-10 w-10 ${item.bg} ${classItem}  border-2 border-slate-300 text-2xl flex-col items-center justify-center rounded-full`}
             >
               {item.image}
             </a>

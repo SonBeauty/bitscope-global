@@ -1,4 +1,3 @@
-import { menuItems } from "@/constant/data";
 import useSemiDark from "@/hooks/useSemiDark";
 import useSidebar from "@/hooks/useSidebar";
 import useSkin from "@/hooks/useSkin";
@@ -6,11 +5,11 @@ import { useEffect, useRef, useState } from "react";
 import SimpleBar from "simplebar-react";
 import SidebarLogo from "./Logo";
 import Navmenu from "./Navmenu";
+import { menuItems } from "@/constant/menuNav";
 
 const Sidebar = () => {
   const scrollableNodeRef = useRef<any>();
   const [scroll, setScroll] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       if (scrollableNodeRef.current.scrollTop > 0) {
@@ -21,7 +20,6 @@ const Sidebar = () => {
     };
     scrollableNodeRef.current.addEventListener("scroll", handleScroll);
   }, [scrollableNodeRef]);
-
   const [collapsed, setMenuCollapsed] = useSidebar();
   const [menuHover, setMenuHover] = useState(false);
   const [isSemiDark] = useSemiDark();
@@ -29,7 +27,7 @@ const Sidebar = () => {
   return (
     <div className={isSemiDark ? "dark" : ""}>
       <div
-        className={`sidebar-wrapper bg-white dark:bg-slate-800  ${
+        className={`sidebar-wrapper bg-[#005AE2] ${
           collapsed ? "w-[72px] close_sidebar" : "w-[248px]"
         }
       ${menuHover ? "sidebar-hovered" : ""}
@@ -54,14 +52,13 @@ const Sidebar = () => {
         ></div>
 
         <SimpleBar
-          className="sidebar-menu px-4 h-[calc(100%-80px)]"
+          className="sidebar-menu px-0 h-[calc(100%-80px)]"
           scrollableNodeProps={{ ref: scrollableNodeRef }}
         >
-          <Navmenu menus={menuItems} />
+          <Navmenu menus={menuItems} menuHover={menuHover} />
         </SimpleBar>
       </div>
     </div>
   );
 };
-
 export default Sidebar;

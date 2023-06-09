@@ -31,7 +31,7 @@ export default function ForgotPass() {
         <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 mt-5 uppercase text-sm">
           FORGET IT,
           <Link
-            href="/login"
+            href="/register"
             className="text-slate-900 font-medium hover:underline"
           >
             Sign up

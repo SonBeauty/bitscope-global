@@ -1,3 +1,4 @@
+import WaveSVG from "@/components/svg/WaveSVG";
 import Image from "next/image";
 import Link from "next/link";
 export default function Section() {
@@ -27,11 +28,17 @@ export default function Section() {
             <ul className="app_btn">
               <li>
                 <Link
-                  href="/commingsoon"
+                  href="/register"
                   className="blue_img -ml-6 border-white"
                 >
-                  <span className="text-xs text-purple-500"> No Wallet/No Credit</span> <br />
-                  <span className="text-xl font-bold text-purple-500 ">Try Free now</span>
+                  <span className="text-xs text-purple-500">
+                    {" "}
+                    No Wallet/No Credit
+                  </span>{" "}
+                  <br />
+                  <span className="text-xl font-bold text-purple-500 ">
+                    Try Free now
+                  </span>
                 </Link>
               </li>
             </ul>
@@ -81,42 +88,7 @@ export default function Section() {
         </div>
       </div>
       <div className="home-wave-bottom">
-        <svg
-          className="waves"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-          viewBox="0 24 150 28"
-          preserveAspectRatio="none"
-          shapeRendering="auto"
-        >
-          <defs>
-            <path
-              id="gentle-wave"
-              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-            />
-          </defs>
-          <g className="parallax">
-            <use
-              xlinkHref="#gentle-wave"
-              x="48"
-              y="0"
-              fill="rgba(255,255,255,0.7"
-            />
-            <use
-              xlinkHref="#gentle-wave"
-              x="48"
-              y="3"
-              fill="rgba(255,255,255,0.5)"
-            />
-            <use
-              xlinkHref="#gentle-wave"
-              x="48"
-              y="5"
-              fill="rgba(255,255,255,0.3)"
-            />
-            <use xlinkHref="#gentle-wave" x="48" y="7" fill="#f6f4fe" />
-          </g>
-        </svg>
+        <WaveSVG />
       </div>
     </section>
   );

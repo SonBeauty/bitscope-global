@@ -1,4 +1,4 @@
-import Announce from "@/components/Announce";
+import Announce from "@/components/PageComponents/Landing/Announce";
 import Footer from "@/components/PageComponents/Landing/Footer";
 import Header from "@/components/PageComponents/Landing/Header";
 import Head from "next/head";

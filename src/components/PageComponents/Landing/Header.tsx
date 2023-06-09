@@ -3,66 +3,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import HeaderItem from "./HeaderItem";
+import { headerItem } from "@/constant/landing";
 
-const headerItem = [
-  {
-    href: "#",
-    name: "Services",
-    child: [
-      {
-        name: "Problem Solved",
-        link: "#features",
-      },
-      {
-        name: "Bit Authentication",
-        link: "#authentication",
-      },
-      {
-        name: "BITbase",
-        link: "#BITbase",
-      },
-    ],
-  },
-  {
-    href: "#",
-    name: "Social",
-    child: [
-      {
-        name: "Facebook",
-        link: "https://www.facebook.com/BitScopeAI",
-        blank: true,
-      },
-      {
-        name: "Discord",
-        link: "https://discord.gg/Bv8YNdVD2Y",
-        blank: true,
-      },
-      {
-        name: "Twitter",
-        link: "https://twitter.com/BitscopeAI",
-        blank: true,
-      },
-    ],
-  },
-  {
-    href: "/blog",
-    name: "Blog",
-  },
-  {
-    href: "https://docs.bitscope.global/",
-    name: "Whitepaper",
-    blank: true,
-  },
-  {
-    href: "/commingsoon",
-    name: "Login",
-  },
-  {
-    href: "/commingsoon",
-    name: " GET STARTED",
-    className: "nav-link dark_btn text-center !mt-0 !px-6",
-  },
-];
 export default function Header() {
   const [language, setLanguage] = useState<string>("ENG");
   const [fixedStyle, setFixedStyle] = useState(false);

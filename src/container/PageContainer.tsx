@@ -1,39 +1,38 @@
+import Loading from "@/components/Loading";
 import { authRouter, redirectDashBoard } from "@/constant/authRouter";
 import { infoUser } from "@/pages/api/auth/info";
+import { RootState } from "@/store";
 import { setUser } from "@/store/users";
 import { useQuery } from "@tanstack/react-query";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 interface PageContainerProps {
   children: React.ReactNode;
 }
 export default function PageContainer({ children }: PageContainerProps) {
+  const isLogin = useSelector((state: RootState) => state.users.isLogin);
   const dispatch = useDispatch();
   const router = useRouter();
   const pathName = router.pathname;
   const { data } = useQuery<any>(["users"], infoUser);
   useEffect(() => {
-    const isLogin =
+    const isLogins =
       localStorage.getItem("token") || sessionStorage.getItem("token");
-    if (isLogin) {
+    if (isLogins) {
       dispatch(setUser(data));
-    }
-  }, [data, dispatch]);
-  useEffect(() => {
-    const isLogin =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
-    if (!isLogin) {
-      if (authRouter.some((route) => pathName.startsWith(route))) {
-        router.push("/login");
-      }
-    } else {
-      if (redirectDashBoard.indexOf(pathName) !== -1) {
-        router.push("/dashboard");
+      if (!isLogins) {
+        if (authRouter.some((route) => pathName.startsWith(route))) {
+          router.push("/login");
+        }
+      } else {
+        if (redirectDashBoard.indexOf(pathName) !== -1) {
+          router.push("/dashboard");
+        }
       }
     }
-  }, [pathName, router]);
+  }, [data, dispatch, isLogin, pathName, router]);
   return (
     <>
       <Head>
@@ -58,9 +57,16 @@ export default function PageContainer({ children }: PageContainerProps) {
           content="Using AI for Social Listening"
           key="ogdesc"
         />
+
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <main className="">{children}</main>
+      <main className="">
+        {!isLogin && authRouter.some((route) => pathName.startsWith(route)) ? (
+          <Loading />
+        ) : (
+          children
+        )}
+      </main>
     </>
   );
 }

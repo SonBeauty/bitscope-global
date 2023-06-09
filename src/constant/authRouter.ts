@@ -1,4 +1,9 @@
-export const authRouter = ["/dashboard"];
+export const authRouter = [
+  "/dashboard",
+  "/mainboard",
+  "/authentication",
+  "/user",
+];
 export const redirectDashBoard = [
   "/login",
   "/register",

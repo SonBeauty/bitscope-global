@@ -14,8 +14,9 @@ import { ToastContainer } from "react-toastify";
 import MobileFooter from "./components/MobileFooter";
 interface LayoutDashBoardProps {
   children: React.ReactNode;
+  className?: string;
 }
-const LayoutDashBoard = ({ children }: LayoutDashBoardProps) => {
+const LayoutDashBoard = ({ children, className }: LayoutDashBoardProps) => {
   const { width, breakpoints } = useWidth();
   const [collapsed] = useSidebar();
   const switchHeaderClass = () => {
@@ -38,7 +39,6 @@ const LayoutDashBoard = ({ children }: LayoutDashBoardProps) => {
       {menuType === "vertical" && width > breakpoints.xl && !menuHidden && (
         <Sidebar />
       )}
-
       <MobileMenu
         className={`${
           width < breakpoints.xl && mobileMenu
@@ -55,7 +55,7 @@ const LayoutDashBoard = ({ children }: LayoutDashBoardProps) => {
           width > breakpoints.xl ? switchHeaderClass() : ""
         }`}
       >
-        <div className="page-content page-min-height  ">
+        <div className={`page-content page-min-height ${className}`}>
           <div
             className={
               contentWidth === "boxed" ? "container mx-auto" : "container-fluid"

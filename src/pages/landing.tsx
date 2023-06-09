@@ -1,11 +1,11 @@
-import AboutApp from "@/components/AboutApp";
-import Design from "@/components/Design";
-import DownloadApp from "@/components/DownloadApp";
-import Faq from "@/components/Faq";
-import Features from "@/components/Features";
+import AboutApp from "@/components/PageComponents/Landing/AboutApp";
+import Design from "@/components/PageComponents/Landing/Design";
+import DownloadApp from "@/components/PageComponents/Landing/DownloadApp";
+import Faq from "@/components/PageComponents/Landing/Faq";
+import Features from "@/components/PageComponents/Landing/Features";
 import LandingWithHeaderAndFooter from "@/components/PageComponents/Landing/LandingWithHeaderAndFooter";
 import Section from "@/components/PageComponents/Landing/Section";
-import Trusted from "@/components/Trusted";
+import Trusted from "@/components/PageComponents/Landing/Trusted";
 export default function LandingPage() {
   return (
     <LandingWithHeaderAndFooter announce={true}>

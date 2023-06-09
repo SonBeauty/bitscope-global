@@ -62,10 +62,6 @@ export default function ActivateNotification({
               {" "}
               <span className="text-white"> Login Now</span>
             </Button>
-            <Button onClick={() => router.push("/login")}>
-              {" "}
-              <span className="text-white"> Login Now</span>
-            </Button>
             <div className="flex items-center">
               <DocumentTextIcon className="w-5 h-5 text-blue-600 " />
               <div className="pl-4 text-sm font-normal">

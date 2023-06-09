@@ -1,47 +1,3 @@
-export const menuItems = [
-  {
-    isHeadr: true,
-    title: "menu",
-  },
-  {
-    title: "Admin",
-    icon: "heroicons-outline:home",
-    isOpen: true,
-    isHide: true,
-    link: "/dashboard",
-    child: [
-      {
-        childtitle: "Dashboard",
-        childlink: "/dashboard",
-      },
-    ],
-  },
-  {
-    title: "Main Board",
-    icon: "heroicons:circle-stack",
-    link: "/mainboard",
-    isHide: false,
-  },
-  {
-    title: "Authentication",
-    icon: "heroicons:shield-check",
-    link: "/authentication",
-    isHide: false,
-  },
-  {
-    title: "Profile",
-    icon: "heroicons:user",
-    link: "/profile",
-    isHide: false,
-  },
-  {
-    title: "changelog",
-    icon: "heroicons:arrow-trending-up",
-    link: "/dashboard/changelog",
-    isHide: false,
-    badge: "1.0.0",
-  },
-];
 export const colors = {
   primary: "#4669FA",
   secondary: "#A0AEC0",
@@ -216,9 +172,69 @@ export const notifications = [
   },
   {
     title: "Brooklyn Simmons",
-    desc: "Added you to Top Secret Project group...",
+    desc: "added you to Top Secret Project group...",
 
     image: "https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png",
     link: "#",
+  },
+];
+export const items = [
+  {
+    version: "Changelog 3.0",
+    date: "07 June 2023",
+    changes: [
+      {
+        name: "Added authentication features on Twitter and Telegram.",
+        tag: "update",
+      },
+      {
+        name: "Updated Telegram behavior logic.",
+        tag: "update",
+      },
+    ],
+  },
+  {
+    version: "Changelog 2.5",
+    date: "22 May 2023",
+    changes: [
+      {
+        name: "Updated whitepaper.",
+        tag: "added",
+      },
+      {
+        name: "Design dashboard model.",
+        tag: "update",
+      },
+    ],
+  },
+  {
+    version: "Changelog 2.0",
+    date: "15 May 2023",
+    changes: [
+      {
+        name: "Release website.",
+        tag: "added",
+      },
+      {
+        name: "Update Bit.Authentication interface.",
+        tag: "fixed",
+      },
+      {
+        name: "Edit image interface.",
+        tag: "update",
+      },
+    ],
+  },
+  {
+    version: "Changelog 1.0",
+    date: "1 May 2023",
+    changes: [
+      {
+        name: "Barnstorm idea.",
+      },
+      {
+        name: "Product mockup.",
+      },
+    ],
   },
 ];

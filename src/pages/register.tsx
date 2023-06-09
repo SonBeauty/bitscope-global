@@ -99,6 +99,16 @@ export default function Register() {
           errors={errors.password}
           icon={LockClosedIcon}
         />
+        <InputGroup
+          id="rePassword"
+          type="password"
+          label="Enter The Password"
+          placeholder="Enter The Password"
+          register={register}
+          className="w-full"
+          errors={errors.rePassword}
+          icon={LockClosedIcon}
+        />
         <div className="flex flex-row items-center justify-between gap-4 mt-2 ml-1 md:flex-row">
           <div className="flex items-center justify-center float-left gap-2 py-2">
             <Checkbox

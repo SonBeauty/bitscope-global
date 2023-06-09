@@ -12,9 +12,12 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { schema } from "../components/PageComponents/Login/schema";
 import { loginUser } from "./api/auth/login";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/store/users";
 export default function Login() {
   const route = useRouter();
   const [remember, setRemember] = useState<Boolean>(false);
+  const dispath = useDispatch();
   const { mutate, isLoading } = useMutation(loginUser, {
     onSuccess: (data) => {
       toast.success("Login Success!");
@@ -23,9 +26,10 @@ export default function Login() {
       } else {
         sessionStorage.setItem("token", data.token);
       }
+      dispath(setUser(data));
       setTimeout(() => {
         route.push("/dashboard");
-      }, 1000);
+      }, 300);
     },
     onError: () => {
       toast.error("Login Failed!");

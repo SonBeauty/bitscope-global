@@ -3,6 +3,7 @@ import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Link from "next/link";
 import PageContainer from "@/container/PageContainer";
+import WaveSVG from "@/components/svg/WaveSVG";
 export default function Commingsoon() {
   return (
     <PageContainer>
@@ -48,42 +49,7 @@ export default function Commingsoon() {
           </div>
         </div>
         <div className="home-wave-bottom basis-1/12 w-screen">
-          <svg
-            className="waves"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 180 28"
-            preserveAspectRatio="none"
-            shapeRendering="auto"
-          >
-            <defs>
-              <path
-                id="gentle-wave"
-                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-              />
-            </defs>
-            <g className="parallax">
-              <use
-                xlinkHref="#gentle-wave"
-                x="48"
-                y="0"
-                fill="rgba(255,255,255,0.7"
-              />
-              <use
-                xlinkHref="#gentle-wave"
-                x="48"
-                y="3"
-                fill="rgba(255,255,255,0.5)"
-              />
-              <use
-                xlinkHref="#gentle-wave"
-                x="48"
-                y="5"
-                fill="rgba(255,255,255,0.3)"
-              />
-              <use xlinkHref="#gentle-wave" x="48" y="7" fill="#f6f4fe" />
-            </g>
-          </svg>
+          <WaveSVG />
         </div>
       </div>
     </PageContainer>

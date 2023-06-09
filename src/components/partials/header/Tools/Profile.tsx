@@ -41,7 +41,7 @@ const Profile = () => {
       icon: "heroicons-outline:user",
 
       action: () => {
-        return navigate.push("/profile");
+        return navigate.push("/user");
       },
     },
     {

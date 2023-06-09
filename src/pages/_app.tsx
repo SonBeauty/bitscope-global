@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import PageContainer from "@/container/PageContainer";
 const queryClient = new QueryClient();
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>

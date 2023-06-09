@@ -1,72 +1,31 @@
 import Card from "@/components/ui/Card";
-import {
-  ArrowLongRightIcon,
-  ComputerDesktopIcon,
-  CreditCardIcon,
-  EnvelopeIcon,
-  PhoneIcon,
-  UserIcon,
-} from "@heroicons/react/24/outline";
+import { arrSocial, userOverview } from "@/constant/components/Profile";
+import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import Link from "next/link";
-import { AiOutlineTwitter } from "react-icons/ai";
-import { FaDiscord, FaTelegramPlane } from "react-icons/fa";
-import { GiWallet } from "react-icons/gi";
 import Social from "../Login/Social";
-const arrSocial = [
-  {
-    image: <AiOutlineTwitter className="w-10 h-10 p-1 text-[#4095FB]" />,
-    bg: "",
-  },
-  {
-    image: <FaDiscord className="w-8 h-8 p-[6px] text-white " />,
-    bg: "bg-[#737BE6]",
-  },
-  {
-    image: <FaTelegramPlane className="w-10 h-10 p-[6px] text-slate-500" />,
-    bg: "",
-  },
-  {
-    image: <GiWallet className="w-10 h-10 p-[6px] text-slate-500" />,
-    bg: "",
-  },
-];
 
 interface InfoUserProps {
   email: string;
   phone?: string;
 }
-const userOverview = [
-  {
-    title: "Profile Settings",
-    icon: <UserIcon className="h-6 w-6 text-white" />,
-    des: "Set up your profile, add your profile photo, and more",
-    href: "profile/edit",
-    bg: "#005AE2",
-  },
-  {
-    title: "Company Settings",
-    icon: <ComputerDesktopIcon className="h-6 w-6 text-white" />,
-    des: "Set up your company profile, add your company logo, and more",
-    href: "#",
-    bg: "#005AE2",
-  },
-  {
-    title: "Payment Settings",
-    icon: <CreditCardIcon className="h-6 w-6 text-white" />,
-    des: "Connect your bank account to your company profile, and more",
-    href: "#",
-    bg: "#005AE2",
-  },
-];
 export default function InfoUser({ email, phone }: InfoUserProps) {
   return (
-    <div className="grid grid-cols-12 gap-6">
+    <div className="grid grid-cols-12 gap-6 p-4">
       <div className="lg:col-span-4 col-span-12">
-        <Card title="Info">
+        <Card title="Info" className="">
           <ul className="list space-y-8">
             <li className="flex space-x-3 items-center">
               <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
-                <EnvelopeIcon className="h-6 w-6 text-gray-500" />
+                <div className="p-3 bg-[#005AE2] rounded-full">
+                  <Image
+                    src="/image/Mails.svg"
+                    alt="mail"
+                    width={24}
+                    height={24}
+                    className=""
+                  />
+                </div>
               </div>
               <div className="flex-1">
                 <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
@@ -80,10 +39,18 @@ export default function InfoUser({ email, phone }: InfoUserProps) {
                 </a>
               </div>
             </li>
-            {phone && (
+            {!phone && (
               <li className="flex space-x-3 items-center">
                 <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
-                  <PhoneIcon className="h-6 w-6 text-gray-500" />
+                  <div className="p-3 bg-[#005AE2] rounded-full">
+                    <Image
+                      src="/image/Calls.svg"
+                      alt="phone"
+                      width={24}
+                      height={24}
+                      className=""
+                    />
+                  </div>
                 </div>
                 <div className="flex-1">
                   <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
@@ -93,7 +60,7 @@ export default function InfoUser({ email, phone }: InfoUserProps) {
                     href={`tel:${phone}`}
                     className="text-base text-slate-600 dark:text-slate-50"
                   >
-                    {phone}
+                    {phone || "0000000000"}
                   </a>
                 </div>
               </li>
@@ -114,13 +81,13 @@ export default function InfoUser({ email, phone }: InfoUserProps) {
             <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
               {userOverview.map((item, index) => {
                 return (
-                  <Card bodyClass="p-0" key={index}>
+                  <Card bodyClass="p-[4px]" key={index}>
                     <div className="space-y-6 py-6 px-4">
                       <div className="flex space-x-3 items-center">
                         <div
                           className={`${
                             `bg-[${item.bg}]` || "bg-slate-800"
-                          } "flex-none h-8 w-8 rounded-full dark:bg-slate-700 text-slate-300 flex flex-col items-center justify-center text-lg"`}
+                          } "flex-none h-9 w-9 rounded-full dark:bg-slate-700 text-slate-300 flex flex-col items-center justify-center text-lg"`}
                         >
                           {item.icon}
                         </div>

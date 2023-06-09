@@ -9,7 +9,7 @@ interface ProgressBarProps {
   titleClass?: string;
   striped?: string;
   animate?: string;
-  showValue?: string;
+  showValue?: boolean;
 }
 export default function ProgressBar({
   title,
@@ -26,14 +26,14 @@ export default function ProgressBar({
     <div className="relative">
       {title && (
         <span
-          className={`block text-slate-500   tracking-[0.01em] mb-2 ${titleClass}`}
+          className={`block text-slate-500 tracking-[0.01em] mb-2 ${titleClass}`}
         >
           {title}
         </span>
       )}
       {!children && (
         <div
-          className={`w-full  overflow-hidden bg-opacity-10 progress  ${backClass}`}
+          className={`w-full overflow-hidden bg-opacity-10 progress  ${backClass}`}
         >
           <Bar
             value={value}

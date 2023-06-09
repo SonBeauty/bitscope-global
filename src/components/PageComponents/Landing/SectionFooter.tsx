@@ -9,7 +9,7 @@ export default function SectionFooter() {
               Use BitScope&apos;s service for free and share your thoughts.
             </h2>
             <Link
-              href="/commingsoon"
+              href="/register"
               className="nav-link btn px-8 py-2 puprple_btn border-2 border-white rounded-3xl"
             >
               Try Now
