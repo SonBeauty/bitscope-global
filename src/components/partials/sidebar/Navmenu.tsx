@@ -98,7 +98,7 @@ const Navmenu = ({ menus, menuHover }: any) => {
                           checkOpenAngBGWhite(item)
                             ? "text-[#0046B0]"
                             : "text-white"
-                        } mr-auto font-semibold`}
+                        } mr-auto font-semibold text-base leading-[19px]`}
                       >
                         {handleHideTitle(item)}
                       </Typography>
@@ -113,7 +113,7 @@ const Navmenu = ({ menus, menuHover }: any) => {
                               checkOpenAngBGWhite(item)
                                 ? "text-[#0046B0] bg-white"
                                 : "text-white bg-[#0046B0]"
-                            } pl-8 py-3 font-semibold rounded-none`}
+                            } pl-8 py-3 font-medium text-sm leading-5 rounded-none`}
                             onClick={() => router.push(item.childlink)}
                             key={index}
                           >
