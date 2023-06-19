@@ -9,7 +9,7 @@ export default function Announce() {
       <Link
         type="button"
         className="btn puprple_btn aos-init aos-animate bg-[#6A49F2] rounded-3xl"
-        href="https://discord.com/invite/ZvRrQ8Y3uM"
+        href="https://discord.gg/Bv8YNdVD2Y"
         target="_blank"
       >
         <span className="flex items-center rounded-md text-sm text-white hover:!text-[#6A49F2]">

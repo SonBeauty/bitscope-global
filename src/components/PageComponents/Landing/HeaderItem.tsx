@@ -12,6 +12,7 @@ interface HeaderItems {
   className?: string;
   hasDropdown?: boolean;
   arrChild: ItemRender[] | undefined;
+  onClick?: any;
 }
 export default function HeaderItem({
   href = "#",
@@ -19,6 +20,7 @@ export default function HeaderItem({
   className,
   hasDropdown,
   arrChild,
+  onClick,
 }: HeaderItems) {
   const [drop, setDrop] = useState<boolean>(false);
   return (
@@ -45,7 +47,11 @@ export default function HeaderItem({
               <ul>
                 {arrChild?.map((item: ItemRender, index: number) => {
                   return (
-                    <li className="w-full" key={index}>
+                    <li
+                      className="w-full"
+                      key={index}
+                      onClick={() => onClick(item.link)}
+                    >
                       <Link
                         href={item.link}
                         className="cursor-pointer block"

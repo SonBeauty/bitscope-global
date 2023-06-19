@@ -16,7 +16,7 @@
   transition: opacity 300ms, transform 300ms;
 }
 .page-content {
-  @apply md:pt-3 md:px-3 pt-[8px] px-[8px];
+  @apply md:p-5;
 }
 
 .page-min-height {

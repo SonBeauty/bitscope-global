@@ -30,8 +30,12 @@ export default function Authentication() {
     () => getInfoAuthen(authenID),
     {
       refetchInterval: (data) =>
-        (data?.telegram?.status === "4" || data?.telegram === null) &&
-        (data?.twitter?.data?.status === "2" || data?.twitter === null)
+        (data?.telegram?.status === "4" ||
+          data?.telegram === null ||
+          !data?.telegram) &&
+        (data?.twitter?.status === "2" ||
+          data?.twitter === null ||
+          !data?.twitter)
           ? false
           : 5000,
     }
@@ -51,8 +55,16 @@ export default function Authentication() {
           setProgressStartTw(100);
           setProgressTw(100);
         } else {
+          const lengResuilt = data?.twitter?.results?.length;
+          const onlyGetLargeMoreThan500 =
+            data?.twitter?.profile?.follower >= 500
+              ? 500
+              : data?.twitter?.profile?.follower;
+          const processTwitter = Math.round(
+            (lengResuilt / onlyGetLargeMoreThan500) * 100
+          );
           setProgressStartTw(progressTw);
-          setProgressTw(data?.twitter?.data?.processBar || progressTw);
+          setProgressTw(processTwitter || progressTw);
         }
       } else {
         setTwitter(null);
@@ -102,7 +114,7 @@ export default function Authentication() {
               <span className="text-white font-normal text-2xl">
                 Welcome to Authentication.
               </span>
-              <p className="text-slate-200 font-normal text-base text-center">
+              <p className="text-slate-200 font-normal text-base text-start">
                 We offer a comprehensive view of members who follow or join the
                 requested social platforms. The results are approximate, and
                 BitScope is optimizing the algorithm to provide the most

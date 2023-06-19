@@ -47,21 +47,21 @@ export default function AuthenTwitter({
     if (twitter) {
       setTwitterArrayInfoStart(twitterArrayInfo);
       setTwitterArrayInfo([
-        twitter.overview.regularActivity,
-        twitter.overview.tweetRatio,
-        twitter.overview.followerRatio,
-        twitter.overview.profileAvatar,
-        twitter.overview.followersWithCategory,
-        twitter.overview.bubblesSpread,
-        twitter.overview.followersWithBios,
-        twitter.overview.locationInformation,
-        twitter.overview.followersWithURL,
+        twitter?.overview?.regularActivity,
+        twitter?.overview?.tweetRatio,
+        twitter?.overview?.followerRatio,
+        twitter?.overview?.profileAvatar,
+        twitter?.overview?.followersWithCategory,
+        twitter?.overview?.bubblesSpread,
+        twitter?.overview?.followersWithBios,
+        twitter?.overview?.locationInformation,
+        twitter?.overview?.followersWithURL,
       ]);
       setSeriesTwitter([
-        Math.round(twitter.overview.highQualityPercentage * 100) / 100,
-        Math.round(twitter.overview.normalQualityPercentage * 100) / 100,
-        Math.round(twitter.overview.lowQualityPercentage * 100) / 100,
-        Math.round(twitter.overview.badQualityPercentage * 100) / 100,
+        Math.round(twitter.overview?.bestQualityPercentage * 100) / 100,
+        Math.round(twitter.overview?.goodQualityPercentage * 100) / 100,
+        Math.round(twitter.overview?.normalQualityPercentage * 100) / 100,
+        Math.round(twitter.overview?.lowQualityPercentage * 100) / 100,
       ]);
       setDataTwitter([
         {
@@ -80,7 +80,7 @@ export default function AuthenTwitter({
           bg: "bg-[#cefbfc]",
         },
       ]);
-      if (twitter.overview.graphQuality) {
+      if (twitter.overview?.graphQuality) {
         const mapData = twitter?.overview?.graphQuality;
         return setDataFolower([
           {
@@ -129,19 +129,22 @@ export default function AuthenTwitter({
         progress < 100
           ? "Loading..."
           : `This Twitter account has ${
-              twitter.overview.highQualityPercentage
+              Math.round(twitter.overview?.bestQualityPercentage * 100) / 100
             }% of followers identified as real people, ${
-              twitter.overview.normalQualityPercentage
+              Math.round(
+                (twitter.overview?.goodQualityPercentage +
+                  twitter.overview?.normalQualityPercentage) *
+                  100
+              ) / 100
             }% of average accounts, and ${
-              twitter.overview.badQualityPercentage +
-              twitter.overview.lowQualityPercentage
+              Math.round(twitter.overview?.lowQualityPercentage * 100) / 100
             }% of BOT followers.`
       }`}
       corlor={`${
         progress < 100
           ? "bg-[#e9f5f9]"
-          : twitter.overview.highQualityPercentage +
-              twitter.overview.normalQualityPercentage >
+          : twitter.overview?.bestQualityPercentage +
+              twitter.overview?.goodQualityPercentage >
             50
           ? "bg-green-200"
           : "bg-red-200"
@@ -162,8 +165,8 @@ export default function AuthenTwitter({
         ) : (
           <Image
             src={`${
-              twitter.overview.highQualityPercentage +
-                twitter.overview.normalQualityPercentage >
+              twitter.overview?.bestQualityPercentage +
+                twitter.overview?.goodQualityPercentage >
               50
                 ? "/image/hightQ.svg"
                 : "/image/badQ.svg"
@@ -178,13 +181,13 @@ export default function AuthenTwitter({
       title={`${
         progress < 100
           ? "Please wait for the analysis results from the system"
-          : twitter.overview.highQualityPercentage +
-              twitter.overview.normalQualityPercentage >
+          : twitter.overview?.bestQualityPercentage +
+              twitter.overview?.goodQualityPercentage >
             50
           ? "This is a quality Twitter account"
           : "This is a bad Twitter account"
       }`}
-      username={twitter?.profile?.userId}
+      username={twitter?.profile?.name}
       number={progress}
     />
   );

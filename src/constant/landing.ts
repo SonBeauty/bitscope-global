@@ -114,11 +114,11 @@ export const headerItem = [
       },
       {
         name: "Bit Authentication",
-        link: "#authentication",
+        link: "/authentication",
       },
       {
         name: "Bit Tracking",
-        link: "#tracking",
+        link: "/tracking",
       },
     ],
   },

@@ -1,18 +1,18 @@
 export const labelRender = [
   {
-    label: "Hight Quality",
+    label: "Best Quality",
     bg: "bg-[#BAEDBD]",
   },
   {
-    label: "Normal Quality",
+    label: "Good Quality",
     bg: "bg-[#005AE2]",
   },
   {
-    label: "Low Quality",
+    label: "Normal Quality",
     bg: "bg-[#FCCA4A]",
   },
   {
-    label: "BOT, Bad Quality",
+    label: "Low Quality",
     bg: "bg-[#E92D3B]",
   },
 ];

@@ -124,7 +124,7 @@ export default function Testimonial() {
           </OwlCarousel>
           <div className="flex flex-col items-center justify-center py-2 mt-4">
             <Link
-              href="https://discord.com/invite/ZvRrQ8Y3uM"
+              href="https://discord.gg/Bv8YNdVD2Y"
               target="_blank"
               className="bg-purple-700 px-4 py-3 rounded-3xl cursor-pointer text-white font-bold text-lg"
             >
@@ -140,7 +140,7 @@ export default function Testimonial() {
               className=""
             />
           </div>
-        <div id="faq"></div>
+          <div id="faq"></div>
         </div>
       </div>
     </section>

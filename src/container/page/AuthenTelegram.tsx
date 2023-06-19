@@ -418,7 +418,7 @@ export default function AuthenTelegram({
             }, the rest are in the medium group. Group ${
               telegram.overview.ranking?.ranking.split("/")[0]
             } ranked ${
-              telegram.overview.ranking?.ranking.split("/")[1]
+              telegram.overview.ranking?.ranking.split("/")[1] || 0
             } groups of similar size.`
       }`}
       corlor={`${

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Social from "../PageComponents/Login/Social";
 import LoadingSVG from "../svg/LoadingSVG";
+
 interface LayoutFormProps {
   handleSubmit: any;
   onSubmit: object;
@@ -27,6 +28,7 @@ export default function LayoutForm({
   social = true,
   isLoading,
 }: LayoutFormProps) {
+  
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -91,7 +93,7 @@ export default function LayoutForm({
             )}
             {childrenTwo}
             <div className="text-xs font-normal text-slate-500 z-[999] pt-10 text-center">
-              Copyright 2021, ZenUI All Rights Reserved.
+              Copyright 2023, BitScope All Rights Reserved.
             </div>
           </div>
         </div>

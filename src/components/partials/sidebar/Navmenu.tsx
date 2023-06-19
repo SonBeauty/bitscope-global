@@ -1,3 +1,4 @@
+import useMobileMenu from "@/hooks/useMobileMenu";
 import useSidebar from "@/hooks/useSidebar";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import {
@@ -20,8 +21,10 @@ const Navmenu = ({ menus, menuHover }: any) => {
   const router = useRouter();
   const location = router.pathname;
   const [open, setOpen] = useState<number | null>(null);
+  const [mobileMenu, setMobileMenu] = useMobileMenu();
   const handleOpen = (value: any) => {
     if (value.link) {
+      setMobileMenu(!mobileMenu);
       router.push(value.link);
       return setOpen(open === value.id ? 0 : value.id);
     }
@@ -35,7 +38,6 @@ const Navmenu = ({ menus, menuHover }: any) => {
       } else {
         if (!item.child) return;
         const link = item.child.filter((sp: any) => sp.childlink === location);
-        console.log(link);
         if (link.length) return (submenuIndex = link[0]?.id);
       }
     });
@@ -49,6 +51,10 @@ const Navmenu = ({ menus, menuHover }: any) => {
     if (!collapsed) return item.title || item.childtitle;
     if (collapsed && menuHover) return item.title || item.childtitle;
     if (collapsed) return "";
+  };
+  const handleChildLink = (item: string) => {
+    setMobileMenu(!mobileMenu);
+    router.push(item);
   };
   return (
     <Card className="h-screen items-start rounded-none w-full py-4 px-0 shadow-xl bg-[#0046B0]">
@@ -114,7 +120,7 @@ const Navmenu = ({ menus, menuHover }: any) => {
                                 ? "text-[#0046B0] bg-white"
                                 : "text-white bg-[#0046B0]"
                             } pl-8 py-3 font-medium text-sm leading-5 rounded-none`}
-                            onClick={() => router.push(item.childlink)}
+                            onClick={() => handleChildLink(item.childlink)}
                             key={index}
                           >
                             <ListItemPrefix>

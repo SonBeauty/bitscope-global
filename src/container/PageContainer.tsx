@@ -57,7 +57,7 @@ export default function PageContainer({ children }: PageContainerProps) {
           content="Using AI for Social Listening"
           key="ogdesc"
         />
-
+        
         <link rel="icon" href="/favicon.png" />
       </Head>
       <main className="">

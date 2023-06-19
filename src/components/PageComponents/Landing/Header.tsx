@@ -22,10 +22,12 @@ export default function Header() {
         setFixedStyle(false);
       }
     }
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  const hanldeClick = (value: string) => {
+    size.width !== undefined && size.width < 991 && setmobile(!mobile);
+  };
   return (
     <header
       className={`white_header landing fixed header-wave ${
@@ -74,6 +76,7 @@ export default function Header() {
                     className={item.className}
                     arrChild={item.child}
                     hasDropdown={!!item.child}
+                    onClick={hanldeClick}
                   />
                 );
               })}

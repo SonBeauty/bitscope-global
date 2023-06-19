@@ -43,10 +43,10 @@ export interface TwitterProps {
     followersWithURL: number;
     followersWithCategory: number;
     graphQuality: any;
-    highQualityPercentage: number;
+    bestQualityPercentage: number;
+    goodQualityPercentage: number;
     normalQualityPercentage: number;
     lowQualityPercentage: number;
-    badQualityPercentage: number;
   };
   data?: {
     data: any;

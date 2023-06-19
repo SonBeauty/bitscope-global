@@ -34,7 +34,7 @@ export default function Author() {
             </Link>
           </li>
           <li>
-            <Link href="https://discord.com/invite/ZvRrQ8Y3uM" target="_blank">
+            <Link href="https://discord.gg/Bv8YNdVD2Y" target="_blank">
               <FaDiscord className="w-full h-full p-2" />
             </Link>
           </li>

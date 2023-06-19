@@ -113,10 +113,10 @@ export const dataTwitterLoading = {
     locationInformation: 0,
     followersWithURL: 0,
     followersWithCategory: 0,
-    highQualityPercentage: 0,
+    bestQualityPercentage: 0,
+    goodQualityPercentage: 0,
     normalQualityPercentage: 0,
     lowQualityPercentage: 0,
-    badQualityPercentage: 0,
     graphQuality: {
       0: 0,
       1: 0,

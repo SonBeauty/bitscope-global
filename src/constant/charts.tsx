@@ -81,12 +81,7 @@ export const optionsBarChart: ApexCharts.ApexOptions = {
   },
 };
 export const optionsActiveShape: ApexCharts.ApexOptions = {
-  labels: [
-    "Hight Quality",
-    "Normal Quality",
-    "Low Quality",
-    "BOT, Bad Quality",
-  ],
+  labels: ["Best Quality", "Good Quality", "Normal Quality", "Low Quality"],
   dataLabels: {
     enabled: true,
   },
@@ -139,12 +134,7 @@ export const optionsActiveShape: ApexCharts.ApexOptions = {
   ],
 };
 export const optionsActiveShapeFake: ApexCharts.ApexOptions = {
-  labels: [
-    "Hight Quality",
-    "Normal Quality",
-    "Low Quality",
-    "BOT, Bad Quality",
-  ],
+  labels: ["Best Quality", "Good Quality", "Normal Quality", "Low Quality"],
   dataLabels: {
     enabled: false,
   },

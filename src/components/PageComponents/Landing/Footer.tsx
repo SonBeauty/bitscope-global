@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FaDiscord, FaFacebook, FaTwitter } from "react-icons/fa";
 import AnimLine from "./AnimLine";
 import ScrollToTop from "./ScrollToTop";
+
 export default function Footer() {
   return (
     <div className="">
@@ -51,17 +52,12 @@ export default function Footer() {
                     </li>
                     <li>
                       <Link
-                        href="https://discord.com/invite/ZvRrQ8Y3uM"
+                        href="https://discord.gg/Bv8YNdVD2Y"
                         target="_blank"
                       >
                         <FaDiscord className="w-full h-full p-2" />
                       </Link>
                     </li>
-                    {/* <li>
-                      <Link href="#">
-                        <FaTiktok className="w-full h-full p-2" />
-                      </Link>
-                    </li> */}
                   </ul>
                 </div>
               </div>
@@ -93,10 +89,6 @@ export default function Footer() {
                     <li>
                       <Link href="#faq">FAQs</Link>
                     </li>
-                    {/* <li>
-                      <Link href="#">Support</Link>
-                    </li> */}
-
                     <li>
                       <Link
                         target="_blank"

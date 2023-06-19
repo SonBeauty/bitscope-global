@@ -17,16 +17,16 @@ const Footer = ({ className = "custom-class" }) => {
       <div className="site-footer px-6 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-300 py-4">
         <div className="grid md:grid-cols-2 grid-cols-1 md:gap-5">
           <div className="text-center md:text-start  text-sm">
-            COPYRIGHT &copy; 2022 ZEN, All rights Reserved
+            COPYRIGHT &copy; 2023 BITSCOPE. All rights Reserved
           </div>
           <div className="md:text-right text-center text-sm">
             Made by{" "}
             <a
-              href="https://zen-s.com/"
+              href="https://bitscope.global"
               target="_blank"
-              className="text-primary-500 font-semibold"
+              className="text-primary-500 font-semibold hover:text-black-500"
             >
-              Zen Delivery
+              BitScope
             </a>
           </div>
         </div>

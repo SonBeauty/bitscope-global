@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { Player } from "@lottiefiles/react-lottie-player";
+import { convertDate } from "@/services/Authentication";
+
 interface CheckInfoUserProps {
   icon: any;
   social: string;
@@ -16,6 +18,7 @@ interface CheckInfoUserProps {
   col: number;
   link: string;
 }
+
 export default function CheckInfoUser({
   icon,
   social,
@@ -80,7 +83,7 @@ export default function CheckInfoUser({
                   </h4>
                   {textJoin && (
                     <p className="text-base font-normal flex gap-2 items-center">
-                      {iconJoin} {textJoin}
+                      {iconJoin} {convertDate(textJoin)}
                     </p>
                   )}
                 </div>
