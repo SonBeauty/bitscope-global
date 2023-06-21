@@ -33,12 +33,16 @@ const Navmenu = ({ menus, menuHover }: any) => {
   useEffect(() => {
     let submenuIndex = null;
     menus.map((item: any) => {
-      if (item.link === location) {
+      if (item?.link === location) {
         submenuIndex = item.id;
       } else {
-        if (!item.child) return;
-        const link = item.child.filter((sp: any) => sp.childlink === location);
-        if (link.length) return (submenuIndex = link[0]?.id);
+        if (!item?.child) return;
+        const link = item?.child?.filter(
+          (sp: any) =>
+            sp?.childlink === location ||
+            sp?.childlink === `/${location?.split("/")[1]}`
+        );
+        if (link?.length) return (submenuIndex = link[0]?.id);
       }
     });
     setOpen(submenuIndex);

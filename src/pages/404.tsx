@@ -1,10 +1,12 @@
+import WaveSVG from "@/components/svg/WaveSVG";
+import PageContainer from "@/container/PageContainer";
 import styles from "@/styles/Commingsoon.module.scss";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
-import Link from "next/link";
-import PageContainer from "@/container/PageContainer";
-import WaveSVG from "@/components/svg/WaveSVG";
+import { useRouter } from "next/router";
+
 export default function Commingsoon() {
+  const router = useRouter();
   return (
     <PageContainer>
       <div className="!h-screen !w-screen flex flex-col">
@@ -39,13 +41,13 @@ export default function Commingsoon() {
               <strong className="text-black md:text-white">THIS PAGE IS</strong>
               <em className="text-black md:text-white">COMING SOON</em>
             </h1>
-            <Link
-              href="/"
+            <span
+              onClick={() => router.back()}
               className="p hover:text-white cursor-pointer text-black-500 md:text-white flex gap-3 px-4 items-center justify-center "
             >
               <ArrowLeftIcon className="h-6 w-6 text-black md:text-white" />
               Comeback Home
-            </Link>
+            </span>
           </div>
         </div>
         <div className="home-wave-bottom basis-1/12 w-screen">

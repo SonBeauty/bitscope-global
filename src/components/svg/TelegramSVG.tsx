@@ -1,6 +1,9 @@
 import { ClsPathProps } from "@/interface/SVG";
 import React from "react";
-export default function TelegramSVG({ className, classNamePath }: ClsPathProps) {
+export default function TelegramSVG({
+  className,
+  classNamePath,
+}: ClsPathProps) {
   return (
     <svg
       width="24"

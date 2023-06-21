@@ -260,7 +260,7 @@ export default function Authentication() {
       </div>
       <div
         className={`absolute flex gap-[9.23px] items-center justify-center top-[15px] left-[15px] md:top-[45px] md:left-[45px] py-[14.58px] px-[16.58px] text-white rounded-md bg-[#01985F] cursor-pointer shadow-[0_3.25146px_3.25146px_rgba(0,0,0,0.25)]`}
-        onClick={() => router.push("/user/history")}
+        onClick={() => router.push("/authentication/history")}
       >
         <ClockSVG className="w-[15.83px] h-[15.83px]" />
         <span className="text-white font-semibold text-[13.01px] leading-[16.26px] font-Inter">
