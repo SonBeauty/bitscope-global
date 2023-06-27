@@ -9,15 +9,20 @@ import PageContainer from "@/container/PageContainer";
 const queryClient = new QueryClient();
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { GoogleAnalytics } from "nextjs-google-analytics";
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <PageContainer>
-          <ToastContainer />
-          <Component {...pageProps} />
-        </PageContainer>
-      </QueryClientProvider>
-    </Provider>
+    <>
+      <GoogleAnalytics strategy="lazyOnload" gaMeasurementId={`${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`} />
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <PageContainer>
+            <ToastContainer />
+            <Component {...pageProps} />
+          </PageContainer>
+        </QueryClientProvider>
+      </Provider>
+    </>
   );
 }
