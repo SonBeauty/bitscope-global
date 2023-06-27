@@ -246,7 +246,7 @@ export default function Authentication() {
                 <button
                   disabled={isLoading}
                   type="submit"
-                  className="text-[#1C1C1C] bg-[#FFB800] rounded-md px-[18px] py-[13px] text-center inline-flex items-center "
+                  className="text-[#1C1C1C] bg-[#FFB800] hover:bg-[#cc9300] duration-500 ease-in-out rounded-md px-[18px] py-[13px] text-center inline-flex items-center "
                 >
                   {isLoading && <LoadingSVG />}
                   <span className="text-inherit font-semibold text-base leading-5 font-Inter">
@@ -259,7 +259,7 @@ export default function Authentication() {
         </div>
       </div>
       <div
-        className={`absolute flex gap-[9.23px] items-center justify-center top-[15px] left-[15px] md:top-[45px] md:left-[45px] py-[14.58px] px-[16.58px] text-white rounded-md bg-[#01985F] cursor-pointer shadow-[0_3.25146px_3.25146px_rgba(0,0,0,0.25)]`}
+        className={`absolute hover:bg-[#017a4c] duration-500 ease-in-out flex gap-[9.23px] items-center justify-center top-[15px] left-[15px] md:top-[45px] md:left-[45px] py-[14.58px] px-[16.58px] text-white rounded-md bg-[#01985F] cursor-pointer shadow-[0_3.25146px_3.25146px_rgba(0,0,0,0.25)]`}
         onClick={() => router.push("/authentication/history")}
       >
         <ClockSVG className="w-[15.83px] h-[15.83px]" />
