@@ -7,9 +7,14 @@ import { useOnClickOutside } from "usehooks-ts";
 interface AuthenSelectProps {
   icon: string;
   setIcon: any;
+  dropdown?: boolean;
 }
 
-export default function AuthenSelect({ icon, setIcon }: AuthenSelectProps) {
+export default function AuthenSelect({
+  icon,
+  setIcon,
+  dropdown = true,
+}: AuthenSelectProps) {
   const ref = useRef<any>(null);
   const [social, setSocial] = useState<boolean>(false);
   const handleChoise = (choise: string) => {
@@ -23,7 +28,9 @@ export default function AuthenSelect({ icon, setIcon }: AuthenSelectProps) {
   return (
     <div
       onClick={() => setSocial(!social)}
-      className={`absolute bg-[#005AE2] rounded-md m-[5px] flex items-center justify-end pr-[9px] gap-[11px] h-[45px] w-[75px]`}
+      className={`absolute bg-[#005AE2] rounded-md m-[5px] flex items-center justify-end ${
+        dropdown ? "pr-[9px]" : "pr-6"
+      } gap-[11px] h-[45px] w-[75px]`}
     >
       <div className="flex gap-[11px] ">
         <div className="w-6 h-5 ">
@@ -31,11 +38,12 @@ export default function AuthenSelect({ icon, setIcon }: AuthenSelectProps) {
             (icon === "TE" && <TelegramSVG className="w-full h-full" />)}
         </div>
       </div>
-      <div className="cursor-pointer">
-        <DownAuthen />
-      </div>
-
-      {social && (
+      {dropdown && (
+        <div className="cursor-pointer">
+          <DownAuthen />
+        </div>
+      )}
+      {dropdown && social && (
         <div
           ref={ref}
           onClick={handleClickOutside}

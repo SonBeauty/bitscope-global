@@ -2,7 +2,7 @@ import clsx from "clsx";
 import AuthenSelect from "./AuthenSelect";
 
 interface AuthenInputProps {
-    error: any;
+  error: any;
   placeholder: string;
   register: any;
   id: string;
@@ -11,6 +11,7 @@ interface AuthenInputProps {
   setIcon: any;
   onChange?: any;
   disable?: boolean;
+  dropdown?: boolean;
 }
 
 export default function AuthenInput({
@@ -23,11 +24,12 @@ export default function AuthenInput({
   setIcon,
   onChange,
   disable,
+  dropdown,
 }: AuthenInputProps) {
   return (
     <div className={className + " gap-2 w-full"}>
       <div className="flex w-full rounded-xl visible">
-        <AuthenSelect icon={icon} setIcon={setIcon} />
+        <AuthenSelect icon={icon} setIcon={setIcon} dropdown={dropdown} />
         <input
           id={id}
           onChange={onChange}
