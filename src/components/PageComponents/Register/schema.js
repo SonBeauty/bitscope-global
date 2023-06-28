@@ -24,4 +24,6 @@ export const schema = yup.object({
     .bool()
     .oneOf([true], "* Accept Invalid")
     .required(false, "* Accept Invalid"),
+  referral: yup
+    .string()
 });

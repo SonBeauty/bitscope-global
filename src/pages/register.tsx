@@ -22,7 +22,7 @@ export default function Register() {
     setValue,
   } = useForm({
     resolver: yupResolver(schema),
-    mode: "all",
+    mode: "all"
   });
   const { mutate, isLoading } = useMutation(registerUser, {
     onSuccess: () => {
@@ -40,14 +40,22 @@ export default function Register() {
       name: data.name,
       email: data.email,
       password: data.password,
+      referralCode: data.referral
     });
   };
+  const handleChange = (e:any) =>{
+   setValue('referral', e.target.value)
+  }
   useEffect(() => {
     setValue("check", accept);
   }, [accept, setValue]);
   useEffect(() => {
     setValue("check", accept);
   }, [accept, setValue]);
+  useEffect(() => {
+    setValue('referral', router.query['ref']?.toString());
+  }, [router, setValue]);
+ 
   return (
     <LayoutForm
       page="Sign up"
@@ -108,6 +116,16 @@ export default function Register() {
           className="w-full"
           errors={errors.rePassword}
           icon={LockClosedIcon}
+        />
+        <InputGroup
+          id="referral"
+          type="text"
+          label="Referral"
+          placeholder="Your referral code"
+          register={register}
+          className="w-full"
+          icon={LockClosedIcon}
+          onChange={handleChange}
         />
         <div className="flex flex-row items-center justify-between gap-4 mt-2 ml-1 md:flex-row">
           <div className="flex items-center justify-center float-left gap-2 py-2">

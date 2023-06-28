@@ -10,10 +10,11 @@ interface InputGroupProps {
   icon?: any;
   register: UseFormRegister<FieldValues>;
   className?: string;
-  errors: FieldError | any;
+  errors?: FieldError | any;
   value?: string;
   defaultValue?: string;
   disabled?: boolean;
+  onChange?: (e:any) => void
 }
 export default function InputGroup({
   id,
@@ -27,6 +28,7 @@ export default function InputGroup({
   value,
   defaultValue,
   disabled,
+  onChange,
 }: InputGroupProps) {
   const [eyes, setEyes] = useState<string>("password");
   const handleClick = () => {
@@ -49,6 +51,7 @@ export default function InputGroup({
           defaultValue={defaultValue}
           value={value}
           {...register(id)}
+          onChange={onChange}
           className="text-black-500 "
           color={errors ? "failure" : "white"}
         />
