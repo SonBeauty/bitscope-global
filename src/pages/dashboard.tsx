@@ -165,7 +165,7 @@ export default function MainBoard() {
               return (
                 <div
                   key={index}
-                  className="bg-background flex px-8 py-4 flex-col gap-4 rounded-2xl"
+                  className="bg-background flex px-8 py-4 flex-col gap-4 rounded-md"
                 >
                   <div className="flex gap-2 items-center">
                     <picture>

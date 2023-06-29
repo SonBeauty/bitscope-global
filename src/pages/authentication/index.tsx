@@ -175,15 +175,15 @@ export default function Authentication() {
   return (
     <LayoutDashBoard className="bg-white h-[88vh] md:h-[85px] relative overflow-hidden">
       <div className="grid grid-cols-1 px-2 md:flex items-center justify-center h-[81vh] bg-[#f2f9ff] rounded-md shadow-md">
-        <div className="relative max-w-[687px] max-h-[860px] pt-[90px] md:pt-[105px] pb-[255px] md:pb-[165px]">
+        <div className="relative max-w-[687px] max-h-[860px] md:pt-[105px] md:pb-[165px]">
           <AuthenticationSVG
-            className="bg-[#f2f9ff] md:w-[720px] md:h-[485px] w-[340px] h-[340px] md:-ml-16 md:mt-9 mt-2"
+            className="bg-[#f2f9ff] md:w-[720px] md:h-[450px] w-[340px] h-[340px] md:-ml-16 md:mt-9"
             classNameRect="w-[687px] h-[485px] "
           />
           <form
             onSubmit={handleSubmit(onSubmit)}
             onChange={handleChange}
-            className="absolute bottom-[32%] md:bottom-[27%] max-w-[687px] left-0 h-[247px] mx-auto right-0"
+            className="absolute -bottom-[10%] md:bottom-[27%] max-w-[687px] left-0 h-[247px] mx-auto right-0"
           >
             <div
               className={`font-Inter text-white rounded-tl-md rounded-tr-md bg-[#0046B0] text-center pt-[16px] pb-[16px] text-xl font-bold leading-5`}

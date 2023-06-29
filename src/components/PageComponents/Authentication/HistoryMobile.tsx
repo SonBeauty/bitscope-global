@@ -1,33 +1,33 @@
-import DismissableModal from "@/components/Modal"
-import LayoutDashBoard from "@/components/layout/Layout"
-import BackLeftSVG from "@/components/svg/BackLeftSVG"
-import DownloadAll from "@/components/svg/DownloadAll"
-import DownloadAuthenSVG from "@/components/svg/DownloadAuthenSVG"
-import NoAccessHistorySVG from "@/components/svg/NoAccessHistorySVG"
-import TelegramHistorySVG from "@/components/svg/TelegramHistorySVG"
-import TrashAuthenSVG from "@/components/svg/TrashAuthenSVG"
-import TwitterHistorySVG from "@/components/svg/TwitterHistorySVG"
-import { TABLE_ROWS_MB } from "@/constant/components/History"
-import { Player } from "@lottiefiles/react-lottie-player"
-import { Card, CardBody, CardHeader } from "@material-tailwind/react"
-import { Button } from "flowbite-react"
-import { useRouter } from "next/router"
-import { useRef, useState } from "react"
-import { useOnClickOutside } from "usehooks-ts"
+import DismissableModal from "@/components/Modal";
+import LayoutDashBoard from "@/components/layout/Layout";
+import BackLeftSVG from "@/components/svg/BackLeftSVG";
+import DownloadAll from "@/components/svg/DownloadAll";
+import DownloadAuthenSVG from "@/components/svg/DownloadAuthenSVG";
+import NoAccessHistorySVG from "@/components/svg/NoAccessHistorySVG";
+import TelegramHistorySVG from "@/components/svg/TelegramHistorySVG";
+import TrashAuthenSVG from "@/components/svg/TrashAuthenSVG";
+import TwitterHistorySVG from "@/components/svg/TwitterHistorySVG";
+import { TABLE_ROWS_MB } from "@/constant/components/History";
+import { Player } from "@lottiefiles/react-lottie-player";
+import { Card, CardBody, CardHeader } from "@material-tailwind/react";
+import { Button } from "flowbite-react";
+import { useRouter } from "next/router";
+import { useRef, useState } from "react";
+import { useOnClickOutside } from "usehooks-ts";
 
 interface HistoryMobileProps {
-  data: any
-  isLoading: boolean
+  data: any;
+  isLoading: boolean;
 }
 
 export default function HistoryMobile({ data, isLoading }: HistoryMobileProps) {
-  const [openModal, setOpenModal] = useState<boolean>(false)
-  const router = useRouter()
-  const ref = useRef<any>(null)
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const router = useRouter();
+  const ref = useRef<any>(null);
   const handleClickOutside = () => {
-    setOpenModal(false)
-  }
-  useOnClickOutside(ref, handleClickOutside)
+    setOpenModal(false);
+  };
+  useOnClickOutside(ref, handleClickOutside);
   return (
     <LayoutDashBoard className="md:p-5 py-[15px] relative bg-[#F6FBFF]">
       <Card className="h-full bg-[#F6FBFF] flex flex-col gap-[6px] w-full max-h-[795.08px] p-0 m-0 shadow-none">
@@ -68,7 +68,7 @@ export default function HistoryMobile({ data, isLoading }: HistoryMobileProps) {
                 style={{
                   height: "11.13rem",
                   width: "20.3rem",
-                  background: "#FFFFFF"
+                  background: "#FFFFFF",
                 }}
                 className="p-0"
               />
@@ -146,7 +146,7 @@ export default function HistoryMobile({ data, isLoading }: HistoryMobileProps) {
                       </div>
                     </div>
                   </div>
-                )
+                );
               })}
               <div className="py-7 visible" />
             </div>
@@ -176,5 +176,5 @@ export default function HistoryMobile({ data, isLoading }: HistoryMobileProps) {
         </div>
       </DismissableModal>
     </LayoutDashBoard>
-  )
+  );
 }

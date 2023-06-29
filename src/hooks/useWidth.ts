@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from "react";
 import { useWindowSize } from "./useWindowSize";
 export default function useWidth() {
   const widths = useWindowSize();
-  const [width, setWidth] = useState<number>(1281);
+  const [width, setWidth] = useState<number>(1221);
   const breakpoints = {
     sm: 640,
     md: 768,
     lg: 1024,
-    xl: 1280,
+    xl: 1220,
   };
   useEffect(() => {
     if (widths.width !== undefined) setWidth(widths.width);

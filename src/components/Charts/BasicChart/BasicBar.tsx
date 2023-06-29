@@ -1,8 +1,8 @@
 import { BasicBarChart, BasicBarChartFake } from "@/constant/charts";
 import { RootState } from "@/store";
-import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import dynamic from "next/dynamic";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });

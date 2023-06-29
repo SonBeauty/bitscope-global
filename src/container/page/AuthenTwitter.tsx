@@ -7,7 +7,10 @@ interface AuthenTwitterProps {
   twitter: TwitterProps;
   progress: number;
 }
+
 const initialData = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+const initialDataFour = [0, 0, 0, 0];
+
 export default function AuthenTwitter({
   twitter,
   progress,
@@ -18,6 +21,8 @@ export default function AuthenTwitter({
   ]);
   const [twitterArrayInfoStart, setTwitterArrayInfoStart] =
     useState<number[]>(initialData);
+  const [twitterArrayFourStart, setTwitterArrayFourStart] =
+    useState<number[]>(initialDataFour);
   const [dataTwitter, setDataTwitter] = useState<any>([
     [
       {
@@ -26,7 +31,13 @@ export default function AuthenTwitter({
         bg: "bg-[#dbf4e9]",
       },
       {
-        title: "Follower",
+        title: "Ave-Reach",
+        count: 0,
+        bg: "bg-[#F8E4DE]",
+        content: "Last 5 tweets",
+      },
+      {
+        title: "Followers",
         count: 0,
         bg: "bg-[#dae1fe]",
       },
@@ -63,14 +74,21 @@ export default function AuthenTwitter({
         Math.round(twitter.overview?.normalQualityPercentage * 100) / 100,
         Math.round(twitter.overview?.lowQualityPercentage * 100) / 100,
       ]);
+      setTwitterArrayFourStart(dataTwitter);
       setDataTwitter([
         {
-          title: "Tweet",
+          title: "Tweets",
           count: twitter?.profile?.tweet,
           bg: "bg-[#dbf4e9]",
         },
         {
-          title: "Follower",
+          title: "Ave-Reach",
+          count: twitter?.profile?.aveReach,
+          bg: "bg-[#F8E4DE]",
+          content: "Last 5 tweets",
+        },
+        {
+          title: "Followers",
           count: twitter?.profile?.follower,
           bg: "bg-[#dae1fe]",
         },
@@ -121,7 +139,7 @@ export default function AuthenTwitter({
 
   return (
     <TwitterAuthentication
-      classNameSRC={progress < 100 ? "p-0 border-none" : ""}
+      dataFourStart={twitterArrayFourStart}
       arrInfoUsers={twitterArrayInfoStart}
       arrInfoUser={twitterArrayInfo}
       arrRender={dataTwitter}
@@ -187,7 +205,7 @@ export default function AuthenTwitter({
           ? "This is a quality Twitter account"
           : "This is a bad Twitter account"
       }`}
-      username={twitter?.profile?.name}
+      username={twitter?.profile?.userId}
       number={progress}
     />
   );

@@ -52,15 +52,15 @@ const BarChart = ({ className, series }: BarChartProps) => {
     }
   }, [isFake]);
   return (
-    <div className={`${className} bg-background rounded-2xl w-full`}>
-      <h6 className="p-6">Activities of the week</h6>
+    <div className={`${className} bg-background rounded-md w-full`}>
+      <h6 className="md:py-[3px] py-[13px] px-[22px] font-Inter font-semibold md:text-base text-xl leading-5">Activities of the week</h6>
       {isFake ? (
         <Chart
           options={optionsBarChartFake}
           series={fakeData}
           type="bar"
           height={350}
-          className="apex-charts"
+          className="apex-charts py-[34px]"
         />
       ) : (
         <Chart
@@ -68,7 +68,7 @@ const BarChart = ({ className, series }: BarChartProps) => {
           series={series}
           type="bar"
           height={350}
-          className="apex-charts"
+          className="apex-charts py-[34px]"
         />
       )}
     </div>

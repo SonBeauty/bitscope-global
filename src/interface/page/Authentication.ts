@@ -1,9 +1,12 @@
 import React from "react";
+
 export interface ArrRender {
   title: string;
   count: string;
   bg?: string;
   icon?: React.ReactNode;
+  content?: string;
+  position?: "top" | "bottom" | "left" | "right";
 }
 export interface Authentication {
   twitter?: string;
@@ -27,6 +30,7 @@ export interface TwitterProps {
     nearAction: string | null;
     lastTweet: string | null;
     like: number;
+    aveReach: string | number | null;
   };
   overview: {
     hightQuality: number;
@@ -56,10 +60,11 @@ export interface TwitterProps {
 }
 export interface TelegramProps {
   objectId: string;
-  status: number;
+  status: string;
   profile: {
     objectId: string;
     name: string;
+    avatar: string;
   };
   overview: {
     review: {

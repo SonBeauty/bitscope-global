@@ -10,108 +10,17 @@ interface AuthenTelegramProps {
   telegram: TelegramProps;
   progress: number;
 }
+
+const initialData = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+const initialDataFour = [0, 0, 0, 0];
+
 export default function AuthenTelegram({
   telegram,
   progress,
 }: AuthenTelegramProps) {
   const [seriesTele, setSeriesTele] = useState<number[]>([0, 0, 0, 0]);
-  const [chartTimeTele, setChartTimetele] = useState<any>([
-    {
-      category: "0h",
-      value: 0,
-    },
-    {
-      category: "1h",
-      value: 0,
-    },
-    {
-      category: "2h",
-      value: 0,
-    },
-    {
-      category: "3h",
-      value: 0,
-    },
-    {
-      category: "4h",
-      value: 0,
-    },
-    {
-      category: "5h",
-      value: 0,
-    },
-    {
-      category: "6h",
-      value: 0,
-    },
-    {
-      category: "7h",
-      value: 0,
-    },
-    {
-      category: "8h",
-      value: 0,
-    },
-    {
-      category: "9h",
-      value: 0,
-    },
-    {
-      category: "10h",
-      value: 0,
-    },
-    {
-      category: "11h",
-      value: 0,
-    },
-    {
-      category: "12h",
-      value: 0,
-    },
-    {
-      category: "13h",
-      value: 0,
-    },
-    {
-      category: "14h",
-      value: 0,
-    },
-    {
-      category: "15h",
-      value: 0,
-    },
-    {
-      category: "16h",
-      value: 0,
-    },
-    {
-      category: "17h",
-      value: 0,
-    },
-    {
-      category: "18h",
-      value: 0,
-    },
-    {
-      category: "19h",
-      value: 0,
-    },
-    {
-      category: "20h",
-      value: 0,
-    },
-    {
-      category: "21h",
-      value: 0,
-    },
-    {
-      category: "22h",
-      value: 0,
-    },
-    {
-      category: "23h",
-      value: 0,
-    },
+  const [chartTimeTele, setChartTimetele] = useState<number[]>([
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]);
   const [activitiesOfTheWeek, setActivitiesOfTheWeek] = useState([
     {
@@ -132,7 +41,7 @@ export default function AuthenTelegram({
       bg: "bg-[#fee9e1]",
     },
     {
-      title: "Admin Messenges",
+      title: "Admin Count",
       count: 0,
       bg: "bg-[#dae1fe]",
     },
@@ -147,7 +56,7 @@ export default function AuthenTelegram({
       ),
     },
     {
-      title: "Average Act Rate",
+      title: "Active members",
       count: 0,
       bg: "bg-[#F1F5F9]",
       icon: (
@@ -171,8 +80,13 @@ export default function AuthenTelegram({
       ),
     },
   ]);
+  const [telegramArrayInfoStart, setTelegramArrayInfoStart] =
+    useState<number[]>(initialData);
+  const [telegramArrayThreeStart, setTelegramArrayThreeStart] =
+    useState<number[]>(initialDataFour);
   useEffect(() => {
     if (telegram) {
+      setTelegramArrayThreeStart(arrInfoTelegram);
       setArrInfoTelegram([
         {
           title: "Number of samples",
@@ -185,7 +99,7 @@ export default function AuthenTelegram({
           bg: "bg-[#fee9e1]",
         },
         {
-          title: "Admin Messenges",
+          title: "Admin Count",
           count: telegram?.overview?.general?.numberOfAdmin,
           bg: "bg-[#dae1fe]",
         },
@@ -196,105 +110,32 @@ export default function AuthenTelegram({
         parseFloat(telegram?.overview?.activeReview?.low),
         parseFloat(telegram?.overview?.activeReview?.bot),
       ]);
-      telegram?.result &&
-        setChartTimetele([
-          {
-            category: "0h",
-            value: parseFloat(telegram?.overview.hourOfOperation[0]),
-          },
-          {
-            category: "1h",
-            value: parseFloat(telegram?.overview.hourOfOperation[1]),
-          },
-          {
-            category: "2h",
-            value: parseFloat(telegram?.overview.hourOfOperation[2]),
-          },
-          {
-            category: "3h",
-            value: parseFloat(telegram?.overview.hourOfOperation[3]),
-          },
-          {
-            category: "4h",
-            value: parseFloat(telegram?.overview.hourOfOperation[4]),
-          },
-          {
-            category: "5h",
-            value: parseFloat(telegram?.overview.hourOfOperation[5]),
-          },
-          {
-            category: "6h",
-            value: parseFloat(telegram?.overview.hourOfOperation[6]),
-          },
-          {
-            category: "7h",
-            value: parseFloat(telegram?.overview.hourOfOperation[7]),
-          },
-          {
-            category: "8h",
-            value: parseFloat(telegram?.overview.hourOfOperation[8]),
-          },
-          {
-            category: "9h",
-            value: parseFloat(telegram?.overview.hourOfOperation[9]),
-          },
-          {
-            category: "10h",
-            value: parseFloat(telegram?.overview.hourOfOperation[10]),
-          },
-          {
-            category: "11h",
-            value: parseFloat(telegram?.overview.hourOfOperation[11]),
-          },
-          {
-            category: "12h",
-            value: parseFloat(telegram?.overview.hourOfOperation[12]),
-          },
-          {
-            category: "13h",
-            value: parseFloat(telegram?.overview.hourOfOperation[13]),
-          },
-          {
-            category: "14h",
-            value: parseFloat(telegram?.overview.hourOfOperation[14]),
-          },
-          {
-            category: "15h",
-            value: parseFloat(telegram?.overview.hourOfOperation[15]),
-          },
-          {
-            category: "16h",
-            value: parseFloat(telegram?.overview.hourOfOperation[16]),
-          },
-          {
-            category: "17h",
-            value: parseFloat(telegram?.overview.hourOfOperation[17]),
-          },
-          {
-            category: "18h",
-            value: parseFloat(telegram?.overview.hourOfOperation[18]),
-          },
-          {
-            category: "19h",
-            value: parseFloat(telegram?.overview.hourOfOperation[19]),
-          },
-          {
-            category: "20h",
-            value: parseFloat(telegram?.overview.hourOfOperation[20]),
-          },
-          {
-            category: "21h",
-            value: parseFloat(telegram?.overview.hourOfOperation[21]),
-          },
-          {
-            category: "22h",
-            value: parseFloat(telegram?.overview.hourOfOperation[22]),
-          },
-          {
-            category: "23h",
-            value: parseFloat(telegram?.overview.hourOfOperation[23]),
-          },
-        ]);
+      setChartTimetele([
+        parseFloat(telegram?.overview.hourOfOperation[0]),
+        parseFloat(telegram?.overview.hourOfOperation[1]),
+        parseFloat(telegram?.overview.hourOfOperation[2]),
+        parseFloat(telegram?.overview.hourOfOperation[3]),
+        parseFloat(telegram?.overview.hourOfOperation[4]),
+        parseFloat(telegram?.overview.hourOfOperation[5]),
+        parseFloat(telegram?.overview.hourOfOperation[6]),
+        parseFloat(telegram?.overview.hourOfOperation[7]),
+        parseFloat(telegram?.overview.hourOfOperation[8]),
+        parseFloat(telegram?.overview.hourOfOperation[9]),
+        parseFloat(telegram?.overview.hourOfOperation[10]),
+        parseFloat(telegram?.overview.hourOfOperation[11]),
+        parseFloat(telegram?.overview.hourOfOperation[12]),
+        parseFloat(telegram?.overview.hourOfOperation[13]),
+        parseFloat(telegram?.overview.hourOfOperation[14]),
+        parseFloat(telegram?.overview.hourOfOperation[15]),
+        parseFloat(telegram?.overview.hourOfOperation[16]),
+        parseFloat(telegram?.overview.hourOfOperation[17]),
+        parseFloat(telegram?.overview.hourOfOperation[18]),
+        parseFloat(telegram?.overview.hourOfOperation[19]),
+        parseFloat(telegram?.overview.hourOfOperation[20]),
+        parseFloat(telegram?.overview.hourOfOperation[21]),
+        parseFloat(telegram?.overview.hourOfOperation[22]),
+        parseFloat(telegram?.overview.hourOfOperation[23]),
+      ]);
       setActivitiesOfTheWeek([
         {
           name: "Activities",
@@ -328,6 +169,7 @@ export default function AuthenTelegram({
           ],
         },
       ]);
+      setTelegramArrayInfoStart(arrInfoUser);
       setArrInfoUser([
         {
           title: "Good Profile",
@@ -343,7 +185,7 @@ export default function AuthenTelegram({
           ),
         },
         {
-          title: "Average Act Rate",
+          title: "Active members",
           count: telegram?.overview?.avg?.avgActiveMember,
           bg: "bg-[#F1F5F9]",
           icon: (
@@ -378,9 +220,20 @@ export default function AuthenTelegram({
         },
       ]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [telegram]);
+  const handleGroupPrivate = () => {
+    if (progress < 10 && telegram.status === "4") {
+      return "Telegram group data has been limited. BitScope cannot authenticate at this time";
+    }
+    return progress < 100
+      ? "Please wait for the analysis resultrom the system"
+      : `Sorry, this feature is being optimized. Results will be hidden!`;
+  };
   return (
     <TelegramAuthentication
+      arrThree={telegramArrayThreeStart}
+      arrFour={telegramArrayInfoStart}
       classNameSRC={progress < 100 ? "p-0 border-none" : ""}
       number={progress}
       arrRender={arrInfoTelegram}
@@ -391,20 +244,20 @@ export default function AuthenTelegram({
               autoplay
               loop
               src="/assets/jsonGif/clockGearWorkingMan.json"
-              style={{ height: "230px", width: "300px" }}
+              style={{ height: "230px", maxWidth: "300px" }}
               className="p-0"
             ></Player>
           </div>
         ) : parseFloat(telegram.overview.activeReview.active) +
             parseFloat(telegram?.overview?.activeReview?.normal) >
           50 ? (
-          <Image src="/image/goodRank.svg" alt="" width={206} height={206} />
+          <Image src="/image/goodRank.svg" alt="" width={143} height={143} />
         ) : (
           <Image
             src="/image/badRank.svg"
             alt="quality"
-            width={206}
-            height={206}
+            width={143}
+            height={143}
           />
         )
       }
@@ -430,7 +283,7 @@ export default function AuthenTelegram({
           ? "bg-green-200"
           : "bg-red-200"
       }`}
-      image={"null"}
+      image={telegram.profile?.avatar}
       name={telegram.profile?.name}
       series={seriesTele}
       src={
@@ -467,17 +320,12 @@ export default function AuthenTelegram({
           ? "That Telegram Group so good"
           : "That Telegram Group don’t seem so good"
       }
-      username={telegram.profile.name}
+      username={telegram.profile.objectId}
       data={chartTimeTele}
       sery={activitiesOfTheWeek}
       ArrProfileTele={arrInfoUser}
-      rankTitle={telegram.overview.ranking?.ranking || "Loading"}
-      rankContent={
-        progress < 100
-          ? "Please wait for the analysis resultrom the system"
-          : `A ranking with ${telegram.overview.ranking?.ranking} groups has a 10% difference in membership
-        compared to the reference group`
-      }
+      rankTitle={telegram.overview.ranking?.ranking ?? "Loading"}
+      rankContent={handleGroupPrivate()}
     />
   );
 }

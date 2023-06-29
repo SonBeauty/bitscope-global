@@ -26,6 +26,7 @@ import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import { getHistory } from "../api/authentication/History";
+import ProgressBar from "@/components/ui/ProgressBar";
 
 export default function History() {
   const router = useRouter();
@@ -50,6 +51,11 @@ export default function History() {
   if (width < 1024) {
     return <HistoryMobile data={realData} isLoading={isLoading} />;
   }
+
+  const handleError = (e: any) => {
+    e.target.src =
+      "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
+  };
   return (
     <LayoutDashBoard className="bg-white md:p-5 py-[15px]">
       <div className="flex flex-col gap-4">
@@ -102,7 +108,7 @@ export default function History() {
                     autoplay
                     loop
                     src="/assets/jsonGif/ManAndRobotWithComputers.json"
-                    style={{ minHeight: "50vh", width: "75%" }}
+                    style={{ minHeight: "40vh", width: "40%" }}
                     className="p-0"
                   />
                 </div>
@@ -126,96 +132,223 @@ export default function History() {
                   </thead>
                   <tbody className="w-full">
                     {realData?.data?.length > 0 &&
-                      TABLE_ROWS.map((item: any, index: number) => {
+                      realData?.data?.map((item: any, index: number) => {
                         const isLast = index === TABLE_ROWS.length - 1;
                         const classes = isLast
                           ? ""
                           : "border-b border-dashed border-[#e4e3e3]";
                         return (
-                          <tr
-                            className="flex hover:bg-[#EBF4FF] hover:shadow-sm duration-300 ease-in-out"
-                            key={index}
-                          >
-                            <td
-                              className={`${classes} py-[13px] px-[22px] h-[55px] basis-[5%]`}
-                            >
-                              <Typography
-                                variant="small"
-                                color="blue-gray"
-                                className="font-medium text-[16.26px] leading-[28.69px] text-[#1C1C1C]"
-                              >
-                                {index + 1}
-                              </Typography>
-                            </td>
-                            <td
-                              className={`${classes} py-[7px] px-0 md:px-[22px] h-[55px] flex items-center justify-start basis-[11.5%]`}
-                            >
-                              <picture className="w-[41px] h-[41px] ring-[#f0f6fe] ring-4 rounded-full">
-                                <img
-                                  className="w-[41px] h-[41px] rounded-full"
-                                  src={item.img}
-                                  alt=""
-                                />
-                              </picture>
-                            </td>
-                            <td
-                              className={`${classes} flex items-center justify-start py-[14px] px-[22px] h-[55px]  basis-[23.5%]`}
-                            >
-                              <div className="flex items-center justify-center gap-[10px]">
-                                {item.tw ? (
-                                  <TwitterHistorySVG className="w-6 h-6 rounded-full" />
-                                ) : (
-                                  <TelegramHistorySVG className="w-6 h-6 rounded-full" />
-                                )}
-                                <Typography className="text-[#1C1C1C] font-medium text-base leading-5 text-center font-Inter cursor-pointer">
-                                  {item.social}
-                                </Typography>
-                              </div>
-                            </td>
-                            <td
-                              className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[20.1%]`}
-                            >
-                              <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
-                                {item.date}
-                              </Typography>
-                            </td>
-                            <td
-                              className={`${classes} pt-[12px] pb-[17px] px-[22px] h-[55px] basis-[30.1%]`}
-                            >
-                              <div className="flex justify-between w-[250px]">
-                                <Typography className="text-[#000000] font-Inter font-medium text-sm leading-[17px]">
-                                  Process
-                                </Typography>
-                                <Typography className="text-[#000000] font-Inter font-medium text-sm leading-[17px]">
-                                  {item.value}
-                                </Typography>
-                              </div>
-                              <div className="w-[250px]">{item.progress}</div>
-                            </td>
-                            <td
-                              className={`${classes} flex items-center justify-start py-[10px] px-[22px] h-[55px]  basis-[15%]`}
-                            >
-                              <div className="w-full items-center justify-start flex">
-                                <div className="h-[35px] cursor-pointer text-center w-[96px]  flex items-center bg-[#D7E8FD] hover:bg-[#005AE2] text-[#005AE2] hover:text-white justify-center rounded-[8px] duration-500 ease-in-out">
-                                  <span className="font-Inter font-medium text-[15.3px] leading-[18.52px] text-center text-inherit">
-                                    View more
-                                  </span>
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              className={`${classes} flex items-center justify-start pt-[18px] pb-[17px] px-[22px] pr-[42px] h-[55px] basis-0`}
-                            >
-                              <div className="flex items-center gap-[19px] justify-center">
-                                <div className="cursor-pointer">
-                                  <DownloadAuthenSVG className="stroke-[#28303F] hover:stroke-[#005AE2] duration-500 ease-in-out" />
-                                </div>
-                                <div className="cursor-pointer">
-                                  <TrashAuthenSVG className="stroke-[#28303F] hover:stroke-[#E32626] duration-500 ease-in-out" />
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
+                          <>
+                            {item.telegram !== null &&
+                              item.telegram?.dataId !== null && (
+                                <tr
+                                  className="flex hover:bg-[#EBF4FF] hover:shadow-sm duration-300 ease-in-out"
+                                  key={item._id}
+                                >
+                                  <td
+                                    className={`${classes} py-[13px] px-[22px] h-[55px] basis-[5%]`}
+                                  >
+                                    <Typography
+                                      variant="small"
+                                      color="blue-gray"
+                                      className="font-medium text-[16.26px] leading-[28.69px] text-[#1C1C1C]"
+                                    >
+                                      {index === 1 ? 3 : index * index + 1}
+                                    </Typography>
+                                  </td>
+                                  <td
+                                    className={`${classes} py-[7px] px-0 md:px-[22px] h-[55px] flex items-center justify-start basis-[11.5%]`}
+                                  >
+                                    <picture className="w-[41px] h-[41px] ring-[#f0f6fe] ring-4 rounded-full">
+                                      <img
+                                        className="w-[41px] h-[41px] rounded-full"
+                                        src={
+                                          item?.telegram?.dataId?.profile
+                                            ?.avatar
+                                        }
+                                        alt=""
+                                        onError={handleError}
+                                      />
+                                    </picture>
+                                  </td>
+                                  <td
+                                    className={`${classes} flex items-center justify-start py-[14px] px-[22px] h-[55px]  basis-[23.5%]`}
+                                  >
+                                    <div className="flex items-center justify-center gap-[10px]">
+                                      <TelegramHistorySVG className="w-6 h-6 rounded-full" />
+
+                                      <Typography className="text-[#1C1C1C] font-medium text-base leading-5 text-center font-Inter cursor-pointer">
+                                        {item?.telegram?.objectId}
+                                      </Typography>
+                                    </div>
+                                  </td>
+                                  <td
+                                    className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[20.1%]`}
+                                  >
+                                    <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
+                                      {item.createdAt?.slice(0, 10) +
+                                        " at " +
+                                        item.createdAt?.slice(11, 16)}
+                                    </Typography>
+                                  </td>
+                                  <td
+                                    className={`${classes} pt-[12px] pb-[17px] px-[22px] h-[55px] basis-[30.1%]`}
+                                  >
+                                    <div className="flex justify-between w-[250px]">
+                                      <Typography className="text-[#000000] font-Inter font-medium text-sm leading-[17px]">
+                                        Process
+                                      </Typography>
+                                      <Typography className="text-[#000000] font-Inter font-medium text-sm leading-[17px]">
+                                        {
+                                          item?.telegram?.dataId?.overview
+                                            ?.percent
+                                        }
+                                      </Typography>
+                                    </div>
+                                    <div className="w-[250px]">
+                                      <ProgressBar
+                                        className="bg-[#26D256] rounded-full"
+                                        backClass="h-[5px] w-[250px] rounded-full"
+                                        value={
+                                          item?.telegram?.dataId?.overview
+                                            ?.percent
+                                        }
+                                      />
+                                    </div>
+                                  </td>
+                                  <td
+                                    className={`${classes} flex items-center justify-start py-[10px] px-[22px] h-[55px]  basis-[15%]`}
+                                  >
+                                    <div className="w-full items-center justify-start flex">
+                                      <Link
+                                        href={`/authentication/${item._id}`}
+                                        target="_blank"
+                                        className="h-[35px] cursor-pointer text-center w-[96px]  flex items-center bg-[#D7E8FD] hover:bg-[#005AE2] text-[#005AE2] hover:text-white justify-center rounded-[8px] duration-500 ease-in-out"
+                                      >
+                                        <span className="font-Inter font-medium text-[15.3px] leading-[18.52px] text-center text-inherit">
+                                          View more
+                                        </span>
+                                      </Link>
+                                    </div>
+                                  </td>
+                                  <td
+                                    className={`${classes} flex items-center justify-start pt-[18px] pb-[17px] px-[22px] pr-[42px] h-[55px] basis-0`}
+                                  >
+                                    <div className="flex items-center gap-[19px] justify-center">
+                                      <div className="cursor-pointer">
+                                        <DownloadAuthenSVG className="stroke-[#28303F] hover:stroke-[#005AE2] duration-500 ease-in-out" />
+                                      </div>
+                                      <div className="cursor-pointer">
+                                        <TrashAuthenSVG className="stroke-[#28303F] hover:stroke-[#E32626] duration-500 ease-in-out" />
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                              )}
+                            {item.twitter !== null &&
+                              item.twitter?.dataId?.profile !== null && (
+                                <tr className="flex hover:bg-[#EBF4FF] hover:shadow-sm duration-300 ease-in-out">
+                                  <td
+                                    className={`${classes} py-[13px] px-[22px] h-[55px] basis-[5%]`}
+                                  >
+                                    <Typography
+                                      variant="small"
+                                      color="blue-gray"
+                                      className="font-medium text-[16.26px] leading-[28.69px] text-[#1C1C1C]"
+                                    >
+                                      {(index + 1) * 2}
+                                    </Typography>
+                                  </td>
+                                  <td
+                                    className={`${classes} py-[7px] px-0 md:px-[22px] h-[55px] flex items-center justify-start basis-[11.5%]`}
+                                  >
+                                    <picture className="w-[41px] h-[41px] ring-[#f0f6fe] ring-4 rounded-full">
+                                      <img
+                                        className="w-[41px] h-[41px] rounded-full"
+                                        src={
+                                          item?.twitter?.dataId?.profile?.avatar
+                                        }
+                                        alt="twitter"
+                                        onError={handleError}
+                                      />
+                                    </picture>
+                                  </td>
+                                  <td
+                                    className={`${classes} flex items-center justify-start py-[14px] px-[22px] h-[55px]  basis-[23.5%]`}
+                                  >
+                                    <div className="flex items-center justify-center gap-[10px]">
+                                      <TwitterHistorySVG className="w-6 h-6 rounded-full" />
+
+                                      <Typography className="text-[#1C1C1C] font-medium text-base leading-5 text-center font-Inter cursor-pointer">
+                                        {item?.twitter?.objectId}
+                                      </Typography>
+                                    </div>
+                                  </td>
+                                  <td
+                                    className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[20.1%]`}
+                                  >
+                                    <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
+                                      {item.createdAt?.slice(0, 10) +
+                                        " at " +
+                                        item.createdAt?.slice(11, 16)}
+                                    </Typography>
+                                  </td>
+                                  <td
+                                    className={`${classes} pt-[12px] pb-[17px] px-[22px] h-[55px] basis-[30.1%]`}
+                                  >
+                                    <div className="flex justify-between w-[250px]">
+                                      <Typography className="text-[#000000] font-Inter font-medium text-sm leading-[17px]">
+                                        Process
+                                      </Typography>
+                                      <Typography className="text-[#000000] font-Inter font-medium text-sm leading-[17px]">
+                                        {
+                                          item?.twitter?.dataId?.overview
+                                            ?.processBar
+                                        }
+                                      </Typography>
+                                    </div>
+                                    <div className="w-[250px]">
+                                      <ProgressBar
+                                        className="bg-[#26D256] rounded-full"
+                                        backClass="h-[5px] w-[250px] rounded-full"
+                                        value={
+                                          item?.twitter?.dataId?.overview
+                                            ?.processBar
+                                        }
+                                      />
+                                    </div>
+                                  </td>
+                                  <td
+                                    className={`${classes} flex items-center justify-start py-[10px] px-[22px] h-[55px]  basis-[15%]`}
+                                  >
+                                    <div className="w-full items-center justify-start flex">
+                                      <Link
+                                        href={`/authentication/${item._id}`}
+                                        target="_blank"
+                                        className="h-[35px] cursor-pointer text-center w-[96px]  flex items-center bg-[#D7E8FD] hover:bg-[#005AE2] text-[#005AE2] hover:text-white justify-center rounded-[8px] duration-500 ease-in-out"
+                                      >
+                                        <span className="font-Inter font-medium text-[15.3px] leading-[18.52px] text-center text-inherit">
+                                          View more
+                                        </span>
+                                      </Link>
+                                    </div>
+                                  </td>
+                                  <td
+                                    className={`${classes} flex items-center justify-start pt-[18px] pb-[17px] px-[22px] pr-[42px] h-[55px] basis-0`}
+                                  >
+                                    <div className="flex items-center gap-[19px] justify-center">
+                                      <div className="cursor-pointer">
+                                        <DownloadAuthenSVG className="stroke-[#28303F] hover:stroke-[#005AE2] duration-500 ease-in-out" />
+                                      </div>
+                                      <div className="cursor-pointer">
+                                        <TrashAuthenSVG className="stroke-[#28303F] hover:stroke-[#E32626] duration-500 ease-in-out" />
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                              )}
+                          
+                          </>
                         );
                       })}
                   </tbody>

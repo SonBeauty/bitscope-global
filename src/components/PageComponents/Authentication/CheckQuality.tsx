@@ -23,7 +23,7 @@ export default function CheckQuality({
         color,
         className,
         border,
-        "bg-[#e9f5f9] px-6 py-4 rounded-2xl flex items-center gap-4 sm:flex-row flex-col shadow-md"
+        "bg-[#e9f5f9] px-6 py-4 rounded-md flex items-center gap-4 sm:flex-row flex-col shadow-md"
       )}
     >
       <div

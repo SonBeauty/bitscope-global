@@ -1,11 +1,11 @@
 import BasicBar from "@/components/Charts/BasicChart/BasicBar";
 import ActiveShape from "@/components/Charts/PieChart/ActiveShape";
+import CalendarSVG from "@/components/svg/CalendarSVG";
 import ProgressBar from "@/components/ui/ProgressBar";
 import { ArrInfoUser } from "@/constant/components/Authentication";
 import React, { useEffect, useState } from "react";
-import { BsCalendar3, BsTwitter } from "react-icons/bs";
+import { BsTwitter } from "react-icons/bs";
 import CheckInfoUser from "./CheckInfoUser";
-import CheckQuality from "./CheckQuality";
 import ChildrenInfoUser from "./ChildrenInfoUser";
 interface ArrTwitterProps {
   title: string;
@@ -27,7 +27,7 @@ interface TwitterAuthenticationProps {
   data: any;
   number: number;
   arrInfoUsers: any;
-  classNameSRC?: string;
+  dataFourStart?: any;
 }
 
 export default function TwitterAuthentication({
@@ -45,7 +45,7 @@ export default function TwitterAuthentication({
   data,
   number,
   arrInfoUsers,
-  classNameSRC,
+  dataFourStart,
 }: TwitterAuthenticationProps) {
   const [zero, setZero] = useState<boolean>(true);
   useEffect(() => {
@@ -56,28 +56,22 @@ export default function TwitterAuthentication({
   }, [arrInfoUser]);
   return (
     <>
-      <CheckInfoUser
-        icon={<BsTwitter className="w-6 h-6" />}
-        social="Twitter"
-        src={image}
-        name={name}
-        username={username}
-        iconJoin={<BsCalendar3 className="bg-blue-400" />}
-        textJoin={textJoin}
-        arrRender={arrRender}
-        link="https://twitter.com/"
-        col={3}
-      />
-
-      <CheckQuality
-        color={corlor}
-        border=""
-        src={src}
-        title={title}
-        content={content}
-        classNameSRC={classNameSRC}
-      />
-      <div className="">
+      <div className="px-[5px] md:px-0">
+        <CheckInfoUser
+          icon={<BsTwitter className="w-6 h-6" />}
+          social="Twitter"
+          src={image}
+          name={name}
+          username={username}
+          iconJoin={<CalendarSVG className="w-[31px] h-[23px]" />}
+          textJoin={textJoin}
+          arrRender={arrRender}
+          link={`https://twitter.com/${username}`}
+          col={4}
+          dataFourStart={dataFourStart}
+        />
+      </div>
+      <div className="px-[5px] md:px-0">
         <ProgressBar
           value={number}
           className=" bg-blue-500 "
@@ -85,17 +79,28 @@ export default function TwitterAuthentication({
           showValue
         />
       </div>
-      <div className="flex gap-6 flex-col md:flex-row ">
-        <div className="bg-background rounded-3xl p-2 shadow-md basis-4/12">
-          <ActiveShape className="w-full" series={series} />
+      <div className="flex md:gap-[18px] gap-[10px] flex-col md:flex-row px-[5px] md:px-0">
+        <div className="bg-background rounded-none md:rounded-md p-2 shadow-md basis-4/12">
+          <ActiveShape
+            className="w-full"
+            series={series}
+            name="Recent Follower Ratio"
+            social="twitter"
+          />
         </div>
-        <div className="bg-background relative p-8 grid lg:grid-cols-3 grid-cols-2 gap-8 items-center shadow-md rounded-3xl basis-8/12">
+
+        <div className="bg-background relative md:px-8 px-[15px] pb-[14px] md:pt-[47px] pt-[57px] grid lg:grid-cols-3 grid-cols-1 md:gap-8 gap-[10px] items-center shadow-md rounded-md basis-8/12">
+          <h6 className="absolute md:top-[25px] top-[25px] text-[#1C1C1C] md:left-8 left-[38%] text-xl md:text-base  font-Inter font-semibold leading-5">
+            Key Metrics
+          </h6>
           {ArrInfoUser.map((item: any, index: number) => {
             return (
               <ChildrenInfoUser
                 key={index}
                 icon={item.icon}
                 info={item.info}
+                position={item.position}
+                content={item.content}
                 numberInfo={`${arrInfoUser[index]}`}
                 numberInfoStart={arrInfoUsers[index]}
                 zero={zero}
@@ -104,11 +109,17 @@ export default function TwitterAuthentication({
           })}
         </div>
       </div>
-      <div className="w-full bg-background p-8 shadow-md rounded-2xl">
-        <h3 className="font-semibold text-sm pb-8 text-black-500">
-          Followers Quality Graph
-        </h3>
-        <BasicBar series={data} />
+      <div className="px-[5px] md:px-0">
+        <div className="w-full bg-background md:p-6 py-[25px] shadow-md rounded-md">
+          <h3 className="font-Inter md:text-[0.875rem] text-xl font-semibold leading-[1.25rem] pb-8 text-[#1C1C1C]">
+            Followers Hit Key Metrics
+          </h3>
+          <BasicBar series={data} />
+          <span className="text-[#000000] text-[0.75rem] font-Inter md:leading-[14.52px] leading-5 font-normal italic">
+            Just wanted let you know that BitScope don&apos;t judge anyone. This
+            data for the Community Manager track campaign performance.
+          </span>
+        </div>
       </div>
     </>
   );

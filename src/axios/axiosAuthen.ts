@@ -12,7 +12,7 @@ const axiosAuthen = axios.create({
 axiosAuthen.interceptors.request.use(
   (config) => {
     const token =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
+      localStorage.getItem("token") ?? sessionStorage.getItem("token");
     if (token) {
       config.headers.Authorization = token;
     }

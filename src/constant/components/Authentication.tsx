@@ -10,12 +10,14 @@ export const ArrInfoUser = [
       />
     ),
     info: "Regular activities",
+    content: "Users with recent Tweet.",
   },
   {
     icon: (
       <Image src="/image/icons8-worse.png" alt="icon" width={29} height={29} />
     ),
-    info: "Tweet Ratio",
+    info: "Tweet ratio",
+    content: "Continuous operation since created.",
   },
   {
     icon: (
@@ -26,7 +28,9 @@ export const ArrInfoUser = [
         height={29}
       />
     ),
-    info: "Follower Ratio",
+    info: "Follower ratio",
+    content: "Followers with valuable content (hidden formula).",
+    position: "bottom",
   },
   {
     icon: (
@@ -48,13 +52,15 @@ export const ArrInfoUser = [
         height={29}
       />
     ),
-    info: "Followers with Category",
+    info: "Followers with category",
   },
   {
     icon: (
       <Image src="/image/icons8-bright.png" alt="icon" width={29} height={29} />
     ),
     info: "Bubbles spread",
+    content: "Followers are highly effective (hidden formula).",
+    position: "bottom",
   },
   {
     icon: (
@@ -98,6 +104,7 @@ export const dataTwitterLoading = {
     nearAction: "",
     lastTweet: "",
     userName: "Loading...",
+    aveReach: 0
   },
   overview: {
     hightQuality: 0,
@@ -143,10 +150,11 @@ export const dataTwitterLoading = {
 };
 export const dataTelegramLoading = {
   objectId: "Loading...",
-  status: 0,
+  status: "0",
   profile: {
     objectId: "Loading...",
     name: "Loading...",
+    avatar : "Loading..."
   },
   overview: {
     review: {

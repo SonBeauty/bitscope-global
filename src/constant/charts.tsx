@@ -80,8 +80,61 @@ export const optionsBarChart: ApexCharts.ApexOptions = {
     },
   },
 };
-export const optionsActiveShape: ApexCharts.ApexOptions = {
-  labels: ["Best Quality", "Good Quality", "Normal Quality", "Low Quality"],
+export const optionsActiveShapeTW: ApexCharts.ApexOptions = {
+  labels: ["Maybe KOL", "Good Follower", "Full Info", "Miss Info"],
+  dataLabels: {
+    enabled: true,
+  },
+  colors: ["#BAEDBD", "#005AE2", "#FCCA4A", "#E92D3B"],
+  legend: {
+    show: false,
+  },
+  chart: {
+    animations: {
+      enabled: true,
+      easing: "easeinout",
+      speed: 600,
+      animateGradually: {
+        enabled: true,
+        delay: 500,
+      },
+      dynamicAnimation: {
+        enabled: true,
+        speed: 500,
+      },
+    },
+  },
+  plotOptions: {
+    pie: {
+      donut: {
+        size: "65%",
+        labels: {
+          show: true,
+          value: {
+            show: true,
+            fontFamily: "Poppins",
+            color: "#475569",
+            formatter(val: any) {
+              return `${parseInt(val)}%`;
+            },
+          },
+        },
+      },
+    },
+  },
+  responsive: [
+    {
+      breakpoint: 480,
+      options: {
+        legend: {
+          position: "bottom",
+        },
+      },
+    },
+  ],
+};
+export const optionsActiveShapeTE: ApexCharts.ApexOptions = {
+  labels: ["Active in groups", "High-Quality mem", "Sketchy info", "Spammer"],
   dataLabels: {
     enabled: true,
   },
@@ -134,8 +187,10 @@ export const optionsActiveShape: ApexCharts.ApexOptions = {
   ],
 };
 export const optionsActiveShapeFake: ApexCharts.ApexOptions = {
-  labels: ["Best Quality", "Good Quality", "Normal Quality", "Low Quality"],
   dataLabels: {
+    enabled: false,
+  },
+  tooltip: {
     enabled: false,
   },
   colors: ["#BAEDBD", "#005AE2", "#FCCA4A", "#E92D3B"],
@@ -294,9 +349,10 @@ export const BasicBarChart: ApexCharts.ApexOptions = {
     },
   },
   dataLabels: {
-    offsetY: -22,
+    enabled: true,
+    offsetY: -24,
     style: {
-      fontSize: "16px",
+      fontSize: "12px",
       colors: ["#304758"],
     },
   },
@@ -326,14 +382,6 @@ export const BasicBarChart: ApexCharts.ApexOptions = {
       "16",
       "17",
     ],
-  },
-  yaxis: {
-    title: {
-      text: "Followers Quality Graph",
-    },
-    labels: {
-      show: true,
-    },
   },
   fill: {
     opacity: 1,
@@ -406,22 +454,171 @@ export const BasicBarChartFake: ApexCharts.ApexOptions = {
       "17",
     ],
   },
-  yaxis: {
-    title: {
-      text: "Followers Quality Graph",
-    },
-    labels: {
-      show: false,
-    },
-  },
+
   fill: {
     opacity: 1,
   },
   tooltip: {
+    enabled: false,
     y: {
       formatter: function (val) {
         return val + "";
       },
+    },
+  },
+};
+export const optionsStepline: ApexCharts.ApexOptions = {
+  labels: [
+    "0h",
+    "1h",
+    "2h",
+    "3h",
+    "4h",
+    "5h",
+    "6h",
+    "7h",
+    "8h",
+    "9h",
+    "10h",
+    "11h",
+    "12h",
+    "13h",
+    "14h",
+    "15h",
+    "16h",
+    "17h",
+    "18h",
+    "19h",
+    "20h",
+    "21h",
+    "22h",
+    "23h",
+  ],
+
+  chart: {
+    toolbar: {
+      show: false,
+    },
+  },
+  stroke: {
+    curve: "stepline",
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  yaxis: {
+    labels: {
+      style: {
+        colors: "#475569",
+        fontFamily: "Inter",
+      },
+    },
+  },
+  grid: {
+    show: true,
+    borderColor: "#e2e8f0",
+    position: "back",
+  },
+  legend: {
+    labels: {
+      colors: "#475569",
+    },
+  },
+  xaxis: {
+    labels: {
+      style: {
+        colors: "#475569",
+        fontFamily: "Inter",
+      },
+    },
+    axisBorder: {
+      show: false,
+    },
+    axisTicks: {
+      show: false,
+    },
+  },
+  markers: {
+    hover: {
+      sizeOffset: 4,
+    },
+  },
+};
+export const optionsSteplineMobile: ApexCharts.ApexOptions = {
+  labels: [
+    "0 h",
+    "1 h",
+    "2 h",
+    "3 h",
+    "4 h",
+    "5 h",
+    "6 h",
+    "7 h",
+    "8 h",
+    "9 h",
+    "10 h",
+    "11 h",
+    "12 h",
+    "13 h",
+    "14 h",
+    "15 h",
+    "16 h",
+    "17 h",
+    "18 h",
+    "19 h",
+    "20 h",
+    "21 h",
+    "22 h",
+    "23 h",
+  ],
+
+  chart: {
+    toolbar: {
+      show: false,
+    },
+  },
+  stroke: {
+    curve: "stepline",
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  yaxis: {
+    labels: {
+      style: {
+        colors: "#475569",
+        fontFamily: "Inter",
+      },
+    },
+  },
+  grid: {
+    show: true,
+    borderColor: "#e2e8f0",
+    position: "back",
+  },
+  legend: {
+    labels: {
+      colors: "#475569",
+    },
+  },
+  xaxis: {
+    labels: {
+      rotate: -90,
+      style: {
+        colors: "#475569",
+        fontFamily: "Inter",
+      },
+    },
+    axisBorder: {
+      show: false,
+    },
+    axisTicks: {
+      show: false,
+    },
+  },
+  markers: {
+    hover: {
+      sizeOffset: 4,
     },
   },
 };

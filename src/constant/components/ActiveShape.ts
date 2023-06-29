@@ -1,18 +1,22 @@
 export const labelRender = [
   {
-    label: "Best Quality",
+    labelTW: "Maybe KOL",
+    labelTE: "Active in groups",
     bg: "bg-[#BAEDBD]",
   },
   {
-    label: "Good Quality",
+    labelTW: "Good Follower",
+    labelTE: "High-Quality mem",
     bg: "bg-[#005AE2]",
   },
   {
-    label: "Normal Quality",
+    labelTW: "Full Info",
+    labelTE: "Sketchy info",
     bg: "bg-[#FCCA4A]",
   },
   {
-    label: "Low Quality",
+    labelTW: "Miss Info",
+    labelTE: "Spammer",
     bg: "bg-[#E92D3B]",
   },
 ];
