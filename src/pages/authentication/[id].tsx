@@ -71,9 +71,6 @@ export default function Authentication() {
       if (data?.telegram && data?.telegram !== null) {
         setTelegram(data.telegram);
         if (data.telegram.status === "4") {
-          if (data?.telegram?.overview?.percent > 10) {
-            return setProgressTe(data?.telegram?.overview?.percent);
-          }
           setProgressStartTe(100);
           setProgressTe(100);
         } else {

@@ -67,6 +67,7 @@ export interface TelegramProps {
     avatar: string;
   };
   overview: {
+    percent: number;
     review: {
       active: number;
       normal: number;

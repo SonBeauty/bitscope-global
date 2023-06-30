@@ -104,7 +104,7 @@ export const dataTwitterLoading = {
     nearAction: "",
     lastTweet: "",
     userName: "Loading...",
-    aveReach: 0
+    aveReach: 0,
   },
   overview: {
     hightQuality: 0,
@@ -154,9 +154,10 @@ export const dataTelegramLoading = {
   profile: {
     objectId: "Loading...",
     name: "Loading...",
-    avatar : "Loading..."
+    avatar: "Loading...",
   },
   overview: {
+    percent: 0,
     review: {
       active: 0,
       normal: 0,

@@ -223,7 +223,7 @@ export default function AuthenTelegram({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [telegram]);
   const handleGroupPrivate = () => {
-    if (progress < 10 && telegram.status === "4") {
+    if (telegram.overview?.percent < 10 && telegram.status === "4") {
       return "Telegram group data has been limited. BitScope cannot authenticate at this time";
     }
     return progress < 100
