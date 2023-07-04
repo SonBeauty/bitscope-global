@@ -1,7 +1,7 @@
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import React from "react";
 interface RenderProps {
-  content: string;
+  content: string | React.ReactNode;
 }
 interface CheckListProps {
   arrRender: RenderProps[];

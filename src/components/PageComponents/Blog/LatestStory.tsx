@@ -27,37 +27,40 @@ export default function LatestStory() {
           </p>
         </div>
         <div className="row">
-          {data?.slice(-3).map((item: Data, index: number) => {
-            return (
-              <div className="col-md-4" key={index}>
-                <div
-                  className="story_box"
-                  data-aos="fade-up"
-                  data-aos-duration="1500"
-                >
-                  <div className="story_img">
-                    <Image
-                      src={item.imgStory}
-                      width={176}
-                      height={176}
-                      alt="image"
-                      className="h-44 w-full"
-                    />
-                  </div>
-                  <div className="story_text sm:h-96 h-80">
-                    <h3
-                      className="cursor-pointer leading-normal"
-                      onClick={() => router.push(`/blog/${item.link}`)}
-                    >
-                      {item.title}...
-                    </h3>
-                    <p className="">{item.highlight.slice(0, 230)}</p>
-                    <Link href={`/blog/${item.link}`}>READ MORE</Link>
+          {data
+            ?.slice(-3)
+            .reverse()
+            .map((item: Data, index: number) => {
+              return (
+                <div className="col-md-4" key={index}>
+                  <div
+                    className="story_box"
+                    data-aos="fade-up"
+                    data-aos-duration="1500"
+                  >
+                    <div className="story_img">
+                      <Image
+                        src={item.imgStory}
+                        width={176}
+                        height={176}
+                        alt="image"
+                        className="h-44 w-full"
+                      />
+                    </div>
+                    <div className="story_text sm:h-96 h-80">
+                      <h3
+                        className="cursor-pointer leading-normal"
+                        onClick={() => router.push(`/blog/${item.link}`)}
+                      >
+                        {item.title}...
+                      </h3>
+                      <p className="">{item.highlight.slice(0, 230)}</p>
+                      <Link href={`/blog/${item.link}`}>READ MORE</Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </section>

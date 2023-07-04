@@ -10,7 +10,7 @@ export const BlogHeader = () => {
   });
   let blogHeaderData: any = [];
   if (data) {
-    blogHeaderData = data[0];
+    blogHeaderData = data.reverse()[0];
   }
   return (
     <section className="row_am blog_list_main">
