@@ -238,8 +238,8 @@ export const optionsActiveShapeFake: ApexCharts.ApexOptions = {
 };
 export const optionsBarChartFake: ApexCharts.ApexOptions = {
   chart: {
-    height: 350,
     type: "bar",
+    height: 350,
     toolbar: {
       tools: {
         download: false,
@@ -261,58 +261,32 @@ export const optionsBarChartFake: ApexCharts.ApexOptions = {
   },
   plotOptions: {
     bar: {
-      borderRadius: 10,
-      dataLabels: {
-        position: "top",
-      },
+      horizontal: false,
+      columnWidth: "55%",
+      borderRadius: 5,
     },
   },
   dataLabels: {
     enabled: false,
-    formatter: function (val) {
-      return val + "";
-    },
-    offsetY: -20,
-    style: {
-      fontSize: "16px",
-      colors: ["#304758"],
+  },
+  stroke: {
+    show: false,
+    width: 2,
+    colors: ["transparent"],
+  },
+  fill: {
+    opacity: 1,
+  },
+  tooltip: {
+    enabled: false,
+    y: {
+      formatter: function (val) {
+        return val + "";
+      },
     },
   },
   xaxis: {
     categories: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-    position: "bottom",
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: false,
-    },
-    crosshairs: {
-      fill: {
-        type: "gradient",
-        gradient: {
-          colorFrom: "#A1E3CB",
-          colorTo: "#A1E3CB",
-          stops: [0, 100],
-          opacityFrom: 0.4,
-          opacityTo: 0.5,
-        },
-      },
-    },
-    tooltip: {
-      enabled: false,
-    },
-  },
-  yaxis: {
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: false,
-    },
-    labels: {
-      show: false,
-    },
   },
 };
 export const BasicBarChart: ApexCharts.ApexOptions = {
@@ -357,7 +331,7 @@ export const BasicBarChart: ApexCharts.ApexOptions = {
     },
   },
   stroke: {
-    show: false,
+    show: true,
     width: 2,
     colors: ["transparent"],
   },
@@ -395,6 +369,28 @@ export const BasicBarChart: ApexCharts.ApexOptions = {
   },
 };
 export const BasicBarChartFake: ApexCharts.ApexOptions = {
+  xaxis: {
+    categories: [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+    ],
+  },
   chart: {
     type: "bar",
     height: 350,
@@ -432,29 +428,6 @@ export const BasicBarChartFake: ApexCharts.ApexOptions = {
     width: 2,
     colors: ["transparent"],
   },
-  xaxis: {
-    categories: [
-      "0",
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14",
-      "15",
-      "16",
-      "17",
-    ],
-  },
-
   fill: {
     opacity: 1,
   },
@@ -497,14 +470,34 @@ export const optionsStepline: ApexCharts.ApexOptions = {
 
   chart: {
     toolbar: {
-      show: false,
+      tools: {
+        download: false,
+      },
+    },
+    animations: {
+      enabled: true,
+      easing: "easeinout",
+      speed: 500,
+      animateGradually: {
+        enabled: true,
+        delay: 400,
+      },
+      dynamicAnimation: {
+        enabled: true,
+        speed: 400,
+      },
     },
   },
   stroke: {
     curve: "stepline",
   },
   dataLabels: {
-    enabled: false,
+    enabled: true,
+    offsetY: -24,
+    style: {
+      fontSize: "12px",
+      colors: ["#304758"],
+    },
   },
   yaxis: {
     labels: {
@@ -543,6 +536,16 @@ export const optionsStepline: ApexCharts.ApexOptions = {
       sizeOffset: 4,
     },
   },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: "55%",
+      borderRadius: 5,
+      dataLabels: {
+        position: "top",
+      },
+    },
+  },
 };
 export const optionsSteplineMobile: ApexCharts.ApexOptions = {
   labels: [
@@ -574,14 +577,34 @@ export const optionsSteplineMobile: ApexCharts.ApexOptions = {
 
   chart: {
     toolbar: {
-      show: false,
+      tools: {
+        download: false,
+      },
+    },
+    animations: {
+      enabled: true,
+      easing: "easeinout",
+      speed: 500,
+      animateGradually: {
+        enabled: true,
+        delay: 400,
+      },
+      dynamicAnimation: {
+        enabled: true,
+        speed: 400,
+      },
     },
   },
   stroke: {
     curve: "stepline",
   },
   dataLabels: {
-    enabled: false,
+    enabled: true,
+    offsetY: -24,
+    style: {
+      fontSize: "12px",
+      colors: ["#304758"],
+    },
   },
   yaxis: {
     labels: {
@@ -619,6 +642,122 @@ export const optionsSteplineMobile: ApexCharts.ApexOptions = {
   markers: {
     hover: {
       sizeOffset: 4,
+    },
+  },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: "55%",
+      borderRadius: 5,
+      dataLabels: {
+        position: "top",
+      },
+    },
+  },
+};
+export const optionsSteplineMobileFake: ApexCharts.ApexOptions = {
+  labels: [
+    "0 h",
+    "1 h",
+    "2 h",
+    "3 h",
+    "4 h",
+    "5 h",
+    "6 h",
+    "7 h",
+    "8 h",
+    "9 h",
+    "10 h",
+    "11 h",
+    "12 h",
+    "13 h",
+    "14 h",
+    "15 h",
+    "16 h",
+    "17 h",
+    "18 h",
+    "19 h",
+    "20 h",
+    "21 h",
+    "22 h",
+    "23 h",
+  ],
+
+  chart: {
+    toolbar: {
+      show: false,
+    },
+    animations: {
+      enabled: true,
+      easing: "easeinout",
+      speed: 500,
+      animateGradually: {
+        enabled: true,
+        delay: 400,
+      },
+      dynamicAnimation: {
+        enabled: true,
+        speed: 400,
+      },
+    },
+  },
+  stroke: {
+    curve: "stepline",
+  },
+  dataLabels: {
+    enabled: false,
+    offsetY: -24,
+    style: {
+      fontSize: "0px",
+      colors: ["#304758"],
+    },
+  },
+  yaxis: {
+    labels: {
+      style: {
+        colors: "#475569",
+        fontFamily: "Inter",
+      },
+    },
+  },
+  grid: {
+    show: true,
+    borderColor: "#e2e8f0",
+    position: "back",
+  },
+  legend: {
+    labels: {
+      colors: "#475569",
+    },
+  },
+  xaxis: {
+    labels: {
+      rotate: -90,
+      style: {
+        colors: "#475569",
+        fontFamily: "Inter",
+      },
+    },
+    axisBorder: {
+      show: false,
+    },
+    axisTicks: {
+      show: false,
+    },
+  },
+  markers: {
+    hover: {
+      sizeOffset: 4,
+    },
+  },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: "55%",
+      borderRadius: 5,
+      dataLabels: {
+        position: "top",
+      },
     },
   },
 };

@@ -20,7 +20,6 @@ export default function Login() {
   const dispath = useDispatch();
   const { mutate, isLoading } = useMutation(loginUser, {
     onSuccess: (data) => {
-      console.log(data);
       toast.success("Login Success!");
       if (remember) {
         localStorage.setItem("token", data.token);

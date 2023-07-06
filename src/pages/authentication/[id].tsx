@@ -86,7 +86,6 @@ export default function Authentication() {
       }
     }
   }, [data, dispath, progressTe, progressTw]);
-  console.log(progressStartTe);
   return (
     <LayoutDashBoard className="bg-white">
       <div className="flex flex-col md:gap-[18px] md:gap:6 gap-[10px] w-full m-auto mt-[15px] md:mt-0">

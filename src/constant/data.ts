@@ -180,16 +180,46 @@ export const notifications = [
 ];
 export const items = [
   {
+    version: "Changelog 3.6",
+    date: "29 June 2023",
+    changes: [
+      {
+        name: "Update the interface of Bit.Authen.Input",
+        tag: "updated",
+      },
+      {
+        name: "UAdded Bit.Authen History page",
+        tag: "added",
+      },
+      {
+        name: "Updated Bitscope webapp design",
+        tag: "updated",
+      },
+      {
+        name: "Added interpretation for Bit.Authen",
+        tag: "added",
+      },
+      {
+        name: "Added Key Metrics for Bit.Authen.Twitter",
+        tag: "added",
+      },
+      {
+        name: "Optimized the math formula of Bit.Authen.Telegram (incorrect result)",
+        tag: "fixed",
+      },
+    ],
+  },
+  {
     version: "Changelog 3.0",
     date: "07 June 2023",
     changes: [
       {
         name: "Added authentication features on Twitter and Telegram.",
-        tag: "update",
+        tag: "updated",
       },
       {
         name: "Updated Telegram behavior logic.",
-        tag: "update",
+        tag: "updated",
       },
     ],
   },
@@ -203,7 +233,7 @@ export const items = [
       },
       {
         name: "Design dashboard model.",
-        tag: "update",
+        tag: "updated",
       },
     ],
   },
@@ -221,7 +251,7 @@ export const items = [
       },
       {
         name: "Edit image interface.",
-        tag: "update",
+        tag: "updated",
       },
     ],
   },

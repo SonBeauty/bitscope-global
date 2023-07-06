@@ -1,4 +1,8 @@
-import { optionsStepline, optionsSteplineMobile } from "@/constant/charts";
+import {
+  optionsStepline,
+  optionsSteplineMobile,
+  optionsSteplineMobileFake,
+} from "@/constant/charts";
 import useWidth from "@/hooks/useWidth";
 import { RootState } from "@/store";
 import dynamic from "next/dynamic";
@@ -31,23 +35,21 @@ const StepLineChart = (series: any) => {
   }, [isFake, series.series]);
   useEffect(() => {
     if (width < breakpoints.md) {
-      setOptions(optionsSteplineMobile);
+      setOptions(isFake ? optionsSteplineMobileFake : optionsSteplineMobile);
     }
-  }, [breakpoints.md, width]);
+  }, [breakpoints.md, isFake, width]);
   return (
-    <div id="chart">
-      <ReactApexChart
-        options={options}
-        series={[
-          {
-            name: "value",
-            data: fakeData,
-          },
-        ]}
-        type="line"
-        height="250"
-      />
-    </div>
+    <ReactApexChart
+      options={options}
+      series={[
+        {
+          name: "value",
+          data: fakeData,
+        },
+      ]}
+      type="bar"
+      height="350"
+    />
   );
 };
 

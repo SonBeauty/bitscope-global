@@ -3,7 +3,7 @@ import React from "react";
 export default function ClockSVG({ className, classNamePath }: ClsPathProps) {
   return (
     <svg
-      viewBox="0 0 20 20"
+      viewBox="0 0 21 21"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}

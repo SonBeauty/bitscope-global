@@ -58,7 +58,7 @@ const ChangelogPage = () => {
                                           "bg-indigo-100 text-indigo-500":
                                             data.tag === "added",
                                           "bg-yellow-100 text-yellow-500":
-                                            data.tag === "update",
+                                            data.tag === "updated",
                                           "bg-red-100 text-red-500":
                                             data.tag === "fixed",
                                         }

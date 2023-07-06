@@ -72,7 +72,7 @@ export default function AuthenTelegram({
       ),
     },
     {
-      title: "Average Mes",
+      title: "Average Mess",
       count: 0,
       bg: "bg-[#F1F5F9]",
       icon: (
@@ -206,7 +206,7 @@ export default function AuthenTelegram({
           ),
         },
         {
-          title: "Average Mes",
+          title: "Average Mess",
           count: telegram?.overview?.avg?.avgMess,
           bg: "bg-[#F1F5F9]",
           icon: (

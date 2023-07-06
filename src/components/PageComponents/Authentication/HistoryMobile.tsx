@@ -7,27 +7,44 @@ import NoAccessHistorySVG from "@/components/svg/NoAccessHistorySVG";
 import TelegramHistorySVG from "@/components/svg/TelegramHistorySVG";
 import TrashAuthenSVG from "@/components/svg/TrashAuthenSVG";
 import TwitterHistorySVG from "@/components/svg/TwitterHistorySVG";
-import { TABLE_ROWS_MB } from "@/constant/components/History";
+import { getHistory } from "@/pages/api/authentication/History";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { Card, CardBody, CardHeader } from "@material-tailwind/react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { Button } from "flowbite-react";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
-import { useOnClickOutside } from "usehooks-ts";
+import { useEffect, useRef, useState } from "react";
+import { useIntersectionObserver, useOnClickOutside } from "usehooks-ts";
 
-interface HistoryMobileProps {
-  data: any;
-  isLoading: boolean;
-}
-
-export default function HistoryMobile({ data, isLoading }: HistoryMobileProps) {
+export default function HistoryMobile() {
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const entry = useIntersectionObserver(carouselRef, {});
+  const isVisible = !!entry?.isIntersecting;
   const [openModal, setOpenModal] = useState<boolean>(false);
   const router = useRouter();
   const ref = useRef<any>(null);
+  const { data, fetchNextPage, isLoading, isFetchingNextPage } =
+    useInfiniteQuery(["historyMobile"], getHistory, {
+      getNextPageParam: (lastPage: any) => {
+        const maxPages = lastPage?.data?.last_page;
+        const nextPage = parseInt(lastPage?.data?.page) + 1;
+        return nextPage < maxPages ? nextPage : undefined;
+      },
+    });
+  useEffect(() => {
+    if (isVisible) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, isVisible]);
   const handleClickOutside = () => {
     setOpenModal(false);
   };
   useOnClickOutside(ref, handleClickOutside);
+  const handleError = (e: any) => {
+    e.target.src =
+      "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
+  };
   return (
     <LayoutDashBoard className="md:p-5 py-[15px] relative bg-[#F6FBFF]">
       <Card className="h-full bg-[#F6FBFF] flex flex-col gap-[6px] w-full max-h-[795.08px] p-0 m-0 shadow-none">
@@ -46,8 +63,8 @@ export default function HistoryMobile({ data, isLoading }: HistoryMobileProps) {
                   ACCESS HISTORY
                 </span>
               </span>
-              {!isLoading ||
-                (data?.data?.length > 0 && (
+              {isLoading ||
+                (data?.pages[0]?.data?.data?.length > 0 && (
                   <div
                     className="font-Inter text-white text-lg leading-[21.78px] font-bold cursor-pointer"
                     onClick={() => setOpenModal(true)}
@@ -58,7 +75,7 @@ export default function HistoryMobile({ data, isLoading }: HistoryMobileProps) {
             </div>
           </CardHeader>
         </div>
-        <CardBody className={`px-0 p-0 w-full overflow-auto `}>
+        <CardBody className={`px-0 p-0 w-full overflow-auto`}>
           {isLoading ? (
             <div className="bg-white  flex items-center justify-center h-[75vh]">
               <Player
@@ -73,7 +90,7 @@ export default function HistoryMobile({ data, isLoading }: HistoryMobileProps) {
                 className="p-0"
               />
             </div>
-          ) : data.data.length <= 0 ? (
+          ) : data?.pages[0]?.data?.data?.length <= 0 ? (
             <div className="bg-[#F6FBFF] w-full h-[60vh] flex items-center mb-8 md:items-center justify-center overflow-hidden">
               <div className="flex flex-col justify-center items-center gap-7">
                 <NoAccessHistorySVG />
@@ -83,72 +100,221 @@ export default function HistoryMobile({ data, isLoading }: HistoryMobileProps) {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col gap-[6px] bg-[#F5F5F5] items-center justify-center">
-              {TABLE_ROWS_MB.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="flex w-full justify-between gap-[10px] items-center bg-white py-[12px] px-[10px]"
-                  >
-                    <div className="flex gap-[7px] items-center">
-                      <picture className="rounded-full flex items-center justify-center">
-                        <img
-                          src={item.img}
-                          alt=""
-                          className="w-[48px] h-[48px] ring-[#f0f6fe] ring-4 rounded-full"
-                        />
-                      </picture>
-                      <div className="flex flex-col gap-[7px] justify-center items-center">
-                        <div className="flex gap-[6px]">
-                          {item.tw ? (
-                            <TwitterHistorySVG className="w-[21px] h-[21px] rounded-full" />
-                          ) : (
-                            <TelegramHistorySVG className="w-[21px] h-[21px] rounded-full" />
-                          )}
-                          <span className="font-Inter font-semibold text-lg leading-[22px]">
-                            {item.social}
+            <div className="flex flex-col gap-[6px] bg-[#F6FBFF] items-center justify-center ">
+              {data?.pages?.map((items: any) => {
+                return items?.data?.data?.map((item: any, index: number) => {
+                  return item.telegram === null || item.twitter === null ? (
+                    <div
+                      key={index}
+                      className="flex flex-col w-full bg-white p-[10px] gap-[5px]"
+                    >
+                      <div
+                        className="flex gap-[15px]"
+                        onClick={() =>
+                          router.push(`/authentication/${item._id}`)
+                        }
+                      >
+                        <picture className="rounded-full flex items-start justify-start">
+                          <img
+                            src={
+                              item?.telegram?.dataId?.profile?.avatar ??
+                              item?.twitter?.dataId?.profile?.avatar ??
+                              "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png"
+                            }
+                            alt=""
+                            className="w-[48px] h-[48px] ring-[#f0f6fe] ring-4 rounded-full"
+                            onError={handleError}
+                          />
+                        </picture>
+                        <div className="flex flex-col gap-[7px] justify-start items-start">
+                          <div className="flex gap-[15px]">
+                            {item?.telegram !== null && (
+                              <TelegramHistorySVG className="w-6 h-6 rounded-full" />
+                            )}
+                            {item?.twitter !== null && (
+                              <TwitterHistorySVG className="w-6 h-6 rounded-full" />
+                            )}
+                            <Link
+                              href={
+                                item.telegram !== null
+                                  ? `https://t.me/${item?.telegram?.objectId}`
+                                  : `https://twitter.com/${item?.twitter?.objectId}`
+                              }
+                              target="_blank"
+                              className="font-Inter font-semibold text-lg leading-[22px]"
+                            >
+                              {item?.telegram?.objectId ??
+                                item?.twitter?.objectId}
+                            </Link>
+                          </div>
+                          <span className="font-Inter text-start font-normal text-sm leading-5 text-[#585858]">
+                            {item?.createdAt
+                              ?.slice(0, 10)
+                              .replaceAll("-", ".") +
+                              " at " +
+                              item.createdAt
+                                ?.slice(11, 16)
+                                .replaceAll("-", ".")}
                           </span>
                         </div>
-                        <div className=" flex justify-start w-full items-center gap-[12px]">
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <div className="flex items-center gap-3">
                           <div
                             className={`w-2 h-2 ml-[7px] ${
-                              item.value >= 100
+                              item?.telegram?.dataId?.overview?.percent ??
+                              item?.twitter?.dataId?.overview?.processBar >= 100
                                 ? "bg-[#26D256]"
-                                : item.value === -1
-                                ? "bg-[#FF1010]"
                                 : "bg-[#FFB006]"
                             } visible rounded-full`}
                           ></div>
                           <span
                             className={`text-[#1C1C1C] font-normal text-base leading-5 font-Inter`}
                           >
-                            {item.value >= 100
+                            {item?.telegram?.dataId?.overview?.percent ??
+                            item?.twitter?.dataId?.overview?.processBar >= 100
                               ? "Completed"
-                              : item.value === -1
-                              ? "Failed"
                               : "In progress"}
+                          </span>
+                        </div>
+                        <div className="relative flex justify-around items-center gap-1">
+                          <span className="bg-[#f5f5f5] hover:bg-[#ECF2F9] active:bg-[#ECF2F9] rounded-tl-md rounded-bl-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#005AE2] active:stroke-[#005AE2] duration-500 ease-in-out">
+                            <DownloadAuthenSVG className="stroke-inherit" />
+                          </span>
+                          <span className="bg-[#f5f5f5] hover:bg-[#FCEBE8] active:bg-[#FCEBE8] rounded-tr-md rounded-br-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#E32626] active:stroke-[#E32626] duration-500 ease-in-out">
+                            <TrashAuthenSVG className="stroke-inherit" />
                           </span>
                         </div>
                       </div>
                     </div>
-                    <div className=" w-[89px] flex flex-col items-center h-full gap-[5px]">
-                      <span className="font-Inter font-normal text-base leading-5 text-[#1C1C1C]">
-                        {item.date.slice(0, 10).replaceAll(".", "/")}
-                      </span>
-                      <div className="relative flex justify-around items-center gap-1">
-                        <span className="bg-[#f5f5f5] hover:bg-[#ECF2F9] active:bg-[#ECF2F9] rounded-tl-md rounded-bl-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#005AE2] active:stroke-[#005AE2] duration-500 ease-in-out">
-                          <DownloadAuthenSVG className="stroke-inherit" />
-                        </span>
+                  ) : (
+                    <div
+                      key={index}
+                      className="flex flex-col w-full bg-white p-[10px]"
+                    >
+                      <div
+                        className="flex flex-col w-full gap-[10px]"
+                        onClick={() =>
+                          router.push(`/authentication/${item._id}`)
+                        }
+                      >
+                        <div className="flex gap-[15px] flex-col">
+                          <div className="flex gap-[15px]">
+                            <picture className="rounded-full flex items-center justify-center">
+                              <img
+                                src={
+                                  item?.telegram?.dataId?.profile?.avatar ??
+                                  "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png"
+                                }
+                                alt=""
+                                onError={handleError}
+                                className="w-[48px] h-[48px] ring-[#f0f6fe] ring-4 rounded-full"
+                              />
+                            </picture>
+                            <div className="flex flex-col gap-[7px] justify-start items-start">
+                              <div className="flex gap-[15px]">
+                                <TelegramHistorySVG className="w-6 h-6 rounded-full" />
+                                <Link
+                                  href={`https://t.me/${item?.telegram?.objectId}`}
+                                  target="_blank"
+                                  className="font-Inter font-semibold text-lg leading-[22px]"
+                                >
+                                  {item?.telegram?.objectId}
+                                </Link>
+                              </div>
+                              <span className="text-start font-Inter font-normal text-sm leading-5 text-[#585858]">
+                                {item?.createdAt
+                                  ?.slice(0, 10)
+                                  .replaceAll("-", ".") +
+                                  " at " +
+                                  item?.createdAt
+                                    ?.slice(11, 16)
+                                    .replaceAll("-", ".")}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex gap-[15px]">
+                            <picture className="rounded-full flex items-center justify-center">
+                              <img
+                                src={
+                                  item?.twitter?.dataId?.profile?.avatar ??
+                                  "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png"
+                                }
+                                alt=""
+                                className="w-[48px] h-[48px] ring-[#f0f6fe] ring-4 rounded-full"
+                                onError={handleError}
+                              />
+                            </picture>
+                            <div className="flex flex-col gap-[7px] justify-start items-start">
+                              <div className="flex gap-[15px]">
+                                <TwitterHistorySVG className="w-6 h-6 rounded-full" />
+                                <Link
+                                  href={`https://twitter.com/${item?.twitter?.objectId}`}
+                                  target="_blank"
+                                  className="font-Inter font-semibold text-lg leading-[22px]"
+                                >
+                                  {item?.twitter?.objectId}
+                                </Link>
+                              </div>
+                              <span className="text-start font-Inter font-normal text-sm leading-5 text-[#585858]">
+                                {item?.createdAt
+                                  ?.slice(0, 10)
+                                  .replaceAll("-", ".") +
+                                  " at " +
+                                  item.createdAt
+                                    ?.slice(11, 16)
+                                    .replaceAll("-", ".")}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex justify-start items-start"></div>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`w-2 h-2 ml-[7px] ${
+                              item?.telegram?.dataId?.overview?.percent &&
+                              item?.twitter?.dataId?.overview?.processBar >= 100
+                                ? "bg-[#26D256]"
+                                : "bg-[#FFB006]"
+                            } visible rounded-full`}
+                          ></div>
+                          <span
+                            className={`text-[#1C1C1C] font-normal text-base leading-5 font-Inter`}
+                          >
+                            {item?.telegram?.dataId?.overview?.percent &&
+                            item?.twitter?.dataId?.overview?.processBar >= 100
+                              ? "Completed"
+                              : "In progress"}
+                          </span>
+                        </div>
 
-                        <span className="bg-[#f5f5f5] hover:bg-[#FCEBE8] active:bg-[#FCEBE8] rounded-tr-md rounded-br-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#E32626] active:stroke-[#E32626] duration-500 ease-in-out">
-                          <TrashAuthenSVG className="stroke-inherit" />
-                        </span>
+                        <div className="relative flex justify-around items-center gap-1">
+                          <span className="bg-[#f5f5f5] hover:bg-[#ECF2F9] active:bg-[#ECF2F9] rounded-tl-md rounded-bl-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#005AE2] active:stroke-[#005AE2] duration-500 ease-in-out">
+                            <DownloadAuthenSVG className="stroke-inherit" />
+                          </span>
+
+                          <span className="bg-[#f5f5f5] hover:bg-[#FCEBE8] active:bg-[#FCEBE8] rounded-tr-md rounded-br-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#E32626] active:stroke-[#E32626] duration-500 ease-in-out">
+                            <TrashAuthenSVG className="stroke-inherit" />
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
+                  );
+                });
               })}
-              <div className="py-7 visible" />
+              <div
+                ref={carouselRef}
+                className="w-full flex justify-center items-start pb-14 pr-3 visible"
+              >
+                {isFetchingNextPage && (
+                  <div
+                    className="w-12 h-12 rounded-full animate-spin
+                  border border-solid border-yellow-500 border-t-transparent"
+                  ></div>
+                )}
+              </div>
             </div>
           )}
         </CardBody>
@@ -164,11 +330,11 @@ export default function HistoryMobile({ data, isLoading }: HistoryMobileProps) {
           <span className="font-Inter font-medium text-base leading-6">
             Are you sure want to download all data?
           </span>
-          <Button className="" onClick={() => setOpenModal(false)}>
-            <span className="text-white font-Inter font-semibold text-lg leading-[22px]">
+          <button className="" onClick={() => setOpenModal(false)}>
+            <span className="bg-[#005AE2] py-[9px] px-[27px] text-white font-Inter font-semibold text-lg leading-[22px] rounded-md">
               Download
             </span>
-          </Button>
+          </button>
           <div onClick={() => setOpenModal(false)}>
             <div className="absolute w-1 h-5 bg-black-500 top-[10px] right-5 rotate-45" />
             <div className="absolute w-1 h-5 bg-black-500 top-[10px] right-5 rotate-[135deg]" />

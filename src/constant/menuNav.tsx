@@ -78,6 +78,6 @@ export const menuItems = [
     icon: "/image/ChangelogBW.svg",
     iconBlue: "/image/ChangelogBB.svg",
     link: "/changelog",
-    badge: "1.0.0",
+    badge: "3.6",
   },
 ];
