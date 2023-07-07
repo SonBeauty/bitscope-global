@@ -14,7 +14,7 @@ interface InputGroupProps {
   value?: string;
   defaultValue?: string;
   disabled?: boolean;
-  onChange?: (e:any) => void
+  onChange?: (e: any) => void;
 }
 export default function InputGroup({
   id,

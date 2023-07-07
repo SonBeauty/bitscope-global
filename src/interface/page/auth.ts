@@ -8,6 +8,17 @@ export interface LoginProps {
   email: string;
   password: string;
 }
+export interface CreateProxyProp {
+  proxy: string;
+}
+export interface DeleteProxyProp {
+  id: string;
+}
+export interface UpdateProxyProp {
+  id: string;
+  value?: string;
+  status?: number;
+}
 export interface UserProps {
   _id: string;
   createdAt: string;

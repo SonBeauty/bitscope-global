@@ -15,6 +15,7 @@ interface LayoutFormProps {
   childrenTwo: React.ReactNode;
   social?: boolean;
   isLoading?: boolean;
+  proxy?: string;
 }
 export default function LayoutForm({
   handleSubmit,
@@ -27,8 +28,8 @@ export default function LayoutForm({
   childrenTwo,
   social = true,
   isLoading,
+  proxy,
 }: LayoutFormProps) {
-  
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
