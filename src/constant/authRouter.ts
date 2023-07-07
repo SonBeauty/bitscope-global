@@ -3,6 +3,7 @@ export const authRouter = [
   "/mainboard",
   "/authentication",
   "/user",
+  "/referral",
 ];
 export const redirectDashBoard = [
   "/login",

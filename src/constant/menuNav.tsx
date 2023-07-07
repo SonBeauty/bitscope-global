@@ -74,6 +74,13 @@ export const menuItems = [
   },
   {
     id: 3,
+    title: "Referral",
+    icon: "/image/referralw.svg",
+    iconBlue: "/image/referralb.svg",
+    link: "/referral"
+  },
+  {
+    id: 4,
     title: "Changelog",
     icon: "/image/ChangelogBW.svg",
     iconBlue: "/image/ChangelogBB.svg",
