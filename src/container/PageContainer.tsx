@@ -1,5 +1,6 @@
 import Loading from "@/components/Loading";
 import { authRouter, redirectDashBoard } from "@/constant/authRouter";
+import { menuItems } from "@/constant/menuNav";
 import { infoUser } from "@/pages/api/auth/info";
 import { RootState } from "@/store";
 import { setUser } from "@/store/users";
@@ -13,6 +14,7 @@ interface PageContainerProps {
 }
 export default function PageContainer({ children }: PageContainerProps) {
   const isLogin = useSelector((state: RootState) => state.users.isLogin);
+  const user = useSelector((state: RootState) => state.users.user);
   const dispatch = useDispatch();
   const router = useRouter();
   const pathName = router.pathname;
@@ -35,7 +37,24 @@ export default function PageContainer({ children }: PageContainerProps) {
         router.push("/dashboard");
       }
     }
-  }, [data, dispatch, isLogin, pathName, router]);
+  }, [data, dispatch, pathName, router]);
+  const hanleAdmin = menuItems
+    ?.filter((menus: any) => menus?.isAdmin)[0]
+    ?.child?.map((item: any) => {
+      return item.childlink;
+    });
+  useEffect(() => {
+    if (
+      user &&
+      user.role !== "admin" &&
+      (hanleAdmin?.some((route) => pathName.startsWith(route)) ||
+        hanleAdmin?.some((route) =>
+          pathName.split("/")[1].startsWith(route.split("/"))
+        ))
+    ) {
+      router.push("/dashboard");
+    }
+  }, [hanleAdmin, pathName, router, user, user?.role]);
   return (
     <>
       <Head>
@@ -65,6 +84,13 @@ export default function PageContainer({ children }: PageContainerProps) {
       </Head>
       <main className="">
         {!isLogin && authRouter.some((route) => pathName.startsWith(route)) ? (
+          <Loading />
+        ) : user?.role !== "admin" &&
+          hanleAdmin?.some(
+            (route) =>
+              pathName.startsWith(route) ??
+              pathName.split("/")[1].startsWith(route.split("/"))
+          ) ? (
           <Loading />
         ) : (
           children

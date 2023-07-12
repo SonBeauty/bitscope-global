@@ -87,4 +87,34 @@ export const menuItems = [
     link: "/changelog",
     badge: "3.6",
   },
+  {
+    id: 5,
+    title: "Admin",
+    icon: "/image/AdminBW.svg",
+    iconBlue: "/image/AdminBB.svg",
+    isAdmin: true,
+    child: [
+      {
+        id: 5,
+        childtitle: "Proxy",
+        childlink: "/proxy",
+        iconBlue: "/image/ProxyBB.svg",
+        iconWhite: "/image/ProxyBW.svg",
+      },
+      {
+        id: 5,
+        childtitle: "Influencers",
+        childlink: "/influencer",
+        iconBlue: "/image/influencersBB.svg",
+        iconWhite: "/image/influencersBW.svg",
+      },
+      {
+        id: 5,
+        childtitle: "Changelogs",
+        childlink: "/changelogs",
+        iconBlue: "/image/changelogsBB.svg",
+        iconWhite: "/image/changelogsBW.svg",
+      },
+    ],
+  },
 ];
