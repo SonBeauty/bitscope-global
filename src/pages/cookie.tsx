@@ -6,44 +6,48 @@ import LayoutDashBoard from "@/components/layout/Layout";
 import BackLeftSVG from "@/components/svg/BackLeftSVG";
 import NoAccessHistorySVG from "@/components/svg/NoAccessHistorySVG";
 import TrashAuthenSVG from "@/components/svg/TrashAuthenSVG";
-import { TABLE_HEAD, TABLE_ROWS } from "@/constant/components/Proxy";
+import { TABLE_HEAD, TABLE_ROWS } from "@/constant/components/Cookie";
 import {
   CardBody,
   CardFooter,
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Card } from "flowbite-react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
-import {
-  CreateProxy,
-  DeleteProxy,
-  UpdateProxy,
-  getProxy,
-} from "./api/proxy/GetProxy";
 import { toast } from "react-toastify";
 import DismissableModal from "@/components/Modal";
 import { FaEdit } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { useStyles } from "@/components/Pagination/useStyles";
+import {
+  CreateCookie,
+  DeleteCookie,
+  UpdateCookie,
+  GetCookie,
+} from "./api/cookie/GetCookie";
 
-export default function Proxy() {
+export default function Cookie() {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const classes = useStyles();
   const [page, setPage] = useState<number>(1);
-  const [valueProxy, setValueProxy] = useState<string>("");
-  const [valueUpdate, setValueUpdate] = useState<string>();
+  const [valueCookie, setValueCookie] = useState<string>();
+  const [valueCsrfToken, setValueCsrfToken] = useState<string>();
+  const [csrfTokenUpdate, setCsrfTokenUpdate] = useState<string>();
+  const [tokenUpdate, setTokenUpdate] = useState<string>();
+  const [cookieUpdate, setCookieUpdate] = useState<string>();
   const [statusUpdate, setStatusUpdate] = useState<number>();
   const [idupdate, setIdUpdate] = useState<string>("");
   const [createInput, setCreateInput] = useState<boolean>(false);
   const [updateInput, setUpdateInput] = useState<boolean>(false);
   const { data, isLoading } = useQuery<any>({
-    queryKey: ["proxy", page],
+    queryKey: ["cookie", page],
     queryFn: () =>
-      getProxy({
+      GetCookie({
         status: "0",
         page: page,
         limit: "10",
@@ -60,47 +64,51 @@ export default function Proxy() {
     });
     return formattedDate;
   };
-  const mutate = useMutation(DeleteProxy, {
+  const mutate = useMutation(DeleteCookie, {
     onSuccess: () => {
-      toast.success("Delete Proxy Success!");
+      toast.success("Delete Cookie Success!");
     },
     onError: () => {
       toast.error("Delete Failed!");
     },
   });
-  const mutation = useMutation(CreateProxy, {
+  const mutation = useMutation(CreateCookie, {
     onSuccess: () => {
-      toast.success("Create Proxy Success!");
+      toast.success("Create Cookie Success!");
     },
     onError: () => {
-      toast.error(Error.name);
+      toast.error("Create Failed!");
     },
   });
-  const mutateUpdate = useMutation(UpdateProxy, {
-    onSuccess: () => {
-      toast.success("Update Proxy Success!");
+  const mutateUpdate = useMutation(UpdateCookie, {
+    onSuccess: (data) => {
+      queryClient.setQueryData(["cookie", { id: data._id }], data);
+      toast.success("Update Cookie Success!");
     },
     onError: () => {
-      toast.error(Error.name);
+      toast.error("Update Failed!");
     },
   });
 
   const handleDelete = (id: any) => {
-    if (window.confirm("Are You Sure DELETE PROXY ?")) {
+    if (window.confirm("Are You Sure DELETE Cookie ?")) {
       mutate.mutate(id);
     }
   };
 
-  const handleCreate = () => {
+  const ToggleCreate = () => {
     setCreateInput(!createInput);
   };
 
-  const handleC = async (data: any) => {
-    setValueProxy(data);
+  const SaveCookie = async (cookie: any) => {
+    setValueCookie(cookie);
+  };
+  const SaveCsrfToken = async (csrfToken: any) => {
+    setValueCsrfToken(csrfToken);
   };
   const handleSubmit = async () => {
-    mutation.mutate({ proxy: valueProxy });
-    handleCreate();
+    mutation.mutate({ cookie: valueCookie, csrfToken: valueCsrfToken });
+    ToggleCreate();
   };
 
   const modelUpdate = (id: string) => {
@@ -111,8 +119,14 @@ export default function Proxy() {
     setUpdateInput(!updateInput);
   };
   const handleUpdate = (data: any, action: any) => {
-    if (action === "value") {
-      setValueUpdate(data);
+    if (action === "cookie") {
+      setCookieUpdate(data);
+    }
+    if (action === "token") {
+      setTokenUpdate(data);
+    }
+    if (action === "csrfToken") {
+      setCsrfTokenUpdate(data);
     }
     if (action === "status") {
       setStatusUpdate(data);
@@ -121,9 +135,12 @@ export default function Proxy() {
   const handleSubmitUpdate = async () => {
     mutateUpdate.mutate({
       id: idupdate,
-      value: valueUpdate,
+      cookie: cookieUpdate,
+      token: tokenUpdate,
+      csrfToken: csrfTokenUpdate,
       status: statusUpdate,
     });
+
     toggleUpdate();
   };
 
@@ -145,18 +162,18 @@ export default function Proxy() {
                   <BackLeftSVG className="w-[11px] h-[18px] mb-[0.5px]" />
                 </div>
                 <span className="font-Inter py-[1.06rem] md:px-[1.38rem] text-white text-lg leading-5 font-bold">
-                  List Proxy
+                  List Cookie
                 </span>
               </span>
 
               <DismissableModal
                 open={createInput}
-                setOpen={handleCreate}
-                className="w-[388px] h-[144px] mx-auto self-center"
+                setOpen={ToggleCreate}
+                className="w-[388px] h-[280px] mx-auto self-center"
               >
                 <div className="flex max-w-md flex-col gap-4 p-4">
                   <div>
-                    <div className="px-2 py-2 mb-2 flex justify-between">
+                    <div className="px-2 py-2 flex justify-between">
                       <Label
                         htmlFor="small"
                         value="Enter the value to create"
@@ -164,24 +181,37 @@ export default function Proxy() {
                       <button>
                         <AiOutlineClose
                           className="text-lg"
-                          onClick={handleCreate}
+                          onClick={ToggleCreate}
                         />
                       </button>
                     </div>
-                    <div className="flex justify-around ">
+                    <div className="pt-2">
+                      <Label htmlFor="small" value="Cookie" />
+                      <TextInput
+                        id="small"
+                        sizing="md"
+                        placeholder="Least 100 characters"
+                        type="text"
+                        value={valueCookie}
+                        minLength={100}
+                        onChange={(e) => SaveCookie(e.target.value)}
+                      />
+                      <Label htmlFor="small" value="CsfrToken" />
                       <TextInput
                         id="small"
                         sizing="md"
                         type="text"
-                        value={valueProxy}
-                        onChange={(e) => handleC(e.target.value)}
+                        placeholder="Least 70 characters"
+                        minLength={70}
+                        value={valueCsrfToken}
+                        onChange={(e) => SaveCsrfToken(e.target.value)}
                       />
                       <button
                         type="submit"
                         onClick={handleSubmit}
-                        className="text-[#fff] bg-blue-600 rounded-lg font-medium text-center p-[0.125rem] hover:bg-[rgb(30 66 159)] text-sm px-4 py-2"
+                        className=" ml-[115px] mt-[25px] text-[#fff] bg-blue-600 rounded-lg font-medium text-center p-[0.125rem] hover:bg-[rgb(30 66 159)] text-sm px-5 py-3"
                       >
-                        Create Proxy
+                        Create Cookie
                       </button>
                     </div>
                   </div>
@@ -191,7 +221,7 @@ export default function Proxy() {
               <DismissableModal
                 open={updateInput}
                 setOpen={toggleUpdate}
-                className="w-[388px] h-[280px] mx-auto self-center"
+                className="w-[388px] h-[410px] mx-auto self-center"
               >
                 <div className="flex max-w-md flex-col gap-4 p-4">
                   <div>
@@ -208,14 +238,41 @@ export default function Proxy() {
                       </button>
                     </div>
                     <div className="pt-2">
-                      <Label htmlFor="small" value="Value" />
+                      <Label htmlFor="small" value="Cookie" />
                       <TextInput
                         id="small"
                         sizing="md"
                         type="text"
-                        value={valueUpdate}
-                        onChange={(e) => handleUpdate(e.target.value, "value")}
+                        placeholder="Least 100 characters"
+                        minLength={100}
+                        value={cookieUpdate}
+                        onChange={(e) => handleUpdate(e.target.value, "cookie")}
                       />
+
+                      <Label htmlFor="small" value="Token" />
+                      <TextInput
+                        id="small"
+                        sizing="md"
+                        placeholder="Least 20 characters"
+                        type="text"
+                        value={tokenUpdate}
+                        minLength={25}
+                        onChange={(e) => handleUpdate(e.target.value, "token")}
+                      />
+
+                      <Label htmlFor="small" value="CsrfToken" />
+                      <TextInput
+                        id="small"
+                        sizing="md"
+                        type="text"
+                        placeholder="Least 75 characters"
+                        value={csrfTokenUpdate}
+                        minLength={70}
+                        onChange={(e) =>
+                          handleUpdate(e.target.value, "csrfToken")
+                        }
+                      />
+
                       <Label htmlFor="small" value="Status" />
                       <TextInput
                         id="small"
@@ -226,10 +283,10 @@ export default function Proxy() {
                       />
                       <button
                         type="submit"
-                        onClick={handleSubmit}
+                        onClick={handleSubmitUpdate}
                         className=" ml-[115px] mt-[25px] text-[#fff] bg-blue-600 rounded-lg font-medium text-center p-[0.125rem] hover:bg-[rgb(30 66 159)] text-sm px-5 py-3"
                       >
-                        Create Proxy
+                        Update Cookie
                       </button>
                     </div>
                   </div>
@@ -238,10 +295,10 @@ export default function Proxy() {
 
               {!isLoading && realData?.data?.length > 0 && (
                 <div
-                  onClick={() => handleCreate()}
+                  onClick={() => ToggleCreate()}
                   className="hidden hover:bg-[#00388D] duration-500 ease-linear md:block pt-[1.06rem] px-[1.81rem] pb-[0.94rem] font-Inter text-white text-lg leading-[21.78px] font-semibold cursor-pointer"
                 >
-                  Create Proxy
+                  Create Cookie
                 </div>
               )}
             </div>
@@ -300,13 +357,11 @@ export default function Proxy() {
                               </Typography>
                             </td>
                             <td
-                              className={`${classes} w-[180px] flex items-center justify-start  h-[55px] basis-[34.5%]`}
+                              className={`${classes} w-[250px] h-[55px] flex items-center justify-start basis-[34.5%]`}
                             >
-                              <div className="  items-center justify-center gap-[10px]">
-                                <Typography className="text-[#1C1C1C] font-medium text-base leading-5 text-center font-Inter ">
-                                  {item.value}
-                                </Typography>
-                              </div>
+                              <textarea className="text-[#1C1C1C] w-[320px] h-[55px] font-medium text-base leading-5 text-center font-Inter ">
+                                {item.csrfToken}
+                              </textarea>
                             </td>
                             <td
                               className={`${classes} flex items-center justify-start border-b text-center  basis-[13%]`}
@@ -365,7 +420,7 @@ export default function Proxy() {
                   <div className="flex flex-col justify-center items-center gap-7">
                     <NoAccessHistorySVG />
                     <span className="font-Inter font-bold text-xl leading-[24.2px] text-[#697489]">
-                      No Proxy
+                      No Cookie
                     </span>
                   </div>
                 </div>

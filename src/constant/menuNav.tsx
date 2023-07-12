@@ -41,13 +41,6 @@ export const menuItems = [
         iconBlue: "/image/BitTrackingBB.svg",
         iconWhite: "/image/BitTrackingBW.svg",
       },
-      {
-        id: 1,
-        childtitle: "Proxy Management",
-        childlink: "/proxy",
-        iconBlue: "/image/BitProbeBB.svg",
-        iconWhite: "/image/BitProbeBW.svg",
-      },
     ],
   },
   {
@@ -84,7 +77,7 @@ export const menuItems = [
     title: "Referral",
     icon: "/image/referralw.svg",
     iconBlue: "/image/referralb.svg",
-    link: "/referral"
+    link: "/referral",
   },
   {
     id: 4,

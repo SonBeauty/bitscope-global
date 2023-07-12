@@ -19,6 +19,16 @@ export interface UpdateProxyProp {
   value?: string;
   status?: number;
 }
+export interface DeleteCookieProp {
+  id: string;
+}
+export interface UpdateCookieProp {
+  id: string;
+  cookie?: string;
+  token?: string;
+  csrfToken?: string;
+  status?: number;
+}
 export interface UserProps {
   _id: string;
   createdAt: string;

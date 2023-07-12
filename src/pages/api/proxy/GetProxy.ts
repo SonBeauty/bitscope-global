@@ -1,9 +1,5 @@
 import axiosAuthen from "@/axios/axiosAuthen";
-import {
-  CreateProxyProp,
-  DeleteProxyProp,
-  UpdateProxyProp,
-} from "@/interface/page/auth";
+import { DeleteProxyProp, UpdateProxyProp } from "@/interface/page/auth";
 
 export const getProxy = async (params: any) => {
   const response = await axiosAuthen.get(
