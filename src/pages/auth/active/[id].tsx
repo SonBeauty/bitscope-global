@@ -21,10 +21,5 @@ export default function Activate() {
   setTimeout(() => {
     setLoading(false);
   }, 5000);
-  return (
-    <ActivateNotification
-      status={data === "ok" ? true : false}
-      isLoading={loading}
-    />
-  );
+  return <ActivateNotification status={data} isLoading={loading} />;
 }

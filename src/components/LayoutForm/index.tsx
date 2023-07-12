@@ -35,7 +35,7 @@ export default function LayoutForm({
       onSubmit={handleSubmit(onSubmit)}
       className="h-full min-h-screen w-full flex bg-white overflow-hidden relative px-10"
     >
-      <div className="md:basis-3/5 lg:block hidden relative">
+      <div className="md:basis-3/5 lg:block hidden relative max-h-screen">
         <Image
           height={234}
           width={428}
@@ -65,7 +65,7 @@ export default function LayoutForm({
             className=""
           />
         </Link>
-        <div className="md:py-28 pb-14 md:px-[118px] px-1">
+        <div className="md:py-20 pb-14 md:px-[118px] px-1">
           <div className="text-center 2xl:mb-10 mb-4 ">
             <h4 className="font-medium text-2xl leading-10 text-black-500">
               {page}

@@ -1,4 +1,5 @@
 import Loading from "@/components/Loading";
+import ActiveAccount from "@/components/PageComponents/Global/ActiveAccount";
 import { authRouter, redirectDashBoard } from "@/constant/authRouter";
 import { menuItems } from "@/constant/menuNav";
 import { infoUser } from "@/pages/api/auth/info";
@@ -37,24 +38,36 @@ export default function PageContainer({ children }: PageContainerProps) {
         router.push("/dashboard");
       }
     }
-  }, [data, dispatch, pathName, router]);
+  }, [data, dispatch, isLogin, pathName, router]);
+
   const hanleAdmin = menuItems
     ?.filter((menus: any) => menus?.isAdmin)[0]
     ?.child?.map((item: any) => {
       return item.childlink;
     });
+
   useEffect(() => {
     if (
       user &&
       user.role !== "admin" &&
-      (hanleAdmin?.some((route) => pathName.startsWith(route)) ||
-        hanleAdmin?.some((route) =>
+      hanleAdmin?.some(
+        (route) =>
+          pathName.startsWith(route) ??
           pathName.split("/")[1].startsWith(route.split("/"))
-        ))
+      )
     ) {
       router.push("/dashboard");
     }
   }, [hanleAdmin, pathName, router, user, user?.role]);
+
+  if (
+    isLogin &&
+    authRouter.some((route) => pathName.startsWith(route)) &&
+    !user?.isActive
+  ) {
+    return <ActiveAccount user={user} />;
+  }
+
   return (
     <>
       <Head>

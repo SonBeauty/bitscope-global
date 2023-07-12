@@ -1,34 +1,33 @@
 "use client";
 
-import { Label, TextInput } from "flowbite-react";
-import Pagination from "@mui/material/Pagination";
+import DismissableModal from "@/components/Modal";
+import { useStyles } from "@/components/Pagination/useStyles";
 import LayoutDashBoard from "@/components/layout/Layout";
 import BackLeftSVG from "@/components/svg/BackLeftSVG";
 import NoAccessHistorySVG from "@/components/svg/NoAccessHistorySVG";
 import TrashAuthenSVG from "@/components/svg/TrashAuthenSVG";
 import { TABLE_HEAD, TABLE_ROWS } from "@/constant/components/Proxy";
+import { Player } from "@lottiefiles/react-lottie-player";
 import {
   CardBody,
   CardFooter,
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
+import Pagination from "@mui/material/Pagination";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Card } from "flowbite-react";
+import { Card, Label, TextInput } from "flowbite-react";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
-import { Player } from "@lottiefiles/react-lottie-player";
+import { useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
+import { FaEdit } from "react-icons/fa";
+import { toast } from "react-toastify";
 import {
   CreateProxy,
   DeleteProxy,
   UpdateProxy,
   getProxy,
 } from "./api/proxy/GetProxy";
-import { toast } from "react-toastify";
-import DismissableModal from "@/components/Modal";
-import { FaEdit } from "react-icons/fa";
-import { AiOutlineClose } from "react-icons/ai";
-import { useStyles } from "@/components/Pagination/useStyles";
 
 export default function Proxy() {
   const router = useRouter();

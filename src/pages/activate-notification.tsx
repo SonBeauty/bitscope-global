@@ -1,25 +1,18 @@
-import SpanText from "@/components/SpanText";
 import PageContainer from "@/container/PageContainer";
-import { DocumentTextIcon } from "@heroicons/react/24/outline";
-import { Button, Footer } from "flowbite-react";
+import { logout } from "@/store/users";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import {
-  BsFacebook,
-  BsInstagram,
-  BsLinkedin,
-  BsTiktok,
-  BsTwitter,
-} from "react-icons/bs";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
 interface ActivateNotificationProps {
-  status: boolean;
+  status: any;
   isLoading: boolean;
 }
 export default function ActivateNotification({
   status,
   isLoading,
 }: ActivateNotificationProps) {
-  const router = useRouter();
+  console.log(status);
+  const dispatch = useDispatch();
   if (isLoading) {
     return (
       <PageContainer>
@@ -45,60 +38,91 @@ export default function ActivateNotification({
     );
   }
   return (
-    <PageContainer>
-      <div className="relative w-full h-screen py-8 bg-[url('/image/signup-bg.jpg')] z-0">
-        <div className="flex flex-col items-center justify-center max-w-2xl gap-0 sm:gap-8 p-0 sm:p-8 pt-24 mx-auto md:pt-8 z-10">
-          <Image src="/image/400X300.png" width={206} height={113} alt="logo" />
-          <h1 className="text-xl font-extrabold text-primary-dark-600">
-            Beat of the Future
-          </h1>
-          <div className="flex flex-col items-center gap-8 px-8 py-12 shadow-lg">
-            <span className="text-lg">
-              {status
-                ? "Your account has been successfully activated! Welcome to BitScope, an interesting social listening and market analysis service. Clickthe button below to experience our product immediately."
-                : "Account activation failed, please contact Admin"}
-            </span>
-            <Button onClick={() => router.push("/login")}>
-              {" "}
-              <span className="text-white"> Login Now</span>
-            </Button>
-            <div className="flex items-center">
-              <DocumentTextIcon className="w-5 h-5 text-blue-600 " />
-              <div className="pl-4 text-sm font-normal">
-                By signing up I gree to the{" "}
-                <SpanText
-                  content="tems & conditions"
-                  redirectLink="#"
-                  color="text-green-400"
-                />{" "}
-                and{" "}
-                <SpanText
-                  content="privacy policy"
-                  redirectLink="#"
-                  color="text-green-400"
-                />
+    <div className="h-full min-h-screen w-full flex bg-white overflow-hidden relative px-10">
+      <div className="md:basis-3/5 lg:block hidden relative max-h-screen">
+        <Image
+          height={234}
+          width={428}
+          alt="Background"
+          src="/image/Frame.svg"
+          className="w-[110%] h-[90%] mt-16"
+        />
+        <div className="max-w-[520px] absolute top-[-1%] left-[25%]">
+          <Link href="/">
+            <Image
+              height={80}
+              width={250}
+              alt="Logo"
+              src="/image/1200X628-SVG-NONBACKGROUND.png"
+              className="mb-12"
+            />
+          </Link>
+        </div>
+      </div>
+      <div className="md:flex-1 md:min-w-[630px] md:basis-2/5 md:bg-white w-full">
+        <Link href="/" className="flex items-center justify-center md:hidden">
+          <Image
+            height={10}
+            width={250}
+            alt="Logo"
+            src="/image/1200X628-SVG-NONBACKGROUND.png"
+            className=""
+          />
+        </Link>
+        <div className="h-full flex justify-center items-center pb-20 md:px-[118px] px-1">
+          <div>
+            <div className="text-center 2xl:mb-10 mb-4 ">
+              <h4 className="font-medium text-2xl leading-10 text-black-500">
+                {status?.status === 409 && "Your account has been verify"}
+                {((status !== "ok" && status?.status !== 409) || !status) &&
+                  "Account activation failed, please contact Admin"}
+              </h4>
+              <div className="text-slate-500 text-base mt-1">
+                <h4 className="font-medium text-2xl leading-10 text-black-500">
+                  {status === "ok" &&
+                    "Your account has been successfully activated!"}
+                </h4>
+                <br />
+                {status === "ok" &&
+                  "Welcome to BitScope, an interesting social listening and market analysis service. Please login below to experience our product immediately."}
+              </div>
+            </div>
+            <div className="flex flex-col w-full gap-2">
+              <div className="font-Inter font-normal text-base text-slate-500 text-center px-2 bg-slate-100 rounded py-3 my-4">
+                If registration fails, please contact{" "}
+                <a
+                  href="mailto:Contact@bitscope.global"
+                  target="_blank"
+                  className="underline text-[#005AE2] hover:text-blue-900"
+                >
+                  Contact@bitscope.global
+                </a>
+              </div>
+
+              <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 mt-5 uppercase text-sm">
+                Back to{" "}
+                <Link
+                  onClick={() => dispatch(logout())}
+                  href="/login"
+                  className="text-slate-900 font-medium hover:underline"
+                >
+                  Login
+                </Link>
+              </div>
+              <div className="text-xs font-normal text-slate-500 z-[999] pt-10 text-center">
+                Copyright 2023, BitScope All Rights Reserved.
               </div>
             </div>
           </div>
-          <div>
-            <div className="flex mt-4 space-x-6 sm:mt-0 sm:justify-center">
-              <Footer.Icon href="https://facebook.com" icon={BsFacebook} />
-              <Footer.Icon href="https://instagram.com" icon={BsInstagram} />
-              <Footer.Icon href="https://tiktok.com" icon={BsTiktok} />
-              <Footer.Icon href="https://twitter.com" icon={BsTwitter} />
-              <Footer.Icon href="https://likedin.com" icon={BsLinkedin} />
-            </div>
-          </div>
         </div>
-        <span className="absolute top-0 right-0 p-4 m-4 rounded-md shadow-lg">
-          Already a user?
-          <SpanText
-            content="Login"
-            redirectLink="/login"
-            color="text-green-400"
-          />
-        </span>
       </div>
-    </PageContainer>
+      <Image
+        height={40}
+        width={300}
+        alt="Logo"
+        src="/image/Footer.svg"
+        className="absolute bottom-0 right-0"
+      />
+    </div>
   );
 }
