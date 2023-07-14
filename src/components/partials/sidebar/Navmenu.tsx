@@ -1,5 +1,6 @@
 import useMobileMenu from "@/hooks/useMobileMenu";
 import useSidebar from "@/hooks/useSidebar";
+import { listChangelogs } from "@/pages/api/changelogs";
 import { RootState } from "@/store";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import {
@@ -13,12 +14,15 @@ import {
   ListItemSuffix,
   Typography,
 } from "@material-tailwind/react";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 const Navmenu = ({ menus, menuHover }: any) => {
   const user = useSelector((state: RootState) => state.users.user);
+  const { data } = useQuery(["changelogs"], listChangelogs);
+
   const [collapsed] = useSidebar();
   const router = useRouter();
   const location = router.pathname;
@@ -253,7 +257,7 @@ const Navmenu = ({ menus, menuHover }: any) => {
                     />
                   </ListItemPrefix>
                   {handleHideTitle(item)}
-                  {item.badge && (
+                  {item.badge && data && (
                     <ListItemSuffix className="text-white">
                       <span
                         className={`${
@@ -262,7 +266,7 @@ const Navmenu = ({ menus, menuHover }: any) => {
                             : "border-white bg-white text-[#0341A3]"
                         } border-2  px-2 py-[0.5px] rounded-full`}
                       >
-                        {item.badge}
+                        {data[0]?.name?.replace("Changelog ", "")}
                       </span>
                     </ListItemSuffix>
                   )}

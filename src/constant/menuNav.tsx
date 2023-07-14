@@ -85,7 +85,7 @@ export const menuItems = [
     icon: "/image/ChangelogBW.svg",
     iconBlue: "/image/ChangelogBB.svg",
     link: "/changelog",
-    badge: "3.6",
+    badge: "changelogs",
   },
   {
     id: 5,

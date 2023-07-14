@@ -40,6 +40,7 @@ export default function HistoryMobile() {
   const handleClickOutside = () => {
     setOpenModal(false);
   };
+
   useOnClickOutside(ref, handleClickOutside);
   const handleError = (e: any) => {
     e.target.src =

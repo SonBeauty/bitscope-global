@@ -1,5 +1,4 @@
 import Loading from "@/components/Loading";
-import ActiveAccount from "@/components/PageComponents/Global/ActiveAccount";
 import { authRouter, redirectDashBoard } from "@/constant/authRouter";
 import { menuItems } from "@/constant/menuNav";
 import { infoUser } from "@/pages/api/auth/info";
@@ -59,14 +58,6 @@ export default function PageContainer({ children }: PageContainerProps) {
       router.push("/dashboard");
     }
   }, [hanleAdmin, pathName, router, user, user?.role]);
-
-  if (
-    isLogin &&
-    authRouter.some((route) => pathName.startsWith(route)) &&
-    !user?.isActive
-  ) {
-    return <ActiveAccount user={user} />;
-  }
 
   return (
     <>

@@ -1,6 +1,7 @@
 import InputGroup from "@/components/InputGroup";
 import LayoutForm from "@/components/LayoutForm";
 import SpanText from "@/components/SpanText";
+import { setUser } from "@/store/users";
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
@@ -9,27 +10,30 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { schema } from "../components/PageComponents/Login/schema";
 import { loginUser } from "./api/auth/login";
-import { useDispatch } from "react-redux";
-import { setUser } from "@/store/users";
+
 export default function Login() {
   const route = useRouter();
+
   const [remember, setRemember] = useState<Boolean>(false);
   const dispath = useDispatch();
   const { mutate, isLoading } = useMutation(loginUser, {
     onSuccess: (data) => {
       toast.success("Login Success!");
+      dispath(setUser(data));
       if (remember) {
         localStorage.setItem("token", data.token);
       } else {
         sessionStorage.setItem("token", data.token);
       }
-      dispath(setUser(data));
-      setTimeout(() => {
+      if (data?.isActive === false) {
+        route.push("/active-account");
+      } else {
         route.push("/dashboard");
-      }, 300);
+      }
     },
     onError: () => {
       toast.error("Login Failed!");
@@ -49,6 +53,7 @@ export default function Login() {
       password: data.password,
     });
   };
+
   return (
     <LayoutForm
       page="Sign in"

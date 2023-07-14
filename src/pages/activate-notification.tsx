@@ -11,7 +11,7 @@ export default function ActivateNotification({
   status,
   isLoading,
 }: ActivateNotificationProps) {
-  console.log(status);
+
   const dispatch = useDispatch();
   if (isLoading) {
     return (

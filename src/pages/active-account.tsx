@@ -7,15 +7,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { activeSchema } from "../Global/activeSchema";
+import { useDispatch, useSelector } from "react-redux";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-interface ActivatedProps {
-  user: any;
-}
-export default function ActiveAccount({ user }: ActivatedProps) {
+import { RootState } from "@/store";
+import Loading from "@/components/Loading";
+import { activeSchema } from "@/components/PageComponents/Global/activeSchema";
+
+export default function ActiveAccount() {
+  const user = useSelector((state: RootState) => state.users.user);
+
   const dispatch = useDispatch();
   const { mutate, isLoading } = useMutation(reSendEmail, {
     onSuccess: async () => {
@@ -40,6 +42,9 @@ export default function ActiveAccount({ user }: ActivatedProps) {
       "The email you entered is not correct with the registered email."
     );
   };
+  if (!user) {
+    return <Loading />;
+  }
   return (
     <LayoutForm
       page="Account Has Not Been Activated"
