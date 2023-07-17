@@ -103,6 +103,13 @@ export const menuItems = [
       },
       {
         id: 5,
+        childtitle: "Cookie",
+        childlink: "/cookie",
+        iconBlue: "/image/ProxyBB.svg",
+        iconWhite: "/image/ProxyBW.svg",
+      },
+      {
+        id: 5,
         childtitle: "Influencers",
         childlink: "/influencer",
         iconBlue: "/image/influencersBB.svg",

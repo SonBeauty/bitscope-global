@@ -41,12 +41,8 @@ export default function Proxy() {
   const [updateInput, setUpdateInput] = useState<boolean>(false);
   const { data, isLoading } = useQuery<any>({
     queryKey: ["proxy", page],
-    queryFn: () =>
-      getProxy({
-        status: "0",
-        page: page,
-        limit: "10",
-      }),
+    queryFn: () => getProxy({ status: "0", page: page, limit: "10" }),
+    staleTime: Infinity,
   });
   const realData = data?.data;
 

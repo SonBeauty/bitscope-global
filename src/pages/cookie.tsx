@@ -44,6 +44,8 @@ export default function Cookie() {
   const [idupdate, setIdUpdate] = useState<string>("");
   const [createInput, setCreateInput] = useState<boolean>(false);
   const [updateInput, setUpdateInput] = useState<boolean>(false);
+  const [modelCsrfToken, setModelCsrfToken] = useState<boolean>(false);
+  const [valueModelCsrfToken, setValueModelCsrfToken] = useState<string>();
   const { data, isLoading } = useQuery<any>({
     queryKey: ["cookie", page],
     queryFn: () =>
@@ -52,6 +54,7 @@ export default function Cookie() {
         page: page,
         limit: "10",
       }),
+    staleTime: Infinity,
   });
   const realData = data?.data;
 
@@ -142,6 +145,11 @@ export default function Cookie() {
     });
 
     toggleUpdate();
+  };
+
+  const toggleCsrfToken = (data: string) => {
+    setValueModelCsrfToken(data);
+    setModelCsrfToken(!modelCsrfToken);
   };
 
   return (
@@ -293,6 +301,14 @@ export default function Cookie() {
                 </div>
               </DismissableModal>
 
+              <DismissableModal
+                open={modelCsrfToken}
+                setOpen={toggleCsrfToken}
+                className="w-full mx-auto self-center text-center py-5"
+              >
+                <Label value={valueModelCsrfToken} />
+              </DismissableModal>
+
               {!isLoading && realData?.data?.length > 0 && (
                 <div
                   onClick={() => ToggleCreate()}
@@ -358,10 +374,11 @@ export default function Cookie() {
                             </td>
                             <td
                               className={`${classes} w-[250px] h-[55px] flex items-center justify-start basis-[34.5%]`}
+                              onClick={() => toggleCsrfToken(item.csrfToken)}
                             >
-                              <textarea className="text-[#1C1C1C] w-[320px] h-[55px] font-medium text-base leading-5 text-center font-Inter ">
-                                {item.csrfToken}
-                              </textarea>
+                              <Typography className="text-[#1C1C1C] font-medium text-base leading-5 text-center font-Inter ">
+                                {item.csrfToken?.slice(0, 35)}...
+                              </Typography>
                             </td>
                             <td
                               className={`${classes} flex items-center justify-start border-b text-center  basis-[13%]`}
