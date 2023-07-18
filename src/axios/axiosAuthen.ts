@@ -1,13 +1,14 @@
 import axios from "axios";
+const THREE_MINUTES_TO_SECONDS = 180000;
 const axiosAuthen = axios.create({
   baseURL: process.env.SERVER,
-  timeout: 1000000,
+  timeout: THREE_MINUTES_TO_SECONDS,
   headers: {
     gzip: true,
     "Content-Type": "application/json",
   },
-  maxContentLength: 100000000,
-  maxBodyLength: 1000000000,
+  maxContentLength: THREE_MINUTES_TO_SECONDS,
+  maxBodyLength: THREE_MINUTES_TO_SECONDS,
 });
 axiosAuthen.interceptors.request.use(
   (config) => {

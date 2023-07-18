@@ -20,20 +20,25 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import Pagination from "@mui/material/Pagination";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
-import { getHistory } from "../api/authentication/History";
+import { deleteHistory, getHistory } from "../api/authentication/History";
 import { useStyles } from "@/components/Pagination/useStyles";
+import LoadingSVG from "@/components/svg/LoadingSVG";
+import { toast } from "react-toastify";
 const CountUp = dynamic(() => import("react-countup"), {
   ssr: false,
 });
 
 export default function History() {
+  const queryClient = useQueryClient();
   const [progressFake, setProgressFake] = useState<number>(1);
+  const [content, setContent] = useState<string>("");
+  const [idHandle, setIdHandle] = useState<string>("");
   const router = useRouter();
   const classes = useStyles();
   const ref = useRef<any>(null);
@@ -48,35 +53,79 @@ export default function History() {
         pageParam: page,
       }),
   });
+  const { mutate, isLoading: loading } = useMutation(deleteHistory, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["history", page] });
+      setOpenModal(false);
+      toast.success("Delete History Successfully!");
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
   useEffect(() => {
     setRealData(data?.data);
+    setProgressFake(1);
   }, [data?.data]);
   const handleClickOutside = () => {
     setOpenModal(false);
   };
   useOnClickOutside(ref, handleClickOutside);
   useEffect(() => {
-    if (progressFake <= 75) {
+    if (progressFake < 75) {
       const interval = setInterval(() => {
         setProgressFake(progressFake + 75);
-      }, 1000);
+      }, 500);
       return () => clearInterval(interval);
     }
   }, [progressFake]);
+
   if (width < 1024) {
     return <HistoryMobile />;
   }
+
   const handleError = (e: any) => {
     e.target.src =
       "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
   };
+
   const handleMinNumber = (item: any) => {
+    if (
+      !item?.telegram?.dataId?.overview?.percent &&
+      item?.twitter?.dataId?.overview?.processBar
+    )
+      return item?.twitter?.dataId?.overview?.processBar;
+
+    if (
+      item?.telegram?.dataId?.overview?.percent &&
+      !item?.twitter?.dataId?.overview?.processBar
+    )
+      return item?.telegram?.dataId?.overview?.percent;
+    if (
+      !item?.telegram?.dataId?.overview?.percent &&
+      !item?.twitter?.dataId?.overview?.processBar
+    )
+      return 0;
+
     return Math.min(
       item?.telegram?.dataId?.overview?.percent,
       item?.twitter?.dataId?.overview?.processBar
     );
   };
-
+  const handleChange = (e: any, page: number) => {
+    setPage(page);
+    setProgressFake(1);
+  };
+  const handleContent = (id: string, content: string) => {
+    setContent(content);
+    setOpenModal(true);
+    setIdHandle(id);
+  };
+  const handleClick = () => {
+    if (content === "Delete") {
+      mutate(idHandle);
+    }
+  };
   return (
     <LayoutDashBoard className="bg-white md:p-5 py-[15px]">
       <div className="flex flex-col gap-4">
@@ -113,7 +162,7 @@ export default function History() {
               </span>
               {!isLoading && realData?.data?.length > 0 && (
                 <div
-                  onClick={() => setOpenModal(true)}
+                  onClick={() => handleContent("0", "DownloadAll")}
                   className="hidden hover:bg-[#00388D] duration-500 ease-linear md:block pt-[1.06rem] px-[1.81rem] pb-[0.94rem] font-Inter text-white text-lg leading-[21.78px] font-semibold cursor-pointer"
                 >
                   Download all
@@ -121,7 +170,7 @@ export default function History() {
               )}
             </div>
           </CardHeader>
-          <CardBody className="px-0 p-0 md:bg-[#F6FBFF] bg-[#D3ECFF] w-full max-h-[615px] overflow-y-auto scrollOver">
+          <CardBody className="px-0 p-0 md:bg-[#F6FBFF] bg-[#D3ECFF] w-full h-[603px] overflow-y-auto scrollOver overscroll-contain">
             <div className="block">
               {isLoading ? (
                 <div className="h-[65vh] flex items-center justify-center">
@@ -154,7 +203,7 @@ export default function History() {
                   <tbody className="w-full ">
                     {realData?.data?.length > 0 &&
                       realData?.data?.map((item: any, index: number) => {
-                        const isLast = index === TABLE_ROWS.length - 1;
+                        const isLast = index === realData?.data?.length - 1;
                         const classes = isLast
                           ? ""
                           : "border-b border-dashed border-[#e4e3e3]";
@@ -173,7 +222,7 @@ export default function History() {
                                     color="blue-gray"
                                     className="font-medium text-[16.26px] leading-[28.69px] text-[#1C1C1C]"
                                   >
-                                    {index + 1}
+                                    {(page - 1) * 10 + index + 1}
                                   </Typography>
                                 </td>
                                 <td
@@ -239,10 +288,16 @@ export default function History() {
                                       Process
                                     </Typography>
                                     <Typography className="text-[#000000] font-Inter font-medium text-sm leading-[17px]">
-                                      {item?.telegram?.dataId?.overview
-                                        ?.percent ??
-                                        item?.twitter?.dataId?.overview
-                                          ?.processBar}
+                                      <CountUp
+                                        start={0}
+                                        end={
+                                          item?.telegram?.dataId?.overview
+                                            ?.percent ??
+                                          item?.twitter?.dataId?.overview
+                                            ?.processBar ??
+                                          75
+                                        }
+                                      />
                                     </Typography>
                                   </div>
                                   <div className="w-[250px]">
@@ -253,7 +308,8 @@ export default function History() {
                                         item?.telegram?.dataId?.overview
                                           ?.percent ??
                                         item?.twitter?.dataId?.overview
-                                          ?.processBar
+                                          ?.processBar ??
+                                        progressFake
                                       }
                                     />
                                   </div>
@@ -277,10 +333,20 @@ export default function History() {
                                   className={`${classes} flex items-center justify-start pt-[18px] pb-[17px] px-[22px] pr-[42px] h-[55px] basis-0`}
                                 >
                                   <div className="flex items-center gap-[19px] justify-center">
-                                    <div className="cursor-pointer">
+                                    <div
+                                      className="cursor-pointer"
+                                      onClick={() =>
+                                        handleContent(item._id, "DownloadOne")
+                                      }
+                                    >
                                       <DownloadAuthenSVG className="stroke-[#28303F] hover:stroke-[#005AE2] duration-500 ease-in-out" />
                                     </div>
-                                    <div className="cursor-pointer">
+                                    <div
+                                      className="cursor-pointer"
+                                      onClick={() =>
+                                        handleContent(item._id, "Delete")
+                                      }
+                                    >
                                       <TrashAuthenSVG className="stroke-[#28303F] hover:stroke-[#E32626] duration-500 ease-in-out" />
                                     </div>
                                   </div>
@@ -299,7 +365,7 @@ export default function History() {
                                     color="blue-gray"
                                     className="font-medium text-[16.26px] leading-[28.69px] text-[#1C1C1C]"
                                   >
-                                    {index + 1}
+                                    {(page - 1) * 10 + index + 1}
                                   </Typography>
                                 </td>
                                 <td
@@ -373,7 +439,7 @@ export default function History() {
                                           end={
                                             typeof handleMinNumber(item) ===
                                               "number" &&
-                                            handleMinNumber(item !== 0)
+                                            handleMinNumber(item) > 0
                                               ? handleMinNumber(item)
                                               : 75
                                           }
@@ -387,7 +453,7 @@ export default function History() {
                                         value={
                                           typeof handleMinNumber(item) ===
                                             "number" &&
-                                          handleMinNumber(item !== 0)
+                                          handleMinNumber(item) > 0
                                             ? handleMinNumber(item)
                                             : progressFake
                                         }
@@ -414,10 +480,20 @@ export default function History() {
                                   className={`${classes} flex items-center justify-start pt-[18px] pb-[17px] px-[22px] pr-[42px] h-[110px] basis-0`}
                                 >
                                   <div className="flex items-center gap-[19px] justify-center">
-                                    <div className="cursor-pointer">
+                                    <div
+                                      className="cursor-pointer"
+                                      onClick={() =>
+                                        handleContent(item._id, "DownloadOne")
+                                      }
+                                    >
                                       <DownloadAuthenSVG className="stroke-[#28303F] hover:stroke-[#005AE2] duration-500 ease-in-out" />
                                     </div>
-                                    <div className="cursor-pointer">
+                                    <div
+                                      className="cursor-pointer"
+                                      onClick={() =>
+                                        handleContent(item._id, "Delete")
+                                      }
+                                    >
                                       <TrashAuthenSVG className="stroke-[#28303F] hover:stroke-[#E32626] duration-500 ease-in-out" />
                                     </div>
                                   </div>
@@ -452,7 +528,7 @@ export default function History() {
                 variant="text"
                 shape="rounded"
                 page={page}
-                onChange={(e, page) => setPage(page)}
+                onChange={(e, page) => handleChange(e, page)}
                 sx={{
                   "& .MuiPaginationItem-page": {
                     color: "#000000",
@@ -482,14 +558,21 @@ export default function History() {
           <DownloadAllMD className="basis-5/12 w-[120px] h-[106px]" />
           <div className="ml-3 flex flex-col gap-[16px] items-center basis-7/12 pb-1">
             <span className="font-Inter text-center font-medium text-base leading-6">
-              Are you sure want to download all data?
+              {content === "DownloadAll" &&
+                "Are you sure want to download all data?"}
+              {content === "Delete" && "Are you sure want to delete data?"}
+              {content === "DownloadOne" &&
+                "Are you sure want to download data?"}
             </span>
             <button
               className="h-[40px] py-[9px] px-[27px] bg-[#005AE2] rounded-md"
-              onClick={() => setOpenModal(false)}
+              onClick={() => handleClick()}
             >
-              <span className="text-white font-Inter font-semibold text-lg leading-[22px] p-0 border-none ">
-                Download
+              <span className="text-white font-Inter font-semibold text-lg leading-[22px] p-0 border-none">
+                {loading && <LoadingSVG />}
+                {content === "DownloadAll" && "Download"}
+                {content === "Delete" && "Delete"}
+                {content === "DownloadOne" && "Download"}
               </span>
             </button>
           </div>

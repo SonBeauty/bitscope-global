@@ -9,7 +9,7 @@ const axiosHeader = axios.create({
 axiosHeader.interceptors.request.use(
   (config) => {
     const token =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
+      localStorage.getItem("token") ?? sessionStorage.getItem("token");
     if (token) {
       config.headers.bearer = token;
     }

@@ -9,7 +9,7 @@ const axiosAuthentication = axios.create({
 axiosAuthentication.interceptors.request.use(
   async (config) => {
     const token =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
+      localStorage.getItem("token") ?? sessionStorage.getItem("token");
     if (token) {
       config.headers.bearer = token;
     }

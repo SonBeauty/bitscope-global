@@ -18,7 +18,7 @@ import { loginUser } from "./api/auth/login";
 export default function Login() {
   const route = useRouter();
 
-  const [remember, setRemember] = useState<Boolean>(false);
+  const [remember, setRemember] = useState<boolean>(false);
   const dispath = useDispatch();
   const { mutate, isLoading } = useMutation(loginUser, {
     onSuccess: (data) => {
