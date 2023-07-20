@@ -1,24 +1,25 @@
-import AdminSVG from "@/components/svg/NavMenuPC/AdminSVG";
-import BitAuthentionSVG from "@/components/svg/NavMenuPC/BitAuthentionSVG";
-import BitMonitorSVG from "@/components/svg/NavMenuPC/BitMonitorSVG";
-import BitProbeSVG from "@/components/svg/NavMenuPC/BitProbeSVG";
-import BitSpyingSVG from "@/components/svg/NavMenuPC/BitSpyingSVG";
-import BitTrackingSVG from "@/components/svg/NavMenuPC/BitTrackingSVG";
-import ChangeLogAdminSVG from "@/components/svg/NavMenuPC/ChangeLogAdminSVG";
-import ChangelogsSVG from "@/components/svg/NavMenuPC/ChangelogsSVG";
-import CompanySettingSVG from "@/components/svg/NavMenuPC/CompanySettingSVG";
-import CookieSVG from "@/components/svg/NavMenuPC/CookieSVG";
-import DashBoardSVG from "@/components/svg/NavMenuPC/DashBoardSVG";
-import InfluencerSVG from "@/components/svg/NavMenuPC/InfluencerSVG";
-import LogoutSVG from "@/components/svg/NavMenuPC/LogoutSVG";
-import PaymentSettingSVG from "@/components/svg/NavMenuPC/PaymentSettingSVG";
-import ProfileSettingSVG from "@/components/svg/NavMenuPC/ProfileSettingSVG";
-import ProxySVG from "@/components/svg/NavMenuPC/ProxySVG";
+import AdminSVG from "@/components/svg/NavMenuMobile/AdminSVG";
+import BitAuthentionSVG from "@/components/svg/NavMenuMobile/BitAuthentionSVG";
+import BitMonitorSVG from "@/components/svg/NavMenuMobile/BitMonitorSVG";
+import BitProbeSVG from "@/components/svg/NavMenuMobile/BitProbeSVG";
+import BitSpyingSVG from "@/components/svg/NavMenuMobile/BitSpyingSVG";
+import BitTrackingSVG from "@/components/svg/NavMenuMobile/BitTrackingSVG";
+import ChangeLogAdminSVG from "@/components/svg/NavMenuMobile/ChangeLogAdminSVG";
+import ChangelogsSVG from "@/components/svg/NavMenuMobile/ChangelogsSVG";
+import CompanySettingSVG from "@/components/svg/NavMenuMobile/CompanySettingSVG";
+import CookieSVG from "@/components/svg/NavMenuMobile/CookieSVG";
+import DashBoardSVG from "@/components/svg/NavMenuMobile/DashBoardSVG";
+import InfluencerSVG from "@/components/svg/NavMenuMobile/InfluencerSVG";
+import LogoutSVG from "@/components/svg/NavMenuMobile/LogoutSVG";
+import PaymentSettingSVG from "@/components/svg/NavMenuMobile/PaymentSettingSVG";
+import ProfileSettingSVG from "@/components/svg/NavMenuMobile/ProfileSettingSVG";
+import ProxySVG from "@/components/svg/NavMenuMobile/ProxySVG";
 
-import ReferalSVG from "@/components/svg/NavMenuPC/ReferalSVG";
-import SettingSVG from "@/components/svg/NavMenuPC/SettingSVG";
+import ReferalSVG from "@/components/svg/NavMenuMobile/ReferalSVG";
+import SettingSVG from "@/components/svg/NavMenuMobile/SettingSVG";
+import Image from "next/image";
 
-export const menuItems = [
+export const menuItemsMobile = [
   {
     id: 1,
     title: "Dashboards",
@@ -66,23 +67,23 @@ export const menuItems = [
   {
     id: 2,
     title: "Changelog",
-    icon: <ChangelogsSVG fillOne="white" />,
-    iconBlue: <ChangelogsSVG fillOne="#0341A3" />,
+    icon: <ChangelogsSVG fillOne="#0341A3" />,
+    iconBlue: <ChangelogsSVG fillOne="white" />,
     link: "/changelog",
     badge: "changelogs",
   },
   {
     id: 3,
     title: "Referral",
-    icon: <ReferalSVG fillOne="white" />,
-    iconBlue: <ReferalSVG fillOne="#0341A3" />,
+    icon: <ReferalSVG fillOne="#0341A3" />,
+    iconBlue: <ReferalSVG fillOne="white" />,
     link: "/referral",
   },
   {
     id: 4,
     title: "Setting",
-    icon: <SettingSVG fillOne="white" />,
     iconBlue: <SettingSVG fillOne="#0341A3" />,
+    icon: <SettingSVG fillOne="white" />,
     link: "/user",
     child: [
       {
@@ -111,8 +112,8 @@ export const menuItems = [
   {
     id: 5,
     title: "Admin",
-    icon: <AdminSVG fillOne="white" />,
-    iconBlue: <AdminSVG fillOne="white" />,
+    icon: <AdminSVG fillOne="#FF1010" />,
+    iconBlue: <AdminSVG fillOne="#FF1010" />,
     isAdmin: true,
     child: [
       {
@@ -148,8 +149,8 @@ export const menuItems = [
   {
     id: 6,
     title: "Logout",
-    iconBlue: <LogoutSVG color="white" />,
-    icon: <LogoutSVG color="white" />,
+    iconBlue: <LogoutSVG color="#FF1010" />,
+    icon: <LogoutSVG color="#FF1010" />,
     link: "/login",
   },
 ];

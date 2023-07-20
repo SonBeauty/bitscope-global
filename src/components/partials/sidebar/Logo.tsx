@@ -7,15 +7,16 @@ const SidebarLogo = ({ menuHover }: any) => {
   const [skin] = useSkin();
   return (
     <div
-      className={` logo-segment flex justify-between items-center bg-white dark:bg-slate-800 z-[9] px-4
+      className={` logo-segment relative flex h-[64.5px] border-b border-[#E5E9EE] border-x-0 justify-between items-center bg-white dark:bg-slate-800 z-[9] px-4
       ${menuHover ? "logo-hovered" : ""}
       ${
         skin === "bordered"
-          ? " border-b border-r-0 border-slate-200 dark:border-slate-700"
-          : " border-none"
+          ? " border-b border-slate-200 dark:border-slate-700"
+          : ""
       }
       `}
     >
+      <div className="w-1 h-[63px] absolute bg-white top-0 -right-[2px] z-[9999999999999] " />
       <Link href="/dashboard">
         <p className="flex items-center space-x-4">
           <p className="logo-icon">
@@ -24,7 +25,7 @@ const SidebarLogo = ({ menuHover }: any) => {
               height={80}
               alt="logo"
               src="/image/1200X628-SVG-NONBACKGROUND.png"
-              className="mx-auto relative -mt-4"
+              className="mx-auto relative -mt-1"
             />
           </p>
         </p>

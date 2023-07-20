@@ -194,9 +194,9 @@ export default function EditChangelogs({ item, id, setOpen }: any) {
         >
           <span>Cancel</span>
         </Button>
-        <div className="py-7 visible"></div>
+       
       </form>
-      <div className="py-7 visible"></div>
+    
     </div>
   );
 }

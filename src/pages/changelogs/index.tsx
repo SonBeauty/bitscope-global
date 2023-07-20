@@ -259,7 +259,7 @@ export default function Changelogs() {
             </div>
           </Card>
         </div>
-        <div className="py-7 visible"></div>
+      
       </div>
       <DismissableModal
         open={open}

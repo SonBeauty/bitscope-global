@@ -1,7 +1,9 @@
 import useMobileMenu from "@/hooks/useMobileMenu";
 import useSidebar from "@/hooks/useSidebar";
+import useWidth from "@/hooks/useWidth";
 import { listChangelogs } from "@/pages/api/changelogs";
 import { RootState } from "@/store";
+import { logout } from "@/store/users";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import {
   Accordion,
@@ -15,18 +17,20 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import MobileMenu from "./MobileMenu";
 const Navmenu = ({ menus, menuHover }: any) => {
   const user = useSelector((state: RootState) => state.users.user);
   const { data } = useQuery(["changelogs"], listChangelogs);
-
+  const dispatch = useDispatch();
+  const { width } = useWidth();
   const [collapsed] = useSidebar();
   const router = useRouter();
   const location = router.pathname;
   const [open, setOpen] = useState<number | null>(null);
+  const [openNav, setOpenNav] = useState<number>();
   const [mobileMenu, setMobileMenu] = useMobileMenu();
   const handleOpen = (value: any) => {
     if (value.link) {
@@ -35,6 +39,7 @@ const Navmenu = ({ menus, menuHover }: any) => {
       return setOpen(open === value.id ? 0 : value.id);
     }
     setOpen(open === value.id ? 0 : value.id);
+    setOpenNav(open === value.id ? 0 : value.id);
   };
   useEffect(() => {
     let submenuIndex = null;
@@ -52,6 +57,7 @@ const Navmenu = ({ menus, menuHover }: any) => {
       }
     });
     setOpen(submenuIndex);
+    setOpenNav(submenuIndex || -1);
   }, [location, menus]);
   const checkOpenAngBGWhite = (item: any) =>
     item?.link === location ||
@@ -66,8 +72,20 @@ const Navmenu = ({ menus, menuHover }: any) => {
     setMobileMenu(!mobileMenu);
     router.push(item);
   };
+  const handleClickMenu = (item: string) => {
+    if (item === "/login") {
+      dispatch(logout());
+      router.push("/login");
+    }
+
+    router.push(item);
+    setMobileMenu(false);
+  };
+  if (width < 1220) {
+    return <MobileMenu />;
+  }
   return (
-    <Card className="h-screen items-start rounded-none w-full py-4 px-0 shadow-xl bg-[#0046B0]">
+    <Card className="h-screen items-start rounded-none w-full px-0 shadow-xl bg-[#0046B0]">
       <List className="p-0 m-0 gap-0 min-w-[248px]">
         {menus.map((item: any, index: number) => {
           return (
@@ -75,46 +93,39 @@ const Navmenu = ({ menus, menuHover }: any) => {
               {item.child && !item.isAdmin && (
                 <Accordion
                   className={`${
-                    checkOpenAngBGWhite(item) ? "bg-white" : "bg-[#0046B0]"
+                    checkOpenAngBGWhite(item) ? "bg-white" : "bg-[#0341A3]"
                   } p-0`}
-                  open={open === item.id}
+                  open={openNav === item.id}
                   icon={
                     handleHideTitle(item) && (
                       <ChevronDownIcon
+                        onClick={() =>
+                          openNav === item.id
+                            ? setOpenNav(-1)
+                            : setOpenNav(item.id)
+                        }
                         strokeWidth={2.5}
-                        className={`mx-auto h-4 w-4 transition-transform ${
+                        className={`mx-auto h-4 w-4 z-10 transition-transform ${
                           checkOpenAngBGWhite(item)
                             ? "text-[#0046B0]"
                             : "text-white"
-                        } ${open === item.id ? "rotate-180" : ""}`}
+                        } ${openNav === item.id ? "rotate-180" : ""}`}
                       />
                     )
                   }
                 >
-                  <ListItem className="p-0" selected={open === item.id}>
-                    <AccordionHeader
-                      onClick={() => handleOpen(item)}
-                      className="border-b-0 p-3"
-                    >
+                  <ListItem className="p-0" selected={openNav === item.id}>
+                    <AccordionHeader className="border-b-0 px-4 py-3 gap-[10px]">
                       <ListItemPrefix className="grid-1">
-                        <Image
-                          src={
-                            checkOpenAngBGWhite(item)
-                              ? item.iconBlue
-                              : item.icon
-                          }
-                          width={26}
-                          height={26}
-                          alt="dashboard"
-                          className="menu-icon mb-[2px] mx-3"
-                        />
+                        {checkOpenAngBGWhite(item) ? item.iconBlue : item.icon}
                       </ListItemPrefix>
                       <Typography
+                        onClick={() => handleOpen(item)}
                         className={`${
                           checkOpenAngBGWhite(item)
                             ? "text-[#0046B0]"
                             : "text-white"
-                        } mr-auto font-semibold text-base leading-[19px]`}
+                        } mr-auto font-medium text-sm leading-5`}
                       >
                         {handleHideTitle(item)}
                       </Typography>
@@ -129,24 +140,18 @@ const Navmenu = ({ menus, menuHover }: any) => {
                               checkOpenAngBGWhite(item)
                                 ? "text-[#0046B0] bg-white"
                                 : "text-white bg-[#0046B0]"
-                            } pl-8 py-3 font-medium text-sm leading-5 rounded-none`}
+                            } pl-4 py-3 gap-2 rounded-none`}
                             onClick={() => handleChildLink(item.childlink)}
                             key={index}
                           >
                             <ListItemPrefix>
-                              <Image
-                                src={
-                                  checkOpenAngBGWhite(item)
-                                    ? item.iconBlue
-                                    : item.iconWhite
-                                }
-                                width={26}
-                                height={26}
-                                alt="dashboard"
-                                className="menu-icon mr-3"
-                              />
+                              {checkOpenAngBGWhite(item)
+                                ? item.iconBlue
+                                : item.iconWhite}
                             </ListItemPrefix>
-                            {handleHideTitle(item)}
+                            <span className="font-medium text-sm leading-5 font-Inter text-inherit">
+                              {handleHideTitle(item)}
+                            </span>
                           </ListItem>
                         );
                       })}
@@ -157,46 +162,39 @@ const Navmenu = ({ menus, menuHover }: any) => {
               {item.child && user?.role === "admin" && item.isAdmin && (
                 <Accordion
                   className={`${
-                    checkOpenAngBGWhite(item) ? "bg-white" : "bg-[#0046B0]"
+                    checkOpenAngBGWhite(item) ? "bg-white" : "bg-[#FF4D4F]"
                   } p-0`}
-                  open={open === item.id}
+                  open={openNav === item.id}
                   icon={
                     handleHideTitle(item) && (
                       <ChevronDownIcon
+                        onClick={() =>
+                          openNav === item.id
+                            ? setOpenNav(-1)
+                            : setOpenNav(item.id)
+                        }
                         strokeWidth={2.5}
                         className={`mx-auto h-4 w-4 transition-transform ${
                           checkOpenAngBGWhite(item)
                             ? "text-[#0046B0]"
                             : "text-white"
-                        } ${open === item.id ? "rotate-180" : ""}`}
+                        } ${openNav === item.id ? "rotate-180" : ""}`}
                       />
                     )
                   }
                 >
-                  <ListItem className="p-0" selected={open === item.id}>
-                    <AccordionHeader
-                      onClick={() => handleOpen(item)}
-                      className="border-b-0 p-3"
-                    >
+                  <ListItem className="p-0 " selected={openNav === item.id}>
+                    <AccordionHeader className="border-b-0 p-3  gap-[10px]">
                       <ListItemPrefix className="grid-1">
-                        <Image
-                          src={
-                            checkOpenAngBGWhite(item)
-                              ? item.iconBlue
-                              : item.icon
-                          }
-                          width={26}
-                          height={26}
-                          alt="dashboard"
-                          className="menu-icon mb-[2px] mx-3"
-                        />
+                        {checkOpenAngBGWhite(item) ? item.iconBlue : item.icon}
                       </ListItemPrefix>
                       <Typography
+                        onClick={() => handleOpen(item)}
                         className={`${
                           checkOpenAngBGWhite(item)
                             ? "text-[#0046B0]"
                             : "text-white"
-                        } mr-auto font-semibold text-base leading-[19px]`}
+                        } mr-auto font-medium text-sm leading-5`}
                       >
                         {handleHideTitle(item)}
                       </Typography>
@@ -211,24 +209,19 @@ const Navmenu = ({ menus, menuHover }: any) => {
                               checkOpenAngBGWhite(item)
                                 ? "text-[#0046B0] bg-white"
                                 : "text-white bg-[#0046B0]"
-                            } pl-8 py-3 font-medium text-sm leading-5 rounded-none`}
+                            } pl-5 py-3 gap-[10px] rounded-none`}
                             onClick={() => handleChildLink(item.childlink)}
                             key={index}
                           >
                             <ListItemPrefix>
-                              <Image
-                                src={
-                                  checkOpenAngBGWhite(item)
-                                    ? item.iconBlue
-                                    : item.iconWhite
-                                }
-                                width={26}
-                                height={26}
-                                alt="dashboard"
-                                className="menu-icon mr-3"
-                              />
+                              {checkOpenAngBGWhite(item)
+                                ? item.iconBlue
+                                : item.iconWhite}
                             </ListItemPrefix>
-                            {handleHideTitle(item)}
+                            <span className="font-medium text-sm leading-5 text-inherit font-Inter">
+                              {" "}
+                              {handleHideTitle(item)}
+                            </span>
                           </ListItem>
                         );
                       })}
@@ -241,20 +234,12 @@ const Navmenu = ({ menus, menuHover }: any) => {
                   className={`${
                     checkOpenAngBGWhite(item)
                       ? "bg-white text-[#0341A3]"
-                      : "bg-inherit text-white"
-                  } rounded-none font-semibold`}
-                  onClick={() => router.push(item.link)}
+                      : "bg-[#0341A3] text-white"
+                  } rounded-none font-Inter font-medium text-sm gap-[10px]`}
+                  onClick={() => handleClickMenu(item.link)}
                 >
-                  <ListItemPrefix>
-                    <Image
-                      src={
-                        checkOpenAngBGWhite(item) ? item.iconBlue : item.icon
-                      }
-                      width={26}
-                      height={26}
-                      alt="dashboard"
-                      className="menu-icon mb-[2px] mx-3"
-                    />
+                  <ListItemPrefix className="pl-1">
+                    {checkOpenAngBGWhite(item) ? item.iconBlue : item.icon}
                   </ListItemPrefix>
                   {handleHideTitle(item)}
                   {item.badge && data && (

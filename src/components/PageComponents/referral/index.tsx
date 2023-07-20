@@ -113,7 +113,7 @@ export default function ReferralMobile({ data, isLoading }: ReferralMobileProps)
                                     </div>
                                 )
                             })}
-                            <div className="py-7 visible" />
+                            
                         </div>
                     )}
                 </CardBody>

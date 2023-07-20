@@ -11,7 +11,6 @@ import { Suspense } from "react";
 import MobileMenu from "../partials/sidebar/MobileMenu";
 import PageContainer from "@/container/PageContainer";
 import { ToastContainer } from "react-toastify";
-import MobileFooter from "./components/MobileFooter";
 interface LayoutDashBoardProps {
   children: React.ReactNode;
   className?: string;
@@ -65,10 +64,7 @@ const LayoutDashBoard = ({ children, className }: LayoutDashBoardProps) => {
           </div>
         </div>
       </div>
-      {width < breakpoints.md && <MobileFooter />}
-      {width > breakpoints.md && (
-        <Footer className={width > breakpoints.xl ? switchHeaderClass() : ""} />
-      )}
+      <Footer className={width > breakpoints.xl ? switchHeaderClass() : ""} />
     </PageContainer>
   );
 };

@@ -49,7 +49,7 @@ const ChangelogPage = () => {
             </ul>
           </Card>
         </div>
-        <div className="py-7 visible"></div>
+        
       </div>
     </LayoutDashBoard>
   );

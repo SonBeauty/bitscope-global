@@ -45,8 +45,9 @@ const Header = ({ className = "custom-class" }) => {
   };
   return (
     <header className={className + " " + navbarTypeClass()}>
+      
       <div
-        className={` app-header md:px-6 px-[15px]  dark:bg-slate-800 shadow-base dark:shadow-base3 bg-white
+        className={` app-header h-[64px] md:px-6 px-[15px] dark:bg-slate-800 shadow-base dark:shadow-base3 bg-white
         ${borderSwicthClass()}
              ${
                menuType === "horizontal" && width > breakpoints.xl
@@ -92,7 +93,6 @@ const Header = ({ className = "custom-class" }) => {
             </div>
           )}
           <div className="nav-tools flex items-center lg:space-x-6 space-x-3 rtl:space-x-reverse">
-            {width >= breakpoints.md && <Message />}
             {width >= breakpoints.md && <Notification />}
             {width >= breakpoints.md && <Profile />}
             {width <= breakpoints.md && (
