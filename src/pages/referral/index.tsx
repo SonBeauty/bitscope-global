@@ -1,204 +1,337 @@
-import RefferalMobile from "@/components/PageComponents/referral/index";
 import LayoutDashBoard from "@/components/layout/Layout";
-import BackLeftSVG from "@/components/svg/BackLeftSVG";
-import useWidth from "@/hooks/useWidth";
-import { TABLE_HEAD } from "@/constant/components/Referral";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { Player } from "@lottiefiles/react-lottie-player";
 import {
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Typography,
-} from "@material-tailwind/react";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useRef } from "react";
-import { useHover } from "usehooks-ts";
-import { RootState } from "@/store";
-import NoreferralSVG from "@/components/svg/NoreferralSVG"
-import Link from "next/link";
+  TABLE_RULES,
+  TABLE_RULES_ROW,
+  RANK,
+} from "@/constant/components/Referral";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
-export default function History() {
-  const router = useRouter();
-  const hoverRef = useRef(null)
-  const isHover = useHover(hoverRef)
-  const { width } = useWidth();
-  const [data, setData] = useState<any>(null)
-  const [totalPage, setTotalPage] = useState<number>()
-  const [currentPage, setCurrentPage] = useState<any>(1)
-  const [isLoading, setIsLoading] = useState(true)
-  const user = useSelector((state: RootState) => state.users.user);
-  useEffect(() => {
-    fetch(`${process.env.SERVER}/users/${user?._id}/referral?page=${currentPage}&limit=10`)
-      .then((res) => res.json())
-      .then((data) => {
-        setTotalPage(data?.data?.totalPage)
-        setData(data?.data?.data);
-        setIsLoading(false);
-      });
-  }, [user?._id, width, currentPage]);
+import { Card, CardBody, Typography } from "@material-tailwind/react";
+import BannerReferral from "@/components/svg/BannerReferral";
+import OverviewReferral from "@/components/svg/OverviewReferral";
+import { useQuery } from "@tanstack/react-query";
+import { getReferral } from "../api/referral/GetReferral";
+import Subtract from "@/components/svg/Subtract";
+import { Tooltip } from "flowbite-react";
+import { InviteRule, ShareRule } from "@/components/svg/RankSVG";
+import { LuCopy } from "react-icons/lu";
+import router from "next/router";
+import { toast } from "react-toastify";
 
-  if (width < 1024) {
-    return <RefferalMobile data={data} isLoading={isLoading} />;
-  }
+export default function Info() {
+  const { data, isLoading } = useQuery<any>({
+    queryKey: ["referral"],
+    queryFn: () => getReferral(),
+  });
+  const realData = data?.data;
+
+  const converRank = (rank: string) => {
+    return rank?.replace(/_/g, " ");
+  };
+
+  const getRankSrc = (rankUser: string) => {
+    return RANK.find((item) => item.name === rankUser)?.src;
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast("Copy successful !!!");
+  };
+  const referralLink = (text: string) => {
+    return `https://bitscope.global/register?ref=${text}`;
+  };
+  const referralUI = (text: string) => {
+    return `https://www...${text?.slice(4, 8)}`;
+  };
 
   return (
     <LayoutDashBoard className="bg-white md:p-5 py-[15px]">
-      <div className="flex flex-col gap-4 ">
-        <Card className="h-full bg-[#f6fbff] w-full max-h-[795.08px] p-0 m-0 shadow-[0_1px_2px_rgba(0,0,0,0.25)] rounded-md">
-          <CardHeader
-            floated={false}
-            shadow={false}
-            className={`rounded-none rounded-tl-[6px] rounded-tr-[6px] mt-0 mx-0 duration-200 md:h-[54px] ${isHover ? "bg-[#00388D]" : 'bg-[#0046B0]'} `}
-          >
-            <div className="flex justify-between flex-row items-center ">
-              <span className="flex gap-[14px] items-center justify-center px-[1rem] md:px-0">
-                <div ref={hoverRef} className=""
-                  onClick={() => router.push("/dashboard")}
-                >
-                  <BackLeftSVG className="w-[11px] h-[18px] mb-[0.5px] ml-[25px] mr-[-10px] cursor-pointer" />
-                </div>
-                <span className="font-Inter py-[1.06rem] md:px-[1.38rem] text-white text-lg leading-5 font-bold">
-                  REFERRAL HISTORY
+      <div className="w-full text-center">
+        <div className="flex justify-between bg-cover bg-[url('/image/BannerReferral.svg')]">
+          <div className="px-14 py-20 text-left">
+            <div className="text-white text-[32px] leading-[40px] font-Inter font-bold">
+              Refer Friends,
+            </div>
+            <div className="text-white text-[32px] leading-[40px] font-Inter font-bold">
+              <span className="text-[#0AE0FF]">Get 250 USDT</span> Bonus Reward
+            </div>
+            <div className="text-white text-[32px] leading-[40px] font-Inter font-normal">
+              15% commission.
+            </div>
+            <button className="pt-4">
+              <a
+                className="flex "
+                href="https://docs.bitscope.global/development-team-and-partners/cooperation-mechanism"
+                target="_blank"
+              >
+                <span className=" text-white font-Inter text-base leading-[19.36px] font-medium">
+                  View View referral rules
                 </span>
-              </span>
-            </div>
-          </CardHeader>
-          <CardBody className="px-0 p-0 md:bg-[#F6FBFF] bg-[#D3ECFF] w-full overflow-x-auto ">
-            <div className="block">
-              {isLoading ? (
-                <div className="h-[65vh] flex items-center justify-center">
-                  <Player
-                    autoplay
-                    loop
-                    src="/assets/jsonGif/ManAndRobotWithComputers.json"
-                    style={{ minHeight: "40vh", width: "40%" }}
-                    className="p-0"
-                  />
-                </div>
-              ) : (
-                <table className="w-full table-auto text-left">
-                  <thead className="w-full ">
-                    <tr className="bg-[#D3ECFF] h-[55px] flex w-full justify-between px-2 md:pl-[35px] py-[17px] md:pr-[42px]">
-                      {TABLE_HEAD.map((head, index) => (
-                        <th
-                          key={index}
-                          className={`${head.class} flex items-center`}
-                        >
-                          <Typography
-                            className={`font-Inter font-semibold text-center text-lg leading-[22px] text-[#181C32] `}
-                          >
-                            {head.title}
-                          </Typography>
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody className="w-full">
-                    {
-                      data?.map((item: any, index: number) => {
-                        const isLast = index === data?.length - 1;
-                        const time = new Date(item?.userId?.createdAt).toLocaleTimeString(('en-us'), { hour12: false })
-                        const classes = isLast
-                          ? ""
-                          : "border-b border-dashed border-[#e4e3e3]";
-                        return (
-                          <tr
-                            className="flex hover:bg-[#EBF4FF] hover:shadow-sm duration-300 ease-in-out"
-                            key={index}
-                          >
-                            <td
-                              className={`${classes} py-[13px] px-[40px] h-[55px] md:basis-[10%] 2xl:basis-[9.5%]`}
-                            >
-                              <Typography
-                                variant="small"
-                                color="blue-gray"
-                                className="font-medium text-[16.26px] leading-[28.69px] text-[#1C1C1C]"
-                              >
-                                {index + 1}
-                              </Typography>
-                            </td>
-                            <td
-                              className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[1vh] h-[55px] basis-[14%] mx-[-2.5vh] 2xl:basis-[15%]`}
-                            >
-                              <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
-                                {item?.userId?.name}
-                              </Typography>
-                            </td>
-                            <td
-                              className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[25.5%] 2xl:basis-[20.5%]`}
-                            >
-                              <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
-                                {item?.userId?.email}
-                              </Typography>
-                            </td>
-                            <td
-                              className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[21%] 2xl:basis-[22.5%]`}
-                            >
-                              <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
-                                {item?.userId?.createdAt?.slice(0, 10).split('-').map((part: any) => part.padStart(2, '0')).join('.') + " at " + time}
-                              </Typography>
-                            </td>
-                            <td
-                              className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[13%] 2xl:basis-[11.5%]`}
-                            ><Typography className={`text-[#1C1C1C] font-medium text-base leading-5 font-Inter ${item?.userId?.isActive ? 'text-[#00A72F]' : 'text-yellow-300'}`}>
-                                {item?.userId?.isActive ? 'Confirm' : 'Register'}
-                              </Typography>
-                            </td>
-                            <td
-                              className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[10.5%] 2xl:basis-[13%]`}
-                            ><Typography className='text-[#1C1C1C] font-medium text-base leading-5 font-Inter'>
-                                {item?.userId?.isActive ? '$0.5' : '$0.0'}
-                              </Typography></td>
-                            <td
-                              className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[12.5%] 2xl:basis-[17%]`}
-                            ><Typography className='text-[#1C1C1C] font-medium text-base leading-5 font-Inter'>
-                                {item?.userId?.isActive ? '$0.5' : '$0.0'}
-                              </Typography></td>
-                          </tr>
-                        );
-                      })}
-                  </tbody>
-                </table>
-              )}
-            </div>
-            {!isLoading &&
-              (data?.length === 0 || !data) && (
-                <div className="w-full h-[60vh] flex items-center mb-8 md:items-center justify-center overflow-hidden">
-                  <div className="flex flex-col justify-center items-center gap-7">
-                    <NoreferralSVG />
+                <span>
+                  <ChevronRightIcon className="h-4 w-4 ml-[2px] mt-[2px] text-white font-Inter text-base leading-[19.36px] font-medium" />
+                </span>
+              </a>
+            </button>
+          </div>
+          {isLoading ? (
+            <></>
+          ) : (
+            <div className="px-14 py-20">
+              <div className="w-auto h-[150px] bg-white rounded-md">
+                <div className="p-4">
+                  <div className="flex py-1 justify-between bg-[#F8F8F8] rounded-md">
+                    <div className="py-3 pl-5 pr-10  font-Inter text-[#1C1C1C] font-medium text-base leading-[19.36px]">
+                      Referral ID
+                    </div>
+                    <div className="py-3 pr-5 pl-10 flex font-Inter font-normal text-base leading-[19.36px]">
+                      {realData?.referralCode}
+                      <LuCopy
+                        className="ml-2 hover:text-blue-600 text-base"
+                        onClick={() => {
+                          copyToClipboard(realData?.referralCode);
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
+                <div className="p-4 pt-0 ">
+                  <div className="flex py-1 justify-between bg-[#F8F8F8] rounded-md">
+                    <div className="py-3 pl-5 pr-10 font-Inter text-[#1C1C1C] font-medium text-base leading-[19.36px]">
+                      Referral Link
+                    </div>
+                    <div className="py-3 pr-5 pl-10 flex font-Inter font-normal text-base leading-[19.36px]">
+                      {referralUI(realData?.referralCode)}
+                      <LuCopy
+                        className="ml-2 hover:text-blue-600 text-base"
+                        onClick={() => {
+                          copyToClipboard(referralLink(realData?.referralCode));
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="flex flex-col w-full h-[200px] justify-center items-center gap-7 rounded-md pt-4">
+        <Card className="h-full bg-[#f6f8fa] w-full shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
+          <div className="bg-[#f6f8fa] border-b-[1.5px] border-b-[#E5E9EE] p-3">
+            <div className="flex justify-between flex-row items-center">
+              <div className="flex font-Inter text-lg leading-[21.78px] font-semibold">
+                <div className="pl-4 pr-3">
+                  <OverviewReferral className="w-[24px] h-[24px]" />
+                </div>
+                <span className="font-Inter text-[#000] text-[18px] leading-[21.78px] font-bold">
+                  Overview
+                </span>
+              </div>
+
+              <button
+                className="flex font-Inter text-[#005ae2] text-lg leading-[21.78px] font-semibold"
+                onClick={() => router.push("/referral")}
+              >
+                <span className="text-[#005ae2]">View Activity & Overview</span>
+                <span>
+                  <ChevronRightIcon className="h-6 w-6 text-[#005ae2] ml-1" />
+                </span>
+              </button>
+            </div>
+          </div>
+          <CardBody className="w-full h-full px-0 p-0 overflow-x-auto ">
+            <div className="block">
+              {isLoading ? (
+                <></>
+              ) : (
+                <>
+                  <div className="flex px-[10px]">
+                    <div className="px-5 pt-3 py-5 basis-[25%]">
+                      <div className="flex py-5">
+                        <div className="font-Inter font-normal text-start text-[16px] leading-[19.36px] text-[#1C1C1C]">
+                          Bonus Reward (USDT)
+                        </div>
+                        <Tooltip
+                          content="To prevent fraud, minimum 1% of invitees must participate in Pre-sale to unlock Bonus Reward."
+                          placement="right"
+                          className="w-[235px] h-[75px] font-Inter font-normal leading-[20px] text-xs"
+                        >
+                          <Subtract className="w-[16px] h-[16px] ml-2" />
+                        </Tooltip>
+                      </div>
+                      <span className="py-5 font-medium text-[36px] leading-[36px] text-[#1C1C1C]">
+                        {realData ? realData?.bonusReward : 0}
+                      </span>
+                    </div>
+
+                    <div className="px-5 pt-3 py-5 basis-[25%]">
+                      <div className="py-5 font-Inter font-normal text-start text-[16px] leading-[19.36px] text-[#1C1C1C]">
+                        Pre-sale Bonus
+                      </div>
+                      <span className="py-5 font-medium text-[36px] leading-[36px] text-[#1C1C1C]">
+                        {realData ? realData?.preSaleBonus : 0}
+                      </span>
+                    </div>
+
+                    <div className="px-5 pt-3 py-5 basis-[25%]">
+                      <div className="py-5 font-Inter font-normal text-start text-[16px] leading-[19.36px] text-[#1C1C1C]">
+                        Total Referrals
+                      </div>
+                      <span className="py-5 font-medium text-[36px] leading-[36px] text-[#1C1C1C]">
+                        {realData ? realData?.totalReferral : 0}
+                      </span>
+                    </div>
+
+                    <div className="px-5 pt-3 py-5 basis-[25%]">
+                      <div className="py-5 font-Inter font-normal text-start text-[16px] leading-[19.36px] text-[#1C1C1C]">
+                        Successful Referrals
+                      </div>
+                      <span className="py-5 font-medium text-[36px] leading-[36px] text-[#1C1C1C]">
+                        {realData ? realData?.successfulReferral : 0}
+                      </span>
+                    </div>
+                  </div>
+                </>
               )}
+            </div>
           </CardBody>
         </Card>
-        {!isLoading && data?.length > 0 && (
-          <CardFooter className="-mr-[9.5px] flex items-center justify-end p-0 bg-white">
-            <div className="flex items-center justify-center w-[32px] h-[32px] py-[6px] px-[13px] rounded-[3.825px]">
-              <span className="font-Inter cursor-pointer text-white font-bold text-[16px] leading-[19.36px]">
-                <ChevronLeftIcon className="h-4 w-4 text-[#000000] cursor-pointer" />
-              </span>
+      </div>
+      <div className="w-full grid grid-cols-9 gap-4 pt-4 rounded-md">
+        {isLoading ? (
+          <></>
+        ) : (
+          <span className="bg-[#f6f8fa] col-span-3 rounded-md shadow-base">
+            <div className="border-b-[1px] border-b-[#E5E9EE] p-4 text-lg font-bold font-Inter leading-[21.78px]  ">
+              Your medal
             </div>
-            <div className="flex items-center px-[6px]">
-              {Array(totalPage).fill('').map((_, index) => {
-                return <Link href={`?page=${index + 1}`} onClick={() => setCurrentPage(index + 1)} key={index} className={`flex items-center justify-center w-[32px] h-[32px] py-[6px] px-[13px] rounded-[3.825px] ${index + 1 == currentPage ? 'bg-[#009EF7]' : 'bg-[#fff]'}`}>
-                  <span className={`font-Inter cursor-pointer  ${index + 1 == currentPage ? 'text-white' : 'text-[#000]'} font-medium text-[16px] leading-[19.36px]`}>
-                    {index + 1}
-                  </span>
-                </Link>
-              })
-              }
+            <div className="p-4 ">
+              <div className=" w-full h-full 4xl:h-[720px] font-Inter bg-cover bg-[url('/image/BackGroundRank.svg')]">
+                <div className="text-center text-white text-[30px] font-bold leading-[36.31px] pt-12 3xl:pt-16 4xl:pt-20">
+                  {realData?.userName}
+                </div>
+                <div className="text-center text-white uppercase text-[17.6px] leading-[21.3px] font-bold pt-10">
+                  {converRank(realData?.rank)}
+                </div>
+                <div className="pt-[110px] 3xl:pt-[130px] 4xl:pt-[170px] flex justify-center">
+                  <img
+                    src={getRankSrc(realData?.rank)}
+                    className="w-1/5 h-1/5"
+                  />
+                </div>
+                <div className="w-full px-[8px] pt-[170px] pb-3 3xl:px-0 3xl:pt-[120px]]">
+                  <div className="flex justify-evenly rounded-b-[17px] rounded-t-[5px] text-white py-3">
+                    <div className="text-center">
+                      <div className="text-[22.01px] font-bold leading-[30.81px] font-Inter">
+                        {realData?.forNextLevel}
+                      </div>
+                      <div className="text-[15.4px] font-normal leading-[21.56px] font-Inter">
+                        For Next Level
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-[22.01px] font-bold leading-[30.81px] font-Inter">
+                        {realData?.percentPreSaleReward}%
+                      </div>
+                      <div className="text-[15.4px] font-normal leading-[21.56px] font-Inter">
+                        Pre-sale COM
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center justify-center w-[32px] h-[32px] py-[6px] px-[13px] rounded-[3.825px]">
-              <span className="font-Inter cursor-pointer text-white font-bold text-[16px] leading-[19.36px]">
-                <ChevronRightIcon className="h-4 w-4 text-[#000000] cursor-pointer" />
-              </span>
-            </div>
-          </CardFooter>
+          </span>
         )}
+        <span className="bg-[#f6f8fa] col-span-6 rounded-md shadow-base">
+          <div className="border-b-[1px] border-b-[#E5E9EE] p-4 text-lg font-bold font-Inter leading-[21.78px]">
+            Rules
+          </div>
+          <div>
+            <div className="flex justify-between">
+              <div className="px-5 py-10 flex">
+                <div className="py-2 px-4">
+                  <ShareRule />
+                </div>
+                <div className="text-base leading-[19.36px] text-[#1C1C1C] font-normal font-Inter">
+                  Share the invite link to your friends who don&apos;t know
+                  BitScope yet.
+                </div>
+              </div>
+              <div className="px-5 py-10 flex">
+                <div className="py-2 px-4">
+                  <InviteRule />
+                </div>
+                <div className="text-base leading-[19.36px] text-[#1C1C1C] font-normal font-Inter">
+                  Invitees must register and verify email to be counted
+                  successfully.
+                </div>
+              </div>
+            </div>
+            <div className="px-4">
+              <table className="w-full table-auto text-left">
+                <thead className="w-full">
+                  <tr className="bg-[#0680EB] rounded-t-md flex w-full justify-stretch">
+                    {TABLE_RULES.map((head, index) => (
+                      <th
+                        key={index}
+                        className={`${head.class} grid grid-rows-9 grid-flow-col gap-4 items-center p-3`}
+                      >
+                        <div>
+                          <Typography className=" text-white font-Inter font-semibold text-center text-base leading-[19.36px] ">
+                            {head.title}
+                          </Typography>
+                        </div>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="w-full">
+                  {TABLE_RULES_ROW.map((head, index) => (
+                    <tr
+                      className="flex justify-stretch text-center"
+                      key={index}
+                    >
+                      <td className="bg-[#DADADAD9] border-b-[1px] border-r-[1px] border-[#E5E9EE] basis-[19%] 3xl:basis-[20%] items-center">
+                        <div className="text-left font-Inter font-semibold text-lg leading-[22px] p-3 text-[#181C32] ">
+                          {head.partner}
+                        </div>
+                      </td>
+                      <td
+                        className="bg-white border-b-[1px] border-r-[1px] border-[#E5E9EE] basis-[11.5%] 3xl:basis-[10%] items-center flex justify-center
+                      "
+                      >
+                        <div className="font-Inter font-normal text-base leading-[19.36px] p-4 text-[#1C1C1C]">
+                          {head.invited}
+                        </div>
+                      </td>
+                      <td className="bg-white border-b-[1px] border-r-[1px] border-[#E5E9EE] basis-[10.5%] 3xl:basis-[10%] items-center flex justify-center">
+                        <div className="font-Inter font-normal text-base leading-[19.36px] p-4 text-[#1C1C1C]">
+                          {head.bonus}
+                        </div>
+                      </td>
+                      <td className="bg-white border-b-[1px] border-r-[1px] border-[#E5E9EE] basis-[12%] 3xl:basis-[10%] items-center flex justify-center">
+                        <div className="font-Inter font-normal text-base leading-[19.36px] p-4 text-[#1C1C1C]">
+                          {head.total}
+                        </div>
+                      </td>
+                      <td className="bg-white border-b-[1px] border-[#E5E9EE] basis-[47%] 3xl:basis-[50%] items-center">
+                        <div className="p-4">
+                          <div className="font-Inter font-normal text-base leading-[19.36px] text-[#1C1C1C]">
+                            {head.benefits}
+                          </div>
+                          <div className="font-Inter font-bold text-base leading-[19.36px] text-[#1C1C1C]">
+                            {head.special}
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </span>
       </div>
     </LayoutDashBoard>
   );
