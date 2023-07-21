@@ -16,9 +16,27 @@
   transition: opacity 300ms, transform 300ms;
 }
 .page-content {
-  @apply md:p-[27px];
+  @apply md:p-[20px];
 }
 
 .page-min-height {
   min-height: calc(var(--vh, 1vh) * 100 - 132px);
+}
+
+.custom-slider .slick-dots li {
+  margin: 0;
+  margin-bottom: 1px;
+}
+
+.custom-slider .slick-dots li button::before {
+  font-size: 8px;
+}
+
+.card-header {
+  height: 54px;
+}
+
+.custom-card .card-title {
+  font-size: 18px;
+  font-weight: 600;
 }

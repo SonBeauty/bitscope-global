@@ -6,7 +6,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    domains: ["i.imgur.com"],
+    domains: ["i.imgur.com", "pbs.twimg.com", "photos.google.com"],
   },
   env: {
     SERVER: process.env.SERVER,

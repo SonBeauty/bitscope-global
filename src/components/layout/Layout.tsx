@@ -39,20 +39,18 @@ const LayoutDashBoard = ({ children, className }: LayoutDashBoardProps) => {
         <Sidebar />
       )}
       <MobileMenu
-        className={`${
-          width < breakpoints.xl && mobileMenu
-            ? "left-0 visible opacity-100  z-[9999]"
-            : "left-[-300px] invisible opacity-0  z-[-999] "
-        }`}
+        className={`${width < breakpoints.xl && mobileMenu
+          ? "left-0 visible opacity-100  z-[9999]"
+          : "left-[-300px] invisible opacity-0  z-[-999] "
+          }`}
       />
       {width < breakpoints.xl && mobileMenu && (
         <div className="overlay bg-slate-900/50 backdrop-filter backdrop-blur-sm opacity-100 fixed inset-0 z-[999]"></div>
       )}
 
       <div
-        className={`content-wrapper transition-all duration-150 ${
-          width > breakpoints.xl ? switchHeaderClass() : ""
-        }`}
+        className={`content-wrapper transition-all duration-150 ${width > breakpoints.xl ? switchHeaderClass() : ""
+          }`}
       >
         <div className={`page-content page-min-height ${className}`}>
           <div

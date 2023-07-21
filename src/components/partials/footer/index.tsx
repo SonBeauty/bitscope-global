@@ -22,9 +22,8 @@ const Footer = ({ className = "custom-class", mobile = false }) => {
       }
     >
       <div
-        className={`flex md:px-10 md:py-[30px] p-5 flex-col-reverse ${
-          !mobile && "md:flex-row"
-        } gap-6`}
+        className={`flex md:px-10 md:py-[30px] p-5 flex-col-reverse ${!mobile && "md:flex-row"
+          } gap-6`}
       >
         <div className="flex flex-col gap-5 basis-2/5">
           <div className="flex gap-[15px] justify-start items-center ">
