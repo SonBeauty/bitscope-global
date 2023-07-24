@@ -26,37 +26,41 @@ const Footer = ({ className = "custom-class", mobile = false }) => {
           } gap-6`}
       >
         <div className="flex flex-col gap-5 basis-2/5">
-          <div className="flex gap-[15px] justify-start items-center ">
+          <div className="flex gap-[15px] justify-start items-center flex-wrap">
             <span className="font-Inter font-semibold text-base leading-[46px] text-[#1C1C1C]">
               Follow us on:
             </span>
-
-            <Link href="https://twitter.com/BitscopeAI" target="_blank">
-              <Image
-                src="/image/Twitter4x.png"
-                width={32}
-                height={32}
-                alt="Twitter"
-              />
-            </Link>
-            <Link href="https://discord.com/invite/Bv8YNdVD2Y" target="_blank">
-              <Image
-                src="/image/Discord4x.png"
-                width={32}
-                height={32}
-                alt="Discord"
-              />
-            </Link>
-            <Link
-              href="https://www.facebook.com/BitScopeAI"
-              target="_blank"
-              className="py-0.5 px-2 bg-white rounded-full flex justify-center items-center w-8 h-8 border-[1px] border-[#E5E9EE]"
-            >
-              <FacebookFooterSVG />
-            </Link>
-            <Link href="https://bitscope.global/" target="_blank">
-              <GlobalFooterSVG />
-            </Link>
+            <div className="flex gap-[15px] justify-start items-center ">
+              <Link href="https://twitter.com/BitscopeAI" target="_blank">
+                <Image
+                  src="/image/Twitter4x.png"
+                  width={32}
+                  height={32}
+                  alt="Twitter"
+                />
+              </Link>
+              <Link
+                href="https://discord.com/invite/Bv8YNdVD2Y"
+                target="_blank"
+              >
+                <Image
+                  src="/image/Discord4x.png"
+                  width={32}
+                  height={32}
+                  alt="Discord"
+                />
+              </Link>
+              <Link
+                href="https://www.facebook.com/BitScopeAI"
+                target="_blank"
+                className="py-0.5 px-2 bg-white rounded-full flex justify-center items-center w-8 h-8 border-[1px] border-[#E5E9EE]"
+              >
+                <FacebookFooterSVG />
+              </Link>
+              <Link href="https://bitscope.global/" target="_blank">
+                <GlobalFooterSVG />
+              </Link>
+            </div>
           </div>
           <div className="flex justify-start gap-20">
             <div className="flex flex-col items-start ">

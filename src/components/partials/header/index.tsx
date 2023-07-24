@@ -6,7 +6,6 @@ import useSidebar from "@/hooks/useSidebar";
 import useSkin from "@/hooks/useSkin";
 import useWidth from "@/hooks/useWidth";
 import Logo from "./Tools/Logo";
-import Message from "./Tools/Message";
 import Notification from "./Tools/Notification";
 import Profile from "./Tools/Profile";
 import SearchModal from "./Tools/SearchModal";

@@ -8,10 +8,10 @@ const Profile = () => {
     <>
       <LayoutProfile
         title=""
-        name={user?.name || ""}
-        username={user?.username || ""}
+        name={user?.name ?? ""}
+        username={user?.username ?? ""}
       >
-        <InfoUser email={user?.email || ""} phone={user?.phone} />
+        <InfoUser email={user?.email ?? ""} phone={user?.phone} />
       </LayoutProfile>
     </>
   );

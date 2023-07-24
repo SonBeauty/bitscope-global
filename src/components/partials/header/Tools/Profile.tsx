@@ -3,22 +3,33 @@ import Icon from "@/components/ui/Icon";
 import { RootState } from "@/store";
 import { logout } from "@/store/users";
 import { Menu } from "@headlessui/react";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 const ProfileLabel = () => {
   const user = useSelector((state: RootState) => state.users.user);
+  const handleError = (e: any) => {
+    e.target.src =
+      "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
+  };
+
   return (
     <div className="flex items-center">
       <div className="flex-1 mr-[10px] rtl:ml-[10px]">
         <div className="lg:h-8 lg:w-8 h-7 w-7 rounded-full">
-          <Image
-            src="/image/used01.png"
-            alt=""
-            width={100}
-            height={100}
-            className="block w-full h-full object-cover rounded-full"
-          />
+          <picture>
+            <img
+              src={`${
+                user?.avatar
+                  ? `${user.avatar}?${Math.floor(Math.random() * 1000 + 1)}`
+                  : "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png"
+              }`}
+              alt=""
+              width={100}
+              height={100}
+              className="block w-full h-full object-cover rounded-full"
+              onError={handleError}
+            />
+          </picture>
         </div>
       </div>
       <div className="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">
@@ -73,7 +84,9 @@ const Profile = () => {
                   <span className="block text-xl mr-3 rtl:ml-3 dark:text-white">
                     <Icon icon={item.icon} />
                   </span>
-                  <span className="block text-sm dark:text-white">{item.label}</span>
+                  <span className="block text-sm dark:text-white">
+                    {item.label}
+                  </span>
                 </div>
               </div>
             </div>

@@ -39,4 +39,5 @@ export interface UserProps {
   role: string;
   username?: string;
   phone?: string;
+  avatar?: string;
 }

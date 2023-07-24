@@ -74,7 +74,7 @@ const Profile = () => {
     <>
       <LayoutProfile
         title="Edit Your Profile"
-        name={user?.name || ""}
+        name={user?.name ?? ""}
         username={user?.username}
       >
         <Card title="Profile Setting">
