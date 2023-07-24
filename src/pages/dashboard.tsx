@@ -22,15 +22,20 @@ import FirstBannerSVG from "@/components/svg/FirstBannerSVG";
 import SecondBannerSVG from "@/components/svg/SecondBannerSVG";
 import ThirdBannerSVG from "@/components/svg/ThirdBannerSVG";
 import IconYellowSVG from "@/components/svg/IconYellowSVG";
+import { authRouter } from "@/constant/authRouter";
+import Loading from "@/components/Loading";
+import { useRouter } from "next/router";
 
 export default function MainBoard() {
-  interface tweet {
+  interface Tweet {
     data: Array<object>;
   }
+  const router = useRouter();
+  const pathName = router.pathname;
 
   const user = useSelector((state: RootState) => state.users.user);
   const [dataTop, setDataTop] = useState<any>();
-  const [tweet, setTweet] = useState<tweet>();
+  const [tweet, setTweet] = useState<Tweet>();
   const [data, setData] = useState<any>();
   const { width } = useWidth();
   const convertFormat = (number: any) => {
@@ -101,6 +106,10 @@ export default function MainBoard() {
         console.log(error);
       });
   }, []);
+  if (!user || user.isActive === false) {
+    return <Loading />;
+  }
+
   if (width < 1024) {
     return (
       <DashboardMobile
@@ -110,6 +119,10 @@ export default function MainBoard() {
       />
     );
   }
+  const handleError = (e: any) => {
+    e.target.src =
+      "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
+  };
 
   return (
     <LayoutDashBoard>

@@ -58,7 +58,15 @@ export default function PageContainer({ children }: PageContainerProps) {
       router.push("/dashboard");
     }
   }, [hanleAdmin, pathName, router, user, user?.role]);
-
+  useEffect(() => {
+    if (
+      user &&
+      user.isActive === false &&
+      authRouter.some((route) => pathName.startsWith(route))
+    ) {
+      router.push("/active-account");
+    }
+  }, [pathName, router, user]);
   return (
     <>
       <Head>

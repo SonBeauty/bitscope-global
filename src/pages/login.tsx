@@ -22,7 +22,6 @@ export default function Login() {
   const dispath = useDispatch();
   const { mutate, isLoading } = useMutation(loginUser, {
     onSuccess: (data) => {
-      toast.success("Login Success!");
       dispath(setUser(data));
       if (remember) {
         localStorage.setItem("token", data.token);
@@ -30,8 +29,10 @@ export default function Login() {
         sessionStorage.setItem("token", data.token);
       }
       if (data?.isActive === false) {
+        toast.error("Account Has Not Been Activated");
         route.push("/active-account");
       } else {
+        toast.success("Login Success!");
         route.push("/dashboard");
       }
     },
