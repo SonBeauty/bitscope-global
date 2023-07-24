@@ -122,55 +122,55 @@ export default function Influencers() {
                             key={index}
                           >
                             <td
-                              className={`${classes} py-[13px] px-[22px] h-[55px] basis-[7%]`}
+                              className={`${classes} py-[13px] px-[22px] h-[55px] basis-[20%]`}
                             >
                               <Typography
                                 variant="small"
                                 color="blue-gray"
                                 className="font-medium text-[16.26px] leading-[28.69px] text-[#1C1C1C]"
                               >
-                                {index + 1}
+                                {item?.rest_id}
                               </Typography>
                             </td>
                             <td
-                              className={`${classes} flex items-center justify-start basis-[17%]`}
+                              className={`${classes} flex items-center justify-start basis-[10%]`}
                             >
-                              <Typography className="text-[#1C1C1C] font-medium text-base leading-5 text-center font-Inter ">
+                              <Typography className="text-[#1C1C1C] px-3 font-medium text-base leading-5 text-center font-Inter ">
                                 <img src={item.data?.avatar} />
                               </Typography>
                             </td>
                             <td
-                              className={`${classes} flex items-center justify-start border-b text-center  basis-[20%]`}
+                              className={`${classes} flex items-center justify-start border-b text-center  basis-[15%]`}
                             >
                               <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
                                 {item.data?.userId}
                               </Typography>
                             </td>
                             <td
-                              className={`${classes} flex items-center justify-start border-b text-center  basis-[17.5%]`}
+                              className={`${classes} flex items-center justify-start border-b text-center  basis-[20%]`}
                             >
                               <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
                                 {item.data?.userName}
                               </Typography>
                             </td>
                             <td
-                              className={`${classes} lg:visible invisible pt-[12px] pb-[17px] px-[22px] h-[55px] basis-[29.5%]`}
+                              className={`${classes} lg:visible invisible pt-[12px] pb-[17px] px-[22px] h-[55px] basis-[23%]`}
                             >
                               <div className="flex justify-between items-center">
                                 <Typography className="text-[#000000] font-Inter font-medium text-sm leading-[16px] text-center mt-2">
-                                  {item.data?.createdAt
+                                  {item.data?.createdAt ? item.data?.createdAt
                                     ?.slice(0, 10)
                                     .replaceAll("-", ".") +
                                     " at " +
                                     item.data?.createdAt
                                       ?.slice(11, 16)
-                                      .replaceAll("-", ".")}
+                                      .replaceAll("-", ".") :'No data yet or account has no recent tweets'}
                                 </Typography>
                               </div>
                             </td>
 
                             <td
-                              className={`${classes} flex items-center justify-start pt-[18px] pb-[17px] px-[22px] pr-[42px] h-[55px] basis-0`}
+                              className={`${classes} flex items-center justify-start pt-[18px] pb-[17px] px-[22px] pr-[42px] h-[55px] basis-[10%]`}
                             >
                               <div className="flex items-center gap-[19px] justify-center">
                                 <div

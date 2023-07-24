@@ -1,0 +1,1 @@
+export const REST_ID_EXAMPLE = '1215645132122'

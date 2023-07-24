@@ -1,26 +1,26 @@
 export const TABLE_HEAD = [
   {
-    class: "basis-[5%]",
+    class: "basis-[20%]",
     title: "ID",
   },
   {
-    class: "basis-[25%]",
+    class: "basis-[10%]",
     title: "Avatar",
   },
   {
-    class: "basis-[25%]",
+    class: "basis-[15%]",
     title: "userId",
   },
   {
-    class: "basis-[25%]",
+    class: "basis-[20%]",
     title: "Username",
   },
   {
-    class: "lg:basis-[35%] lg:visible invisible basis-0",
+    class: "lg:basis-[24%] lg:visible invisible basis-0",
     title: "CreatedTime",
   },
   {
-    class: "basis-0",
+    class: "basis-[10%]",
     title: "Actions",
   },
 ];

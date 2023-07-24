@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { addInfluencer } from "../api/influencer/add";
 import { schema } from "@/components/PageComponents/Influencer/schema";
+import { REST_ID_EXAMPLE } from "@/constant/add";
 
 export default function AddInfluencer() {
   const router = useRouter();
@@ -57,7 +58,7 @@ export default function AddInfluencer() {
                 <AuthenInput
                   icon={"TW"}
                   setIcon={null}
-                  placeholder="@BitscopeAI"
+                  placeholder = {REST_ID_EXAMPLE}
                   error={errors.username}
                   register={register}
                   id="username"
