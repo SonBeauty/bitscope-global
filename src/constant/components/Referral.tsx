@@ -50,23 +50,23 @@ export const TABLE_OERVIEW = [
 ];
 export const TABLE_RULES = [
   {
-    class: "basis-[20%] p-4",
+    class: "col-span-2 px-10 3xl:px-20",
     title: "PARTNER RANK",
   },
   {
-    class: "basis-[10%] border-l-[1px] border-[#E5E9EE]",
+    class: "col-span-1 border-l-[1px] border-[#E5E9EE]",
     title: "INVITED USER",
   },
   {
-    class: "basis-[10%] border-l-[1px] border-[#E5E9EE]",
+    class: "col-span-1 border-l-[1px] border-[#E5E9EE]",
     title: "BONUS /USER",
   },
   {
-    class: "basis-[10%] border-l-[1px] border-r-[1px] border-[#E5E9EE]",
+    class: "col-span-1 border-l-[1px] border-r-[1px] border-[#E5E9EE]",
     title: "TOTAL REWARD",
   },
   {
-    class: "basis-[50%]",
+    class: "col-span-4",
     title: "BENEFITS",
   },
 ];

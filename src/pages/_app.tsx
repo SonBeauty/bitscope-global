@@ -14,7 +14,10 @@ import { GoogleAnalytics } from "nextjs-google-analytics";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GoogleAnalytics strategy="lazyOnload" gaMeasurementId={`${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`} />
+      <GoogleAnalytics
+        strategy="lazyOnload"
+        gaMeasurementId={`${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+      />
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <PageContainer>

@@ -1,4 +1,4 @@
-import RefferalMobile from "@/components/PageComponents/referral/index";
+import RefferalMobile from "@/components/PageComponents/referral/history";
 import LayoutDashBoard from "@/components/layout/Layout";
 import BackLeftSVG from "@/components/svg/BackLeftSVG";
 import useWidth from "@/hooks/useWidth";
