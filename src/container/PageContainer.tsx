@@ -22,9 +22,10 @@ export default function PageContainer({ children }: PageContainerProps) {
   useEffect(() => {
     const isLogins =
       localStorage.getItem("token") ?? sessionStorage.getItem("token");
-    if (isLogins) {
+    if (isLogins || data) {
       dispatch(setUser(data));
     }
+
     if (!isLogins) {
       if (
         authRouter.some((route) => pathName.startsWith(route)) ||

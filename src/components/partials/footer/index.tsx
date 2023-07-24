@@ -1,8 +1,15 @@
+import { schema } from "@/components/PageComponents/Subscribe/schema";
 import FacebookFooterSVG from "@/components/svg/FacebookFooterSVG";
 import GlobalFooterSVG from "@/components/svg/GlobalFooterSVG";
+import LoadingSVG from "@/components/svg/LoadingSVG";
 import useFooterType from "@/hooks/useFooterType";
+import { Subscribe } from "@/pages/api/subscribe";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 const Footer = ({ className = "custom-class", mobile = false }) => {
   const [footerType] = useFooterType();
   const footerclassName = () => {
@@ -15,6 +22,30 @@ const Footer = ({ className = "custom-class", mobile = false }) => {
         break;
     }
   };
+  const { mutate, isLoading } = useMutation(Subscribe, {
+    onSuccess: () => {
+      toast.success("Subscribe Successfully!");
+      reset();
+    },
+    onError: (error: any) => {
+      toast.error(
+        error?.response?.data?.message.toString().replace("Collection", "Email")
+      );
+      reset();
+    },
+  });
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onSubmit",
+  });
+  const onSubmit = (data: any) => {
+    mutate(data.email);
+  };
   return (
     <footer
       className={
@@ -22,8 +53,9 @@ const Footer = ({ className = "custom-class", mobile = false }) => {
       }
     >
       <div
-        className={`flex md:px-10 md:py-[30px] p-5 flex-col-reverse ${!mobile && "md:flex-row"
-          } gap-6`}
+        className={`flex md:px-10 md:py-[30px] p-5 flex-col-reverse ${
+          !mobile && "md:flex-row"
+        } gap-6`}
       >
         <div className="flex flex-col gap-5 basis-2/5">
           <div className="flex gap-[15px] justify-start items-center flex-wrap">
@@ -137,19 +169,29 @@ const Footer = ({ className = "custom-class", mobile = false }) => {
             into a &quot;Social Listening&quot; platform. Our focus is on
             developing a one-of-a-kind Social Database for Blockchain and Web3
           </p>
-          <div className="flex items-center">
+          <form className="flex items-center" onSubmit={handleSubmit(onSubmit)}>
             <input
               id="email"
               placeholder="Enter email address"
               type="email"
               className="h-[45px] rounded-tl-md rounded-bl-md border-none md:w-[50%] w-full font-Inter text-sm font-normal"
+              {...register("email")}
             />
-            <button className="bg-[#0341A3] w-[119px] h-[45px] rounded-tr-md rounded-br-md">
+
+            <button
+              className="bg-[#0341A3] w-[119px] h-[45px] rounded-tr-md rounded-br-md"
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading && <LoadingSVG />}
               <span className="text-white font-Inter font-medium text-base">
                 Subscribe
               </span>
             </button>
-          </div>
+          </form>
+          <span className="text-sm text-red-400 text-start visible">
+            {errors["email"]?.message?.toString()}
+          </span>
         </div>
       </div>
     </footer>

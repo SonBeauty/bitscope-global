@@ -14,10 +14,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { RootState } from "@/store";
 import Loading from "@/components/Loading";
 import { activeSchema } from "@/components/PageComponents/Global/activeSchema";
+import { useRouter } from "next/router";
 
 export default function ActiveAccount() {
   const user = useSelector((state: RootState) => state.users.user);
-
+  const router = useRouter();
   const dispatch = useDispatch();
   const { mutate, isLoading } = useMutation(reSendEmail, {
     onSuccess: async () => {
@@ -44,6 +45,9 @@ export default function ActiveAccount() {
   };
   if (!user) {
     return <Loading />;
+  }
+  if (user.isActive) {
+    router.push("/dashboard");
   }
   return (
     <LayoutForm
