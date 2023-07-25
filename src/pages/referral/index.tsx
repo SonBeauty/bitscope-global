@@ -1,3 +1,5 @@
+"use client";
+import React, { useState } from "react";
 import LayoutDashBoard from "@/components/layout/Layout";
 import {
   TABLE_RULES,
@@ -11,16 +13,21 @@ import OverviewReferral from "@/components/svg/OverviewReferral";
 import { useQuery } from "@tanstack/react-query";
 import { getReferral } from "../api/referral/GetReferral";
 import Subtract from "@/components/svg/Subtract";
-import { Tooltip } from "flowbite-react";
+import { Spinner, Tooltip } from "flowbite-react";
 import { InviteRule, ShareRule } from "@/components/svg/RankSVG";
 import { LuCopy } from "react-icons/lu";
+
 import router from "next/router";
-import { toast } from "react-toastify";
 import useWidth from "@/hooks/useWidth";
 import RefferalInfoMobile from "@/components/PageComponents/referral";
+import { AiOutlineCheck } from "react-icons/ai";
 
 export default function Info() {
   const { width } = useWidth();
+  const [loading, setLoading] = useState(false);
+  const [lineCheck, setLineCheck] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+  const [lineCheck2, setLineCheck2] = useState(false);
   const { data, isLoading } = useQuery<any>({
     queryKey: ["referral"],
     queryFn: () => getReferral(),
@@ -35,10 +42,37 @@ export default function Info() {
     return RANK.find((item) => item.name === rankUser)?.src;
   };
 
-  const copyToClipboard = (text: string) => {
+  const copyToClipboard = (text: string, action: string) => {
     navigator.clipboard.writeText(text);
-    toast("Copy successful !!!");
+    if (action === "1") {
+      spinner();
+    }
+    if (action === "2") {
+      spinner2();
+    }
   };
+
+  const spinner = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setLineCheck(true);
+    }, 500);
+    setTimeout(() => {
+      setLineCheck(false);
+    }, 4000);
+  };
+  const spinner2 = () => {
+    setLoading2(true);
+    setTimeout(() => {
+      setLoading2(false);
+      setLineCheck2(true);
+    }, 500);
+    setTimeout(() => {
+      setLineCheck2(false);
+    }, 4000);
+  };
+
   const referralLink = (text: string) => {
     return `https://bitscope.global/register?ref=${text}`;
   };
@@ -90,12 +124,24 @@ export default function Info() {
                     </div>
                     <div className="py-3 pr-5 pl-10 flex font-Inter font-normal text-base leading-[19.36px]">
                       {realData?.referralCode}
-                      <LuCopy
-                        className="ml-2 hover:text-blue-600 text-base"
-                        onClick={() => {
-                          copyToClipboard(realData?.referralCode);
-                        }}
-                      />
+                      {loading && !lineCheck ? (
+                        <Spinner
+                          className="ml-2 hover:text-blue-600 w-full h-full"
+                          style={{ width: "24px", height: "17px" }}
+                          aria-label="Default status example"
+                        />
+                      ) : !loading && lineCheck ? (
+                        <AiOutlineCheck className="ml-2 hover:text-blue-600 text-base" />
+                      ) : !loading && !lineCheck ? (
+                        <LuCopy
+                          className="ml-2 hover:text-blue-600 text-base"
+                          onClick={() => {
+                            copyToClipboard(realData?.referralCode, "1");
+                          }}
+                        />
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </div>
                 </div>
@@ -106,12 +152,27 @@ export default function Info() {
                     </div>
                     <div className="py-3 pr-5 pl-10 flex font-Inter font-normal text-base leading-[19.36px]">
                       {referralUI(realData?.referralCode)}
-                      <LuCopy
-                        className="ml-2 hover:text-blue-600 text-base"
-                        onClick={() => {
-                          copyToClipboard(referralLink(realData?.referralCode));
-                        }}
-                      />
+                      {loading2 && !lineCheck2 ? (
+                        <Spinner
+                          className="ml-2 hover:text-blue-600 w-full h-full"
+                          style={{ width: "24px", height: "17px" }}
+                          aria-label="Default status example"
+                        />
+                      ) : !loading2 && lineCheck2 ? (
+                        <AiOutlineCheck className="ml-2 hover:text-blue-600 text-base" />
+                      ) : !loading2 && !lineCheck2 ? (
+                        <LuCopy
+                          className="ml-2 hover:text-blue-600 text-base"
+                          onClick={() => {
+                            copyToClipboard(
+                              referralLink(realData?.referralCode),
+                              "2"
+                            );
+                          }}
+                        />
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </div>
                 </div>
@@ -157,7 +218,7 @@ export default function Info() {
                           Bonus Reward (USDT)
                         </div>
                         <Tooltip
-                          content="To prevent fraud minimum 1% of invitees must participate in Pre-sale to unlock Bonus Reward."
+                          content="To prevent fraud minimum 2% of invitees must participate in Pre-sale to unlock Bonus Reward."
                           placement="right"
                           className="w-[235px] h-[75px] font-Inter font-normal leading-[20px] text-xs"
                         >
@@ -212,7 +273,7 @@ export default function Info() {
             </div>
             <div className="px-2 py-2 xl:px-0">
               <div className="rounded-2xl flex justify-center">
-                <div className=" max-w-[320px] max-h-[500px] w-full flex flex-col font-Inter bg-center bg-cover bg-[url('/image/BackGroundRank.svg')]">
+                <div className=" max-w-[320px] max-h-[500px] w-full flex flex-col font-Inter bg-center bg-cover bg-[url('/image/BgRank.svg')]">
                   <div className="text-center text-white text-[30px] font-bold leading-[36.31px] pt-10 pb-3">
                     {realData?.userName}
                   </div>
@@ -282,7 +343,7 @@ export default function Info() {
                         key={index}
                         className={`${head.class} py-3 items-center text-center`}
                       >
-                        <div className=" text-white 3xl:px-3 p-0 font-Inter font-semibold text-center text-base leading-[19.36px] ">
+                        <div className=" text-white 3xl:px-3 p-[2px] font-Inter font-semibold text-center text-base leading-[19.36px] ">
                           {head.title}
                         </div>
                       </th>
@@ -297,7 +358,7 @@ export default function Info() {
                       key={index}
                     >
                       <td
-                        className="bg-[#DADADAD9] py-3 3xl:px-9 px-5 border-b-[1px] border-r-[1px] border-[#E5E9EE] col-span-2 items-center
+                        className="bg-white py-3 border-b-[1px] border-[#E5E9EE] 3xl:px-9 px-5 col-span-2 items-center
                       "
                       >
                         <div className="text-left font-Inter font-semibold text-lg leading-[22px] text-[#181C32]">
@@ -305,19 +366,19 @@ export default function Info() {
                         </div>
                       </td>
                       <td
-                        className="bg-white p-3 border-b-[1px] border-r-[1px] border-[#E5E9EE] col-span-1 items-center flex justify-center
+                        className="bg-white p-3 border-b-[1px] border-[#E5E9EE] col-span-1 items-center flex justify-center
                       "
                       >
                         <div className="font-Inter font-normal text-base leading-[19.36px] text-[#1C1C1C]">
                           {head.invited}
                         </div>
                       </td>
-                      <td className="bg-white p-3 border-b-[1px] border-r-[1px] border-[#E5E9EE] col-span-1 items-center flex justify-center">
+                      <td className="bg-white p-3 border-b-[1px] border-[#E5E9EE] col-span-1 items-center flex justify-center">
                         <div className="font-Inter font-normal text-base leading-[19.36px] text-[#1C1C1C]">
                           {head.bonus}
                         </div>
                       </td>
-                      <td className="bg-white p-3 border-b-[1px] border-r-[1px] border-[#E5E9EE] col-span-1 items-center flex justify-center">
+                      <td className="bg-white p-3 border-b-[1px] border-[#E5E9EE] col-span-1 items-center flex justify-center">
                         <div className="font-Inter font-normal text-base leading-[19.36px] text-[#1C1C1C]">
                           {head.total}
                         </div>

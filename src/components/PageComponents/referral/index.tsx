@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LayoutDashBoard from "@/components/layout/Layout";
 import OverviewReferral from "@/components/svg/OverviewReferral";
 import { InviteRule, ShareRule } from "@/components/svg/RankSVG";
@@ -15,10 +15,10 @@ import {
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react";
-import { Tooltip } from "flowbite-react";
+import { Spinner, Tooltip } from "flowbite-react";
 import { useRouter } from "next/router";
 import { LuCopy } from "react-icons/lu";
-import { toast } from "react-toastify";
+import { AiOutlineCheck } from "react-icons/ai";
 
 interface ReferralMobileProps {
   data: any;
@@ -30,6 +30,10 @@ export default function ReferralInfoMobile({
   isLoading,
 }: ReferralMobileProps) {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [lineCheck, setLineCheck] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+  const [lineCheck2, setLineCheck2] = useState(false);
   const [open, setOpen] = React.useState(0);
 
   const handleOpen = (value: any) => {
@@ -43,9 +47,35 @@ export default function ReferralInfoMobile({
     return RANK.find((item) => item.name === rankUser)?.src;
   };
 
-  const copyToClipboard = (text?: any) => {
+  const copyToClipboard = (text: string, action: string) => {
     navigator.clipboard.writeText(text);
-    toast("Copy successful !!!");
+    if (action === "1") {
+      spinner();
+    }
+    if (action === "2") {
+      spinner2();
+    }
+  };
+
+  const spinner = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setLineCheck(true);
+    }, 500);
+    setTimeout(() => {
+      setLineCheck(false);
+    }, 4000);
+  };
+  const spinner2 = () => {
+    setLoading2(true);
+    setTimeout(() => {
+      setLoading2(false);
+      setLineCheck2(true);
+    }, 500);
+    setTimeout(() => {
+      setLineCheck2(false);
+    }, 4000);
   };
   const referralLink = (text?: string) => {
     return `https://bitscope.global/register?ref=${text}`;
@@ -98,12 +128,24 @@ export default function ReferralInfoMobile({
                         </div>
                         <div className="px-3 py-4 flex font-Inter font-normal text-base leading-[19.36px]">
                           {data?.referralCode}
-                          <LuCopy
-                            className="ml-2 hover:text-blue-600 text-base"
-                            onClick={() => {
-                              copyToClipboard(data?.referralCode);
-                            }}
-                          />
+                          {loading && !lineCheck ? (
+                            <Spinner
+                              className="ml-2 hover:text-blue-600 w-full h-full"
+                              style={{ width: "24px", height: "17px" }}
+                              aria-label="Default status example"
+                            />
+                          ) : !loading && lineCheck ? (
+                            <AiOutlineCheck className="ml-2 hover:text-blue-600 text-base" />
+                          ) : !loading && !lineCheck ? (
+                            <LuCopy
+                              className="ml-2 hover:text-blue-600 text-base"
+                              onClick={() => {
+                                copyToClipboard(data?.referralCode, "1");
+                              }}
+                            />
+                          ) : (
+                            ""
+                          )}
                         </div>
                       </div>
                     </div>
@@ -114,12 +156,27 @@ export default function ReferralInfoMobile({
                         </div>
                         <div className="px-3 py-4 flex font-Inter font-normal text-base leading-[19.36px]">
                           {referralUI(data?.referralCode)}
-                          <LuCopy
-                            className="ml-2 hover:text-blue-600 text-base"
-                            onClick={() => {
-                              copyToClipboard(referralLink(data?.referralCode));
-                            }}
-                          />
+                          {loading2 && !lineCheck2 ? (
+                            <Spinner
+                              className="ml-2 hover:text-blue-600 w-full h-full"
+                              style={{ width: "24px", height: "17px" }}
+                              aria-label="Default status example"
+                            />
+                          ) : !loading2 && lineCheck2 ? (
+                            <AiOutlineCheck className="ml-2 hover:text-blue-600 text-base" />
+                          ) : !loading2 && !lineCheck2 ? (
+                            <LuCopy
+                              className="ml-2 hover:text-blue-600 text-base"
+                              onClick={() => {
+                                copyToClipboard(
+                                  referralLink(data?.referralCode),
+                                  "2"
+                                );
+                              }}
+                            />
+                          ) : (
+                            ""
+                          )}
                         </div>
                       </div>
                     </div>
@@ -166,7 +223,7 @@ export default function ReferralInfoMobile({
                           Bonus Reward (USDT)
                         </div>
                         <Tooltip
-                          content="To prevent fraud, minimum 1% of invitees must participate in Pre-sale to unlock Bonus Reward."
+                          content="To prevent fraud, minimum 2% of invitees must participate in Pre-sale to unlock Bonus Reward."
                           placement="top"
                           trigger="click"
                           className=" w-[255px] h-auto font-Inter font-normal leading-[20px] text-xs"
@@ -218,7 +275,7 @@ export default function ReferralInfoMobile({
             </div>
             <div className="px-10 py-2 ">
               <div className="rounded-2xl flex justify-center">
-                <div className=" max-w-[290px] max-h-[439px] w-full flex flex-col font-Inter bg-center bg-cover bg-[url('/image/BackGroundRank.svg')]">
+                <div className=" max-w-[290px] max-h-[439px] w-full flex flex-col font-Inter bg-center bg-cover bg-[url('/image/BgRank.svg')]">
                   <div className="text-center text-white text-[30px] font-bold leading-[36.31px] pt-[45px] pb-[20px]">
                     {data?.userName}
                   </div>
