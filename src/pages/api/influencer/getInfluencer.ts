@@ -1,6 +1,9 @@
 import axiosAuthen from "@/axios/axiosAuthen";
 
-export const getInfluencer = async () => {
-  const response = await axiosAuthen.get("/influencers?limit=100");
+export const GetInfluencer = async (params: any) => {
+  const response = await axiosAuthen.get(
+    `/influencers?page=${params.page}&limit=${params.limit}`
+  );
+
   return response.data;
 };

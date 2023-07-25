@@ -19,7 +19,7 @@ import React, { useState } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { toast } from "react-toastify";
 import { useStyles } from "@/components/Pagination/useStyles";
-import { GetInfluencer } from "../api/influencer/view";
+import { GetInfluencer } from "../api/influencer/getInfluencer";
 import { DeleteInfluencer } from "../api/influencer/delete";
 
 export default function Influencers() {
@@ -28,7 +28,7 @@ export default function Influencers() {
   const [page, setPage] = useState<number>(1);
   const { data, isLoading } = useQuery<any>({
     queryKey: ["influencer", page],
-    queryFn: () => GetInfluencer(),
+    queryFn: () => GetInfluencer({ page: page, limit: "10" }),
   });
   const realData = data?.data;
 
@@ -147,24 +147,26 @@ export default function Influencers() {
                               </Typography>
                             </td>
                             <td
-                              className={`${classes} flex items-center justify-start border-b text-center  basis-[20%]`}
+                              className={`${classes} flex items-center justify-start border-b text-center  basis-[17.5%]`}
                             >
                               <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
                                 {item.data?.userName}
                               </Typography>
                             </td>
                             <td
-                              className={`${classes} lg:visible invisible pt-[12px] pb-[17px] px-[22px] h-[55px] basis-[23%]`}
+                              className={`${classes} lg:visible invisible pt-[12px] pb-[17px] px-[22px] h-[55px] basis-[25%]`}
                             >
                               <div className="flex justify-between items-center">
                                 <Typography className="text-[#000000] font-Inter font-medium text-sm leading-[16px] text-center mt-2">
-                                  {item.data?.createdAt ? item.data?.createdAt
-                                    ?.slice(0, 10)
-                                    .replaceAll("-", ".") +
-                                    " at " +
-                                    item.data?.createdAt
-                                      ?.slice(11, 16)
-                                      .replaceAll("-", ".") :'No data yet or account has no recent tweets'}
+                                  {item.data?.createdAt
+                                    ? item.data?.createdAt
+                                        ?.slice(0, 10)
+                                        .replaceAll("-", ".") +
+                                      " at " +
+                                      item.data?.createdAt
+                                        ?.slice(11, 16)
+                                        .replaceAll("-", ".")
+                                    : "No data yet or account has no recent tweets"}
                                 </Typography>
                               </div>
                             </td>
@@ -200,11 +202,11 @@ export default function Influencers() {
             )}
           </CardBody>
         </Card>
-        {!isLoading && realData?.length > 0 && (
+        {!isLoading && data?.meta && (
           <CardFooter className="-mr-[9.5px]  flex items-center justify-end p-0 bg-white">
             <div className={classes.root}>
               <Pagination
-                count={realData?.totalPage}
+                count={data?.meta?.totalPage}
                 variant="text"
                 shape="rounded"
                 page={page}
