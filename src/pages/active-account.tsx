@@ -15,6 +15,7 @@ import { RootState } from "@/store";
 import Loading from "@/components/Loading";
 import { activeSchema } from "@/components/PageComponents/Global/activeSchema";
 import { useRouter } from "next/router";
+import PageContainer from "@/container/PageContainer";
 
 export default function ActiveAccount() {
   const user = useSelector((state: RootState) => state.users.user);
@@ -44,7 +45,11 @@ export default function ActiveAccount() {
     );
   };
   if (!user) {
-    return <Loading />;
+    return (
+      <PageContainer>
+        <Loading />;
+      </PageContainer>
+    );
   }
   if (user.isActive) {
     router.push("/dashboard");

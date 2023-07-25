@@ -22,17 +22,26 @@ export default function Register() {
     setValue,
   } = useForm({
     resolver: yupResolver(schema),
-    mode: "all"
+    mode: "all",
   });
   const { mutate, isLoading } = useMutation(registerUser, {
-    onSuccess: () => {
+    onSuccess: (data) => {
+      if (data.status === 400) {
+        if (data.message.includes("Please enter correct email")) {
+          return toast.error("Please enter correct email!");
+        }
+        return toast.error("Email already exists!");
+      }
+      if (data.status === 409) {
+        return toast.error(data.message);
+      }
       toast.success("Register Success!");
       setTimeout(() => {
         router.push("/login");
       }, 1000);
     },
-    onError: () => {
-      toast.error("Register Failed!");
+    onError: (err) => {
+      toast.error("Register Failed, Please try again!");
     },
   });
   const onSubmit = (data: any) => {
@@ -40,12 +49,12 @@ export default function Register() {
       name: data.name,
       email: data.email,
       password: data.password,
-      referralCode: data.referral
+      referralCode: data.referral,
     });
   };
-  const handleChange = (e:any) =>{
-   setValue('referral', e.target.value)
-  }
+  const handleChange = (e: any) => {
+    setValue("referral", e.target.value);
+  };
   useEffect(() => {
     setValue("check", accept);
   }, [accept, setValue]);
@@ -53,9 +62,9 @@ export default function Register() {
     setValue("check", accept);
   }, [accept, setValue]);
   useEffect(() => {
-    setValue('referral', router.query['ref']?.toString());
+    setValue("referral", router.query["ref"]?.toString());
   }, [router, setValue]);
- 
+
   return (
     <LayoutForm
       page="Sign up"

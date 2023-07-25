@@ -1,37 +1,35 @@
+import Loading from "@/components/Loading";
+import DashboardMobile from "@/components/PageComponents/Authentication/DashboardMobile";
 import HomeBredCurbs from "@/components/PageComponents/Dashboard/HomeBredCurbs";
+import Gainer from "@/components/PageComponents/MainBoard/Gainer";
+import Potential from "@/components/PageComponents/MainBoard/Potential";
+import Trending from "@/components/PageComponents/MainBoard/Trending";
 import LayoutDashBoard from "@/components/layout/Layout";
+import FirstBannerSVG from "@/components/svg/FirstBannerSVG";
+import IconInfulencerSVG from "@/components/svg/IconInfluencer";
+import IconYellowSVG from "@/components/svg/IconYellowSVG";
+import SecondBannerSVG from "@/components/svg/SecondBannerSVG";
+import ThirdBannerSVG from "@/components/svg/ThirdBannerSVG";
 import Card from "@/components/ui/Card";
+import PageContainer from "@/container/PageContainer";
+import useWidth from "@/hooks/useWidth";
 import { RootState } from "@/store";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import Trending from "@/components/PageComponents/MainBoard/Trending";
-import Potential from "@/components/PageComponents/MainBoard/Potential";
-import Gainer from "@/components/PageComponents/MainBoard/Gainer";
-import { getInfluencer } from "./api/influencer/getInfluencer";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BiBarChart, BiMessageRounded } from "react-icons/bi";
 import { FaRetweet } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import Slider from "react-slick";
-import IconInfulencerSVG from "@/components/svg/IconInfluencer";
 import { useInterval } from "react-use";
-import useWidth from "@/hooks/useWidth";
-import DashboardMobile from "@/components/PageComponents/Authentication/DashboardMobile";
-import FirstBannerSVG from "@/components/svg/FirstBannerSVG";
-import SecondBannerSVG from "@/components/svg/SecondBannerSVG";
-import ThirdBannerSVG from "@/components/svg/ThirdBannerSVG";
-import IconYellowSVG from "@/components/svg/IconYellowSVG";
-import { authRouter } from "@/constant/authRouter";
-import Loading from "@/components/Loading";
-import { useRouter } from "next/router";
+import { getInfluencer } from "./api/influencer/getInfluencer";
 
 export default function MainBoard() {
   interface Tweet {
     data: Array<object>;
   }
-  const router = useRouter();
-  const pathName = router.pathname;
 
   const user = useSelector((state: RootState) => state.users.user);
   const [dataTop, setDataTop] = useState<any>();
@@ -107,7 +105,11 @@ export default function MainBoard() {
       });
   }, []);
   if (!user || user.isActive === false) {
-    return <Loading />;
+    return (
+      <PageContainer>
+        <Loading />;
+      </PageContainer>
+    );
   }
 
   if (width < 1024) {

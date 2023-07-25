@@ -68,6 +68,20 @@ export default function PageContainer({ children }: PageContainerProps) {
       router.push("/active-account");
     }
   }, [pathName, router, user]);
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (localStorage.getItem("isSeason") === "true") {
+        localStorage.removeItem("token");
+        return localStorage.removeItem("isSeason");
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
   return (
     <>
       <Head>

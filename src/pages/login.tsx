@@ -22,11 +22,15 @@ export default function Login() {
   const dispath = useDispatch();
   const { mutate, isLoading } = useMutation(loginUser, {
     onSuccess: (data) => {
+      if (data.status === 400) {
+        return toast.error(data.message);
+      }
       dispath(setUser(data));
       if (remember) {
         localStorage.setItem("token", data.token);
       } else {
-        sessionStorage.setItem("token", data.token);
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("isSeason", "true");
       }
       if (data?.isActive === false) {
         toast.error("Account Has Not Been Activated");
@@ -36,8 +40,10 @@ export default function Login() {
         route.push("/dashboard");
       }
     },
-    onError: () => {
-      toast.error("Login Failed!");
+    onError: (err: any) => {
+      toast.error(
+        err.response.data.message ?? "Login Failed, Please try again!"
+      );
     },
   });
   const {
