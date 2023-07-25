@@ -8,6 +8,10 @@ export interface LoginProps {
   email: string;
   password: string;
 }
+
+export interface ForgotProps {
+  email: string;
+}
 export interface CreateProxyProp {
   proxy: string;
 }

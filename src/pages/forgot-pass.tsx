@@ -3,11 +3,14 @@ import LayoutForm from "@/components/LayoutForm";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { schema } from "../components/PageComponents/ForgotPass/schema";
+import { useMutation } from "@tanstack/react-query";
+import { ForgotPw } from "./api/auth/forgot";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 export default function ForgotPass() {
-  const [submit, setSubmit] = useState<Boolean>(false);
+  const route = useRouter();
   const {
     register,
     formState: { errors },
@@ -16,8 +19,20 @@ export default function ForgotPass() {
     resolver: yupResolver(schema),
     mode: "all",
   });
+
+  const { mutate, isLoading } = useMutation(ForgotPw, {
+    onSuccess: () => {
+      toast.success("Check your email!");
+      setTimeout(() => {
+        route.push("/login");
+      }, 7000);
+    },
+    onError: () => {
+      toast.error("Login Failed!");
+    },
+  });
   const onSubmit = (data: any) => {
-    setSubmit(true);
+    mutate(data);
   };
   return (
     <LayoutForm
@@ -26,6 +41,7 @@ export default function ForgotPass() {
       button="Send Recovery Email"
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
+      isLoading={isLoading}
       social={false}
       childrenTwo={
         <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 mt-5 uppercase text-sm">

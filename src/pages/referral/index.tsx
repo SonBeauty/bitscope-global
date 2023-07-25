@@ -49,7 +49,6 @@ export default function Info() {
   if (width < 1024) {
     return <RefferalInfoMobile data={realData} isLoading={isLoading} />;
   }
-
   return (
     <LayoutDashBoard className="bg-white md:p-5 py-[15px] text-[#1C1C1C]">
       <div className="w-full text-center">
