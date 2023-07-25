@@ -71,9 +71,14 @@ export default function PageContainer({ children }: PageContainerProps) {
 
   useEffect(() => {
     const handleBeforeUnload = () => {
-      if (localStorage.getItem("isSeason") === "true") {
-        localStorage.removeItem("token");
-        return localStorage.removeItem("isSeason");
+      const isSeason = localStorage.getItem("isSeason");
+      if (isSeason) {
+        const expirationTime = parseInt(isSeason, 10);
+        const currentTime = Date.now();
+        if (currentTime >= expirationTime) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("isSeason");
+        }
       }
     };
 

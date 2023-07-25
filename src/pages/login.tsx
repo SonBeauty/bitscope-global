@@ -29,8 +29,9 @@ export default function Login() {
       if (remember) {
         localStorage.setItem("token", data.token);
       } else {
+        const date = Date.now() + 60 * 60 * 24 * 1000;
         localStorage.setItem("token", data.token);
-        localStorage.setItem("isSeason", "true");
+        localStorage.setItem("isSeason", date.toString());
       }
       if (data?.isActive === false) {
         toast.error("Account Has Not Been Activated");

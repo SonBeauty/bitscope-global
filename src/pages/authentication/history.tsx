@@ -30,6 +30,7 @@ import { deleteHistory, getHistory } from "../api/authentication/History";
 import { useStyles } from "@/components/Pagination/useStyles";
 import LoadingSVG from "@/components/svg/LoadingSVG";
 import { toast } from "react-toastify";
+import { convertCreatedAt } from "@/services/convertTimezone";
 const CountUp = dynamic(() => import("react-countup"), {
   ssr: false,
 });
@@ -89,6 +90,11 @@ export default function History() {
       "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
   };
 
+  const handleStartWidth = (item: { objectId: string }) => {
+    return item?.objectId?.startsWith("@")
+      ? item?.objectId
+      : "@" + item?.objectId;
+  };
   const handleMinNumber = (item: any) => {
     if (
       !item?.telegram?.dataId?.overview?.percent &&
@@ -262,8 +268,9 @@ export default function History() {
                                       target="_blank"
                                       className="text-[#1C1C1C] font-medium text-base leading-5 text-center font-Inter cursor-pointer"
                                     >
-                                      {item?.telegram?.objectId ??
-                                        item?.twitter?.objectId}
+                                      {item?.telegram
+                                        ? handleStartWidth(item?.telegram)
+                                        : handleStartWidth(item?.twitter)}
                                     </Link>
                                   </div>
                                 </td>
@@ -271,13 +278,7 @@ export default function History() {
                                   className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[20.1%]`}
                                 >
                                   <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
-                                    {item?.createdAt
-                                      ?.slice(0, 10)
-                                      .replaceAll("-", ".") +
-                                      " at " +
-                                      item.createdAt
-                                        ?.slice(11, 16)
-                                        .replaceAll("-", ".")}
+                                    {convertCreatedAt(item?.createdAt)}
                                   </Typography>
                                 </td>
                                 <td
@@ -402,13 +403,13 @@ export default function History() {
                                   <div className="flex items-center justify-center gap-[10px]">
                                     <TelegramHistorySVG className="w-6 h-6 rounded-full" />
                                     <Typography className="text-[#1C1C1C] font-medium text-base leading-5 text-center font-Inter cursor-pointer">
-                                      @{item?.telegram?.objectId}
+                                      {handleStartWidth(item?.telegram)}
                                     </Typography>
                                   </div>
                                   <div className="flex items-center justify-center gap-[10px]">
                                     <TwitterHistorySVG className="w-6 h-6 rounded-full" />
                                     <Typography className="text-[#1C1C1C] font-medium text-base leading-5 text-center font-Inter cursor-pointer">
-                                      {item?.twitter?.objectId}
+                                      {handleStartWidth(item?.twitter)}
                                     </Typography>
                                   </div>
                                 </td>
@@ -416,13 +417,7 @@ export default function History() {
                                   className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[110px] basis-[20.1%]`}
                                 >
                                   <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
-                                    {item?.createdAt
-                                      ?.slice(0, 10)
-                                      .replaceAll("-", ".") +
-                                      " at " +
-                                      item.createdAt
-                                        ?.slice(11, 16)
-                                        .replaceAll("-", ".")}
+                                    {convertCreatedAt(item?.createdAt)}
                                   </Typography>
                                 </td>
                                 <td
