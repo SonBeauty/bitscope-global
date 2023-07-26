@@ -110,6 +110,9 @@ module.exports = {
           900: "#0F172A",
         },
       },
+      fill: {
+        navMobile: { 1: "#0341A3", 2: "#626264" },
+      },
       boxShadow: {
         base: "0px 0px 1px rgba(40, 41, 61, 0.08), 0px 0.5px 2px rgba(96, 97, 112, 0.16)",
         base2:
