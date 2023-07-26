@@ -2,7 +2,6 @@ import RefferalMobile from "@/components/PageComponents/referral/history";
 import LayoutDashBoard from "@/components/layout/Layout";
 import BackLeftSVG from "@/components/svg/BackLeftSVG";
 import useWidth from "@/hooks/useWidth";
-import { TABLE_HEAD } from "@/constant/components/Referral";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { Player } from "@lottiefiles/react-lottie-player";
 import {
@@ -27,13 +26,21 @@ export default function History() {
   const isHover = useHover(hoverRef);
   const { width } = useWidth();
   const [data, setData] = useState<any>(null);
-  const [totalPage, setTotalPage] = useState<number>();
-  const [currentPage, setCurrentPage] = useState<any>(1);
+  const [totalPage, setTotalPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(true);
   const user = useSelector((state: RootState) => state.users.user);
+
   useEffect(() => {
+    const token = localStorage.getItem("token") ?? sessionStorage.getItem("token");
     fetch(
-      `${process.env.SERVER}/users/${user?._id}/referral?page=${currentPage}&limit=10`
+      `${process.env.SERVER}/users/${user?._id}/referral?page=${currentPage}&limit=10`,
+      {
+        headers: {
+          Authorization: `${token}`,
+          'Content-Type': 'application/json'
+        }
+      }
     )
       .then((res) => res.json())
       .then((data) => {
@@ -42,11 +49,9 @@ export default function History() {
         setIsLoading(false);
       });
   }, [user?._id, width, currentPage]);
-
   if (width < 1024) {
-    return <RefferalMobile data={data} isLoading={isLoading} />;
+    return <RefferalMobile data={data?.listReferral} isLoading={isLoading} />;
   }
-
   return (
     <LayoutDashBoard className="bg-white md:p-5 py-[15px]">
       <div className="flex flex-col gap-4 ">
@@ -54,9 +59,8 @@ export default function History() {
           <CardHeader
             floated={false}
             shadow={false}
-            className={`rounded-none rounded-tl-[6px] rounded-tr-[6px] mt-0 mx-0 duration-200 md:h-[54px] ${
-              isHover ? "bg-[#00388D]" : "bg-[#0046B0]"
-            } `}
+            className={`rounded-none rounded-tl-[6px] rounded-tr-[6px] mt-0 mx-0 duration-200 md:h-[54px] ${isHover ? "bg-[#00388D]" : "bg-[#0046B0]"
+              } `}
           >
             <div className="flex justify-between flex-row items-center ">
               <span className="flex gap-[14px] items-center justify-center px-[1rem] md:px-0">
@@ -88,23 +92,18 @@ export default function History() {
               ) : (
                 <table className="w-full table-auto text-left">
                   <thead className="w-full ">
-                    <tr className="bg-[#D3ECFF] h-[55px] flex w-full justify-between px-2 md:pl-[35px] py-[17px] md:pr-[42px]">
-                      {TABLE_HEAD.map((head, index) => (
-                        <th
-                          key={index}
-                          className={`${head.class} flex items-center`}
-                        >
-                          <Typography
-                            className={`font-Inter font-semibold text-center text-lg leading-[22px] text-[#181C32] `}
-                          >
-                            {head.title}
-                          </Typography>
-                        </th>
-                      ))}
+                    <tr className="bg-[#D3ECFF] h-[55px] font-medium text-base  w-full  px-2 md:pl-[35px] py-[17px] md:pr-[42px] font-Inter">
+                      <th className="px-[20px]">ID</th>
+                      <th>User Name</th>
+                      <th>Email</th>
+                      <th>Time</th>
+                      <th className="px-[20px]">Process</th>
+                      <th>Bonus Reward</th>
+                      <th>Pre-sale Reward</th>
                     </tr>
                   </thead>
                   <tbody className="w-full">
-                    {data?.map((item: any, index: number) => {
+                    {data?.listReferral?.map((item: any, index: number) => {
                       const isLast = index === data?.length - 1;
                       const time = new Date(
                         item?.userId?.createdAt
@@ -113,37 +112,37 @@ export default function History() {
                         ? ""
                         : "border-b border-dashed border-[#e4e3e3]";
                       return (
-                        <tr
-                          className="flex hover:bg-[#EBF4FF] hover:shadow-sm duration-300 ease-in-out"
+                        item?.userId && <tr
+                          className="hover:bg-[#EBF4FF] hover:shadow-sm duration-300 ease-in-out"
                           key={index}
                         >
                           <td
-                            className={`${classes} py-[13px] px-[40px] h-[55px] md:basis-[10%] 2xl:basis-[9.5%]`}
+                            className={`${classes} py-[13px] px-[20px] h-[55px]`}
                           >
                             <Typography
                               variant="small"
                               color="blue-gray"
                               className="font-medium text-[16.26px] leading-[28.69px] text-[#1C1C1C]"
                             >
-                              {index + 1}
+                              {(currentPage - 1) * 10 + index + 1}
                             </Typography>
                           </td>
                           <td
-                            className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[1vh] h-[55px] basis-[14%] mx-[-2.5vh] 2xl:basis-[15%]`}
+                            className={`${classes} border-b border-dashed py-[18px] h-[55px]`}
                           >
                             <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
                               {item?.userId?.name}
                             </Typography>
                           </td>
                           <td
-                            className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[25.5%] 2xl:basis-[20.5%]`}
+                            className={`${classes} justify-start border-b border-dashed py-[18px] h-[55px]`}
                           >
                             <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
                               {item?.userId?.email}
                             </Typography>
                           </td>
                           <td
-                            className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[21%] 2xl:basis-[22.5%]`}
+                            className={`${classes}  justify-start border-b border-dashed py-[18px] h-[55px] basis-[21%] 2xl:basis-[22.5%]`}
                           >
                             <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
                               {item?.userId?.createdAt
@@ -156,27 +155,26 @@ export default function History() {
                             </Typography>
                           </td>
                           <td
-                            className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[13%] 2xl:basis-[11.5%]`}
+                            className={`${classes}   justify-start border-b border-dashed py-[18px]  h-[55px] `}
                           >
                             <Typography
-                              className={`text-[#1C1C1C] font-medium text-base leading-5 font-Inter ${
-                                item?.userId?.isActive
-                                  ? "text-[#00A72F]"
-                                  : "text-yellow-300"
-                              }`}
+                              className={`text-[#1C1C1C] font-medium px-[20px] text-base leading-5 font-Inter ${item?.userId?.isActive
+                                ? "text-[#00A72F]"
+                                : "text-yellow-300"
+                                }`}
                             >
                               {item?.userId?.isActive ? "Confirm" : "Register"}
                             </Typography>
                           </td>
                           <td
-                            className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[10.5%] 2xl:basis-[13%]`}
+                            className={`${classes}  border-b  border-dashed py-[18px] h-[55px]`}
                           >
                             <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
                               {item?.userId?.isActive ? "$0.5" : "$0.0"}
                             </Typography>
                           </td>
                           <td
-                            className={`${classes} flex items-center justify-start border-b text-center border-dashed py-[18px] px-[22px] h-[55px] basis-[12.5%] 2xl:basis-[17%]`}
+                            className={`${classes} justify-start border-b border-dashed py-[18px] h-[55px]`}
                           >
                             <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
                               {item?.userId?.isActive ? "$0.5" : "$0.0"}
@@ -189,8 +187,8 @@ export default function History() {
                 </table>
               )}
             </div>
-            {!isLoading && (data?.length === 0 || !data) && (
-              <div className="w-full h-[60vh] flex items-center mb-8 md:items-center justify-center overflow-hidden">
+            {!isLoading && (data?.listReferral?.length === 0 || !data) && (
+              <div className="w-full h-[60vh] items-center mb-8 md:items-center justify-center overflow-hidden">
                 <div className="flex flex-col justify-center items-center gap-7">
                   <NoreferralSVG />
                 </div>
@@ -198,12 +196,17 @@ export default function History() {
             )}
           </CardBody>
         </Card>
-        {!isLoading && data?.length > 0 && (
+        {!isLoading && data?.listReferral?.length > 0 && (
           <CardFooter className="-mr-[9.5px] flex items-center justify-end p-0 bg-white">
             <div className="flex items-center justify-center w-[32px] h-[32px] py-[6px] px-[13px] rounded-[3.825px]">
-              <span className="font-Inter cursor-pointer text-white font-bold text-[16px] leading-[19.36px]">
-                <ChevronLeftIcon className="h-4 w-4 text-[#000000] cursor-pointer" />
-              </span>
+              <Link
+                href={`?page=${currentPage}`}
+                onClick={() => currentPage !== 1 && setCurrentPage(currentPage - 1)}
+              >
+                <span className="font-Inter cursor-pointer text-white font-bold text-[16px] leading-[19.36px]">
+                  <ChevronLeftIcon className="h-4 w-4 text-[#000000] cursor-pointer" />
+                </span>
+              </Link>
             </div>
             <div className="flex items-center px-[6px]">
               {Array(totalPage)
@@ -214,16 +217,14 @@ export default function History() {
                       href={`?page=${index + 1}`}
                       onClick={() => setCurrentPage(index + 1)}
                       key={index}
-                      className={`flex items-center justify-center w-[32px] h-[32px] py-[6px] px-[13px] rounded-[3.825px] ${
-                        index + 1 == currentPage ? "bg-[#009EF7]" : "bg-[#fff]"
-                      }`}
+                      className={`flex items-center justify-center w-[32px] h-[32px] py-[6px] px-[13px] rounded-[3.825px] ${index + 1 == currentPage ? "bg-[#009EF7]" : "bg-[#fff]"
+                        }`}
                     >
                       <span
-                        className={`font-Inter cursor-pointer  ${
-                          index + 1 == currentPage
-                            ? "text-white"
-                            : "text-[#000]"
-                        } font-medium text-[16px] leading-[19.36px]`}
+                        className={`font-Inter cursor-pointer  ${index + 1 == currentPage
+                          ? "text-white"
+                          : "text-[#000]"
+                          } font-medium text-[16px] leading-[19.36px]`}
                       >
                         {index + 1}
                       </span>
@@ -232,9 +233,14 @@ export default function History() {
                 })}
             </div>
             <div className="flex items-center justify-center w-[32px] h-[32px] py-[6px] px-[13px] rounded-[3.825px]">
-              <span className="font-Inter cursor-pointer text-white font-bold text-[16px] leading-[19.36px]">
-                <ChevronRightIcon className="h-4 w-4 text-[#000000] cursor-pointer" />
-              </span>
+              <Link
+                href={`?page=${currentPage}`}
+                onClick={() => currentPage < totalPage && setCurrentPage(currentPage + 1)}
+              >
+                <span className="font-Inter cursor-pointer text-white font-bold text-[16px] leading-[19.36px]">
+                  <ChevronRightIcon className="h-4 w-4 text-[#000000] cursor-pointer" />
+                </span>
+              </Link>
             </div>
           </CardFooter>
         )}

@@ -40,7 +40,7 @@ export default function ReferralInfoMobile({
     setOpen(open === value ? 0 : value);
   };
   const converRank = (rank?: any) => {
-    return rank.replace(/_/g, " ");
+    return rank?.replace(/_/g, " ");
   };
 
   const getRankSrc = (rankUser?: string) => {
@@ -81,7 +81,7 @@ export default function ReferralInfoMobile({
     return `https://bitscope.global/register?ref=${text}`;
   };
   const referralUI = (text?: any) => {
-    return `https://www...${text.slice(4, 8)}`;
+    return `https://www...${text?.slice(4, 8)}`;
   };
 
   return (
@@ -348,9 +348,8 @@ export default function ReferralInfoMobile({
                   icon={
                     <ChevronRightIcon
                       strokeWidth={2.5}
-                      className={`mx-auto h-4 w-4 transition-transform ${
-                        open === 1 ? "rotate-90" : ""
-                      }`}
+                      className={`mx-auto h-4 w-4 transition-transform ${open === 1 ? "rotate-90" : ""
+                        }`}
                     />
                   }
                 >
@@ -405,9 +404,8 @@ export default function ReferralInfoMobile({
                   icon={
                     <ChevronRightIcon
                       strokeWidth={2.5}
-                      className={`mx-auto h-4 w-4 transition-transform ${
-                        open === 2 ? "rotate-90" : ""
-                      }`}
+                      className={`mx-auto h-4 w-4 transition-transform ${open === 2 ? "rotate-90" : ""
+                        }`}
                     />
                   }
                 >
@@ -462,9 +460,8 @@ export default function ReferralInfoMobile({
                   icon={
                     <ChevronRightIcon
                       strokeWidth={2.5}
-                      className={`mx-auto h-4 w-4 transition-transform ${
-                        open === 3 ? "rotate-90" : ""
-                      }`}
+                      className={`mx-auto h-4 w-4 transition-transform ${open === 3 ? "rotate-90" : ""
+                        }`}
                     />
                   }
                 >
@@ -519,9 +516,8 @@ export default function ReferralInfoMobile({
                   icon={
                     <ChevronRightIcon
                       strokeWidth={2.5}
-                      className={`mx-auto h-4 w-4 transition-transform ${
-                        open === 4 ? "rotate-90" : ""
-                      }`}
+                      className={`mx-auto h-4 w-4 transition-transform ${open === 4 ? "rotate-90" : ""
+                        }`}
                     />
                   }
                 >
@@ -576,9 +572,8 @@ export default function ReferralInfoMobile({
                   icon={
                     <ChevronRightIcon
                       strokeWidth={2.5}
-                      className={`mx-auto h-4 w-4 transition-transform ${
-                        open === 5 ? "rotate-90" : ""
-                      }`}
+                      className={`mx-auto h-4 w-4 transition-transform ${open === 5 ? "rotate-90" : ""
+                        }`}
                     />
                   }
                 >
