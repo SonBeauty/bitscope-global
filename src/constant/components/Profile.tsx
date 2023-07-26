@@ -1,13 +1,13 @@
+import TwitterFooterSVG from "@/components/svg/TwitterFooterSVG";
 import {
   CreditCardIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { AiOutlineTwitter } from "react-icons/ai";
 import { FaDiscord, FaGoogle } from "react-icons/fa";
 
 export const arrSocial = [
   {
-    image: <AiOutlineTwitter className="w-10 h-10 p-[6px] text-[#4095FB]" />,
+    image: <TwitterFooterSVG className="w-10 h-10 p-[10px] text-[#4095FB]" />,
     bg: "",
   },
   {

@@ -1,10 +1,10 @@
+import TwitterFooterSVG from "@/components/svg/TwitterFooterSVG";
 import Image from "next/image";
-import { AiOutlineTwitter } from "react-icons/ai";
 import { FaDiscord } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 const arrSocial = [
   {
-    image: <AiOutlineTwitter className="w-10 h-10 p-[6px] text-[#4095FB]" />,
+    image: <TwitterFooterSVG className="w-10 h-10 p-2 text-[#4095FB]" />,
     bg: "",
   },
   {

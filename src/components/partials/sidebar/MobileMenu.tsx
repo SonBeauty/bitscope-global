@@ -306,6 +306,7 @@ const MobileMenu = ({ className = "custom-class" }) => {
         <div className="bg-[#F7F9FB]">
           <Footer mobile />
         </div>
+        
       </Card>
     </div>
   );

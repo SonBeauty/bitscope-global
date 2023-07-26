@@ -1,5 +1,6 @@
 import DownAuthen from "@/components/svg/DownAuthen";
 import TelegramSVG from "@/components/svg/TelegramSVG";
+import TwitterFooterSVG from "@/components/svg/TwitterFooterSVG";
 import TwitterSVG from "@/components/svg/TwitterSVG";
 import { useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
@@ -34,7 +35,7 @@ export default function AuthenSelect({
     >
       <div className="flex gap-[11px] ">
         <div className="w-6 h-5 ">
-          {(icon === "TW" && <TwitterSVG className="w-full h-full" />) ||
+          {(icon === "TW" && <TwitterFooterSVG className="w-full h-full" fillOne="white"/>) ||
             (icon === "TE" && <TelegramSVG className="w-full h-full" />)}
         </div>
       </div>

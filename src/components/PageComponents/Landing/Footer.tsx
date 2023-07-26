@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FaDiscord, FaFacebook, FaTwitter } from "react-icons/fa";
 import AnimLine from "./AnimLine";
 import ScrollToTop from "./ScrollToTop";
+import TwitterFooterSVG from "@/components/svg/TwitterFooterSVG";
 
 export default function Footer() {
   return (
@@ -47,7 +48,10 @@ export default function Footer() {
                         href="https://twitter.com/BitscopeAI"
                         target="_blank"
                       >
-                        <FaTwitter className="w-full h-full p-2" />
+                        <TwitterFooterSVG
+                          className="w-full h-full p-[10px] fill-white hover:fill-[#583BD3]"
+                          fillOne="inherit"
+                        />
                       </Link>
                     </li>
                     <li>
@@ -157,6 +161,7 @@ export default function Footer() {
           </div>
         </div>
         <ScrollToTop />
+      
       </footer>
     </div>
   );

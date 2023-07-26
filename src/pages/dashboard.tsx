@@ -15,26 +15,21 @@ import PageContainer from "@/container/PageContainer";
 import useWidth from "@/hooks/useWidth";
 import { RootState } from "@/store";
 import { HeartIcon } from "@heroicons/react/24/outline";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { BiBarChart, BiMessageRounded } from "react-icons/bi";
 import { FaRetweet } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Slider from "react-slick";
-import { useInterval } from "react-use";
-import { getInfluencer } from "./api/influencer/getInfluencer";
+import {
+  GetDashboard,
+  GetInfluencer,
+  GetTweet,
+} from "./api/influencer/getInfluencer";
 
 export default function MainBoard() {
-  interface Tweet {
-    data: Array<object>;
-  }
-
   const user = useSelector((state: RootState) => state.users.user);
-  const [dataTop, setDataTop] = useState<any>();
-  const [tweet, setTweet] = useState<Tweet>();
-  const [data, setData] = useState<any>();
   const { width } = useWidth();
   const convertFormat = (number: any) => {
     const suffixes = ["", "K", "M", "B", "T"];
@@ -45,6 +40,11 @@ export default function MainBoard() {
 
     return `${shortNumber}${suffixes[suffixIndex]}`;
   };
+  const { data } = useQuery(["influencers"], GetInfluencer, {
+    refetchInterval: 5 * 60 * 1000,
+  });
+  const { data: dataTop } = useQuery(["dashboard"], GetDashboard);
+  const { data: tweet } = useQuery(["tweet"], GetTweet);
 
   const settings = {
     dots: true,
@@ -68,42 +68,6 @@ export default function MainBoard() {
     ),
   };
 
-  useInterval(() => {
-    getInfluencer()
-      .then((data) => {
-        setData(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, 5 * 60 * 1000);
-  document.getElementById("divSlider")?.offsetWidth;
-
-  useEffect(() => {
-    fetch(`${process.env.SERVER}/dashboard`)
-      .then((res) => res.json())
-      .then((data) => {
-        setDataTop(data?.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    fetch(`${process.env.SERVER}/tweet`).then((res) =>
-      res
-        .json()
-        .then((data) => {
-          setTweet(data[0]);
-        })
-        .catch((err) => console.log(err))
-    );
-    getInfluencer()
-      .then((data) => {
-        setData(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
   if (!user || user.isActive === false) {
     return (
       <PageContainer>
@@ -115,9 +79,9 @@ export default function MainBoard() {
   if (width < 1024) {
     return (
       <DashboardMobile
-        tweet={tweet?.data}
+        tweet={tweet && tweet[0]?.data}
         influencer={data?.data}
-        trending={dataTop}
+        trending={dataTop?.data}
       />
     );
   }
@@ -146,18 +110,18 @@ export default function MainBoard() {
           <h6 className="text-white font-light">Welcome to BitScope</h6>
         </div>
         <Gainer
-          rows={dataTop?.gainer}
+          rows={dataTop?.data?.gainer}
           src="/image/wchar.svg"
           title="Biggest Gainers"
         />
         <Potential
-          rows={dataTop?.potential}
+          rows={dataTop?.data?.potential}
           src="/image/groupstar.svg"
           title="Potential Tokens"
         />
         <Trending
           src="/image/trend.svg"
-          rows={dataTop?.trending}
+          rows={dataTop?.data?.trending}
           title="Trending Topic"
           reset={true}
         />
@@ -193,100 +157,103 @@ export default function MainBoard() {
             </Slider>
           </div>
           <div className="flex justify-between gap-2 2xl:gap-3">
-            {tweet?.data?.map((item: any, index: any) => {
-              const render = item?.content.split("\n");
-              return (
-                <Link
-                  href={
-                    item?.link ? item?.link : "https://twitter.com/BitscopeAI"
-                  }
-                  key={index}
-                  className="w-[33%] drop-shadow-md"
-                  target="_blank"
-                >
-                  <div className="flex bg-[#fff] hover:bg-[#F0F0F0] py-4 flex-col gap-2 2xl:gap-4 rounded-md h-[460px]">
-                    <div className="flex px-3">
-                      <picture className="mr-2">
-                        <img
-                          src={item?.avatar}
-                          alt=""
-                          className="w-10 h-10 rounded-full"
-                        />
-                      </picture>
-                      <div>
-                        <div className="flex">
-                          <span className="font-Inter font-bold text-base">
-                            {item?.userName}
-                          </span>
-                          <div className="ml-1 mt-[2px]">
-                            <IconInfulencerSVG />
+            {tweet &&
+              tweet[0]?.data?.map((item: any, index: any) => {
+                const render = item?.content.split("\n");
+                return (
+                  <Link
+                    href={
+                      item?.link ? item?.link : "https://twitter.com/BitscopeAI"
+                    }
+                    key={index}
+                    className="w-[33%] drop-shadow-md"
+                    target="_blank"
+                  >
+                    <div className="flex bg-[#fff] hover:bg-[#F0F0F0] py-4 flex-col gap-2 2xl:gap-4 rounded-md h-[460px]">
+                      <div className="flex px-3">
+                        <picture className="mr-2">
+                          <img
+                            src={item?.avatar}
+                            alt=""
+                            className="w-10 h-10 rounded-full"
+                          />
+                        </picture>
+                        <div>
+                          <div className="flex">
+                            <span className="font-Inter font-bold text-base">
+                              {item?.userName}
+                            </span>
+                            <div className="ml-1 mt-[2px]">
+                              <IconInfulencerSVG />
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <span className="font-Inter text-xs font-normal mr-1">
+                              {item?.userId}
+                            </span>
+                            <div className="w-[3px] h-[3px] mr-1 bg-[#585858] rounded-full mt-[6px]" />
+                            <div className="text-[#536471] text-xs font-Inter font-normal">
+                              {item.createdAt.slice(4, 10)}
+                            </div>
                           </div>
                         </div>
+                      </div>
+                      <div className="break-words px-3">
+                        <div className="font-Inter text-sm font-normal h-[220px] 2xl:h-[180px] 3xl:h-[150px] overflow-hidden">
+                          {render.map((line: any, index: any) => {
+                            return <p key={index}>{line}</p>;
+                          })}
+                        </div>
+                      </div>
+                      {item?.images && (
+                        <div className="rounded-md px-3">
+                          <Image
+                            width={174}
+                            height={100}
+                            src={item?.images[0]}
+                            alt=""
+                            className="rounded-md h-[120px] w-full 2xl:h-[130px] 3xl:h-[180px]"
+                          />
+                        </div>
+                      )}
+                      <div className="flex justify-between pb-2 px-0 md:px-3 ml-[-5px]">
                         <div className="flex">
-                          <span className="font-Inter text-xs font-normal mr-1">
-                            {item?.userId}
+                          <div className="rounded-full hover:text-[#00BA7C] hover:bg-[#E5F8F2] p-1">
+                            <FaRetweet className="h-6 w-6" />
+                          </div>
+                          <span className="text-sm text-[#536471] mt-[6px]">
+                            {item?.retweetCount === 0
+                              ? 0
+                              : convertFormat(item.retweetCount)}
                           </span>
-                          <div className="w-[3px] h-[3px] mr-1 bg-[#585858] rounded-full mt-[6px]" />
-                          <div className="text-[#536471] text-xs font-Inter font-normal">
-                            {item.createdAt.slice(4, 10)}
+                        </div>
+                        <div className="flex">
+                          <div className="rounded-full hover:text-[#F91880] hover:bg-[#FEE7F2] p-1">
+                            <HeartIcon className="h-6 w-6" />
+                          </div>
+                          <span className="text-sm text-[#536471] mt-[6px]">
+                            {item?.favoriteCount === 0
+                              ? 0
+                              : convertFormat(item.favoriteCount)}
+                          </span>
+                        </div>
+                        <div className="flex">
+                          <div className="rounded-full hover:text-[#00BA7C] hover:bg-[#E8F5FD] p-1">
+                            <BiBarChart className="h-6 w-6 text-[#536471] hover:text-[#1D9BF0]" />
+                          </div>
+                          <div className="mt-[4px]">
+                            <span className="text-sm h-6 w-6 text-[#536471] ">
+                              {item?.views === 0
+                                ? 0
+                                : convertFormat(item?.views)}
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="break-words px-3">
-                      <div className="font-Inter text-sm font-normal h-[220px] 2xl:h-[180px] 3xl:h-[150px] overflow-hidden">
-                        {render.map((line: any, index: any) => {
-                          return <p key={index}>{line}</p>;
-                        })}
-                      </div>
-                    </div>
-                    {item?.images && (
-                      <div className="rounded-md px-3">
-                        <Image
-                          width={174}
-                          height={100}
-                          src={item?.images[0]}
-                          alt=""
-                          className="rounded-md h-[120px] w-full 2xl:h-[130px] 3xl:h-[180px]"
-                        />
-                      </div>
-                    )}
-                    <div className="flex justify-between pb-2 px-0 md:px-3 ml-[-5px]">
-                      <div className="flex">
-                        <div className="rounded-full hover:text-[#00BA7C] hover:bg-[#E5F8F2] p-1">
-                          <FaRetweet className="h-6 w-6" />
-                        </div>
-                        <span className="text-sm text-[#536471] mt-[6px]">
-                          {item?.retweetCount === 0
-                            ? 0
-                            : convertFormat(item.retweetCount)}
-                        </span>
-                      </div>
-                      <div className="flex">
-                        <div className="rounded-full hover:text-[#F91880] hover:bg-[#FEE7F2] p-1">
-                          <HeartIcon className="h-6 w-6" />
-                        </div>
-                        <span className="text-sm text-[#536471] mt-[6px]">
-                          {item?.favoriteCount === 0
-                            ? 0
-                            : convertFormat(item.favoriteCount)}
-                        </span>
-                      </div>
-                      <div className="flex">
-                        <div className="rounded-full hover:text-[#00BA7C] hover:bg-[#E8F5FD] p-1">
-                          <BiBarChart className="h-6 w-6 text-[#536471] hover:text-[#1D9BF0]" />
-                        </div>
-                        <div className="mt-[4px]">
-                          <span className="text-sm h-6 w-6 text-[#536471] ">
-                            {item?.views === 0 ? 0 : convertFormat(item?.views)}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+                  </Link>
+                );
+              })}
           </div>
         </div>
         <Card

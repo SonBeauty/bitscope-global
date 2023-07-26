@@ -3,22 +3,30 @@ import LayoutDashBoard from "@/components/layout/Layout";
 import BackLeftSVG from "@/components/svg/BackLeftSVG";
 import DownloadAll from "@/components/svg/DownloadAll";
 import DownloadAuthenSVG from "@/components/svg/DownloadAuthenSVG";
+import LoadingSVG from "@/components/svg/LoadingSVG";
 import NoAccessHistorySVG from "@/components/svg/NoAccessHistorySVG";
 import TelegramHistorySVG from "@/components/svg/TelegramHistorySVG";
 import TrashAuthenSVG from "@/components/svg/TrashAuthenSVG";
-import TwitterHistorySVG from "@/components/svg/TwitterHistorySVG";
-import { getHistory } from "@/pages/api/authentication/History";
+import TwitterFooterSVG from "@/components/svg/TwitterFooterSVG";
+import { deleteHistory, getHistory } from "@/pages/api/authentication/History";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { Card, CardBody, CardHeader } from "@material-tailwind/react";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { Button } from "flowbite-react";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 import { useIntersectionObserver, useOnClickOutside } from "usehooks-ts";
 
 export default function HistoryMobile() {
+  const queryClient = useQueryClient();
   const carouselRef = useRef<HTMLDivElement | null>(null);
+  const [content, setContent] = useState<string>("");
+  const [idHandle, setIdHandle] = useState<string>("");
   const entry = useIntersectionObserver(carouselRef, {});
   const isVisible = !!entry?.isIntersecting;
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -32,6 +40,16 @@ export default function HistoryMobile() {
         return nextPage < maxPages ? nextPage : undefined;
       },
     });
+  const { mutate, isLoading: loading } = useMutation(deleteHistory, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["historyMobile"] });
+      setOpenModal(false);
+      toast.success("Delete History Successfully!");
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
   useEffect(() => {
     if (isVisible) {
       fetchNextPage();
@@ -45,6 +63,16 @@ export default function HistoryMobile() {
   const handleError = (e: any) => {
     e.target.src =
       "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
+  };
+  const handleContent = (id: string, content: string) => {
+    setContent(content);
+    setOpenModal(true);
+    setIdHandle(id);
+  };
+  const handleClick = () => {
+    if (content === "Delete") {
+      mutate(idHandle);
+    }
   };
   return (
     <LayoutDashBoard className="md:p-5 py-[15px] relative bg-[#F6FBFF]">
@@ -68,7 +96,7 @@ export default function HistoryMobile() {
                 (data?.pages[0]?.data?.data?.length > 0 && (
                   <div
                     className="font-Inter text-white text-lg leading-[21.78px] font-bold cursor-pointer"
-                    onClick={() => setOpenModal(true)}
+                    onClick={() => handleContent("0", "DownloadAll")}
                   >
                     Download all
                   </div>
@@ -133,7 +161,7 @@ export default function HistoryMobile() {
                               <TelegramHistorySVG className="w-6 h-6 rounded-full" />
                             )}
                             {item?.twitter !== null && (
-                              <TwitterHistorySVG className="w-6 h-6 rounded-full" />
+                              <TwitterFooterSVG className="w-6 h-6 rounded-full p-[3px] bg-[#E4F1FF]" />
                             )}
                             <Link
                               href={
@@ -179,10 +207,18 @@ export default function HistoryMobile() {
                           </span>
                         </div>
                         <div className="relative flex justify-around items-center gap-1">
-                          <span className="bg-[#f5f5f5] hover:bg-[#ECF2F9] active:bg-[#ECF2F9] rounded-tl-md rounded-bl-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#005AE2] active:stroke-[#005AE2] duration-500 ease-in-out">
+                          <span
+                            onClick={() =>
+                              handleContent(item._id, "DownloadOne")
+                            }
+                            className="bg-[#f5f5f5] hover:bg-[#ECF2F9] active:bg-[#ECF2F9] rounded-tl-md rounded-bl-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#005AE2] active:stroke-[#005AE2] duration-500 ease-in-out"
+                          >
                             <DownloadAuthenSVG className="stroke-inherit" />
                           </span>
-                          <span className="bg-[#f5f5f5] hover:bg-[#FCEBE8] active:bg-[#FCEBE8] rounded-tr-md rounded-br-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#E32626] active:stroke-[#E32626] duration-500 ease-in-out">
+                          <span
+                            onClick={() => handleContent(item._id, "Delete")}
+                            className="bg-[#f5f5f5] hover:bg-[#FCEBE8] active:bg-[#FCEBE8] rounded-tr-md rounded-br-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#E32626] active:stroke-[#E32626] duration-500 ease-in-out"
+                          >
                             <TrashAuthenSVG className="stroke-inherit" />
                           </span>
                         </div>
@@ -248,7 +284,7 @@ export default function HistoryMobile() {
                             </picture>
                             <div className="flex flex-col gap-[7px] justify-start items-start">
                               <div className="flex gap-[15px]">
-                                <TwitterHistorySVG className="w-6 h-6 rounded-full" />
+                                <TwitterFooterSVG className="w-6 h-6 rounded-full p-[3px] bg-[#E4F1FF]" />
                                 <Link
                                   href={`https://twitter.com/${item?.twitter?.objectId}`}
                                   target="_blank"
@@ -292,11 +328,19 @@ export default function HistoryMobile() {
                         </div>
 
                         <div className="relative flex justify-around items-center gap-1">
-                          <span className="bg-[#f5f5f5] hover:bg-[#ECF2F9] active:bg-[#ECF2F9] rounded-tl-md rounded-bl-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#005AE2] active:stroke-[#005AE2] duration-500 ease-in-out">
+                          <span
+                            onClick={() =>
+                              handleContent(item._id, "DownloadOne")
+                            }
+                            className="bg-[#f5f5f5] hover:bg-[#ECF2F9] active:bg-[#ECF2F9] rounded-tl-md rounded-bl-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#005AE2] active:stroke-[#005AE2] duration-500 ease-in-out"
+                          >
                             <DownloadAuthenSVG className="stroke-inherit" />
                           </span>
 
-                          <span className="bg-[#f5f5f5] hover:bg-[#FCEBE8] active:bg-[#FCEBE8] rounded-tr-md rounded-br-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#E32626] active:stroke-[#E32626] duration-500 ease-in-out">
+                          <span
+                            onClick={() => handleContent(item._id, "Delete")}
+                            className="bg-[#f5f5f5] hover:bg-[#FCEBE8] active:bg-[#FCEBE8] rounded-tr-md rounded-br-md cursor-pointer px-[0.63rem] py-[0.31rem] stroke-[#28303F] hover:stroke-[#E32626] active:stroke-[#E32626] duration-500 ease-in-out"
+                          >
                             <TrashAuthenSVG className="stroke-inherit" />
                           </span>
                         </div>
@@ -329,11 +373,17 @@ export default function HistoryMobile() {
         <div className="relative flex flex-col h-full items-center justify-center px-[58px] gap-5 ">
           <DownloadAll className="mt-[10px]" />
           <span className="font-Inter font-medium text-base leading-6">
-            Are you sure want to download all data?
+            {content === "DownloadAll" &&
+              "Are you sure want to download all data?"}
+            {content === "Delete" && "Are you sure want to delete data?"}
+            {content === "DownloadOne" && "Are you sure want to download data?"}
           </span>
-          <button className="" onClick={() => setOpenModal(false)}>
+          <button className="" onClick={() => handleClick()}>
             <span className="bg-[#005AE2] py-[9px] px-[27px] text-white font-Inter font-semibold text-lg leading-[22px] rounded-md">
-              Download
+              {loading && <LoadingSVG />}
+              {content === "DownloadAll" && "Download"}
+              {content === "Delete" && "Delete"}
+              {content === "DownloadOne" && "Download"}
             </span>
           </button>
           <div onClick={() => setOpenModal(false)}>

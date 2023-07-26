@@ -1,10 +1,10 @@
 import BasicBar from "@/components/Charts/BasicChart/BasicBar";
 import ActiveShape from "@/components/Charts/PieChart/ActiveShape";
 import CalendarSVG from "@/components/svg/CalendarSVG";
+import TwitterFooterSVG from "@/components/svg/TwitterFooterSVG";
 import ProgressBar from "@/components/ui/ProgressBar";
 import { ArrInfoUser } from "@/constant/components/Authentication";
 import React, { useEffect, useState } from "react";
-import { BsTwitter } from "react-icons/bs";
 import CheckInfoUser from "./CheckInfoUser";
 import ChildrenInfoUser from "./ChildrenInfoUser";
 interface ArrTwitterProps {
@@ -58,7 +58,7 @@ export default function TwitterAuthentication({
     <>
       <div className="px-[5px] md:px-0">
         <CheckInfoUser
-          icon={<BsTwitter className="w-6 h-6" />}
+          icon={<TwitterFooterSVG className="w-5 h-5" fillOne="white" />}
           social="Twitter"
           src={image}
           name={name}

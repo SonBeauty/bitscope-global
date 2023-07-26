@@ -2,6 +2,7 @@ import { schema } from "@/components/PageComponents/Subscribe/schema";
 import FacebookFooterSVG from "@/components/svg/FacebookFooterSVG";
 import GlobalFooterSVG from "@/components/svg/GlobalFooterSVG";
 import LoadingSVG from "@/components/svg/LoadingSVG";
+import TwitterFooterSVG from "@/components/svg/TwitterFooterSVG";
 import useFooterType from "@/hooks/useFooterType";
 import { Subscribe } from "@/pages/api/subscribe";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -63,14 +64,14 @@ const Footer = ({ className = "custom-class", mobile = false }) => {
               Follow us on:
             </span>
             <div className="flex gap-[15px] justify-start items-center ">
-              <Link href="https://twitter.com/BitscopeAI" target="_blank">
-                <Image
-                  src="/image/Twitter4x.png"
-                  width={32}
-                  height={32}
-                  alt="Twitter"
-                />
+              <Link
+                href="https://twitter.com/BitscopeAI"
+                target="_blank"
+                className="py-0.5 px-2 bg-white rounded-full flex justify-center items-center w-8 h-8 border-[1px] border-[#E5E9EE]"
+              >
+                <TwitterFooterSVG className="w-[14px] h-[14px]" />
               </Link>
+
               <Link
                 href="https://discord.com/invite/Bv8YNdVD2Y"
                 target="_blank"

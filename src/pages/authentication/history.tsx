@@ -31,6 +31,7 @@ import { useStyles } from "@/components/Pagination/useStyles";
 import LoadingSVG from "@/components/svg/LoadingSVG";
 import { toast } from "react-toastify";
 import { convertCreatedAt } from "@/services/convertTimezone";
+import TwitterFooterSVG from "@/components/svg/TwitterFooterSVG";
 const CountUp = dynamic(() => import("react-countup"), {
   ssr: false,
 });
@@ -257,7 +258,7 @@ export default function History() {
                                       <TelegramHistorySVG className="w-6 h-6 rounded-full" />
                                     )}
                                     {item.twitter !== null && (
-                                      <TwitterHistorySVG className="w-6 h-6 rounded-full" />
+                                      <TwitterFooterSVG className="w-7 h-7 rounded-full bg-[#E4F1FF] p-1" />
                                     )}
                                     <Link
                                       href={
@@ -407,7 +408,7 @@ export default function History() {
                                     </Typography>
                                   </div>
                                   <div className="flex items-center justify-center gap-[10px]">
-                                    <TwitterHistorySVG className="w-6 h-6 rounded-full" />
+                                    <TwitterFooterSVG className="w-7 h-7 rounded-full bg-[#E4F1FF] p-1" />
                                     <Typography className="text-[#1C1C1C] font-medium text-base leading-5 text-center font-Inter cursor-pointer">
                                       {handleStartWidth(item?.twitter)}
                                     </Typography>
