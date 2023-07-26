@@ -14,9 +14,10 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 const StepLineChart = (series: any) => {
   const { width, breakpoints } = useWidth();
   const [options, setOptions] = useState(optionsStepline);
-  const isFake = useSelector(
-    (state: RootState) => state.authentication.isFakeData
-  );
+  const isFake =
+    useSelector((state: RootState) => state.authentication.isFakeData) ||
+    Number.isNaN(series?.series[0]);
+
   const [fakeData, setFakeData] = useState<any>();
   useEffect(() => {
     if (isFake) {
@@ -38,9 +39,10 @@ const StepLineChart = (series: any) => {
       setOptions(isFake ? optionsSteplineMobileFake : optionsSteplineMobile);
     }
   }, [breakpoints.md, isFake, width]);
+
   return (
     <ReactApexChart
-      options={options}
+      options={isFake ? optionsSteplineMobileFake : options}
       series={[
         {
           name: "value",

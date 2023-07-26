@@ -39,8 +39,12 @@ export default function Authentication() {
   });
   const { mutate, isLoading } = useMutation(getUserAuthen, {
     onSuccess: (data) => {
+      const isTwitter = data.twitter === null ? 1 : null;
+      const isTelegram = data.telegram === null ? 2 : null;
       toast.success("Authentication Success!");
-      router.push(`/authentication/${data._id}`);
+      router.push(
+        `/authentication/${data._id}?${isTwitter ?? isTelegram ?? 3}`
+      );
     },
     onError: () => {
       toast.error("Authentication Failed. Please try again!");

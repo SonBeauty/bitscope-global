@@ -17,7 +17,6 @@ import { loginUser } from "./api/auth/login";
 
 export default function Login() {
   const route = useRouter();
-
   const [remember, setRemember] = useState<boolean>(false);
   const dispath = useDispatch();
   const { mutate, isLoading } = useMutation(loginUser, {
@@ -51,6 +50,7 @@ export default function Login() {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm({
     resolver: yupResolver(schema),
     mode: "all",
@@ -61,9 +61,17 @@ export default function Login() {
       password: data.password,
     });
   };
-
+  const handleChange = (e: any) => {
+    if (e.target.name === "email") {
+      setValue("email", e.target.value);
+    }
+    if (e.target.name === "password") {
+      setValue("password", e.target.value);
+    }
+  };
   return (
     <LayoutForm
+      onChange={handleChange}
       page="Sign in"
       content="Sign in to your account to start using BitScope"
       button="Sign In"

@@ -16,10 +16,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getInfoAuthen } from "../api/authentication/AuthenTwiterAndTele";
 import BackLeftSVG from "@/components/svg/BackLeftSVG";
+import Loading from "@/components/Loading";
 
 export default function Authentication() {
   const route = useRouter();
   const router = route.query.id;
+  const numberShow = parseInt(route.asPath.slice(-1));
   const user = useSelector((state: RootState) => state.users.user);
   const dispath = useDispatch();
   const [progressTw, setProgressTw] = useState<number>(0);
@@ -86,6 +88,9 @@ export default function Authentication() {
       }
     }
   }, [data, dispath, progressTe, progressTw]);
+  if (!Number.isInteger(numberShow)) {
+    return <Loading />;
+  }
   return (
     <LayoutDashBoard className="bg-white">
       <div className="flex flex-col md:gap-[18px] md:gap:6 gap-[10px] w-full m-auto mt-[15px] md:mt-0">
@@ -136,13 +141,13 @@ export default function Authentication() {
             </div>
           </div>
         </div>
-        {twitter && (
+        {twitter && numberShow !== 1 && (
           <AuthenTwitter
             twitter={twitter}
             progress={progressStartTw >= 100 ? 100 : progressTw}
           />
         )}
-        {telegram && (
+        {telegram && numberShow !== 2 && (
           <AuthenTelegram
             telegram={telegram}
             progress={progressStartTe >= 100 ? 100 : progressTe}

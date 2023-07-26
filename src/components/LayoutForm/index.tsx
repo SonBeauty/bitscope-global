@@ -16,6 +16,7 @@ interface LayoutFormProps {
   social?: boolean;
   isLoading?: boolean;
   proxy?: string;
+  onChange?: any;
 }
 export default function LayoutForm({
   handleSubmit,
@@ -29,10 +30,12 @@ export default function LayoutForm({
   social = true,
   isLoading,
   proxy,
+  onChange,
 }: LayoutFormProps) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
+      onChange={onChange}
       className="h-full min-h-screen w-full flex bg-white overflow-hidden relative px-10"
     >
       <div className="md:basis-3/5 lg:block hidden relative max-h-screen">
