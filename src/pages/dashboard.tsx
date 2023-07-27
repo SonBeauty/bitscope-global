@@ -127,7 +127,7 @@ export default function MainBoard() {
         />
       </div>
       <div className="grid md:grid-cols-2 gap-3 grid-cols-1 mt-3">
-        <div className=" rounded-md h-[800px]">
+        <div className=" rounded-md">
           <div
             id="divSlider"
             className="px-4 py-4 rounded-md h-[300px] mb-3 bg-[#fff] drop-shadow-xl"
@@ -169,7 +169,7 @@ export default function MainBoard() {
                     className="w-[33%] drop-shadow-md"
                     target="_blank"
                   >
-                    <div className="flex bg-[#fff] hover:bg-[#F0F0F0] py-4 flex-col gap-2 2xl:gap-4 rounded-md h-[460px]">
+                    <div className="flex bg-[#fff] hover:bg-[#F0F0F0] pt-4 flex-col gap-2 2xl:gap-4 rounded-md">
                       <div className="flex px-3">
                         <picture className="mr-2">
                           <img
@@ -212,8 +212,13 @@ export default function MainBoard() {
                             height={100}
                             src={item?.images[0]}
                             alt=""
-                            className="rounded-md h-[120px] w-full 2xl:h-[130px] 3xl:h-[180px]"
+                            className="rounded-md w-full"
                           />
+                        </div>
+                      )}
+                      {item?.video && (
+                        <div className="rounded-md px-3">
+                          <video src={item?.video?.link} width="100%" height="100%" controls className="rounded-md"></video>
                         </div>
                       )}
                       <div className="flex justify-between pb-2 px-0 md:px-3 ml-[-5px]">
@@ -258,7 +263,7 @@ export default function MainBoard() {
         </div>
         <Card
           title="Influencer saying"
-          className="border-none rounded-lg shadow-md max-h-[772px] overflow-y-auto custom-card"
+          className="border-none rounded-lg shadow-md overflow-y-auto custom-card"
         >
           <div className="flex flex-col gap-3">
             {data?.data?.map((item: any, index: any) => {
@@ -334,11 +339,10 @@ export default function MainBoard() {
                       {item?.data?.images &&
                         item?.data?.images?.length !== 0 && (
                           <div
-                            className={`grid ${
-                              item?.data?.images?.length > 1
-                                ? " grid-col-2 grid-flow-col gap-1 "
-                                : "grid-col-1 grid-flow-col"
-                            }`}
+                            className={`grid ${item?.data?.images?.length > 1
+                              ? " grid-col-2 grid-flow-col gap-1 "
+                              : "grid-col-1 grid-flow-col"
+                              }`}
                           >
                             {item?.data?.images
                               ?.slice(0, 3)
@@ -346,26 +350,24 @@ export default function MainBoard() {
                                 return (
                                   <div
                                     key={index}
-                                    className={`${
-                                      index === 0 &&
+                                    className={`${index === 0 &&
                                       item?.data?.images?.length > 2
-                                        ? "row-span-2"
-                                        : ""
-                                    }`}
+                                      ? "row-span-2"
+                                      : ""
+                                      }`}
                                   >
                                     <picture>
                                       <img
                                         src={image}
                                         alt=""
-                                        className={`${
-                                          item?.data?.images?.length > 1
-                                            ? item?.data?.images?.length > 2
-                                              ? index === 1 || index === 2
-                                                ? "h-[133px]"
-                                                : "h-[267px]"
-                                              : "w-full h-[267px]"
-                                            : "w-auto max-h-[267px]"
-                                        } rounded-md`}
+                                        className={`${item?.data?.images?.length > 1
+                                          ? item?.data?.images?.length > 2
+                                            ? index === 1 || index === 2
+                                              ? "h-[133px]"
+                                              : "h-[267px]"
+                                            : "w-full h-[267px]"
+                                          : "w-auto max-h-[267px]"
+                                          } rounded-md`}
                                       />
                                     </picture>
                                   </div>

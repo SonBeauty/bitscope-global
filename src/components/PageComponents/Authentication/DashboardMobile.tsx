@@ -128,10 +128,11 @@ const DashboardMobile = (data: any) => {
                                         )}
                                         </div>
                                     </div>
-                                    {item?.images ? <div className="rounded-md">
+                                    {item?.images && <div className="rounded-md">
                                         <Image width={174} height={100} src={item?.images[0]} alt="" className="rounded-md h-[190px] w-full" />
-                                    </div> : <div className="rounded-md">
-                                        <Image width={174} height={100} src="https://i.imgur.com/j1b6sF1.png" alt="" className="rounded-md h-[190px] w-full" />
+                                    </div>}
+                                    {item?.video && <div className='rounded-md'>
+                                        <video controls src={item?.video?.link} className='rounded-md h-[190px] w-full'></video>
                                     </div>}
                                     <div className="flex justify-between w-full pb-2 mt-2">
                                         <div className="flex gap-1 rounded-full">
