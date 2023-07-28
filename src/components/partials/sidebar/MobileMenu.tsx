@@ -103,7 +103,7 @@ const MobileMenu = ({ className = "custom-class" }) => {
             width={164}
             height={44}
             alt="Logo"
-            className="-ml-3 -mt-6"
+            className="-ml-4 -mt-6"
           />
           <div className="mb-5">
             <SearchModal />
@@ -123,7 +123,7 @@ const MobileMenu = ({ className = "custom-class" }) => {
               <>
                 {item.child && !item.isAdmin && (
                   <Accordion
-                    className={`${"bg-white"} p-0`}
+                    className={`${"bg-white"} p-0 `}
                     open={openNav === item.id}
                     icon={
                       handleHideTitle(item) && (
@@ -134,7 +134,7 @@ const MobileMenu = ({ className = "custom-class" }) => {
                               : setOpenNav(item.id)
                           }
                           strokeWidth={2.5}
-                          className={`mx-auto h-4 w-4 transition-transform ${
+                          className={`absolute mx-auto h-14 w-14 right-0 p-4 mt-1 top-0 transition-transform z-50 ${
                             checkOpenAngBGWhite(item)
                               ? "text-white"
                               : "text-[#10172B]"
@@ -199,7 +199,7 @@ const MobileMenu = ({ className = "custom-class" }) => {
                   </Accordion>
                 )}
 
-                {item.child && item.isAdmin && (
+                {item.child && user?.role === "admin" && item.isAdmin && (
                   <Accordion
                     className={`${"bg-white"} p-0`}
                     open={openNav === item.id}
@@ -306,7 +306,6 @@ const MobileMenu = ({ className = "custom-class" }) => {
         <div className="bg-[#F7F9FB]">
           <Footer mobile />
         </div>
-        
       </Card>
     </div>
   );

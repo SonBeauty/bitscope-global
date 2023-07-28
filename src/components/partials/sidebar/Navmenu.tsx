@@ -115,7 +115,7 @@ const Navmenu = ({ menus, menuHover }: any) => {
                   }
                 >
                   <ListItem className="p-0" selected={openNav === item.id}>
-                    <AccordionHeader className="border-b-0 px-4 py-3 gap-[10px]">
+                    <AccordionHeader className="border-b-0 pl-6 pr-4 py-3 gap-[10px]">
                       <ListItemPrefix className="grid-1">
                         {checkOpenAngBGWhite(item) ? item.iconBlue : item.icon}
                       </ListItemPrefix>
@@ -140,7 +140,7 @@ const Navmenu = ({ menus, menuHover }: any) => {
                               checkOpenAngBGWhite(item)
                                 ? "text-[#0046B0] bg-white"
                                 : "text-white bg-[#0046B0]"
-                            } pl-4 py-3 gap-2 rounded-none`}
+                            } pl-[22px] py-3 gap-2 rounded-none`}
                             onClick={() => handleChildLink(item.childlink)}
                             key={index}
                           >
@@ -238,7 +238,7 @@ const Navmenu = ({ menus, menuHover }: any) => {
                   } rounded-none font-Inter font-medium text-sm gap-[10px]`}
                   onClick={() => handleClickMenu(item.link)}
                 >
-                  <ListItemPrefix className="pl-1">
+                  <ListItemPrefix className="pl-[10px]">
                     {checkOpenAngBGWhite(item) ? item.iconBlue : item.icon}
                   </ListItemPrefix>
                   {handleHideTitle(item)}

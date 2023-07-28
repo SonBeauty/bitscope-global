@@ -20,13 +20,24 @@ const SidebarLogo = ({ menuHover }: any) => {
       <Link href="/dashboard">
         <p className="flex items-center space-x-4">
           <p className="logo-icon">
-            <Image
-              width={180}
-              height={80}
-              alt="logo"
-              src="/image/1200X628-SVG-NONBACKGROUND.png"
-              className="mx-auto relative -mt-1"
-            />
+            {collapsed && !menuHover && (
+              <Image
+                width={180}
+                height={80}
+                alt="logo"
+                src="/image/400X400-SVG-NONBACKGROUND.png"
+                className="mx-auto relative -mt-1"
+              />
+            )}
+            {(!collapsed || menuHover) && (
+              <Image
+                width={180}
+                height={80}
+                alt="logo"
+                src="/image/1200X628-SVG-NONBACKGROUND.png"
+                className="mx-auto relative -mt-1 -ml-[14px]"
+              />
+            )}
           </p>
         </p>
       </Link>
