@@ -3,11 +3,11 @@ import LandingWithHeaderAndFooter from "../Landing/LandingWithHeaderAndFooter";
 import { BreadCrumb } from "./BreadCrumb";
 import LatestStory from "./LatestStory";
 import PageContainer from "@/container/PageContainer";
-interface MainBlog {
+interface MainBlogProps {
   children: React.ReactNode;
   lastest?: boolean;
 }
-export default function MainBlog({ children, lastest = true }: MainBlog) {
+export default function MainBlog({ children, lastest = true }: MainBlogProps) {
   return (
     <PageContainer>
       <LandingWithHeaderAndFooter>

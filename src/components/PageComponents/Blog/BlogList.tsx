@@ -15,7 +15,7 @@ export const BlogList = () => {
     <section className="row_am latest_story blog_list_story" id="blog">
       <div className="container">
         <div className="row">
-          {data?.map((item: Data, index: number) => {
+          {data?.reverse().map((item: Data, index: number) => {
             return (
               <div className="col-md-4" key={index}>
                 <div

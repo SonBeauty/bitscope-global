@@ -5,12 +5,12 @@ import { useRouter } from "next/router";
 export const BlogHeader = () => {
   const router = useRouter();
   const { data } = useQuery({
-    queryKey: ["blogList"],
+    queryKey: ["blogID"],
     queryFn: () => fetch("/api/blog").then((res) => res.json()),
   });
   let blogHeaderData: any = [];
   if (data) {
-    blogHeaderData = data.reverse()[0];
+    blogHeaderData = data[13];
   }
   return (
     <section className="row_am blog_list_main">
