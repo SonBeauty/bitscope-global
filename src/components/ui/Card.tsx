@@ -9,6 +9,7 @@ interface CardProps {
   bodyClass?: string;
   noborder?: boolean;
   titleClass?: string;
+  style?: any
 }
 const Card = ({
   children,
@@ -19,18 +20,19 @@ const Card = ({
   bodyClass = "p-6",
   noborder,
   titleClass = "custom-class",
+  style
 }: CardProps) => {
   const [skin] = useSkin();
   return (
     <div
       className={`
-        card rounded-md bg-white dark:bg-slate-800   ${
-          skin === "bordered"
-            ? " border border-slate-200 dark:border-slate-700"
-            : "shadow-base"
+        card rounded-md bg-white dark:bg-slate-800   ${skin === "bordered"
+          ? " border border-slate-200 dark:border-slate-700"
+          : "shadow-base"
         }
     ${className}
         `}
+      style={style}
     >
       {(title || subtitle) && (
         <header className={`card-header ${noborder ? "no-border" : ""}`}>

@@ -50,13 +50,13 @@ const DashboardMobile = (data: any) => {
                 <div className=" bg-[#005AE2] flex py-8 px-8 gap-5 md:px-[100px] md:gap-10">
                     <div className='mt-1.5'>
                         <picture>
-                            <img src="https://i.imgur.com/nKqw1dW.png" alt="image" />
+                            <img src={user?.avatar} className='w-[73px] h-[73px] rounded-full' alt="image" />
                         </picture>
                     </div>
                     <div className="font-Inter flex flex-col items-start justify-center font-normal text-lg">
-                        <p className="text-white font-light">Good evening,</p>
-                        <p className="text-white font-semibold text-xl">{user?.name}</p>
                         <p className="text-white font-light">Welcome to BitScope</p>
+                        <p className="text-white font-semibold text-xl">{user?.name}</p>
+                        <p className="text-white font-light">Wish you a good day!</p>
                     </div>
                 </div>
             </div>

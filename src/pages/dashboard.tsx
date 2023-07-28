@@ -27,10 +27,13 @@ import {
   GetInfluencer,
   GetTweet,
 } from "./api/influencer/getInfluencer";
+import { useRef, useState, useEffect } from 'react'
 
 export default function MainBoard() {
   const user = useSelector((state: RootState) => state.users.user);
   const { width } = useWidth();
+  const ref = useRef<HTMLAnchorElement | null>(null);
+  const [headerHeight, setHeaderheight] = useState(0);
   const convertFormat = (number: any) => {
     const suffixes = ["", "K", "M", "B", "T"];
     const suffixIndex = Math.floor(Math.log10(number) / 3);
@@ -68,6 +71,12 @@ export default function MainBoard() {
     ),
   };
 
+  useEffect(() => {
+    if (ref.current) {
+      setHeaderheight(ref?.current?.clientHeight + 312);
+    }
+  });
+
   if (!user || user.isActive === false) {
     return (
       <PageContainer>
@@ -104,10 +113,10 @@ export default function MainBoard() {
             />
           </picture>
           <div className="text-white flex flex-col items-center justify-center">
-            <h6 className="text-inherit font-light mt-1">Good Evening</h6>
-            <h5 className="text-inherit font-semibold">{user?.name}</h5>
+            <span className="text-inherit text-base font-Inter font-normal font-light mb-1">Welcome to BitScope</span>
+            <span className="text-inherit text-lg font-Inter text-center font-bold">{user?.name}</span>
+            <span className="text-inherit text-lg font-Inter font-normal font-light">Wish you a good day!</span>
           </div>
-          <h6 className="text-white font-light">Welcome to BitScope</h6>
         </div>
         <Gainer
           rows={dataTop?.data?.gainer}
@@ -166,7 +175,7 @@ export default function MainBoard() {
                       item?.link ? item?.link : "https://twitter.com/BitscopeAI"
                     }
                     key={index}
-                    className="w-[33%] drop-shadow-md"
+                    className="w-[33%] drop-shadow-md" ref={ref}
                     target="_blank"
                   >
                     <div className="flex bg-[#fff] hover:bg-[#F0F0F0] pt-4 flex-col gap-2 2xl:gap-4 rounded-md">
@@ -263,7 +272,8 @@ export default function MainBoard() {
         </div>
         <Card
           title="Influencer saying"
-          className="border-none rounded-lg shadow-md overflow-y-auto custom-card"
+          className={`border-none rounded-lg shadow-md overflow-y-auto custom-card`}
+          style={{ maxHeight: headerHeight + "px" }}
         >
           <div className="flex flex-col gap-3">
             {data?.data?.map((item: any, index: any) => {
