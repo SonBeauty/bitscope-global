@@ -1,21 +1,33 @@
+import { infoUser } from "@/pages/api/auth/info";
 import { RootState } from "@/store";
+import { setUser } from "@/store/users";
+import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Loading() {
   const router = useRouter();
+  const dispatch = useDispatch();
   const isLogin = useSelector((state: RootState) => state.users.isLogin);
+  const { data } = useQuery<any>(["users"], infoUser);
   useEffect(() => {
     if (!isLogin) {
       const timeoutID = setTimeout(() => {
         router.push("/login");
-      }, 5000);
+      }, 1500);
       return () => {
         clearTimeout(timeoutID);
       };
     }
   }, [isLogin, router]);
+  useEffect(() => {
+    const isLogins =
+      localStorage.getItem("token") ?? sessionStorage.getItem("token");
+    if (isLogins || data) {
+      dispatch(setUser(data));
+    }
+  }, [data, dispatch]);
   return (
     <div className="relative w-full h-screen bg-[url('/image/signup-bg.jpg')] z-0 pt-32">
       <div className="flex flex-col items-center justify-center max-w-2xl gap-8 p-8 pt-24 m-auto md:pt-8 z-10">

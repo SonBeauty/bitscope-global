@@ -157,7 +157,8 @@ export const dataTelegramLoading = {
     avatar: "Loading...",
   },
   overview: {
-    percent: 0,
+    percentHandler: 0,
+    percentCrawl: 0,
     review: {
       active: 0,
       normal: 0,

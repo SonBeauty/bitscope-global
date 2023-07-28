@@ -78,9 +78,12 @@ export default function Authentication() {
         } else {
           setProgressStartTe(progressTe);
           setProgressTe(
-            data?.telegram?.overview?.percent > 100
+            data?.telegram?.overview?.percentCrawl > 100
               ? 99
-              : data?.telegram?.overview?.percent || progressTe
+              : (
+                  data?.telegram?.overview?.percentHandler +
+                  data?.telegram?.overview?.percentCrawl
+                ).toFixed() || progressTe
           );
         }
       } else {

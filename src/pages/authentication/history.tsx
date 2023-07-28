@@ -92,30 +92,32 @@ export default function History() {
   };
 
   const handleStartWidth = (item: { objectId: string }) => {
-    return item?.objectId?.startsWith("@")
-      ? item?.objectId
-      : "@" + item?.objectId;
+    const itemSlice =
+      item?.objectId.length >= 20
+        ? item?.objectId.slice(0, 16) + "..."
+        : item?.objectId;
+    return item?.objectId?.startsWith("@") ? itemSlice : "@" + itemSlice;
   };
   const handleMinNumber = (item: any) => {
     if (
-      !item?.telegram?.dataId?.overview?.percent &&
+      !item?.telegram?.dataId?.overview?.percentCrawl &&
       item?.twitter?.dataId?.overview?.processBar
     )
       return item?.twitter?.dataId?.overview?.processBar;
 
     if (
-      item?.telegram?.dataId?.overview?.percent &&
+      item?.telegram?.dataId?.overview?.percentCrawl &&
       !item?.twitter?.dataId?.overview?.processBar
     )
-      return item?.telegram?.dataId?.overview?.percent;
+      return item?.telegram?.dataId?.overview?.percentCrawl;
     if (
-      !item?.telegram?.dataId?.overview?.percent &&
+      !item?.telegram?.dataId?.overview?.percentCrawl &&
       !item?.twitter?.dataId?.overview?.processBar
     )
       return 0;
 
     return Math.min(
-      item?.telegram?.dataId?.overview?.percent,
+      item?.telegram?.dataId?.overview?.percentCrawl,
       item?.twitter?.dataId?.overview?.processBar
     );
   };
@@ -294,7 +296,7 @@ export default function History() {
                                         start={0}
                                         end={
                                           item?.telegram?.dataId?.overview
-                                            ?.percent ??
+                                            ?.percentCrawl ??
                                           item?.twitter?.dataId?.overview
                                             ?.processBar ??
                                           75
@@ -308,7 +310,7 @@ export default function History() {
                                       backClass="h-[5px] w-[250px] rounded-full"
                                       value={
                                         item?.telegram?.dataId?.overview
-                                          ?.percent ??
+                                          ?.percentCrawl ??
                                         item?.twitter?.dataId?.overview
                                           ?.processBar ??
                                         progressFake
@@ -321,7 +323,9 @@ export default function History() {
                                 >
                                   <div className="w-full items-center justify-start flex">
                                     <Link
-                                      href={`/authentication/${item._id}`}
+                                      href={`/authentication/${item._id}?${
+                                        item.twitter === null ? "1" : "2"
+                                      }`}
                                       target="_blank"
                                       className="h-[35px] cursor-pointer text-center w-[96px]  flex items-center bg-[#D7E8FD] hover:bg-[#005AE2] text-[#005AE2] hover:text-white justify-center rounded-[8px] duration-500 ease-in-out"
                                     >
@@ -462,7 +466,7 @@ export default function History() {
                                 >
                                   <div className="w-full items-center justify-start flex">
                                     <Link
-                                      href={`/authentication/${item._id}`}
+                                      href={`/authentication/${item._id}?3`}
                                       target="_blank"
                                       className="h-[35px] cursor-pointer text-center w-[96px]  flex items-center bg-[#D7E8FD] hover:bg-[#005AE2] text-[#005AE2] hover:text-white justify-center rounded-[8px] duration-500 ease-in-out"
                                     >

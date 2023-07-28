@@ -106,7 +106,7 @@ export default function HistoryMobile() {
         </div>
         <CardBody className={`px-0 p-0 w-full overflow-auto`}>
           {isLoading ? (
-            <div className="bg-white  flex items-center justify-center h-[75vh]">
+            <div className="bg-white flex items-center justify-center h-[75vh]">
               <Player
                 autoplay
                 loop
@@ -140,7 +140,12 @@ export default function HistoryMobile() {
                       <div
                         className="flex gap-[15px]"
                         onClick={() =>
-                          router.push(`/authentication/${item._id}`)
+                          router.push(
+                            `/authentication/${item._id}?${
+                              (item.twitter === null && "1") ??
+                              (item.telegram === null && "2")
+                            }`
+                          )
                         }
                       >
                         <picture className="rounded-full flex items-start justify-start">
@@ -191,7 +196,7 @@ export default function HistoryMobile() {
                         <div className="flex items-center gap-3">
                           <div
                             className={`w-2 h-2 ml-[7px] ${
-                              item?.telegram?.dataId?.overview?.percent ??
+                              item?.telegram?.dataId?.overview?.percentCrawl ??
                               item?.twitter?.dataId?.overview?.processBar >= 100
                                 ? "bg-[#26D256]"
                                 : "bg-[#FFB006]"
@@ -200,7 +205,7 @@ export default function HistoryMobile() {
                           <span
                             className={`text-[#1C1C1C] font-normal text-base leading-5 font-Inter`}
                           >
-                            {item?.telegram?.dataId?.overview?.percent ??
+                            {item?.telegram?.dataId?.overview?.percentCrawl  ??
                             item?.twitter?.dataId?.overview?.processBar >= 100
                               ? "Completed"
                               : "In progress"}
@@ -232,7 +237,7 @@ export default function HistoryMobile() {
                       <div
                         className="flex flex-col w-full gap-[10px]"
                         onClick={() =>
-                          router.push(`/authentication/${item._id}`)
+                          router.push(`/authentication/${item._id}?3`)
                         }
                       >
                         <div className="flex gap-[15px] flex-col">
@@ -311,7 +316,7 @@ export default function HistoryMobile() {
                         <div className="flex items-center gap-3">
                           <div
                             className={`w-2 h-2 ml-[7px] ${
-                              item?.telegram?.dataId?.overview?.percent &&
+                              item?.telegram?.dataId?.overview?.percentCrawl  &&
                               item?.twitter?.dataId?.overview?.processBar >= 100
                                 ? "bg-[#26D256]"
                                 : "bg-[#FFB006]"
@@ -320,7 +325,7 @@ export default function HistoryMobile() {
                           <span
                             className={`text-[#1C1C1C] font-normal text-base leading-5 font-Inter`}
                           >
-                            {item?.telegram?.dataId?.overview?.percent &&
+                            {item?.telegram?.dataId?.overview?.percentCrawl  &&
                             item?.twitter?.dataId?.overview?.processBar >= 100
                               ? "Completed"
                               : "In progress"}

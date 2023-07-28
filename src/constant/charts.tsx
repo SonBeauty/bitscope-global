@@ -171,7 +171,7 @@ export const optionsActiveShapeTW: ApexCharts.ApexOptions = {
             fontFamily: "Poppins",
             color: "#475569",
             formatter(val: any) {
-              return `${parseInt(val)}%`;
+              return parseFloat(val)?.toFixed(2) + "%";
             },
           },
         },
@@ -224,7 +224,7 @@ export const optionsActiveShapeTE: ApexCharts.ApexOptions = {
             fontFamily: "Poppins",
             color: "#475569",
             formatter(val: any) {
-              return `${parseInt(val)}%`;
+              return parseFloat(val)?.toFixed(2) + "%";
             },
           },
         },

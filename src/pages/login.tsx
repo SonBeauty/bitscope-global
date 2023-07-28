@@ -14,8 +14,13 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { schema } from "../components/PageComponents/Login/schema";
 import { loginUser } from "./api/auth/login";
+import Loading from "@/components/Loading";
 
 export default function Login() {
+  let userLocal: string | null = "";
+  if (typeof window !== "undefined") {
+    userLocal = localStorage.getItem("token");
+  }
   const route = useRouter();
   const [remember, setRemember] = useState<boolean>(false);
   const dispath = useDispatch();
@@ -69,6 +74,9 @@ export default function Login() {
       setValue("password", e.target.value);
     }
   };
+  if (userLocal) {
+    return <Loading />;
+  }
   return (
     <LayoutForm
       onChange={handleChange}
