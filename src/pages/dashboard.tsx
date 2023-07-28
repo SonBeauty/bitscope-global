@@ -5,10 +5,8 @@ import Gainer from "@/components/PageComponents/MainBoard/Gainer";
 import Potential from "@/components/PageComponents/MainBoard/Potential";
 import Trending from "@/components/PageComponents/MainBoard/Trending";
 import LayoutDashBoard from "@/components/layout/Layout";
-import FirstBannerSVG from "@/components/svg/FirstBannerSVG";
 import IconInfulencerSVG from "@/components/svg/IconInfluencer";
 import IconYellowSVG from "@/components/svg/IconYellowSVG";
-import SecondBannerSVG from "@/components/svg/SecondBannerSVG";
 import ThirdBannerSVG from "@/components/svg/ThirdBannerSVG";
 import Card from "@/components/ui/Card";
 import PageContainer from "@/container/PageContainer";
@@ -146,16 +144,20 @@ export default function MainBoard() {
               className="w-full h-[280px] rounded-md custom-slider"
             >
               <Link
-                href="https://bitscope.global/blog/building-a-web3-community-quantity-or-quality"
+                href="/blog/how-to-optimize-social-media-growth-through-in-depth-insights"
                 target="_blank"
               >
-                <FirstBannerSVG />
+                <picture>
+                  <img src="/image/banner03.png" alt="" className="rounded-md h-[250px] w-full" />
+                </picture>
               </Link>
               <Link
-                href="https://discord.com/channels/1093829979399274527/1093829979650928640/1121661893724082206"
+                href="/blog/crafting-engaging-and-interactive-blogs-a-comprehensive-guide"
                 target="_blank"
               >
-                <SecondBannerSVG />
+                <picture>
+                  <img src="/image/banner02.png" alt="" className="rounded-md h-[250px] w-full" />
+                </picture>
               </Link>
               <Link
                 href="https://discord.com/channels/1093829979399274527/1093829979650928640/1107556222904844349"
@@ -323,19 +325,27 @@ export default function MainBoard() {
                         </div>
                       </div>
                       <div className="pb-2">
-                        <p className="text-start font-Inter text-sm font-normal">
-                          {item?.data?.content.slice(0, 100) + "... "}
-                          <Link
-                            href={
-                              item?.data?.link ||
-                              "https://twitter.com/BitscopeAI"
-                            }
-                            target="_blank"
-                            className="text-[#005AE2] cursor-pointer rounded-3xl basis-4/12 text-center text-sm font-medium italic"
-                          >
-                            View More
-                          </Link>
-                        </p>
+                        <Link href={item?.data?.link || "https://twitter.com/BitscopeAI"} target="_blank">
+                          {item?.data?.content.length > 275 ?
+                            <p className="text-start font-Inter text-sm font-normal">
+                              {item?.data?.content.slice(0, 280) + "..."}
+                              <Link
+                                href={
+                                  item?.data?.link ||
+                                  "https://twitter.com/BitscopeAI"
+                                }
+                                target="_blank"
+                                className="text-[#005AE2] cursor-pointer rounded-3xl basis-4/12 text-center text-sm font-normal italic"
+                              >
+                                View More
+                              </Link>
+                            </p> :
+                            <p className="text-start font-Inter text-sm font-normal">
+                              {item?.data?.content}
+                            </p>
+                          }
+
+                        </Link>
                       </div>
                       {item?.data?.video && (
                         <video

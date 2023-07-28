@@ -61,14 +61,14 @@ const DashboardMobile = (data: any) => {
                 </div>
             </div>
             <Slider {...settings} className="w-full rounded-md px-1 h-[270px] bg-[#fff] custom-slider">
-                <Link href="https://bitscope.global/blog/building-a-web3-community-quantity-or-quality" target='_blank'>
+                <Link href="/blog/how-to-optimize-social-media-growth-through-in-depth-insights" target='_blank'>
                     <picture>
-                        <img src="https://i.imgur.com/j1b6sF1.png" className='h-[242px] rounded-md w-full' alt="" />
+                        <img src="/image/banner03.png" className='h-[242px] rounded-md w-full' alt="" />
                     </picture>
                 </Link>
-                <Link href="https://discord.com/channels/1093829979399274527/1093829979650928640/1121661893724082206" target='_blank'>
+                <Link href="/blog/crafting-engaging-and-interactive-blogs-a-comprehensive-guide" target='_blank'>
                     <picture>
-                        <img src="https://i.imgur.com/Gv2kgMS.png" className='h-[242px] rounded-md w-full' alt="" />
+                        <img src="/image/banner02.png" className='h-[242px] rounded-md w-full' alt="" />
                     </picture>
                 </Link>
                 <Link href="https://discord.com/channels/1093829979399274527/1093829979650928640/1107556222904844349" target='_blank'>

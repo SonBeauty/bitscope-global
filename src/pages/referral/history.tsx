@@ -170,14 +170,14 @@ export default function History() {
                             className={`${classes}  border-b  border-dashed py-[18px] h-[55px]`}
                           >
                             <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
-                              {item?.userId?.isActive ? "$0.5" : "$0.0"}
+                              ${item?.userId?.isActive ? data?.detailReferral?.percentBonusReward : "0.0"}
                             </Typography>
                           </td>
                           <td
                             className={`${classes} justify-start border-b border-dashed py-[18px] h-[55px]`}
                           >
                             <Typography className="text-[#1C1C1C] font-medium text-base leading-5 font-Inter">
-                              {item?.userId?.isActive ? "$0.5" : "$0.0"}
+                              ${item?.userId?.presaleReward || "0.0"}
                             </Typography>
                           </td>
                         </tr>
