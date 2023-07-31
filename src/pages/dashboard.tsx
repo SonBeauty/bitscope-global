@@ -279,6 +279,8 @@ export default function MainBoard() {
         >
           <div className="flex flex-col gap-3">
             {data?.data?.map((item: any, index: any) => {
+              console.log(item?.data?.content);
+              const render = item?.data?.content.split("\n");
               return item?.data ? (
                 <div
                   key={index}
@@ -328,7 +330,14 @@ export default function MainBoard() {
                         <Link href={item?.data?.link || "https://twitter.com/BitscopeAI"} target="_blank">
                           {item?.data?.content.length > 275 ?
                             <p className="text-start font-Inter text-sm font-normal">
-                              {item?.data?.content.slice(0, 280) + "..."}
+                              {render.slice(0, 280).map((line: any, index: any) => {
+                                return <p key={index}>{line.split(" ").map((item: any, index: any) => {
+                                  return (<span key={index} className={item.startsWith("@")
+                                    || item.startsWith("https")
+                                    || item.startsWith("#")
+                                    ? "text-[#005AE2]" : ""}>{item + " "}</span>)
+                                })}</p>
+                              })}
                               <Link
                                 href={
                                   item?.data?.link ||
