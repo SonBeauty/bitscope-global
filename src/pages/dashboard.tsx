@@ -212,8 +212,16 @@ export default function MainBoard() {
                       <div className="break-words px-3">
                         <div className="font-Inter text-sm font-normal h-[220px] 2xl:h-[180px] 3xl:h-[150px] overflow-hidden">
                           {render.map((line: any, index: any) => {
-                            return <p key={index}>{line}</p>;
-                          })}
+                            return <p key={index}>{line.split(" ").map((item: any, index: any) => {
+                              return (<span key={index} className=
+                                {item.startsWith("@")
+                                  || item.startsWith("https")
+                                  || item.startsWith("#")
+                                  ? "text-[#005AE2]" : ""}>{item + " "}
+                              </span>)
+                            })}</p>
+                          })
+                          }
                         </div>
                       </div>
                       {item?.images && (
@@ -234,6 +242,16 @@ export default function MainBoard() {
                       )}
                       <div className="flex justify-between pb-2 px-0 md:px-3 ml-[-5px]">
                         <div className="flex">
+                          <div className="rounded-full hover:text-[#1D9BF0] hover:bg-[#E8F5FD] p-1">
+                            <BiMessageRounded className="h-6 w-6" />
+                          </div>
+                          <span className="text-sm text-[#536471] mt-[6px]">
+                            {item?.replyCount === 0
+                              ? 0
+                              : convertFormat(item?.replyCount)}
+                          </span>
+                        </div>
+                        <div className="flex">
                           <div className="rounded-full hover:text-[#00BA7C] hover:bg-[#E5F8F2] p-1">
                             <FaRetweet className="h-6 w-6" />
                           </div>
@@ -253,18 +271,6 @@ export default function MainBoard() {
                               : convertFormat(item.favoriteCount)}
                           </span>
                         </div>
-                        <div className="flex">
-                          <div className="rounded-full hover:text-[#00BA7C] hover:bg-[#E8F5FD] p-1">
-                            <BiBarChart className="h-6 w-6 text-[#536471] hover:text-[#1D9BF0]" />
-                          </div>
-                          <div className="mt-[4px]">
-                            <span className="text-sm h-6 w-6 text-[#536471] ">
-                              {item?.views === 0
-                                ? 0
-                                : convertFormat(item?.views)}
-                            </span>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </Link>
@@ -279,7 +285,6 @@ export default function MainBoard() {
         >
           <div className="flex flex-col gap-3">
             {data?.data?.map((item: any, index: any) => {
-              console.log(item?.data?.content);
               const render = item?.data?.content.split("\n");
               return item?.data ? (
                 <div
@@ -332,10 +337,12 @@ export default function MainBoard() {
                             <p className="text-start font-Inter text-sm font-normal">
                               {render.slice(0, 280).map((line: any, index: any) => {
                                 return <p key={index}>{line.split(" ").map((item: any, index: any) => {
-                                  return (<span key={index} className={item.startsWith("@")
-                                    || item.startsWith("https")
-                                    || item.startsWith("#")
-                                    ? "text-[#005AE2]" : ""}>{item + " "}</span>)
+                                  return (<span key={index} className=
+                                    {item.startsWith("@")
+                                      || item.startsWith("https")
+                                      || item.startsWith("#")
+                                      ? "text-[#005AE2]" : ""}>{item + " "}
+                                  </span>)
                                 })}</p>
                               })}
                               <Link
@@ -350,10 +357,19 @@ export default function MainBoard() {
                               </Link>
                             </p> :
                             <p className="text-start font-Inter text-sm font-normal">
-                              {item?.data?.content}
-                            </p>
-                          }
-
+                              {render.map((line: any, index: any) => {
+                                return <p key={index}>{line.split(" ").map((item: any, index: any) => {
+                                  return (<span key={index} className=
+                                    {item.startsWith("@")
+                                      || item.startsWith("https")
+                                      || item.startsWith("#")
+                                      ? "text-[#005AE2]" : ""}>{item + " "}
+                                  </span>)
+                                })}
+                                </p>
+                              })
+                              }
+                            </p>}
                         </Link>
                       </div>
                       {item?.data?.video && (
@@ -435,7 +451,7 @@ export default function MainBoard() {
                             </div>
                           </Link>
                           <Link href={item?.data?.link || ""} target="_blank">
-                            <div className="flex gap-1 w-[70px]">
+                            <div className="flex gap-1 w-[65px]">
                               <div className="rounded-full hover:bg-[#FEE7F2] p-1">
                                 <HeartIcon className="h-6 w-6 text-[#536471] hover:text-[#F91880] text-sm" />
                               </div>
@@ -444,20 +460,6 @@ export default function MainBoard() {
                                   {item?.data?.favoriteCount === 0
                                     ? 0
                                     : convertFormat(item.data?.favoriteCount)}
-                                </span>
-                              </div>
-                            </div>
-                          </Link>
-                          <Link href={item?.data?.link || ""} target="_blank">
-                            <div className="flex gap-1 w-[70px]">
-                              <div className="rounded-full hover:text-[#00BA7C] hover:bg-[#E8F5FD] p-1">
-                                <BiBarChart className="h-6 w-6 hover:text-[#1D9BF0] text-[#536471] " />
-                              </div>
-                              <div className="mt-[3px] ">
-                                <span className="text-sm h-6 w-6 text-[#536471] ">
-                                  {item?.data?.views === 0
-                                    ? 0
-                                    : convertFormat(item.data?.views)}
                                 </span>
                               </div>
                             </div>

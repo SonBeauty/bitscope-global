@@ -121,7 +121,13 @@ const DashboardMobile = (data: any) => {
                                             const format = index === 0 && line.length > 100 ? line.substr(0, 100) + '...' : line
                                             return (
                                                 <p className={`${index === 0 ? 'font-bold mb-2' : ''}`} key={index}>
-                                                    {format}
+                                                    {format.split(" ").map((item: any, index: any) => {
+                                                        return <span key={index} className={item.startsWith("@")
+                                                            || item.startsWith("#")
+                                                            || item.startsWith("https") ? "text-[#005AE2]" : ""}>
+                                                            {item + " "}
+                                                        </span>
+                                                    })}
                                                 </p>
                                             )
                                         }
@@ -158,16 +164,6 @@ const DashboardMobile = (data: any) => {
                                             <span className="text-sm text-[#536471] mt-[6px] ml-1">
                                                 {item?.favoriteCount === 0 ? 0 : convertFormat(item.favoriteCount)}
                                             </span>
-                                        </div>
-                                        <div className="flex gap-1">
-                                            <div className="rounded-full hover:text-[#1D9BF0] hover:bg-[#E8F5FD] p-1">
-                                                <BiBarChart className="h-6 w-6" />
-                                            </div>
-                                            <div className="mt-[6px]">
-                                                <span className="text-sm h-6 w-6 text-[#536471] ">
-                                                    {item?.views === 0 ? 0 : convertFormat(item.views)}
-                                                </span>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -335,7 +331,9 @@ const DashboardMobile = (data: any) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <p className="text-start line-clamp-2 font-Inter text-sm font-normal mb-2">{item?.data?.content}</p>
+                                            <p className="text-start line-clamp-2 font-Inter text-sm font-normal mb-2">{item?.data?.content.split(" ").map((item: any, index: any) => {
+                                                return <span key={index} className={item.startsWith("@") || item.startsWith("https") || item.startsWith("#") ? "text-[#005AE2]" : ""}>{item + " "}</span>
+                                            })}</p>
                                             {item?.data?.video &&
                                                 <video controls width="100%" height="100%" src={item?.data?.video?.link} className="rounded-md max-h-[150px]"></video>
                                             }
@@ -388,16 +386,6 @@ const DashboardMobile = (data: any) => {
                                                         <div className="mt-[5px]">
                                                             <span className="text-sm text-[#536471]">
                                                                 {item?.data?.favoriteCount === 0 ? 0 : convertFormat(item.data?.favoriteCount)}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex gap-1">
-                                                        <div className="rounded-full hover:text-[#1D9BF0] hover:bg-[#E8F5FD] p-1">
-                                                            <BiBarChart className="h-6 w-6  " />
-                                                        </div>
-                                                        <div className="mt-[5px]">
-                                                            <span className="text-sm h-6 w-6 text-[#536471] ">
-                                                                {item?.data?.views === 0 ? 0 : convertFormat(item.data?.views)}
                                                             </span>
                                                         </div>
                                                     </div>
